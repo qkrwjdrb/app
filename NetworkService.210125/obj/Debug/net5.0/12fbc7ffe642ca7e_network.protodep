@@ -1,0 +1,2 @@
+obj\Debug\net5.0\Protos/Network.cs \
+obj\Debug\net5.0\Protos/NetworkGrpc.cs: Protos/network.proto
