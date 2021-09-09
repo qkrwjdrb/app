@@ -1125,11 +1125,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\C# project\\app\\NetworkService.210125\\NetworkService.csproj",
+      "projectUniqueName": "C:\\C#_project\\app\\NetworkService.210125\\NetworkService.csproj",
       "projectName": "NetworkService",
-      "projectPath": "C:\\C# project\\app\\NetworkService.210125\\NetworkService.csproj",
+      "projectPath": "C:\\C#_project\\app\\NetworkService.210125\\NetworkService.csproj",
       "packagesPath": "C:\\Users\\mioli\\.nuget\\packages\\",
-      "outputPath": "C:\\C# project\\app\\NetworkService.210125\\obj\\",
+      "outputPath": "C:\\C#_project\\app\\NetworkService.210125\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",

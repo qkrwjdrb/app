@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "v0vIrOEWazEB6HAhqxKKQQ5MfmACFEG1+r0LAyKOEoYhDw9x/DcVea1vnwKD/FYz7oQtq7g8TwPFABNeHw+qUw==",
+  "dgSpecHash": "IwdbDioFWghFH5VDT6PnwysBkQWHVJQmw6QglWvNUmat24h34rrsDwMc7guKjJbUF8PNtHKII3Q5RrglfZtrrQ==",
   "success": true,
-  "projectFilePath": "C:\\C# project\\app\\NetworkService.210125\\NetworkService.csproj",
+  "projectFilePath": "C:\\C#_project\\app\\NetworkService.210125\\NetworkService.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\mioli\\.nuget\\packages\\google.protobuf\\3.14.0\\google.protobuf.3.14.0.nupkg.sha512",
     "C:\\Users\\mioli\\.nuget\\packages\\grpc.aspnetcore\\2.34.0\\grpc.aspnetcore.2.34.0.nupkg.sha512",
