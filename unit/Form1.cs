@@ -502,11 +502,27 @@ namespace unit
             panel2.Controls.Clear();
             panel2.Controls.Add(ucDelete3);
         }
+
+        private void richTextBox3_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            remove_rich(richTextBox3);
+
+            TxMbRtu(0, 0x51894B30, 0x24A16057F6BD, new byte[] { 0x01, 0x03,
+        0x00, 0xCB, 0x00,0x04,
+        0xAD, 0xDE});
+
+
+        }
         //textBox1
 
 
 
-    
+
     }
 }
 

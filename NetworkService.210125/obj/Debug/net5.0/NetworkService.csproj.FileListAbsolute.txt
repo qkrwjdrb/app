@@ -94,3 +94,35 @@ C:\Users\mioli\OneDrive - 솔트웨어(주)\바탕 화면\C#\새 폴더 (2)\Netw
 C:\Users\mioli\OneDrive - 솔트웨어(주)\바탕 화면\C#\새 폴더 (2)\NetworkService.210125\obj\Debug\net5.0\NetworkService.pdb
 C:\Users\mioli\OneDrive - 솔트웨어(주)\바탕 화면\C#\새 폴더 (2)\NetworkService.210125\obj\Debug\net5.0\NetworkService.genruntimeconfig.cache
 C:\Users\mioli\OneDrive - 솔트웨어(주)\바탕 화면\C#\새 폴더 (2)\NetworkService.210125\obj\Debug\net5.0\NetworkService.csproj.AssemblyReference.cache
+C:\C#_project\app\NetworkService.210125\bin\Debug\net5.0\NetworkService.exe
+C:\C#_project\app\NetworkService.210125\bin\Debug\net5.0\NetworkService.deps.json
+C:\C#_project\app\NetworkService.210125\bin\Debug\net5.0\NetworkService.runtimeconfig.json
+C:\C#_project\app\NetworkService.210125\bin\Debug\net5.0\NetworkService.runtimeconfig.dev.json
+C:\C#_project\app\NetworkService.210125\bin\Debug\net5.0\NetworkService.dll
+C:\C#_project\app\NetworkService.210125\bin\Debug\net5.0\ref\NetworkService.dll
+C:\C#_project\app\NetworkService.210125\bin\Debug\net5.0\NetworkService.pdb
+C:\C#_project\app\NetworkService.210125\bin\Debug\net5.0\Google.Protobuf.dll
+C:\C#_project\app\NetworkService.210125\bin\Debug\net5.0\Grpc.AspNetCore.Server.dll
+C:\C#_project\app\NetworkService.210125\bin\Debug\net5.0\Grpc.AspNetCore.Server.ClientFactory.dll
+C:\C#_project\app\NetworkService.210125\bin\Debug\net5.0\Grpc.Core.Api.dll
+C:\C#_project\app\NetworkService.210125\bin\Debug\net5.0\Grpc.Net.Client.dll
+C:\C#_project\app\NetworkService.210125\bin\Debug\net5.0\Grpc.Net.ClientFactory.dll
+C:\C#_project\app\NetworkService.210125\bin\Debug\net5.0\Grpc.Net.Common.dll
+C:\C#_project\app\NetworkService.210125\bin\Debug\net5.0\System.IO.Ports.dll
+C:\C#_project\app\NetworkService.210125\bin\Debug\net5.0\runtimes\linux-arm\native\libSystem.IO.Ports.Native.so
+C:\C#_project\app\NetworkService.210125\bin\Debug\net5.0\runtimes\linux-arm64\native\libSystem.IO.Ports.Native.so
+C:\C#_project\app\NetworkService.210125\bin\Debug\net5.0\runtimes\linux-x64\native\libSystem.IO.Ports.Native.so
+C:\C#_project\app\NetworkService.210125\bin\Debug\net5.0\runtimes\osx-x64\native\libSystem.IO.Ports.Native.dylib
+C:\C#_project\app\NetworkService.210125\bin\Debug\net5.0\runtimes\linux\lib\netstandard2.0\System.IO.Ports.dll
+C:\C#_project\app\NetworkService.210125\bin\Debug\net5.0\runtimes\osx\lib\netstandard2.0\System.IO.Ports.dll
+C:\C#_project\app\NetworkService.210125\bin\Debug\net5.0\runtimes\win\lib\netstandard2.0\System.IO.Ports.dll
+C:\C#_project\app\NetworkService.210125\obj\Debug\net5.0\NetworkService.csproj.AssemblyReference.cache
+C:\C#_project\app\NetworkService.210125\obj\Debug\net5.0\NetworkService.GeneratedMSBuildEditorConfig.editorconfig
+C:\C#_project\app\NetworkService.210125\obj\Debug\net5.0\NetworkService.AssemblyInfoInputs.cache
+C:\C#_project\app\NetworkService.210125\obj\Debug\net5.0\NetworkService.AssemblyInfo.cs
+C:\C#_project\app\NetworkService.210125\obj\Debug\net5.0\NetworkService.csproj.CoreCompileInputs.cache
+C:\C#_project\app\NetworkService.210125\obj\Debug\net5.0\NetworkService.csproj.CopyComplete
+C:\C#_project\app\NetworkService.210125\obj\Debug\net5.0\NetworkService.dll
+C:\C#_project\app\NetworkService.210125\obj\Debug\net5.0\ref\NetworkService.dll
+C:\C#_project\app\NetworkService.210125\obj\Debug\net5.0\NetworkService.pdb
+C:\C#_project\app\NetworkService.210125\obj\Debug\net5.0\NetworkService.genruntimeconfig.cache
