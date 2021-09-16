@@ -153,8 +153,46 @@ namespace unit
                 richTextBox2.AppendText(Environment.NewLine + $"RequestStream.Tdu.Length={payload.Length}");
                 richTextBox2.AppendText(Environment.NewLine + $"RequestStream.Tdu={BitConverter.ToString(payload).Replace("-", string.Empty)}");
                 richTextBox2.AppendText(Environment.NewLine);
-                richTextBox2.AppendText(Environment.NewLine + $"RequestStream.Tdu={BitConverter.ToString(payload).Replace("-", string.Empty)}");
                                     
+                richTextBox1.Text = "Awaiting response...";
+
+            });
+
+            exlink.RequestStream.WriteAsync(new ExMessage
+            {
+                Route = ((UInt32)cmd << 16) | gwGroup,
+                GwId = gwId,
+                DeviceId = deviceId,
+                DataUnit = ByteString.CopyFrom(payload[0..payload.Length]),
+            });
+        }
+        public void TxMbRtu1(UInt16 gwGroup, UInt32 gwId, UInt64 deviceId, byte[] payload)
+        {
+            UInt16 cmd = ((UInt16)'m' << 8) | 'b';
+
+            this.Invoke((MethodInvoker)delegate ()
+            {
+                /*
+                if (deviceId == Convert.ToUInt64("24A1605818B1", 16) || deviceId == Convert.ToUInt64("24A160581869", 16))
+                {
+                    richTextBox3.Text = "LED request";
+                    richTextBox3.AppendText(Environment.NewLine + $"server : " + gwId.ToString("X8") + "/" + deviceId.ToString("X12"));
+                    richTextBox3.AppendText(Environment.NewLine + $"RequestStream.Tdu={BitConverter.ToString(payload).Replace("-", string.Empty)}");
+                    richTextBox3.AppendText(Environment.NewLine);
+
+                    richTextBox4.Text = "Awaiting response...";
+                    richTextBox5.Text = "LED result";
+                }
+                */
+
+                richTextBox2.Text = "TxMbRtu()1";
+                richTextBox2.AppendText(Environment.NewLine + $"RequestStream.GwGroup={gwGroup}");
+                richTextBox2.AppendText(Environment.NewLine + $"RequestStream.GwId=" + gwId.ToString("X8"));
+                richTextBox2.AppendText(Environment.NewLine + $"RequestStream.DeviceId=" + deviceId.ToString("X12"));
+                richTextBox2.AppendText(Environment.NewLine + $"RequestStream.Tdu.Length={payload.Length}");
+                richTextBox2.AppendText(Environment.NewLine + $"RequestStream.Tdu={BitConverter.ToString(payload).Replace("-", string.Empty)}");
+                richTextBox2.AppendText(Environment.NewLine);
+
                 richTextBox1.Text = "Awaiting response...";
 
             });
@@ -172,8 +210,8 @@ namespace unit
         {
             this.Invoke((MethodInvoker)delegate ()
             {
-
-                if (deviceId == Convert.ToUInt64("24A1605818B1", 16) || deviceId == Convert.ToUInt64("24A160581869", 16))
+            
+                if (deviceId == 0x24A16057F6BD)
                 {
                     /*richTextBox4.Text = "LED response";
                     richTextBox4.AppendText(Environment.NewLine + $"server : " + gwId.ToString("X8") + "/" + deviceId.ToString("X12"));
@@ -184,9 +222,11 @@ namespace unit
                     richTextBox5.AppendText(Environment.NewLine + "LED1 value : " + textBox1.Text);
                     richTextBox5.AppendText(Environment.NewLine + "LED2 value : " + textBox2.Text);
                     */
+                   // richTextBox3.Text = "RxMbRtu()";
+                    richTextBox3.AppendText("er"); 
                 }
 
-
+                else {
 
                 richTextBox1.Text = "RxMbRtu()";
                 richTextBox1.AppendText(Environment.NewLine + $"response.GwGroup={gwGroup}");
@@ -196,41 +236,10 @@ namespace unit
                 richTextBox1.AppendText(Environment.NewLine + BitConverter.ToString(payload));
                 richTextBox1.AppendText(Environment.NewLine);
                 richTextBox2.Text += "Responsed... ";
-
+ }
             });
         }
 
-        public void RxMbRtu1(UInt16 gwGroup, UInt32 gwId, UInt64 deviceId, byte[] payload)
-        {
-            this.Invoke((MethodInvoker)delegate ()
-            {
-
-                if (deviceId == Convert.ToUInt64("24A1605818B1", 16) || deviceId == Convert.ToUInt64("24A160581869", 16))
-                {
-                    /*richTextBox4.Text = "LED response";
-                    richTextBox4.AppendText(Environment.NewLine + $"server : " + gwId.ToString("X8") + "/" + deviceId.ToString("X12"));
-                    richTextBox4.AppendText(Environment.NewLine + BitConverter.ToString(payload));
-                    richTextBox4.AppendText(Environment.NewLine);
-                    richTextBox3.Text += "Responsed... ";
-
-                    richTextBox5.AppendText(Environment.NewLine + "LED1 value : " + textBox1.Text);
-                    richTextBox5.AppendText(Environment.NewLine + "LED2 value : " + textBox2.Text);
-                    */
-                }
-
-
-
-                richTextBox1.Text = "RxMbRtu()";
-                richTextBox1.AppendText(Environment.NewLine + $"response.GwGroup={gwGroup}");
-                richTextBox1.AppendText(Environment.NewLine + $"response.GwId=" + gwId.ToString("X8"));
-                richTextBox1.AppendText(Environment.NewLine + $"response.DeviceId=" + deviceId.ToString("X12"));
-                richTextBox1.AppendText(Environment.NewLine + $"response.Tdu.Length={payload.Length}");
-                richTextBox1.AppendText(Environment.NewLine + BitConverter.ToString(payload));
-                richTextBox1.AppendText(Environment.NewLine);
-                richTextBox2.Text += "Responsed... ";
-
-            });
-        }
         //form1_load
         public void Form1_Load(object sender, EventArgs e)
         {
@@ -546,7 +555,7 @@ namespace unit
         {
             remove_rich(richTextBox3);
 
-            TxMbRtu(0, 0x51894B30, 0x24A16057F6BD, new byte[] { 0x01, 0x03,
+            TxMbRtu1(0, 0x51894B30, 0x24A16057F6BD, new byte[] { 0x01, 0x03,
         0x00, 0xCB, 0x00,0x04,
        0xAD, 0xDE});
        //     TxMbRtu(0, 0x51894B30, 0x24A16057F6BD, new byte[] { 0x01, 0x03,
