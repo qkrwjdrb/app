@@ -153,6 +153,8 @@ namespace unit
                 richTextBox2.AppendText(Environment.NewLine + $"RequestStream.Tdu.Length={payload.Length}");
                 richTextBox2.AppendText(Environment.NewLine + $"RequestStream.Tdu={BitConverter.ToString(payload).Replace("-", string.Empty)}");
                 richTextBox2.AppendText(Environment.NewLine);
+                richTextBox2.AppendText(Environment.NewLine + $"RequestStream.Tdu={BitConverter.ToString(payload).Replace("-", string.Empty)}");
+                                    
                 richTextBox1.Text = "Awaiting response...";
 
             });
@@ -167,6 +169,38 @@ namespace unit
         }
         //RxRTU
         public void RxMbRtu(UInt16 gwGroup, UInt32 gwId, UInt64 deviceId, byte[] payload)
+        {
+            this.Invoke((MethodInvoker)delegate ()
+            {
+
+                if (deviceId == Convert.ToUInt64("24A1605818B1", 16) || deviceId == Convert.ToUInt64("24A160581869", 16))
+                {
+                    /*richTextBox4.Text = "LED response";
+                    richTextBox4.AppendText(Environment.NewLine + $"server : " + gwId.ToString("X8") + "/" + deviceId.ToString("X12"));
+                    richTextBox4.AppendText(Environment.NewLine + BitConverter.ToString(payload));
+                    richTextBox4.AppendText(Environment.NewLine);
+                    richTextBox3.Text += "Responsed... ";
+
+                    richTextBox5.AppendText(Environment.NewLine + "LED1 value : " + textBox1.Text);
+                    richTextBox5.AppendText(Environment.NewLine + "LED2 value : " + textBox2.Text);
+                    */
+                }
+
+
+
+                richTextBox1.Text = "RxMbRtu()";
+                richTextBox1.AppendText(Environment.NewLine + $"response.GwGroup={gwGroup}");
+                richTextBox1.AppendText(Environment.NewLine + $"response.GwId=" + gwId.ToString("X8"));
+                richTextBox1.AppendText(Environment.NewLine + $"response.DeviceId=" + deviceId.ToString("X12"));
+                richTextBox1.AppendText(Environment.NewLine + $"response.Tdu.Length={payload.Length}");
+                richTextBox1.AppendText(Environment.NewLine + BitConverter.ToString(payload));
+                richTextBox1.AppendText(Environment.NewLine);
+                richTextBox2.Text += "Responsed... ";
+
+            });
+        }
+
+        public void RxMbRtu1(UInt16 gwGroup, UInt32 gwId, UInt64 deviceId, byte[] payload)
         {
             this.Invoke((MethodInvoker)delegate ()
             {
@@ -520,7 +554,7 @@ namespace unit
        // 0xAD, 0xDE});
   //          TxMbRtu(0, 0x51894B30, 0x24A16057F6BD, new byte[] { 0x01, 0x03,
     //    0x00, 0xEF, 0x00,0x04,
-        //0xAD, 0xDE});
+      // 0xAD, 0xDE});
         
         }
 
