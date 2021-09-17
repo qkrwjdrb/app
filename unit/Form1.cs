@@ -40,8 +40,8 @@ namespace unit
         device.ucSelect ucSelect1 = new device.ucSelect();
         device.ucAdd device2 = new device.ucAdd();
         device.ucDelete ucDelete3 = new device.ucDelete();
+        byte[] temdata;
 
-     
 
 
 
@@ -55,7 +55,7 @@ namespace unit
             ucPanel.ucModbus.eventModSender += UcModbus_eventModSender;
             ucPanel.ucText.textSender += UcText_textSender;
             ucPanel.ucLED.ledSender += UcLED_eventModSender;
-        
+
         }
 
         private void UcLED_eventModSender(byte[] ledData)
@@ -77,7 +77,7 @@ namespace unit
 
         private void UcModbus_eventModSender(object a, object b, object c, object d, string e)
         {
-            modbus_sender( a, b, c, d, e);
+            modbus_sender(a, b, c, d, e);
         }
 
         private void Select_deviceSender(object sender)
@@ -153,7 +153,7 @@ namespace unit
                 richTextBox2.AppendText(Environment.NewLine + $"RequestStream.Tdu.Length={payload.Length}");
                 richTextBox2.AppendText(Environment.NewLine + $"RequestStream.Tdu={BitConverter.ToString(payload).Replace("-", string.Empty)}");
                 richTextBox2.AppendText(Environment.NewLine);
-                                    
+
                 richTextBox1.Text = "Awaiting response...";
 
             });
@@ -210,33 +210,31 @@ namespace unit
         {
             this.Invoke((MethodInvoker)delegate ()
             {
-            
+
                 if (deviceId == 0x24A16057F6BD)
                 {
-                    /*richTextBox4.Text = "LED response";
-                    richTextBox4.AppendText(Environment.NewLine + $"server : " + gwId.ToString("X8") + "/" + deviceId.ToString("X12"));
-                    richTextBox4.AppendText(Environment.NewLine + BitConverter.ToString(payload));
-                    richTextBox4.AppendText(Environment.NewLine);
-                    richTextBox3.Text += "Responsed... ";
 
-                    richTextBox5.AppendText(Environment.NewLine + "LED1 value : " + textBox1.Text);
-                    richTextBox5.AppendText(Environment.NewLine + "LED2 value : " + textBox2.Text);
-                    */
-                   // richTextBox3.Text = "RxMbRtu()";
-                    richTextBox3.AppendText("er"); 
+                       Data(payload);
+
+
+                    richTextBox3.AppendText(Environment.NewLine + BitConverter.ToString(temdata));
+                    richTextBox3.AppendText("---------------");
+
+                    richTextBox3.AppendText(Environment.NewLine + BitConverter.ToString(payload));
                 }
+
 
                 else {
 
-                richTextBox1.Text = "RxMbRtu()";
-                richTextBox1.AppendText(Environment.NewLine + $"response.GwGroup={gwGroup}");
-                richTextBox1.AppendText(Environment.NewLine + $"response.GwId=" + gwId.ToString("X8"));
-                richTextBox1.AppendText(Environment.NewLine + $"response.DeviceId=" + deviceId.ToString("X12"));
-                richTextBox1.AppendText(Environment.NewLine + $"response.Tdu.Length={payload.Length}");
-                richTextBox1.AppendText(Environment.NewLine + BitConverter.ToString(payload));
-                richTextBox1.AppendText(Environment.NewLine);
-                richTextBox2.Text += "Responsed... ";
- }
+                    richTextBox1.Text = "RxMbRtu()";
+                    richTextBox1.AppendText(Environment.NewLine + $"response.GwGroup={gwGroup}");
+                    richTextBox1.AppendText(Environment.NewLine + $"response.GwId=" + gwId.ToString("X8"));
+                    richTextBox1.AppendText(Environment.NewLine + $"response.DeviceId=" + deviceId.ToString("X12"));
+                    richTextBox1.AppendText(Environment.NewLine + $"response.Tdu.Length={payload.Length}");
+                    richTextBox1.AppendText(Environment.NewLine + BitConverter.ToString(payload));
+                    richTextBox1.AppendText(Environment.NewLine);
+                    richTextBox2.Text += "Responsed... ";
+                }
             });
         }
 
@@ -250,7 +248,7 @@ namespace unit
             string phrase = Properties.Settings.Default.save_gateway; // 변수 이동
 
 
-           string[] words = phrase.Split(','); // 스플릿 전용 배열 생성
+            string[] words = phrase.Split(','); // 스플릿 전용 배열 생성
 
             //foreach (var word in words)
             //{
@@ -558,19 +556,28 @@ namespace unit
             TxMbRtu1(0, 0x51894B30, 0x24A16057F6BD, new byte[] { 0x01, 0x03,
         0x00, 0xCB, 0x00,0x04,
        0xAD, 0xDE});
-       //     TxMbRtu(0, 0x51894B30, 0x24A16057F6BD, new byte[] { 0x01, 0x03,
-      //  0x00, 0xD4, 0x00,0x04,
-       // 0xAD, 0xDE});
-  //          TxMbRtu(0, 0x51894B30, 0x24A16057F6BD, new byte[] { 0x01, 0x03,
-    //    0x00, 0xEF, 0x00,0x04,
-      // 0xAD, 0xDE});
-        
+       /*     TxMbRtu(0, 0x51894B30, 0x24A16057F6BD, new byte[] { 0x01, 0x03,
+        0x00, 0xD4, 0x00,0x04,
+        0xAD, 0xDE});
+            TxMbRtu(0, 0x51894B30, 0x24A16057F6BD, new byte[] { 0x01, 0x03,
+        0x00, 0xEF, 0x00,0x04,
+       0xAD, 0xDE});
+       */
         }
 
 
 
+  void Data(byte[] receiveData) {
+            byte[] rData = new byte[4];
+            string q = "dsaf";
 
-
+            rData[0] = receiveData[5];
+            rData[1] = receiveData[6];
+            rData[2] = receiveData[9];
+            rData[3] = receiveData[10];
+            temdata = rData;
+        }
+        
     }
 }
 
