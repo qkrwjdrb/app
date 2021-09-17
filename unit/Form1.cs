@@ -40,9 +40,6 @@ namespace unit
         device.ucSelect ucSelect1 = new device.ucSelect();
         device.ucAdd device2 = new device.ucAdd();
         device.ucDelete ucDelete3 = new device.ucDelete();
-        byte[] temdata;
-
-
 
 
         public Form1()
@@ -213,18 +210,21 @@ namespace unit
 
                 if (deviceId == 0x24A16057F6BD)
                 {
+                    float temValue = GetTemData(payload);
+                    byte[] temBytes = BitConverter.GetBytes(temValue);
 
-                       Data(payload);
-
-
-                    richTextBox3.AppendText(Environment.NewLine + BitConverter.ToString(temdata));
-                    richTextBox3.AppendText("---------------");
+                    richTextBox3.AppendText(Environment.NewLine + BitConverter.ToString(temBytes));
+                    richTextBox3.AppendText(Environment.NewLine + "---------------");
 
                     richTextBox3.AppendText(Environment.NewLine + BitConverter.ToString(payload));
+                    //richTextBox3.AppendText(Environment.NewLine + float.Parse(BitConverter.ToString(temdata).Replace("-", string.Empty)));
+                    richTextBox3.AppendText(Environment.NewLine + BitConverter.ToSingle(temBytes, 0).ToString("0.00"));
+                    richTextBox3.AppendText(Environment.NewLine + temValue.ToString("0.00"));
                 }
 
 
-                else {
+                else
+                {
 
                     richTextBox1.Text = "RxMbRtu()";
                     richTextBox1.AppendText(Environment.NewLine + $"response.GwGroup={gwGroup}");
@@ -554,30 +554,30 @@ namespace unit
             remove_rich(richTextBox3);
 
             TxMbRtu1(0, 0x51894B30, 0x24A16057F6BD, new byte[] { 0x01, 0x03,
-        0x00, 0xCB, 0x00,0x04,
+        0x00, 0xCB, 0x00,0x03,
        0xAD, 0xDE});
-       /*     TxMbRtu(0, 0x51894B30, 0x24A16057F6BD, new byte[] { 0x01, 0x03,
-        0x00, 0xD4, 0x00,0x04,
-        0xAD, 0xDE});
-            TxMbRtu(0, 0x51894B30, 0x24A16057F6BD, new byte[] { 0x01, 0x03,
-        0x00, 0xEF, 0x00,0x04,
-       0xAD, 0xDE});
-       */
+            /*     TxMbRtu(0, 0x51894B30, 0x24A16057F6BD, new byte[] { 0x01, 0x03,
+             0x00, 0xD4, 0x00,0x04,
+             0xAD, 0xDE});
+                 TxMbRtu(0, 0x51894B30, 0x24A16057F6BD, new byte[] { 0x01, 0x03,
+             0x00, 0xEF, 0x00,0x04,
+            0xAD, 0xDE});
+            */
         }
 
 
 
-  void Data(byte[] receiveData) {
+        float GetTemData(byte[] receiveData)
+        {
             byte[] rData = new byte[4];
-            string q = "dsaf";
 
-            rData[0] = receiveData[5];
-            rData[1] = receiveData[6];
-            rData[2] = receiveData[9];
-            rData[3] = receiveData[10];
-            temdata = rData;
+            rData[0] = receiveData[4];
+            rData[1] = receiveData[3];
+            rData[2] = receiveData[6];
+            rData[3] = receiveData[5];
+
+            return BitConverter.ToSingle(rData, 0);
         }
-        
     }
 }
 
