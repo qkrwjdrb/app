@@ -210,16 +210,22 @@ namespace unit
 
                 if (deviceId == 0x24A16057F6BD)
                 {
-                    float temValue = GetTemData(payload);
+                    float temValue = GetModbusFloat(payload, 3);
                     byte[] temBytes = BitConverter.GetBytes(temValue);
+                    Int16 errorStatus = GetModbusInt16(payload, 7);
 
                     richTextBox3.AppendText(Environment.NewLine + BitConverter.ToString(temBytes));
                     richTextBox3.AppendText(Environment.NewLine + "---------------");
 
-                    richTextBox3.AppendText(Environment.NewLine + BitConverter.ToString(payload));
-                    //richTextBox3.AppendText(Environment.NewLine + float.Parse(BitConverter.ToString(temdata).Replace("-", string.Empty)));
-                    richTextBox3.AppendText(Environment.NewLine + BitConverter.ToSingle(temBytes, 0).ToString("0.00"));
-                    richTextBox3.AppendText(Environment.NewLine + temValue.ToString("0.00"));
+                    if (errorStatus == 0)
+                    {
+                        richTextBox3.AppendText(Environment.NewLine + BitConverter.ToString(payload));
+                        //richTextBox3.AppendText(Environment.NewLine + float.Parse(BitConverter.ToString(temdata).Replace("-", string.Empty)));
+                        richTextBox3.AppendText(Environment.NewLine + BitConverter.ToSingle(temBytes, 0).ToString("0.00"));
+                        richTextBox3.AppendText(Environment.NewLine + temValue.ToString("0.00"));
+                    } 
+
+                    richTextBox3.AppendText(Environment.NewLine + "ERROR STATUS = " + errorStatus.ToString());
                 }
 
 
@@ -552,31 +558,50 @@ namespace unit
         private void button1_Click(object sender, EventArgs e)
         {
             remove_rich(richTextBox3);
-
-            TxMbRtu1(0, 0x51894B30, 0x24A16057F6BD, new byte[] { 0x01, 0x03,
+            //온도
+            TxMbRtu(0, 0x51894B30, 0x24A16057F6BD, new byte[] { 0x01, 0x03,
         0x00, 0xCB, 0x00,0x03,
        0xAD, 0xDE});
-            /*     TxMbRtu(0, 0x51894B30, 0x24A16057F6BD, new byte[] { 0x01, 0x03,
-             0x00, 0xD4, 0x00,0x04,
-             0xAD, 0xDE});
-                 TxMbRtu(0, 0x51894B30, 0x24A16057F6BD, new byte[] { 0x01, 0x03,
-             0x00, 0xEF, 0x00,0x04,
-            0xAD, 0xDE});
-            */
+            //습도
+           //     TxMbRtu(0, 0x51894B30, 0x24A16057F6BD, new byte[] { 0x01, 0x03,
+             //0x00, 0xD4, 0x00,0x03,
+             //0xAD, 0xDE});
+            //co2
+              //   TxMbRtu(0, 0x51894B30, 0x24A16057F6BD, new byte[] { 0x01, 0x03,
+             //0x00, 0xEF, 0x00,0x04,
+           // 0xAD, 0xDE});
+            
         }
 
 
 
-        float GetTemData(byte[] receiveData)
+
+
+        float GetModbusFloat(byte[] receiveData, Int32 offset)
         {
             byte[] rData = new byte[4];
 
-            rData[0] = receiveData[4];
-            rData[1] = receiveData[3];
-            rData[2] = receiveData[6];
-            rData[3] = receiveData[5];
+            rData[0] = receiveData[offset + 1];
+            rData[1] = receiveData[offset + 0];
+            rData[2] = receiveData[offset + 3];
+            rData[3] = receiveData[offset + 2];
 
             return BitConverter.ToSingle(rData, 0);
+        }
+
+        float GetModbusFloat(byte[] receiveData)
+        {
+            return GetModbusFloat(receiveData, 0);
+        }
+
+        Int16 GetModbusInt16(byte[] receiveData, Int32 offset)
+        {
+            return (Int16)((receiveData[offset + 1] << 8) | receiveData[offset + 0]);
+        }
+
+        Int16 GetModbusInt16(byte[] receiveData)
+        {
+            return GetModbusInt16(receiveData, 0);
         }
     }
 }
