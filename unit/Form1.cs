@@ -163,52 +163,15 @@ namespace unit
                 DataUnit = ByteString.CopyFrom(payload[0..payload.Length]),
             });
         }
-        public void TxMbRtu1(UInt16 gwGroup, UInt32 gwId, UInt64 deviceId, byte[] payload)
-        {
-            UInt16 cmd = ((UInt16)'m' << 8) | 'b';
 
-            this.Invoke((MethodInvoker)delegate ()
-            {
-                /*
-                if (deviceId == Convert.ToUInt64("24A1605818B1", 16) || deviceId == Convert.ToUInt64("24A160581869", 16))
-                {
-                    richTextBox3.Text = "LED request";
-                    richTextBox3.AppendText(Environment.NewLine + $"server : " + gwId.ToString("X8") + "/" + deviceId.ToString("X12"));
-                    richTextBox3.AppendText(Environment.NewLine + $"RequestStream.Tdu={BitConverter.ToString(payload).Replace("-", string.Empty)}");
-                    richTextBox3.AppendText(Environment.NewLine);
-
-                    richTextBox4.Text = "Awaiting response...";
-                    richTextBox5.Text = "LED result";
-                }
-                */
-
-                richTextBox2.Text = "TxMbRtu()1";
-                richTextBox2.AppendText(Environment.NewLine + $"RequestStream.GwGroup={gwGroup}");
-                richTextBox2.AppendText(Environment.NewLine + $"RequestStream.GwId=" + gwId.ToString("X8"));
-                richTextBox2.AppendText(Environment.NewLine + $"RequestStream.DeviceId=" + deviceId.ToString("X12"));
-                richTextBox2.AppendText(Environment.NewLine + $"RequestStream.Tdu.Length={payload.Length}");
-                richTextBox2.AppendText(Environment.NewLine + $"RequestStream.Tdu={BitConverter.ToString(payload).Replace("-", string.Empty)}");
-                richTextBox2.AppendText(Environment.NewLine);
-
-                richTextBox1.Text = "Awaiting response...";
-
-            });
-
-            exlink.RequestStream.WriteAsync(new ExMessage
-            {
-                Route = ((UInt32)cmd << 16) | gwGroup,
-                GwId = gwId,
-                DeviceId = deviceId,
-                DataUnit = ByteString.CopyFrom(payload[0..payload.Length]),
-            });
-        }
         //RxRTU
         public void RxMbRtu(UInt16 gwGroup, UInt32 gwId, UInt64 deviceId, byte[] payload)
         {
             this.Invoke((MethodInvoker)delegate ()
             {
 
-                if (deviceId == 0x24A16057F6BD)
+
+                if (deviceId == 0x24A160581B59)
                 {
                     float temValue = GetModbusFloat(payload, 3);
                     byte[] temBytes = BitConverter.GetBytes(temValue);
@@ -223,7 +186,7 @@ namespace unit
                         //richTextBox3.AppendText(Environment.NewLine + float.Parse(BitConverter.ToString(temdata).Replace("-", string.Empty)));
                         richTextBox3.AppendText(Environment.NewLine + BitConverter.ToSingle(temBytes, 0).ToString("0.00"));
                         richTextBox3.AppendText(Environment.NewLine + temValue.ToString("0.00"));
-                    } 
+                    }
 
                     richTextBox3.AppendText(Environment.NewLine + "ERROR STATUS = " + errorStatus.ToString());
                 }
@@ -247,6 +210,7 @@ namespace unit
         //form1_load
         public void Form1_Load(object sender, EventArgs e)
         {
+
 
 
             panel1.Controls.Add(ucMod1);
@@ -554,23 +518,25 @@ namespace unit
         {
 
         }
-
+        //0x4588177F, 0x24A160581B59,
+        //0x51894B30, 0x24A16057F6BD,
         private void button1_Click(object sender, EventArgs e)
         {
-            remove_rich(richTextBox3);
+
             //온도
-            TxMbRtu(0, 0x51894B30, 0x24A16057F6BD, new byte[] { 0x01, 0x03,
+            TxMbRtu(0, 0x4588177F, 0x24A160581B59, new byte[] { 0x01, 0x03,
         0x00, 0xCB, 0x00,0x03,
        0xAD, 0xDE});
             //습도
-           //     TxMbRtu(0, 0x51894B30, 0x24A16057F6BD, new byte[] { 0x01, 0x03,
-             //0x00, 0xD4, 0x00,0x03,
-             //0xAD, 0xDE});
+            TxMbRtu(0, 0x4588177F, 0x24A160581B59, new byte[] { 0x01, 0x03,
+             0x00, 0xD4, 0x00,0x03,
+             0xAD, 0xDE});
+
             //co2
-              //   TxMbRtu(0, 0x51894B30, 0x24A16057F6BD, new byte[] { 0x01, 0x03,
-             //0x00, 0xEF, 0x00,0x04,
-           // 0xAD, 0xDE});
-            
+            TxMbRtu(0, 0x4588177F, 0x24A160581B59, new byte[] { 0x01, 0x03,
+             0x00, 0xEF, 0x00,0x03,
+            0xAD, 0xDE});
+
         }
 
 
