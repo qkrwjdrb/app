@@ -41,6 +41,8 @@ namespace unit
         device.ucAdd device2 = new device.ucAdd();
         device.ucDelete ucDelete3 = new device.ucDelete();
 
+        
+
 
         public Form1()
         {
@@ -211,7 +213,9 @@ namespace unit
         public void Form1_Load(object sender, EventArgs e)
         {
 
-
+            tempTx();
+            humTx();
+            co2Tx();
 
             panel1.Controls.Add(ucMod1);
             panel2.Controls.Add(ucSelect1);
@@ -522,7 +526,7 @@ namespace unit
         //0x51894B30, 0x24A16057F6BD,
         private void button1_Click(object sender, EventArgs e)
         {
-
+            remove_rich(richTextBox3);
             //온도
             TxMbRtu(0, 0x4588177F, 0x24A160581B59, new byte[] { 0x01, 0x03,
         0x00, 0xCB, 0x00,0x03,
@@ -538,9 +542,29 @@ namespace unit
             0xAD, 0xDE});
 
         }
+        private void tempTx()
+        {
+            //온도
+            TxMbRtu(0, 0x4588177F, 0x24A160581B59, new byte[] { 0x01, 0x03,
+        0x00, 0xCB, 0x00,0x03,
+       0xAD, 0xDE});
+        }
+        private void humTx()
+        {
+            //습도
+            TxMbRtu(0, 0x4588177F, 0x24A160581B59, new byte[] { 0x01, 0x03,
+             0x00, 0xD4, 0x00,0x03,
+             0xAD, 0xDE});
+        }
+        private void co2Tx()
+        {
+            //co2
+            TxMbRtu(0, 0x4588177F, 0x24A160581B59, new byte[] { 0x01, 0x03,
+             0x00, 0xEF, 0x00,0x03,
+            0xAD, 0xDE});
+        }
 
-
-
+       
 
 
         float GetModbusFloat(byte[] receiveData, Int32 offset)
