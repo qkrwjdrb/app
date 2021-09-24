@@ -19,7 +19,9 @@ namespace unit.device
         public static ucSelect f;
         public ucSelect()
         {
-         
+
+           // comboBox6.Text = Properties.Settings.Default.last_gateway;
+           // comboBox7.Text = Properties.Settings.Default.last_deviceid;
             InitializeComponent();
             f = this;
         }
@@ -29,8 +31,9 @@ namespace unit.device
         {
             comboBox6.Items.Add("51894B30");
             comboBox6.Items.Add("4588177F");
-            comboBox7.Items.Add("24A160581B59");          comboBox7.Items.Add("24A1605818B1");
+            comboBox7.Items.Add("24A1605818B1");
             comboBox7.Items.Add("24A160581869");
+            comboBox7.Items.Add("24A160581B59");
             comboBox6.SelectedIndex = 0;
             comboBox7.SelectedIndex = 0;
         }
