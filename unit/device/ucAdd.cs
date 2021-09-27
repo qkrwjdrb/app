@@ -70,7 +70,9 @@ namespace unit.device
         private void button1_Click(object sender, EventArgs e)
         {
             ucSelect.f.comboBox6.Items.Add(addGateBox.Text); ucSelect.f.comboBox7.Items.Add(addDevBox.Text);
-
+            Properties.Settings.Default.last_gateway = addGateBox.Text;
+            Properties.Settings.Default.last_deviceid = addDevBox.Text;
+            Properties.Settings.Default.Save();
         }
 
         private void addGateBox_TextChanged(object sender, EventArgs e)
