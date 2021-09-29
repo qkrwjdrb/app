@@ -26,8 +26,6 @@ namespace unit
 
         string[] save_gateways = new string[5];
 
-
-
         public UInt32 gateway;
         public UInt64 devicead;
         string textData;
@@ -41,7 +39,7 @@ namespace unit
         device.ucAdd device2 = new device.ucAdd();
         device.ucDelete ucDelete3 = new device.ucDelete();
 
-      
+
         public Form1()
         {
             InitializeComponent();
@@ -118,10 +116,6 @@ namespace unit
                         break;
                 }
             }
-
-
-
-
         }
         //TxRTU
         public void TxMbRtu(UInt16 gwGroup, UInt32 gwId, UInt64 deviceId, byte[] payload)
@@ -168,19 +162,19 @@ namespace unit
         //RxRTU
         public void RxMbRtu(UInt16 gwGroup, UInt32 gwId, UInt64 deviceId, byte[] payload)
         {
-        
+
             this.Invoke((MethodInvoker)delegate ()
             {
 
 
                 if (tempEnd == false & deviceId == 0x24A160581B59 & humEnd == false)
                 {
-                 //   remove_rich(richTextBox3);
+                    //   remove_rich(richTextBox3);
 
                     float temValue = GetModbusFloat(payload, 3);
                     byte[] temBytes = BitConverter.GetBytes(temValue);
                     Int16 errorStatus = GetModbusInt16(payload, 7);
-
+                    richTextBox3.Text = "weather data";
                     // richTextBox3.AppendText(Environment.NewLine + BitConverter.ToString(temBytes));
                     // richTextBox3.AppendText(Environment.NewLine + "---------------");
 
@@ -188,18 +182,19 @@ namespace unit
                     {
                         //  richTextBox3.AppendText(Environment.NewLine + BitConverter.ToString(payload));
                         //richTextBox3.AppendText(Environment.NewLine + float.Parse(BitConverter.ToString(temdata).Replace("-", string.Empty)));
-                        richTextBox3.AppendText( $"temp:{BitConverter.ToSingle(temBytes, 0).ToString("0.00")}");
+                        richTextBox3.AppendText(Environment.NewLine + $"temp : {BitConverter.ToSingle(temBytes, 0).ToString("0.00")}");
                         //  richTextBox3.AppendText(Environment.NewLine + temValue.ToString("0.00"));
                     }
                     else
                     {
 
                         richTextBox3.AppendText(Environment.NewLine + "ERROR STATUS = " + errorStatus.ToString());
-                    }                   
+                    }
 
-                        tempEnd = true; humTx();
-                   
-                }else if (humEnd == false&deviceId == 0x24A160581B59 & tempEnd == true )
+                    tempEnd = true; humTx();
+
+                }
+                else if (humEnd == false & deviceId == 0x24A160581B59 & tempEnd == true)
                 {
                     float humValue = GetModbusFloat(payload, 3);
                     byte[] humBytes = BitConverter.GetBytes(humValue);
@@ -212,20 +207,21 @@ namespace unit
                     {
                         //  richTextBox3.AppendText(Environment.NewLine + BitConverter.ToString(payload));
                         //richTextBox3.AppendText(Environment.NewLine + float.Parse(BitConverter.ToString(temdata).Replace("-", string.Empty)));
-                        richTextBox3.AppendText(Environment.NewLine + $"humidity:{BitConverter.ToSingle(humBytes, 0).ToString("0.00")}");
+                        richTextBox3.AppendText(Environment.NewLine + $"humidity : {BitConverter.ToSingle(humBytes, 0).ToString("0.00")}");
                         //   richTextBox3.AppendText(Environment.NewLine + humValue.ToString("0.00"));
+
                     }
                     else
                     {
 
-                       richTextBox3.AppendText(Environment.NewLine + "ERROR STATUS = " + errorStatus.ToString());
+                        richTextBox3.AppendText(Environment.NewLine + "ERROR STATUS = " + errorStatus.ToString());
                     }
 
                     humEnd = true; co2Tx();
                 }
-                
-                
-                else if (deviceId == 0x24A160581B59& tempEnd == true & humEnd == true) 
+
+
+                else if (deviceId == 0x24A160581B59 & tempEnd == true & humEnd == true)
                 {
                     float temValue = GetModbusFloat(payload, 3);
                     byte[] temBytes = BitConverter.GetBytes(temValue);
@@ -238,29 +234,29 @@ namespace unit
                     {
                         //    richTextBox3.AppendText(Environment.NewLine + BitConverter.ToString(payload));
                         //richTextBox3.AppendText(Environment.NewLine + float.Parse(BitConverter.ToString(temdata).Replace("-", string.Empty)));
-                        richTextBox3.AppendText(Environment.NewLine + $"CO2:{BitConverter.ToSingle(temBytes, 0).ToString("0.00")}");
+                        richTextBox3.AppendText(Environment.NewLine + $"CO2 : {BitConverter.ToSingle(temBytes, 0).ToString("0.00")}");
                         //    richTextBox3.AppendText(Environment.NewLine + temValue.ToString("0.00"));
                     }
                     else
                     {
                         richTextBox3.AppendText(Environment.NewLine + "ERROR STATUS = " + errorStatus.ToString());
                     }
-
+                    richTextBox3.AppendText(Environment.NewLine + $"last Refresh : {DateTime.Now.ToString()}");
                     tempEnd = false; humEnd = false;
                 }
 
-                else
-                {
+                //   else
+                //    {
 
-                    richTextBox1.Text = "RxMbRtu()";
-                    richTextBox1.AppendText(Environment.NewLine + $"response.GwGroup={gwGroup}");
-                    richTextBox1.AppendText(Environment.NewLine + $"response.GwId=" + gwId.ToString("X8"));
-                    richTextBox1.AppendText(Environment.NewLine + $"response.DeviceId=" + deviceId.ToString("X12"));
-                    richTextBox1.AppendText(Environment.NewLine + $"response.Tdu.Length={payload.Length}");
-                    richTextBox1.AppendText(Environment.NewLine + BitConverter.ToString(payload));
-                    richTextBox1.AppendText(Environment.NewLine);
-                    richTextBox2.Text += "Responsed... ";
-                }
+                richTextBox1.Text = "RxMbRtu()";
+                richTextBox1.AppendText(Environment.NewLine + $"response.GwGroup={gwGroup}");
+                richTextBox1.AppendText(Environment.NewLine + $"response.GwId=" + gwId.ToString("X8"));
+                richTextBox1.AppendText(Environment.NewLine + $"response.DeviceId=" + deviceId.ToString("X12"));
+                richTextBox1.AppendText(Environment.NewLine + $"response.Tdu.Length={payload.Length}");
+                richTextBox1.AppendText(Environment.NewLine + BitConverter.ToString(payload));
+                richTextBox1.AppendText(Environment.NewLine);
+                richTextBox2.Text += "Responsed... ";
+                //  }
             });
         }
 
@@ -269,7 +265,7 @@ namespace unit
         {
 
             tempTx();
-          
+
 
             panel1.Controls.Add(ucMod1);
             panel2.Controls.Add(ucSelect1);
@@ -580,7 +576,7 @@ namespace unit
         //0x51894B30, 0x24A16057F6BD,
         private void button1_Click(object sender, EventArgs e)
         {
-              remove_rich(richTextBox3);
+            remove_rich(richTextBox3);
             /*  //온도
               TxMbRtu(0, 0x4588177F, 0x24A160581B59, new byte[] { 0x01, 0x03,
           0x00, 0xCB, 0x00,0x03,
@@ -619,9 +615,12 @@ namespace unit
             0xAD, 0xDE});
         }
 
-       
-
-
+        /*
+        private void lastRefresh()
+        {
+            richTextBox3.AppendText(Environment.NewLine + $"last Refresh : {DateTime.Now.ToString()}");
+        }
+        */
         float GetModbusFloat(byte[] receiveData, Int32 offset)
         {
             byte[] rData = new byte[4];

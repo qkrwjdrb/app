@@ -31,6 +31,8 @@ namespace unit
         {
             this.richTextBox2 = new System.Windows.Forms.RichTextBox();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.richTextBox3 = new System.Windows.Forms.RichTextBox();
             this.button14 = new System.Windows.Forms.Button();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.button15 = new System.Windows.Forms.Button();
@@ -46,8 +48,6 @@ namespace unit
             this.button21 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.richTextBox3 = new System.Windows.Forms.RichTextBox();
-            this.button1 = new System.Windows.Forms.Button();
             this.groupBox5.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox6.SuspendLayout();
@@ -57,28 +57,51 @@ namespace unit
             // 
             this.richTextBox2.Location = new System.Drawing.Point(6, 19);
             this.richTextBox2.Name = "richTextBox2";
-            this.richTextBox2.Size = new System.Drawing.Size(273, 421);
+            this.richTextBox2.Size = new System.Drawing.Size(273, 428);
             this.richTextBox2.TabIndex = 5;
             this.richTextBox2.Text = "TxMbRtu";
             this.richTextBox2.TextChanged += new System.EventHandler(this.richTextBox2_TextChanged);
             // 
             // groupBox5
             // 
+            this.groupBox5.Controls.Add(this.button1);
             this.groupBox5.Controls.Add(this.richTextBox2);
+            this.groupBox5.Controls.Add(this.richTextBox3);
             this.groupBox5.Controls.Add(this.button14);
             this.groupBox5.Controls.Add(this.richTextBox1);
             this.groupBox5.Controls.Add(this.button15);
             this.groupBox5.Location = new System.Drawing.Point(366, 75);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(564, 485);
+            this.groupBox5.Size = new System.Drawing.Size(795, 485);
             this.groupBox5.TabIndex = 51;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "RESPONSE box";
             this.groupBox5.Enter += new System.EventHandler(this.groupBox5_Enter);
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(563, 453);
+            this.button1.Margin = new System.Windows.Forms.Padding(2);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(225, 23);
+            this.button1.TabIndex = 58;
+            this.button1.Text = "Refresh";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // richTextBox3
+            // 
+            this.richTextBox3.Location = new System.Drawing.Point(562, 19);
+            this.richTextBox3.Margin = new System.Windows.Forms.Padding(2);
+            this.richTextBox3.Name = "richTextBox3";
+            this.richTextBox3.Size = new System.Drawing.Size(226, 428);
+            this.richTextBox3.TabIndex = 57;
+            this.richTextBox3.Text = "Data";
+            this.richTextBox3.TextChanged += new System.EventHandler(this.richTextBox3_TextChanged);
+            // 
             // button14
             // 
-            this.button14.Location = new System.Drawing.Point(6, 446);
+            this.button14.Location = new System.Drawing.Point(6, 453);
             this.button14.Name = "button14";
             this.button14.Size = new System.Drawing.Size(273, 23);
             this.button14.TabIndex = 27;
@@ -90,14 +113,14 @@ namespace unit
             // 
             this.richTextBox1.Location = new System.Drawing.Point(284, 19);
             this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(273, 421);
+            this.richTextBox1.Size = new System.Drawing.Size(273, 428);
             this.richTextBox1.TabIndex = 4;
             this.richTextBox1.Text = "RxMbRtu";
             this.richTextBox1.TextChanged += new System.EventHandler(this.richTextBox1_TextChanged);
             // 
             // button15
             // 
-            this.button15.Location = new System.Drawing.Point(284, 446);
+            this.button15.Location = new System.Drawing.Point(284, 453);
             this.button15.Name = "button15";
             this.button15.Size = new System.Drawing.Size(273, 23);
             this.button15.TabIndex = 28;
@@ -224,39 +247,16 @@ namespace unit
             // 
             // panel2
             // 
-            this.panel2.Location = new System.Drawing.Point(13, 53);
+            this.panel2.Location = new System.Drawing.Point(13, 52);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(318, 125);
             this.panel2.TabIndex = 0;
-            // 
-            // richTextBox3
-            // 
-            this.richTextBox3.Location = new System.Drawing.Point(971, 94);
-            this.richTextBox3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.richTextBox3.Name = "richTextBox3";
-            this.richTextBox3.Size = new System.Drawing.Size(226, 421);
-            this.richTextBox3.TabIndex = 57;
-            this.richTextBox3.Text = "";
-            this.richTextBox3.TextChanged += new System.EventHandler(this.richTextBox3_TextChanged);
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(971, 523);
-            this.button1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(225, 22);
-            this.button1.TabIndex = 58;
-            this.button1.Text = "Clear";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1225, 569);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.richTextBox3);
+            this.ClientSize = new System.Drawing.Size(1169, 569);
             this.Controls.Add(this.groupBox6);
             this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.groupBox4);

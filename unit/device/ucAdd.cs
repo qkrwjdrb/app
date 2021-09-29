@@ -69,10 +69,19 @@ namespace unit.device
 
         private void button1_Click(object sender, EventArgs e)
         {
-            ucSelect.f.comboBox6.Items.Add(addGateBox.Text); ucSelect.f.comboBox7.Items.Add(addDevBox.Text);
-            Properties.Settings.Default.last_gateway = addGateBox.Text;
-            Properties.Settings.Default.last_deviceid = addDevBox.Text;
-            Properties.Settings.Default.Save();
+           // ucSelect.f.comboBox6.Items.Add(addGateBox.Text); ucSelect.f.comboBox7.Items.Add(addDevBox.Text);
+            if (addGateBox.Text != null)
+            {
+                ucSelect.f.comboBox6.Items.Add(addGateBox.Text); //list박스에 저장
+                Properties.Settings.Default.save_gateway += addGateBox.Text.ToString() + ","; //값 저장
+                Properties.Settings.Default.Save();
+            }
+            if (addDevBox.Text != null)
+            {
+                ucSelect.f.comboBox7.Items.Add(addDevBox.Text);
+                Properties.Settings.Default.save_deviceid += addDevBox.Text.ToString() + ","; //값 저장
+                Properties.Settings.Default.Save();
+            }
         }
 
         private void addGateBox_TextChanged(object sender, EventArgs e)
