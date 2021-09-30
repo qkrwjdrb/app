@@ -260,11 +260,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\C#_project\\새 폴더\\unit\\unit.csproj",
+      "projectUniqueName": "C:\\C#_project\\app\\unit\\unit.csproj",
       "projectName": "unit",
-      "projectPath": "C:\\C#_project\\새 폴더\\unit\\unit.csproj",
+      "projectPath": "C:\\C#_project\\app\\unit\\unit.csproj",
       "packagesPath": "C:\\Users\\mioli\\.nuget\\packages\\",
-      "outputPath": "C:\\C#_project\\새 폴더\\unit\\obj\\",
+      "outputPath": "C:\\C#_project\\app\\unit\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",

@@ -55,11 +55,11 @@ namespace unit
             // 
             // richTextBox2
             // 
-            this.richTextBox2.Location = new System.Drawing.Point(6, 19);
+            this.richTextBox2.Location = new System.Drawing.Point(285, 19);
             this.richTextBox2.Name = "richTextBox2";
             this.richTextBox2.Size = new System.Drawing.Size(273, 428);
             this.richTextBox2.TabIndex = 5;
-            this.richTextBox2.Text = "TxMbRtu";
+            this.richTextBox2.Text = "RxMbRtu";
             this.richTextBox2.TextChanged += new System.EventHandler(this.richTextBox2_TextChanged);
             // 
             // groupBox5
@@ -111,11 +111,11 @@ namespace unit
             // 
             // richTextBox1
             // 
-            this.richTextBox1.Location = new System.Drawing.Point(284, 19);
+            this.richTextBox1.Location = new System.Drawing.Point(6, 19);
             this.richTextBox1.Name = "richTextBox1";
             this.richTextBox1.Size = new System.Drawing.Size(273, 428);
             this.richTextBox1.TabIndex = 4;
-            this.richTextBox1.Text = "RxMbRtu";
+            this.richTextBox1.Text = "TxMbRtu";
             this.richTextBox1.TextChanged += new System.EventHandler(this.richTextBox1_TextChanged);
             // 
             // button15

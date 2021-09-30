@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "W5YpImvAl4gnesQT134NBIBLZg3tiiA9bdtuAILwGOaVwyszfhgejw/SG6CEEw4yX+qKWFlP77KPoOHbH3mSNQ==",
+  "dgSpecHash": "U9kxI908jNTNWQk9X/ybQ6SHfa8RlxjvKHQTEqxnCvrV6tFL0lNmoVqEaQJioNwNDKzTNj0AJY4pGQPMI4LWCQ==",
   "success": true,
-  "projectFilePath": "C:\\C#_project\\새 폴더\\unit\\unit.csproj",
+  "projectFilePath": "C:\\C#_project\\app\\unit\\unit.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\mioli\\.nuget\\packages\\google.protobuf\\3.17.3\\google.protobuf.3.17.3.nupkg.sha512",
     "C:\\Users\\mioli\\.nuget\\packages\\grpc.core.api\\2.39.1\\grpc.core.api.2.39.1.nupkg.sha512",
