@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\C#_project\\app\\unit\\unit.csproj": {}
+    "C:\\C#_project\\새 폴더\\unit\\unit.csproj": {}
   },
   "projects": {
-    "C:\\C#_project\\app\\unit\\unit.csproj": {
+    "C:\\C#_project\\새 폴더\\unit\\unit.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\C#_project\\app\\unit\\unit.csproj",
+        "projectUniqueName": "C:\\C#_project\\새 폴더\\unit\\unit.csproj",
         "projectName": "unit",
-        "projectPath": "C:\\C#_project\\app\\unit\\unit.csproj",
+        "projectPath": "C:\\C#_project\\새 폴더\\unit\\unit.csproj",
         "packagesPath": "C:\\Users\\mioli\\.nuget\\packages\\",
-        "outputPath": "C:\\C#_project\\app\\unit\\obj\\",
+        "outputPath": "C:\\C#_project\\새 폴더\\unit\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",

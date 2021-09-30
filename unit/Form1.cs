@@ -20,7 +20,14 @@ namespace unit
 
         private static GrpcChannel channel = GrpcChannel.ForAddress("http://localhost:5054");
         internal static ExProto.ExProtoClient exchange = new ExProto.ExProtoClient(channel);
-        internal static AsyncDuplexStreamingCall<ExMessage, ExMessage> exlink = exchange.ExLink();
+        //internal static AsyncDuplexStreamingCall<ExMessage, ExMessage> exlink = exchange.ExLink();
+        internal static AsyncDuplexStreamingCall<RtuMessage, RtuMessage> rtuLink = exchange.MessageRtu();
+        internal static AsyncDuplexStreamingCall<ExtMessage, ExtMessage> extLink = exchange.MessageExt();
+        internal static AsyncDuplexStreamingCall<CmdMessage, CmdMessage> cmdLink = exchange.MessageCmd();
+        private static UInt16 TxCnt;
+
+
+
         byte[] digits = new byte[12] { 0xfC, 0x60, 0xda, 0xf2, 0x66, 0xb6, 0xbe, 0xe0, 0xfe, 0xe6, 0x02, 0x00 };
         byte[] alpha = new byte[26] { 0xEE, 0x3E, 0x1A, 0x7A, 0x9E, 0x8E, 0xBC, 0x6E, 0xc, 0x78, 0x5E, 0x1C, 0xAA, 0x2A, 0x3A, 0xCE, 0xE6, 0x0A, 0xB6, 0x1E, 0x38, 0x7E, 0x56, 0x6C, 0x76, 0x92 };
 
@@ -43,7 +50,11 @@ namespace unit
         public Form1()
         {
             InitializeComponent();
-            Task.Run(() => NetworkService());
+            // Task.Run(() => NetworkService());
+            Task.Run(() => RtuMessageService());
+            Task.Run(() => ExtMessageService());
+            Task.Run(() => CmdMessageService());
+
             ucPanel.uc7Segmant.eventdelSender += UcScreen2_eventdelSender;
             device.ucSelect.gatewaySender += Select_gatewaySender;
             device.ucSelect.deviceSender += Select_deviceSender;
@@ -56,18 +67,18 @@ namespace unit
         private void UcLED_eventModSender(byte[] ledData)
         {
 
-            TxMbRtu(0, gateway, devicead, new byte[] { 0x01, 0x10, 0x01, 0x9a, 0x00, 0x04, 0x08,
+       /*    TxMbRtu(0, gateway, devicead, new byte[] { 0x01, 0x10, 0x01, 0x9a, 0x00, 0x04, 0x08,
                 0,  ledData[6],  ledData[5], ledData[4] ,
                 0,  ledData[2],  ledData[1],  ledData[0],
-                0xAD, 0xDE });
+                0xAD, 0xDE });*/
         }
 
         private void UcText_textSender(byte[] sender)
         {
 
-            TxMbRtu(0, gateway, devicead, new byte[] { 0x01, 0x10, 0x01, 0xa2, 0x00, 0x0a, 0x14,
+        /*    TxMbRtu(0, gateway, devicead, new byte[] { 0x01, 0x10, 0x01, 0xa2, 0x00, 0x0a, 0x14,
                sender[0],sender[1],sender[2],sender[3],sender[4],sender[5],sender[6],sender[7],sender[8],sender[9],0x41,0x42,0x43,0x44,0x45,0x46,0x47,0x48,0x49,0x50,
-                0xAD, 0xDE });
+                0xAD, 0xDE });*/
         }
 
         private void UcModbus_eventModSender(object a, object b, object c, object d, string e)
@@ -95,28 +106,258 @@ namespace unit
         // select_combo_gateway();
 
         //networkService
-        public async void NetworkService()
-        {
-            while (await exlink.ResponseStream.MoveNext(cancellationToken: CancellationToken.None))
-            {
-                var response = exlink.ResponseStream.Current;
-                UInt32 route = response.Route;
-                byte[] payload = new byte[response.DataUnit.Length];
-                response.DataUnit.CopyTo(payload, 0);
+        /* public async void NetworkService()
+         {
+             while (await exlink.ResponseStream.MoveNext(cancellationToken: CancellationToken.None))
+             {
+                 var response = exlink.ResponseStream.Current;
+                 UInt32 route = response.Route;
+                 byte[] payload = new byte[response.DataUnit.Length];
+                 response.DataUnit.CopyTo(payload, 0);
 
-                switch ((UInt16)(route >> 16))
+                 switch ((UInt16)(route >> 16))
+                 {
+                     case ((UInt16)'M' << 8) | 'B':
+                         RxMbRtu((UInt16)(route >> 0), response.GwId, response.DeviceId, payload);
+                         break;
+                     default:
+                         byte[] cmd = new byte[2] { (byte)(route >> 24), (byte)(route >> 16) };
+                         Console.WriteLine($"Unknown cmd = {System.Text.Encoding.UTF8.GetString(cmd)}");
+                         Console.WriteLine();
+                         break;
+                 }
+             }
+         }*/
+        private async void RtuMessageService()
+        {
+            try
+            {
+                while (await rtuLink.ResponseStream.MoveNext(cancellationToken: CancellationToken.None))
                 {
-                    case ((UInt16)'M' << 8) | 'B':
-                        RxMbRtu((UInt16)(route >> 0), response.GwId, response.DeviceId, payload);
-                        break;
-                    default:
-                        byte[] cmd = new byte[2] { (byte)(route >> 24), (byte)(route >> 16) };
-                        Console.WriteLine($"Unknown cmd = {System.Text.Encoding.UTF8.GetString(cmd)}");
-                        Console.WriteLine();
-                        break;
+                    var response = rtuLink.ResponseStream.Current;
+                    byte[] payload = new byte[response.DataUnit.Length];
+                    response.DataUnit.CopyTo(payload, 0);
+                    RxRtu((UInt16)response.SequenceNumber, response.GwId, response.DeviceId, payload);
                 }
             }
+            catch (Exception)
+            {
+            }
+            finally
+            {
+                Application.Exit();
+            }
         }
+
+        private async void ExtMessageService()
+        {
+            try
+            {
+                while (await extLink.ResponseStream.MoveNext(cancellationToken: CancellationToken.None))
+                {
+                    var response = extLink.ResponseStream.Current;
+                    byte[] payload = new byte[response.DataUnit.Length];
+                    response.DataUnit.CopyTo(payload, 0);
+                    RxExt(response.Context, response.GwId, response.DeviceId, payload);
+                }
+            }
+            catch (Exception)
+            {
+            }
+            finally
+            {
+                Application.Exit();
+            }
+        }
+
+        private async void CmdMessageService()
+        {
+            try
+            {
+                while (await cmdLink.ResponseStream.MoveNext(cancellationToken: CancellationToken.None))
+                {
+                    var response = cmdLink.ResponseStream.Current;
+                    byte[] payload = new byte[response.Payload.Length];
+                    response.Payload.CopyTo(payload, 0);
+                    RxCmd((UInt16)response.OpCode, response.Route, response.Argument, response.GwId, response.DeviceId, payload);
+                }
+            }
+            catch (Exception)
+            {
+            }
+            finally
+            {
+                Application.Exit();
+            }
+        }
+        private String GetProtocolChannelName(UInt16 channel)
+        {
+            switch (channel)
+            {
+                case 0:
+                    return "Modbus";
+            }
+
+            return "Unknown probotol";
+        }
+
+        public void TxRtu(UInt16 sequenceNumber, UInt32 gatewayId, UInt64 deviceId, byte[] payload)
+        {
+            UInt16 channel = 0;
+
+            this.Invoke((MethodInvoker)delegate ()
+            {
+                richTextBox1.Text = "TxRtu(" + GetProtocolChannelName(channel) + ")";
+                richTextBox1.AppendText(Environment.NewLine + $"RequestStream.Channel={channel}");
+                richTextBox1.AppendText(Environment.NewLine + $"RequestStream.SequenceNumber={sequenceNumber}");
+                richTextBox1.AppendText(Environment.NewLine + $"RequestStream.GatewayId=" + gatewayId.ToString("X6"));
+                richTextBox1.AppendText(Environment.NewLine + $"RequestStream.DeviceId=" + deviceId.ToString("X12"));
+                richTextBox1.AppendText(Environment.NewLine + $"RequestStream.Tdu.Length={payload.Length}");
+                richTextBox1.AppendText(Environment.NewLine + $"RequestStream.Tdu={BitConverter.ToString(payload).Replace("-", string.Empty)}");
+                richTextBox1.AppendText(Environment.NewLine);
+                richTextBox2.Text = "Awaiting response...";
+            });
+
+            rtuLink.RequestStream.WriteAsync(new RtuMessage
+            {
+                Channel = channel,
+                SequenceNumber = sequenceNumber,
+                GwId = gatewayId,
+                DeviceId = deviceId,
+                DataUnit = ByteString.CopyFrom(payload[0..payload.Length])
+            });
+        }
+
+        public void RxRtu(UInt16 acknowledgeNumber, UInt32 gatewayId, UInt64 deviceId, byte[] payload)
+        {
+            UInt16 channel = 0;
+
+            this.Invoke((MethodInvoker)delegate ()
+            {
+                richTextBox2.Text = "RxRtu(" + GetProtocolChannelName(channel) + ")";
+                richTextBox2.AppendText(Environment.NewLine + $"response.Channel={channel}");
+                richTextBox2.AppendText(Environment.NewLine + $"response.AcknowledgeNumber={acknowledgeNumber}");
+                richTextBox2.AppendText(Environment.NewLine + $"response.GatewayId=" + gatewayId.ToString("X6"));
+                richTextBox2.AppendText(Environment.NewLine + $"response.DeviceId=" + deviceId.ToString("X12"));
+                richTextBox2.AppendText(Environment.NewLine + $"response.Tdu.Length={payload.Length}");
+                richTextBox2.AppendText(Environment.NewLine + BitConverter.ToString(payload));
+                richTextBox2.AppendText(Environment.NewLine);
+                richTextBox1.Text += "Responsed... ";
+            });
+
+            switch (channel)
+            {
+                case 0:
+                    /* Modbus protocol */
+                    break;
+                default:
+                    /* Unknown protocol */
+                    break;
+            }
+        }
+
+        public void TxExt(UInt64 context, UInt32 gatewayId, UInt64 deviceId, byte[] payload)
+        {
+            UInt16 channel = (UInt16)context;
+
+            this.Invoke((MethodInvoker)delegate ()
+            {
+                richTextBox2.Text = "TxExt(" + GetProtocolChannelName(channel) + ")";
+                richTextBox2.AppendText(Environment.NewLine + $"RequestStream.Context=" + context.ToString("X16"));
+                richTextBox2.AppendText(Environment.NewLine + $"RequestStream.GatewayId=" + gatewayId.ToString("X6"));
+                richTextBox2.AppendText(Environment.NewLine + $"RequestStream.DeviceId=" + deviceId.ToString("X12"));
+                richTextBox2.AppendText(Environment.NewLine + $"RequestStream.Tdu.Length={payload.Length}");
+                richTextBox2.AppendText(Environment.NewLine + $"RequestStream.Tdu={BitConverter.ToString(payload).Replace("-", string.Empty)}");
+                richTextBox2.AppendText(Environment.NewLine);
+                richTextBox3.Text = "Replied...";
+            });
+
+            extLink.RequestStream.WriteAsync(new ExtMessage
+            {
+                Context = context,
+                GwId = gatewayId,
+                DeviceId = deviceId,
+                DataUnit = ByteString.CopyFrom(payload[0..payload.Length])
+            });
+        }
+
+        public void RxExt(UInt64 context, UInt32 gatewayId, UInt64 deviceId, byte[] payload)
+        {
+            UInt16 channel = (UInt16)context;
+
+            this.Invoke((MethodInvoker)delegate ()
+            {
+                richTextBox3.Text = "RxExt(" + GetProtocolChannelName(channel) + ")";
+                richTextBox3.AppendText(Environment.NewLine + $"RequestStream.Context=" + context.ToString("X16"));
+                richTextBox3.AppendText(Environment.NewLine + $"response.GatewayId=" + gatewayId.ToString("X6"));
+                richTextBox3.AppendText(Environment.NewLine + $"response.DeviceId=" + deviceId.ToString("X12"));
+                richTextBox3.AppendText(Environment.NewLine + $"response.Tdu.Length={payload.Length}");
+                richTextBox3.AppendText(Environment.NewLine + BitConverter.ToString(payload));
+                richTextBox3.AppendText(Environment.NewLine);
+                richTextBox3.Text += "Awaiting processing...";
+            });
+
+            switch (channel)
+            {
+                case 0: /* Modbus Salve Processing */
+                    TxExt(context, gatewayId, deviceId, new byte[] { /* Response Message */ });
+                    break;
+            }
+        }
+
+        public void TxCmd(UInt16 opCode, UInt32 route, UInt32 argument, UInt32 gatewayId, UInt64 deviceId, byte[] payload)
+        {
+            this.Invoke((MethodInvoker)delegate ()
+            {
+                richTextBox2.Text = "TxExt()";
+                richTextBox2.AppendText(Environment.NewLine + $"RequestStream.OpCode=" + opCode.ToString("X4"));
+                richTextBox2.AppendText(Environment.NewLine + $"RequestStream.Route=" + route.ToString("X8"));
+                richTextBox2.AppendText(Environment.NewLine + $"RequestStream.Argument=" + argument.ToString("X8"));
+                richTextBox2.AppendText(Environment.NewLine + $"RequestStream.GatewayId=" + gatewayId.ToString("X6"));
+                richTextBox2.AppendText(Environment.NewLine + $"RequestStream.DeviceId=" + deviceId.ToString("X12"));
+                richTextBox2.AppendText(Environment.NewLine + $"RequestStream.Tdu.Length={payload.Length}");
+                richTextBox2.AppendText(Environment.NewLine + $"RequestStream.Tdu={BitConverter.ToString(payload).Replace("-", string.Empty)}");
+                richTextBox2.AppendText(Environment.NewLine);
+                richTextBox3.Text = "Replied...";
+            });
+
+            cmdLink.RequestStream.WriteAsync(new CmdMessage
+            {
+                OpCode = opCode,
+                Route = route,
+                Argument = argument,
+                GwId = gatewayId,
+                DeviceId = deviceId,
+                Payload = ByteString.CopyFrom(payload[0..payload.Length])
+            });
+        }
+
+        public void RxCmd(UInt16 opCode, UInt32 route, UInt32 argument, UInt32 gatewayId, UInt64 deviceId, byte[] payload)
+        {
+            this.Invoke((MethodInvoker)delegate ()
+            {
+                richTextBox3.Text = "RxCmd()";
+                richTextBox3.AppendText(Environment.NewLine + $"RequestStream.OpCode=" + opCode.ToString("X4"));
+                richTextBox3.AppendText(Environment.NewLine + $"RequestStream.Route=" + route.ToString("X8"));
+                richTextBox3.AppendText(Environment.NewLine + $"RequestStream.Argument=" + argument.ToString("X8"));
+                richTextBox3.AppendText(Environment.NewLine + $"response.GatewayId=" + gatewayId.ToString("X6"));
+                richTextBox3.AppendText(Environment.NewLine + $"response.DeviceId=" + deviceId.ToString("X12"));
+                richTextBox3.AppendText(Environment.NewLine + $"response.Tdu.Length={payload.Length}");
+                richTextBox3.AppendText(Environment.NewLine + BitConverter.ToString(payload));
+                richTextBox3.AppendText(Environment.NewLine);
+            });
+
+            switch (opCode)
+            {
+                case 0:
+                    this.Invoke((MethodInvoker)delegate ()
+                    {
+                        richTextBox2.Text += "Gateway... ";
+                    });
+                    break;
+            }
+        }
+        /*
         //TxRTU
         public void TxMbRtu(UInt16 gwGroup, UInt32 gwId, UInt64 deviceId, byte[] payload)
         {
@@ -124,7 +365,7 @@ namespace unit
 
             this.Invoke((MethodInvoker)delegate ()
             {
-                /*
+                
                 if (deviceId == Convert.ToUInt64("24A1605818B1", 16) || deviceId == Convert.ToUInt64("24A160581869", 16))
                 {
                     richTextBox3.Text = "LED request";
@@ -135,7 +376,7 @@ namespace unit
                     richTextBox4.Text = "Awaiting response...";
                     richTextBox5.Text = "LED result";
                 }
-                */
+                
 
                 richTextBox2.Text = "TxMbRtu()";
                 richTextBox2.AppendText(Environment.NewLine + $"RequestStream.GwGroup={gwGroup}");
@@ -259,7 +500,7 @@ namespace unit
                 //  }
             });
         }
-
+        */
         //form1_load
         public void Form1_Load(object sender, EventArgs e)
         {
@@ -367,7 +608,7 @@ namespace unit
                 }
             }
 
-            TxMbRtu(0, gateway, devicead, new byte[] { 0x01, 0x10, 0x01, 0x9E, 0x00, 0x02, 0x04, segmentData[1], segmentData[2], 0x00, segmentData[0], 0xAD, 0xDE });
+            // TxMbRtu(0, gateway, devicead, new byte[] { 0x01, 0x10, 0x01, 0x9E, 0x00, 0x02, 0x04, segmentData[1], segmentData[2], 0x00, segmentData[0], 0xAD, 0xDE });
         }
         //0x51894B30
         //0x24A1605818B1devicead
@@ -475,7 +716,7 @@ namespace unit
             byte crc1 = Convert.ToByte(e.Substring(0, 2), 16);
             byte crc2 = Convert.ToByte(e.Substring(2, 2), 16);
 
-            TxMbRtu(0, gateway, devicead, new byte[] { adress, fc, 0x00, startad, 0x00, length, crc1, crc2 });
+            //  TxMbRtu(0, gateway, devicead, new byte[] { adress, fc, 0x00, startad, 0x00, length, crc1, crc2 });
         }
 
 
@@ -564,6 +805,7 @@ namespace unit
 
         private void button22_Click(object sender, EventArgs e)
         {
+            TxRtu(++TxCnt, 0, 0, new byte[] { 0x01, 0x03, 0x00, 0x01, 0x00, 0x08, 0x15, 0xCC });
             panel2.Controls.Clear();
             panel2.Controls.Add(ucDelete3);
         }
@@ -596,23 +838,17 @@ namespace unit
         private void tempTx()
         {
             //온도
-            TxMbRtu(0, 0x4588177F, 0x24A160581B59, new byte[] { 0x01, 0x03,
-        0x00, 0xCB, 0x00,0x03,
-       0xAD, 0xDE});
+          //  TxMbRtu(0, 0x4588177F, 0x24A160581B59, new byte[] { 0x01, 0x03, 0x00, 0xCB, 0x00,0x03, 0xAD, 0xDE});
         }
         private void humTx()
         {
             //습도
-            TxMbRtu(0, 0x4588177F, 0x24A160581B59, new byte[] { 0x01, 0x03,
-             0x00, 0xD4, 0x00,0x03,
-             0xAD, 0xDE});
+          //  TxMbRtu(0, 0x4588177F, 0x24A160581B59, new byte[] { 0x01, 0x03,0x00, 0xD4, 0x00,0x03, 0xAD, 0xDE});
         }
         private void co2Tx()
         {
             //co2
-            TxMbRtu(0, 0x4588177F, 0x24A160581B59, new byte[] { 0x01, 0x03,
-             0x00, 0xEF, 0x00,0x03,
-            0xAD, 0xDE});
+          //  TxMbRtu(0, 0x4588177F, 0x24A160581B59, new byte[] { 0x01, 0x03, 0x00, 0xEF, 0x00, 0x03, 0xAD, 0xDE });
         }
 
         /*

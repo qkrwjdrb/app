@@ -64,31 +64,35 @@ namespace NetExchange {
     }
 
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-    static readonly grpc::Marshaller<global::NetExchange.ExMessage> __Marshaller_net_exchange_ExMessage = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::NetExchange.ExMessage.Parser));
+    static readonly grpc::Marshaller<global::NetExchange.RtuMessage> __Marshaller_net_exchange_RtuMessage = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::NetExchange.RtuMessage.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::NetExchange.ExtMessage> __Marshaller_net_exchange_ExtMessage = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::NetExchange.ExtMessage.Parser));
+    [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
+    static readonly grpc::Marshaller<global::NetExchange.CmdMessage> __Marshaller_net_exchange_CmdMessage = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::NetExchange.CmdMessage.Parser));
 
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-    static readonly grpc::Method<global::NetExchange.ExMessage, global::NetExchange.ExMessage> __Method_ExLink = new grpc::Method<global::NetExchange.ExMessage, global::NetExchange.ExMessage>(
+    static readonly grpc::Method<global::NetExchange.RtuMessage, global::NetExchange.RtuMessage> __Method_MessageRtu = new grpc::Method<global::NetExchange.RtuMessage, global::NetExchange.RtuMessage>(
         grpc::MethodType.DuplexStreaming,
         __ServiceName,
-        "ExLink",
-        __Marshaller_net_exchange_ExMessage,
-        __Marshaller_net_exchange_ExMessage);
+        "MessageRtu",
+        __Marshaller_net_exchange_RtuMessage,
+        __Marshaller_net_exchange_RtuMessage);
 
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-    static readonly grpc::Method<global::NetExchange.ExMessage, global::NetExchange.ExMessage> __Method_ExUnary = new grpc::Method<global::NetExchange.ExMessage, global::NetExchange.ExMessage>(
-        grpc::MethodType.Unary,
+    static readonly grpc::Method<global::NetExchange.ExtMessage, global::NetExchange.ExtMessage> __Method_MessageExt = new grpc::Method<global::NetExchange.ExtMessage, global::NetExchange.ExtMessage>(
+        grpc::MethodType.DuplexStreaming,
         __ServiceName,
-        "ExUnary",
-        __Marshaller_net_exchange_ExMessage,
-        __Marshaller_net_exchange_ExMessage);
+        "MessageExt",
+        __Marshaller_net_exchange_ExtMessage,
+        __Marshaller_net_exchange_ExtMessage);
 
     [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-    static readonly grpc::Method<global::NetExchange.ExMessage, global::NetExchange.ExMessage> __Method_ExServerstream = new grpc::Method<global::NetExchange.ExMessage, global::NetExchange.ExMessage>(
-        grpc::MethodType.ServerStreaming,
+    static readonly grpc::Method<global::NetExchange.CmdMessage, global::NetExchange.CmdMessage> __Method_MessageCmd = new grpc::Method<global::NetExchange.CmdMessage, global::NetExchange.CmdMessage>(
+        grpc::MethodType.DuplexStreaming,
         __ServiceName,
-        "ExServerstream",
-        __Marshaller_net_exchange_ExMessage,
-        __Marshaller_net_exchange_ExMessage);
+        "MessageCmd",
+        __Marshaller_net_exchange_CmdMessage,
+        __Marshaller_net_exchange_CmdMessage);
 
     /// <summary>Service descriptor</summary>
     public static global::Google.Protobuf.Reflection.ServiceDescriptor Descriptor
@@ -124,44 +128,34 @@ namespace NetExchange {
       }
 
       [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-      public virtual grpc::AsyncDuplexStreamingCall<global::NetExchange.ExMessage, global::NetExchange.ExMessage> ExLink(grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      public virtual grpc::AsyncDuplexStreamingCall<global::NetExchange.RtuMessage, global::NetExchange.RtuMessage> MessageRtu(grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
       {
-        return ExLink(new grpc::CallOptions(headers, deadline, cancellationToken));
+        return MessageRtu(new grpc::CallOptions(headers, deadline, cancellationToken));
       }
       [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-      public virtual grpc::AsyncDuplexStreamingCall<global::NetExchange.ExMessage, global::NetExchange.ExMessage> ExLink(grpc::CallOptions options)
+      public virtual grpc::AsyncDuplexStreamingCall<global::NetExchange.RtuMessage, global::NetExchange.RtuMessage> MessageRtu(grpc::CallOptions options)
       {
-        return CallInvoker.AsyncDuplexStreamingCall(__Method_ExLink, null, options);
+        return CallInvoker.AsyncDuplexStreamingCall(__Method_MessageRtu, null, options);
       }
       [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-      public virtual global::NetExchange.ExMessage ExUnary(global::NetExchange.ExMessage request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      public virtual grpc::AsyncDuplexStreamingCall<global::NetExchange.ExtMessage, global::NetExchange.ExtMessage> MessageExt(grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
       {
-        return ExUnary(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+        return MessageExt(new grpc::CallOptions(headers, deadline, cancellationToken));
       }
       [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-      public virtual global::NetExchange.ExMessage ExUnary(global::NetExchange.ExMessage request, grpc::CallOptions options)
+      public virtual grpc::AsyncDuplexStreamingCall<global::NetExchange.ExtMessage, global::NetExchange.ExtMessage> MessageExt(grpc::CallOptions options)
       {
-        return CallInvoker.BlockingUnaryCall(__Method_ExUnary, null, options, request);
+        return CallInvoker.AsyncDuplexStreamingCall(__Method_MessageExt, null, options);
       }
       [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-      public virtual grpc::AsyncUnaryCall<global::NetExchange.ExMessage> ExUnaryAsync(global::NetExchange.ExMessage request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      public virtual grpc::AsyncDuplexStreamingCall<global::NetExchange.CmdMessage, global::NetExchange.CmdMessage> MessageCmd(grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
       {
-        return ExUnaryAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+        return MessageCmd(new grpc::CallOptions(headers, deadline, cancellationToken));
       }
       [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-      public virtual grpc::AsyncUnaryCall<global::NetExchange.ExMessage> ExUnaryAsync(global::NetExchange.ExMessage request, grpc::CallOptions options)
+      public virtual grpc::AsyncDuplexStreamingCall<global::NetExchange.CmdMessage, global::NetExchange.CmdMessage> MessageCmd(grpc::CallOptions options)
       {
-        return CallInvoker.AsyncUnaryCall(__Method_ExUnary, null, options, request);
-      }
-      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-      public virtual grpc::AsyncServerStreamingCall<global::NetExchange.ExMessage> ExServerstream(global::NetExchange.ExMessage request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
-      {
-        return ExServerstream(request, new grpc::CallOptions(headers, deadline, cancellationToken));
-      }
-      [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]
-      public virtual grpc::AsyncServerStreamingCall<global::NetExchange.ExMessage> ExServerstream(global::NetExchange.ExMessage request, grpc::CallOptions options)
-      {
-        return CallInvoker.AsyncServerStreamingCall(__Method_ExServerstream, null, options, request);
+        return CallInvoker.AsyncDuplexStreamingCall(__Method_MessageCmd, null, options);
       }
       /// <summary>Creates a new instance of client from given <c>ClientBaseConfiguration</c>.</summary>
       [global::System.CodeDom.Compiler.GeneratedCode("grpc_csharp_plugin", null)]

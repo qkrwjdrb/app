@@ -24,18 +24,25 @@ namespace NetExchange {
     static NetworkReflection() {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           string.Concat(
-            "ChRQcm90b3MvbmV0d29yay5wcm90bxIMbmV0X2V4Y2hhbmdlIk8KCUV4TWVz",
-            "c2FnZRINCgVyb3V0ZRgBIAEoDRINCgVnd19pZBgCIAEoDRIRCglkZXZpY2Vf",
-            "aWQYAyABKAQSEQoJZGF0YV91bml0GAQgASgMMswBCgdFeFByb3RvEj4KBkV4",
-            "TGluaxIXLm5ldF9leGNoYW5nZS5FeE1lc3NhZ2UaFy5uZXRfZXhjaGFuZ2Uu",
-            "RXhNZXNzYWdlKAEwARI7CgdFeFVuYXJ5EhcubmV0X2V4Y2hhbmdlLkV4TWVz",
-            "c2FnZRoXLm5ldF9leGNoYW5nZS5FeE1lc3NhZ2USRAoORXhTZXJ2ZXJzdHJl",
-            "YW0SFy5uZXRfZXhjaGFuZ2UuRXhNZXNzYWdlGhcubmV0X2V4Y2hhbmdlLkV4",
-            "TWVzc2FnZTABYgZwcm90bzM="));
+            "ChRQcm90b3MvbmV0d29yay5wcm90bxIMbmV0X2V4Y2hhbmdlImsKClJ0dU1l",
+            "c3NhZ2USDwoHY2hhbm5lbBgBIAEoDRIXCg9zZXF1ZW5jZV9udW1iZXIYAiAB",
+            "KA0SDQoFZ3dfaWQYAyABKA0SEQoJZGV2aWNlX2lkGAQgASgEEhEKCWRhdGFf",
+            "dW5pdBgFIAEoDCJSCgpFeHRNZXNzYWdlEg8KB2NvbnRleHQYASABKAQSDQoF",
+            "Z3dfaWQYAiABKA0SEQoJZGV2aWNlX2lkGAMgASgEEhEKCWRhdGFfdW5pdBgE",
+            "IAEoDCJxCgpDbWRNZXNzYWdlEg8KB29wX2NvZGUYASABKA0SDQoFcm91dGUY",
+            "AiABKA0SEAoIYXJndW1lbnQYAyABKA0SDQoFZ3dfaWQYBCABKA0SEQoJZGV2",
+            "aWNlX2lkGAUgASgEEg8KB3BheWxvYWQYBiABKAwy2wEKB0V4UHJvdG8SRAoK",
+            "TWVzc2FnZVJ0dRIYLm5ldF9leGNoYW5nZS5SdHVNZXNzYWdlGhgubmV0X2V4",
+            "Y2hhbmdlLlJ0dU1lc3NhZ2UoATABEkQKCk1lc3NhZ2VFeHQSGC5uZXRfZXhj",
+            "aGFuZ2UuRXh0TWVzc2FnZRoYLm5ldF9leGNoYW5nZS5FeHRNZXNzYWdlKAEw",
+            "ARJECgpNZXNzYWdlQ21kEhgubmV0X2V4Y2hhbmdlLkNtZE1lc3NhZ2UaGC5u",
+            "ZXRfZXhjaGFuZ2UuQ21kTWVzc2FnZSgBMAFiBnByb3RvMw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
-            new pbr::GeneratedClrTypeInfo(typeof(global::NetExchange.ExMessage), global::NetExchange.ExMessage.Parser, new[]{ "Route", "GwId", "DeviceId", "DataUnit" }, null, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::NetExchange.RtuMessage), global::NetExchange.RtuMessage.Parser, new[]{ "Channel", "SequenceNumber", "GwId", "DeviceId", "DataUnit" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::NetExchange.ExtMessage), global::NetExchange.ExtMessage.Parser, new[]{ "Context", "GwId", "DeviceId", "DataUnit" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::NetExchange.CmdMessage), global::NetExchange.CmdMessage.Parser, new[]{ "OpCode", "Route", "Argument", "GwId", "DeviceId", "Payload" }, null, null, null, null)
           }));
     }
     #endregion
@@ -43,17 +50,17 @@ namespace NetExchange {
   }
   #region Messages
   /// <summary>
-  /// The streaming message
+  /// Remote Terminal Unit streaming for Modbus Master
   /// </summary>
-  public sealed partial class ExMessage : pb::IMessage<ExMessage>
+  public sealed partial class RtuMessage : pb::IMessage<RtuMessage>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
   #endif
   {
-    private static readonly pb::MessageParser<ExMessage> _parser = new pb::MessageParser<ExMessage>(() => new ExMessage());
+    private static readonly pb::MessageParser<RtuMessage> _parser = new pb::MessageParser<RtuMessage>(() => new RtuMessage());
     private pb::UnknownFieldSet _unknownFields;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public static pb::MessageParser<ExMessage> Parser { get { return _parser; } }
+    public static pb::MessageParser<RtuMessage> Parser { get { return _parser; } }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
@@ -66,15 +73,16 @@ namespace NetExchange {
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public ExMessage() {
+    public RtuMessage() {
       OnConstruction();
     }
 
     partial void OnConstruction();
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public ExMessage(ExMessage other) : this() {
-      route_ = other.route_;
+    public RtuMessage(RtuMessage other) : this() {
+      channel_ = other.channel_;
+      sequenceNumber_ = other.sequenceNumber_;
       gwId_ = other.gwId_;
       deviceId_ = other.deviceId_;
       dataUnit_ = other.dataUnit_;
@@ -82,18 +90,339 @@ namespace NetExchange {
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public ExMessage Clone() {
-      return new ExMessage(this);
+    public RtuMessage Clone() {
+      return new RtuMessage(this);
     }
 
-    /// <summary>Field number for the "route" field.</summary>
-    public const int RouteFieldNumber = 1;
-    private uint route_;
+    /// <summary>Field number for the "channel" field.</summary>
+    public const int ChannelFieldNumber = 1;
+    private uint channel_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public uint Route {
-      get { return route_; }
+    public uint Channel {
+      get { return channel_; }
       set {
-        route_ = value;
+        channel_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "sequence_number" field.</summary>
+    public const int SequenceNumberFieldNumber = 2;
+    private uint sequenceNumber_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public uint SequenceNumber {
+      get { return sequenceNumber_; }
+      set {
+        sequenceNumber_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "gw_id" field.</summary>
+    public const int GwIdFieldNumber = 3;
+    private uint gwId_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public uint GwId {
+      get { return gwId_; }
+      set {
+        gwId_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "device_id" field.</summary>
+    public const int DeviceIdFieldNumber = 4;
+    private ulong deviceId_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public ulong DeviceId {
+      get { return deviceId_; }
+      set {
+        deviceId_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "data_unit" field.</summary>
+    public const int DataUnitFieldNumber = 5;
+    private pb::ByteString dataUnit_ = pb::ByteString.Empty;
+    /// <summary>
+    /// Transmission Data Unit
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public pb::ByteString DataUnit {
+      get { return dataUnit_; }
+      set {
+        dataUnit_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as RtuMessage);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(RtuMessage other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (Channel != other.Channel) return false;
+      if (SequenceNumber != other.SequenceNumber) return false;
+      if (GwId != other.GwId) return false;
+      if (DeviceId != other.DeviceId) return false;
+      if (DataUnit != other.DataUnit) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (Channel != 0) hash ^= Channel.GetHashCode();
+      if (SequenceNumber != 0) hash ^= SequenceNumber.GetHashCode();
+      if (GwId != 0) hash ^= GwId.GetHashCode();
+      if (DeviceId != 0UL) hash ^= DeviceId.GetHashCode();
+      if (DataUnit.Length != 0) hash ^= DataUnit.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      output.WriteRawMessage(this);
+    #else
+      if (Channel != 0) {
+        output.WriteRawTag(8);
+        output.WriteUInt32(Channel);
+      }
+      if (SequenceNumber != 0) {
+        output.WriteRawTag(16);
+        output.WriteUInt32(SequenceNumber);
+      }
+      if (GwId != 0) {
+        output.WriteRawTag(24);
+        output.WriteUInt32(GwId);
+      }
+      if (DeviceId != 0UL) {
+        output.WriteRawTag(32);
+        output.WriteUInt64(DeviceId);
+      }
+      if (DataUnit.Length != 0) {
+        output.WriteRawTag(42);
+        output.WriteBytes(DataUnit);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      if (Channel != 0) {
+        output.WriteRawTag(8);
+        output.WriteUInt32(Channel);
+      }
+      if (SequenceNumber != 0) {
+        output.WriteRawTag(16);
+        output.WriteUInt32(SequenceNumber);
+      }
+      if (GwId != 0) {
+        output.WriteRawTag(24);
+        output.WriteUInt32(GwId);
+      }
+      if (DeviceId != 0UL) {
+        output.WriteRawTag(32);
+        output.WriteUInt64(DeviceId);
+      }
+      if (DataUnit.Length != 0) {
+        output.WriteRawTag(42);
+        output.WriteBytes(DataUnit);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(ref output);
+      }
+    }
+    #endif
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      if (Channel != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeUInt32Size(Channel);
+      }
+      if (SequenceNumber != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeUInt32Size(SequenceNumber);
+      }
+      if (GwId != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeUInt32Size(GwId);
+      }
+      if (DeviceId != 0UL) {
+        size += 1 + pb::CodedOutputStream.ComputeUInt64Size(DeviceId);
+      }
+      if (DataUnit.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeBytesSize(DataUnit);
+      }
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(RtuMessage other) {
+      if (other == null) {
+        return;
+      }
+      if (other.Channel != 0) {
+        Channel = other.Channel;
+      }
+      if (other.SequenceNumber != 0) {
+        SequenceNumber = other.SequenceNumber;
+      }
+      if (other.GwId != 0) {
+        GwId = other.GwId;
+      }
+      if (other.DeviceId != 0UL) {
+        DeviceId = other.DeviceId;
+      }
+      if (other.DataUnit.Length != 0) {
+        DataUnit = other.DataUnit;
+      }
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      input.ReadRawMessage(this);
+    #else
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 8: {
+            Channel = input.ReadUInt32();
+            break;
+          }
+          case 16: {
+            SequenceNumber = input.ReadUInt32();
+            break;
+          }
+          case 24: {
+            GwId = input.ReadUInt32();
+            break;
+          }
+          case 32: {
+            DeviceId = input.ReadUInt64();
+            break;
+          }
+          case 42: {
+            DataUnit = input.ReadBytes();
+            break;
+          }
+        }
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+            break;
+          case 8: {
+            Channel = input.ReadUInt32();
+            break;
+          }
+          case 16: {
+            SequenceNumber = input.ReadUInt32();
+            break;
+          }
+          case 24: {
+            GwId = input.ReadUInt32();
+            break;
+          }
+          case 32: {
+            DeviceId = input.ReadUInt64();
+            break;
+          }
+          case 42: {
+            DataUnit = input.ReadBytes();
+            break;
+          }
+        }
+      }
+    }
+    #endif
+
+  }
+
+  /// <summary>
+  /// RTU exchanging streaming for Modbus Slave
+  /// </summary>
+  public sealed partial class ExtMessage : pb::IMessage<ExtMessage>
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      , pb::IBufferMessage
+  #endif
+  {
+    private static readonly pb::MessageParser<ExtMessage> _parser = new pb::MessageParser<ExtMessage>(() => new ExtMessage());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<ExtMessage> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::NetExchange.NetworkReflection.Descriptor.MessageTypes[1]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public ExtMessage() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public ExtMessage(ExtMessage other) : this() {
+      context_ = other.context_;
+      gwId_ = other.gwId_;
+      deviceId_ = other.deviceId_;
+      dataUnit_ = other.dataUnit_;
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public ExtMessage Clone() {
+      return new ExtMessage(this);
+    }
+
+    /// <summary>Field number for the "context" field.</summary>
+    public const int ContextFieldNumber = 1;
+    private ulong context_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public ulong Context {
+      get { return context_; }
+      set {
+        context_ = value;
       }
     }
 
@@ -135,18 +464,18 @@ namespace NetExchange {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override bool Equals(object other) {
-      return Equals(other as ExMessage);
+      return Equals(other as ExtMessage);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public bool Equals(ExMessage other) {
+    public bool Equals(ExtMessage other) {
       if (ReferenceEquals(other, null)) {
         return false;
       }
       if (ReferenceEquals(other, this)) {
         return true;
       }
-      if (Route != other.Route) return false;
+      if (Context != other.Context) return false;
       if (GwId != other.GwId) return false;
       if (DeviceId != other.DeviceId) return false;
       if (DataUnit != other.DataUnit) return false;
@@ -156,7 +485,7 @@ namespace NetExchange {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
-      if (Route != 0) hash ^= Route.GetHashCode();
+      if (Context != 0UL) hash ^= Context.GetHashCode();
       if (GwId != 0) hash ^= GwId.GetHashCode();
       if (DeviceId != 0UL) hash ^= DeviceId.GetHashCode();
       if (DataUnit.Length != 0) hash ^= DataUnit.GetHashCode();
@@ -176,9 +505,9 @@ namespace NetExchange {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       output.WriteRawMessage(this);
     #else
-      if (Route != 0) {
+      if (Context != 0UL) {
         output.WriteRawTag(8);
-        output.WriteUInt32(Route);
+        output.WriteUInt64(Context);
       }
       if (GwId != 0) {
         output.WriteRawTag(16);
@@ -201,9 +530,9 @@ namespace NetExchange {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (Route != 0) {
+      if (Context != 0UL) {
         output.WriteRawTag(8);
-        output.WriteUInt32(Route);
+        output.WriteUInt64(Context);
       }
       if (GwId != 0) {
         output.WriteRawTag(16);
@@ -226,8 +555,8 @@ namespace NetExchange {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
-      if (Route != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeUInt32Size(Route);
+      if (Context != 0UL) {
+        size += 1 + pb::CodedOutputStream.ComputeUInt64Size(Context);
       }
       if (GwId != 0) {
         size += 1 + pb::CodedOutputStream.ComputeUInt32Size(GwId);
@@ -245,12 +574,12 @@ namespace NetExchange {
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void MergeFrom(ExMessage other) {
+    public void MergeFrom(ExtMessage other) {
       if (other == null) {
         return;
       }
-      if (other.Route != 0) {
-        Route = other.Route;
+      if (other.Context != 0UL) {
+        Context = other.Context;
       }
       if (other.GwId != 0) {
         GwId = other.GwId;
@@ -276,7 +605,7 @@ namespace NetExchange {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
           case 8: {
-            Route = input.ReadUInt32();
+            Context = input.ReadUInt64();
             break;
           }
           case 16: {
@@ -306,7 +635,7 @@ namespace NetExchange {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
           case 8: {
-            Route = input.ReadUInt32();
+            Context = input.ReadUInt64();
             break;
           }
           case 16: {
@@ -319,6 +648,364 @@ namespace NetExchange {
           }
           case 34: {
             DataUnit = input.ReadBytes();
+            break;
+          }
+        }
+      }
+    }
+    #endif
+
+  }
+
+  /// <summary>
+  /// Command message streaming with OP codes
+  /// </summary>
+  public sealed partial class CmdMessage : pb::IMessage<CmdMessage>
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      , pb::IBufferMessage
+  #endif
+  {
+    private static readonly pb::MessageParser<CmdMessage> _parser = new pb::MessageParser<CmdMessage>(() => new CmdMessage());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<CmdMessage> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::NetExchange.NetworkReflection.Descriptor.MessageTypes[2]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public CmdMessage() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public CmdMessage(CmdMessage other) : this() {
+      opCode_ = other.opCode_;
+      route_ = other.route_;
+      argument_ = other.argument_;
+      gwId_ = other.gwId_;
+      deviceId_ = other.deviceId_;
+      payload_ = other.payload_;
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public CmdMessage Clone() {
+      return new CmdMessage(this);
+    }
+
+    /// <summary>Field number for the "op_code" field.</summary>
+    public const int OpCodeFieldNumber = 1;
+    private uint opCode_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public uint OpCode {
+      get { return opCode_; }
+      set {
+        opCode_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "route" field.</summary>
+    public const int RouteFieldNumber = 2;
+    private uint route_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public uint Route {
+      get { return route_; }
+      set {
+        route_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "argument" field.</summary>
+    public const int ArgumentFieldNumber = 3;
+    private uint argument_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public uint Argument {
+      get { return argument_; }
+      set {
+        argument_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "gw_id" field.</summary>
+    public const int GwIdFieldNumber = 4;
+    private uint gwId_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public uint GwId {
+      get { return gwId_; }
+      set {
+        gwId_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "device_id" field.</summary>
+    public const int DeviceIdFieldNumber = 5;
+    private ulong deviceId_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public ulong DeviceId {
+      get { return deviceId_; }
+      set {
+        deviceId_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "payload" field.</summary>
+    public const int PayloadFieldNumber = 6;
+    private pb::ByteString payload_ = pb::ByteString.Empty;
+    /// <summary>
+    /// Message payload
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public pb::ByteString Payload {
+      get { return payload_; }
+      set {
+        payload_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as CmdMessage);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(CmdMessage other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (OpCode != other.OpCode) return false;
+      if (Route != other.Route) return false;
+      if (Argument != other.Argument) return false;
+      if (GwId != other.GwId) return false;
+      if (DeviceId != other.DeviceId) return false;
+      if (Payload != other.Payload) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (OpCode != 0) hash ^= OpCode.GetHashCode();
+      if (Route != 0) hash ^= Route.GetHashCode();
+      if (Argument != 0) hash ^= Argument.GetHashCode();
+      if (GwId != 0) hash ^= GwId.GetHashCode();
+      if (DeviceId != 0UL) hash ^= DeviceId.GetHashCode();
+      if (Payload.Length != 0) hash ^= Payload.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      output.WriteRawMessage(this);
+    #else
+      if (OpCode != 0) {
+        output.WriteRawTag(8);
+        output.WriteUInt32(OpCode);
+      }
+      if (Route != 0) {
+        output.WriteRawTag(16);
+        output.WriteUInt32(Route);
+      }
+      if (Argument != 0) {
+        output.WriteRawTag(24);
+        output.WriteUInt32(Argument);
+      }
+      if (GwId != 0) {
+        output.WriteRawTag(32);
+        output.WriteUInt32(GwId);
+      }
+      if (DeviceId != 0UL) {
+        output.WriteRawTag(40);
+        output.WriteUInt64(DeviceId);
+      }
+      if (Payload.Length != 0) {
+        output.WriteRawTag(50);
+        output.WriteBytes(Payload);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      if (OpCode != 0) {
+        output.WriteRawTag(8);
+        output.WriteUInt32(OpCode);
+      }
+      if (Route != 0) {
+        output.WriteRawTag(16);
+        output.WriteUInt32(Route);
+      }
+      if (Argument != 0) {
+        output.WriteRawTag(24);
+        output.WriteUInt32(Argument);
+      }
+      if (GwId != 0) {
+        output.WriteRawTag(32);
+        output.WriteUInt32(GwId);
+      }
+      if (DeviceId != 0UL) {
+        output.WriteRawTag(40);
+        output.WriteUInt64(DeviceId);
+      }
+      if (Payload.Length != 0) {
+        output.WriteRawTag(50);
+        output.WriteBytes(Payload);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(ref output);
+      }
+    }
+    #endif
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      if (OpCode != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeUInt32Size(OpCode);
+      }
+      if (Route != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeUInt32Size(Route);
+      }
+      if (Argument != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeUInt32Size(Argument);
+      }
+      if (GwId != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeUInt32Size(GwId);
+      }
+      if (DeviceId != 0UL) {
+        size += 1 + pb::CodedOutputStream.ComputeUInt64Size(DeviceId);
+      }
+      if (Payload.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeBytesSize(Payload);
+      }
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(CmdMessage other) {
+      if (other == null) {
+        return;
+      }
+      if (other.OpCode != 0) {
+        OpCode = other.OpCode;
+      }
+      if (other.Route != 0) {
+        Route = other.Route;
+      }
+      if (other.Argument != 0) {
+        Argument = other.Argument;
+      }
+      if (other.GwId != 0) {
+        GwId = other.GwId;
+      }
+      if (other.DeviceId != 0UL) {
+        DeviceId = other.DeviceId;
+      }
+      if (other.Payload.Length != 0) {
+        Payload = other.Payload;
+      }
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      input.ReadRawMessage(this);
+    #else
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 8: {
+            OpCode = input.ReadUInt32();
+            break;
+          }
+          case 16: {
+            Route = input.ReadUInt32();
+            break;
+          }
+          case 24: {
+            Argument = input.ReadUInt32();
+            break;
+          }
+          case 32: {
+            GwId = input.ReadUInt32();
+            break;
+          }
+          case 40: {
+            DeviceId = input.ReadUInt64();
+            break;
+          }
+          case 50: {
+            Payload = input.ReadBytes();
+            break;
+          }
+        }
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+            break;
+          case 8: {
+            OpCode = input.ReadUInt32();
+            break;
+          }
+          case 16: {
+            Route = input.ReadUInt32();
+            break;
+          }
+          case 24: {
+            Argument = input.ReadUInt32();
+            break;
+          }
+          case 32: {
+            GwId = input.ReadUInt32();
+            break;
+          }
+          case 40: {
+            DeviceId = input.ReadUInt64();
+            break;
+          }
+          case 50: {
+            Payload = input.ReadBytes();
             break;
           }
         }

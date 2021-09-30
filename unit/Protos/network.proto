@@ -20,17 +20,34 @@ package net_exchange;
 
 // The service definition.
 service ExProto {
-  rpc ExLink (stream ExMessage) returns (stream ExMessage);
-
-  rpc ExUnary (ExMessage) returns (ExMessage);
-
-  rpc ExServerstream (ExMessage) returns (stream ExMessage);
+  rpc MessageRtu (stream RtuMessage) returns (stream RtuMessage);
+  rpc MessageExt (stream ExtMessage) returns (stream ExtMessage);
+  rpc MessageCmd (stream CmdMessage) returns (stream CmdMessage);
 }
 
-// The streaming message
-message ExMessage {
-  uint32 route = 1;
+// Remote Terminal Unit streaming for Modbus Master
+message RtuMessage {
+  uint32 channel = 1;
+  uint32 sequence_number = 2;
+  uint32 gw_id = 3;
+  uint64 device_id = 4;
+  bytes data_unit = 5; // Transmission Data Unit
+}
+
+// RTU exchanging streaming for Modbus Slave
+message ExtMessage {
+  uint64 context = 1;
   uint32 gw_id = 2;
   uint64 device_id = 3;
   bytes data_unit = 4; // Transmission Data Unit
+}
+
+// Command message streaming with OP codes
+message CmdMessage {
+  uint32 op_code = 1;
+  uint32 route = 2;
+  uint32 argument = 3;
+  uint32 gw_id = 4;
+  uint64 device_id = 5;
+  bytes payload = 6; // Message payload
 }
