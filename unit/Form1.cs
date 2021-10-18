@@ -247,20 +247,22 @@ namespace unit
                 richTextBox2.AppendText(Environment.NewLine + BitConverter.ToString(payload));
                 richTextBox2.AppendText(Environment.NewLine);
                 richTextBox1.Text += "Responsed... ";
+
                 if (addressEnd == true && payload.Length == 45)
                 {
-                    address = payload;
-                    richTextBox3.AppendText(Environment.NewLine + $"1={payload.Length}");
-                    richTextBox3.AppendText(Environment.NewLine + $"2={address.Length}");
-                
-       
+                    addressArray = payload;
+          
+                    addressEnd = false;
 
-                } if(dataEnd == true && payload.Length == 127)
+                    getData();
+                }
+                if(dataEnd == true && payload.Length == 127)
                 {
-                    data = payload;
-                    richTextBox3.AppendText(Environment.NewLine + $"3={payload.Length}");
-                    richTextBox3.AppendText(Environment.NewLine + $"4={data.Length}");
-                    dataEnd = false;    addressEnd = false;
+                    dataArray = payload;
+            
+                    dataEnd = false;
+
+                    sensorDataOutput(addressArray, dataArray);
                 }
             
 
@@ -667,13 +669,11 @@ namespace unit
         }
         //0x4588177F, 0x24A160581B59,
         //0x51894B30, 0x24A16057F6BD,
-        private void button1_Click(object sender, EventArgs e)
-        {
-            if (address != null && data != null)
-            {
+      void sensorDataOutput(byte[] address,byte[] data) {
+       
                 richTextBox3.Text = "센서 데이터";
 
-                for (int i = 0; i < ((address.Length - 5) / 2); i++)
+                for (int i = 0; i < ((address.Length - 3) / 2); i++)
                 {
                     //  Console.WriteLine($"1111: {4 + i * 6 -4}");
 
@@ -697,7 +697,7 @@ namespace unit
                             Console.Write($"습도 : {BitConverter.ToSingle(temBytes, 0).ToString("0.00")}");
                             Console.WriteLine("%");
                         }
-                        else if (address[1 + i * 2] == 0x00 && address[2 + i * 2] == 0x11)
+                        else if (address[1 + i * 2] == 0x00 && address[2 + i * 2] == 0x0b)
                         {
                             float temValue = GetFloat(data[4 + i * 6 - 5], data[4 + i * 6 - 4], data[4 + i * 6 - 3], data[4 + i * 6 - 2]);
                             byte[] temBytes = BitConverter.GetBytes(temValue);
@@ -750,13 +750,11 @@ namespace unit
                     }
                     else
                     {
-                        richTextBox3.AppendText(Environment.NewLine +"빈 장비");
+                        richTextBox3.AppendText(Environment.NewLine + "빈 장비");
                         //    Console.WriteLine("빈 장비");
                     }
-                }
-
-
-                float GetFloat(byte a, byte b, byte c, byte d)
+                 }
+    float GetFloat(byte a, byte b, byte c, byte d)
                 {
                     byte[] rData = new byte[4];
                     rData[0] = b;
@@ -767,19 +765,20 @@ namespace unit
                     return BitConverter.ToSingle(rData, 0);
                 }
 
-            }
-            else
-            {
-                remove_rich(richTextBox3);
-                if (addressEnd == true)
-                { getData();   
-          
-                }
-                else {       getAddress(); }
-            }
+            } 
+        
+        
+        
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+            
+        
+            
+                  getAddress();
         }
         bool addressEnd=false;
-        byte[] address;
+        byte[] addressArray;
         private void getAddress()
         {
             addressEnd = true;
@@ -788,7 +787,7 @@ namespace unit
          0xAD, 0xDE});
         }
         bool dataEnd=false;
-        byte[] data;
+        byte[] dataArray;
         private void getData()
         {
 
