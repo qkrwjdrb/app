@@ -148,7 +148,7 @@ namespace unit
 
         private void button2_Click(object sender, EventArgs e)
         {
-            this.Size = new Size(762, 633);
+           
             panel3.Controls.Clear();
             panel3.Controls.Add(UserControl1);
         }
@@ -159,6 +159,12 @@ namespace unit
             panel3.Controls.Add(UserControl2);
         }
 
+        private void button3_Click(object sender, EventArgs e)
+        {
+            panel3.Controls.Clear();
+            panel3.Controls.Add(UserControl4);
+
+        }
     }
 
 }

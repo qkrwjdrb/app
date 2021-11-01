@@ -24,8 +24,9 @@ namespace unit.screen
         internal static AsyncDuplexStreamingCall<RtuMessage, RtuMessage> rtuLink = exchange.MessageRtu();
         internal static AsyncDuplexStreamingCall<ExtMessage, ExtMessage> extLink = exchange.MessageExt();
         internal static AsyncDuplexStreamingCall<CmdMessage, CmdMessage> cmdLink = exchange.MessageCmd();
-        private static UInt16 TxCnt;
-        public static UserControl1 f;
+        internal  UInt16 TxCnt;
+        public static UserControl1 uc1;
+        public bool isUc4 = false;
         public UserControl1()
         {
             InitializeComponent();
@@ -35,7 +36,7 @@ namespace unit.screen
             comboBox1.Items.Add("24A16057F685");
             comboBox1.Items.Add("500291AEBCD9");
             comboBox1.Items.Add("500291AEBE4D");
-            f = this;
+            uc1 = this;
         }
     
         private async void RtuMessageService()
@@ -117,15 +118,15 @@ namespace unit.screen
 
             this.Invoke((MethodInvoker)delegate ()
             {
-                richTextBox1.Text = "TxRtu(" + GetProtocolChannelName(channel) + ")";
-                richTextBox1.AppendText(Environment.NewLine + $"RequestStream.Channel={channel}");
-                richTextBox1.AppendText(Environment.NewLine + $"RequestStream.SequenceNumber={sequenceNumber}");
-                richTextBox1.AppendText(Environment.NewLine + $"RequestStream.GatewayId=" + gatewayId.ToString("X6"));
-                richTextBox1.AppendText(Environment.NewLine + $"RequestStream.DeviceId=" + deviceId.ToString("X12"));
-                richTextBox1.AppendText(Environment.NewLine + $"RequestStream.Tdu.Length={payload.Length}");
-                richTextBox1.AppendText(Environment.NewLine + $"RequestStream.Tdu={BitConverter.ToString(payload).Replace("-", string.Empty)}");
-                richTextBox1.AppendText(Environment.NewLine);
-                richTextBox2.Text = "Awaiting response...";
+                uc1textBox1.Text = "TxRtu(" + GetProtocolChannelName(channel) + ")";
+                uc1textBox1.AppendText(Environment.NewLine + $"RequestStream.Channel={channel}");
+                uc1textBox1.AppendText(Environment.NewLine + $"RequestStream.SequenceNumber={sequenceNumber}");
+                uc1textBox1.AppendText(Environment.NewLine + $"RequestStream.GatewayId=" + gatewayId.ToString("X6"));
+                uc1textBox1.AppendText(Environment.NewLine + $"RequestStream.DeviceId=" + deviceId.ToString("X12"));
+                uc1textBox1.AppendText(Environment.NewLine + $"RequestStream.Tdu.Length={payload.Length}");
+                uc1textBox1.AppendText(Environment.NewLine + $"RequestStream.Tdu={BitConverter.ToString(payload).Replace("-", string.Empty)}");
+                uc1textBox1.AppendText(Environment.NewLine);
+                uc1textBox2.Text = "Awaiting response...";
             });
 
             rtuLink.RequestStream.WriteAsync(new RtuMessage
@@ -138,7 +139,7 @@ namespace unit.screen
             });
         }
 
-
+     byte deviceCount = 30;
         public void RxRtu(UInt16 acknowledgeNumber, UInt32 gatewayId, UInt64 deviceId, byte[] payload)
         {
             UInt16 channel = 0;
@@ -146,35 +147,41 @@ namespace unit.screen
             this.Invoke((MethodInvoker)delegate ()
             {
 
-
-
-                richTextBox2.Text = "RxRtu(" + GetProtocolChannelName(channel) + ")";
-                richTextBox2.AppendText(Environment.NewLine + $"response.Channel={channel}");
-                richTextBox2.AppendText(Environment.NewLine + $"response.AcknowledgeNumber={acknowledgeNumber}");
-                richTextBox2.AppendText(Environment.NewLine + $"response.GatewayId=" + gatewayId.ToString("X6"));
-                richTextBox2.AppendText(Environment.NewLine + $"response.DeviceId=" + deviceId.ToString("X12"));
-                richTextBox2.AppendText(Environment.NewLine + $"response.Tdu.Length={payload.Length}");
-                richTextBox2.AppendText(Environment.NewLine + BitConverter.ToString(payload));
-                richTextBox2.AppendText(Environment.NewLine);
-                richTextBox1.Text += "Responsed... ";
-
-                if (addressEnd == true && payload.Length == 45)
+                if (isUc4)
                 {
-                    addressArray = payload;
 
-                    addressEnd = false;
 
-                    getData(dataAddress);
+
                 }
-                if (dataEnd == true && payload.Length == 127)
-                {
-                    dataArray = payload;
+                else { 
+                    uc1textBox2.Text = "RxRtu(" + GetProtocolChannelName(channel) + ")";
+                    uc1textBox2.AppendText(Environment.NewLine + $"response.Channel={channel}");
+                    uc1textBox2.AppendText(Environment.NewLine + $"response.AcknowledgeNumber={acknowledgeNumber}");
+                    uc1textBox2.AppendText(Environment.NewLine + $"response.GatewayId=" + gatewayId.ToString("X6"));
+                    uc1textBox2.AppendText(Environment.NewLine + $"response.DeviceId=" + deviceId.ToString("X12"));
+                    uc1textBox2.AppendText(Environment.NewLine + $"response.Tdu.Length={payload.Length}");
+                    uc1textBox2.AppendText(Environment.NewLine + BitConverter.ToString(payload));
+                    uc1textBox2.AppendText(Environment.NewLine);
+                    uc1textBox1.Text += "Responsed... ";
 
-                    dataEnd = false;
+                    if (addressEnd == true && payload.Length == (deviceCount * 2 + 5))
+                    {
+                        addressArray = payload;
 
-                    sensorDataOutput(addressArray, dataArray, deviceId.ToString("X12"));
+                        addressEnd = false;
+
+                        getData(dataAddress);
+                    }
+                    if (dataEnd == true && payload.Length == (deviceCount * 6 + 7))
+                    {
+                        dataArray = payload;
+
+                        dataEnd = false;
+
+                        sensorDataOutput(addressArray, dataArray, deviceId.ToString("X12"));
+                    }
+
                 }
-
 
             });
 
@@ -195,14 +202,14 @@ namespace unit.screen
 
             this.Invoke((MethodInvoker)delegate ()
             {
-                richTextBox2.Text = "TxExt(" + GetProtocolChannelName(channel) + ")";
-                richTextBox2.AppendText(Environment.NewLine + $"RequestStream.Context=" + context.ToString("X16"));
-                richTextBox2.AppendText(Environment.NewLine + $"RequestStream.GatewayId=" + gatewayId.ToString("X6"));
-                richTextBox2.AppendText(Environment.NewLine + $"RequestStream.DeviceId=" + deviceId.ToString("X12"));
-                richTextBox2.AppendText(Environment.NewLine + $"RequestStream.Tdu.Length={payload.Length}");
-                richTextBox2.AppendText(Environment.NewLine + $"RequestStream.Tdu={BitConverter.ToString(payload).Replace("-", string.Empty)}");
-                richTextBox2.AppendText(Environment.NewLine);
-                richTextBox3.Text = "Replied...";
+                uc1textBox2.Text = "TxExt(" + GetProtocolChannelName(channel) + ")";
+                uc1textBox2.AppendText(Environment.NewLine + $"RequestStream.Context=" + context.ToString("X16"));
+                uc1textBox2.AppendText(Environment.NewLine + $"RequestStream.GatewayId=" + gatewayId.ToString("X6"));
+                uc1textBox2.AppendText(Environment.NewLine + $"RequestStream.DeviceId=" + deviceId.ToString("X12"));
+                uc1textBox2.AppendText(Environment.NewLine + $"RequestStream.Tdu.Length={payload.Length}");
+                uc1textBox2.AppendText(Environment.NewLine + $"RequestStream.Tdu={BitConverter.ToString(payload).Replace("-", string.Empty)}");
+                uc1textBox2.AppendText(Environment.NewLine);
+                uc1textBox3.Text = "Replied...";
 
             });
 
@@ -222,14 +229,14 @@ namespace unit.screen
 
             this.Invoke((MethodInvoker)delegate ()
             {
-                richTextBox3.Text = "RxExt(" + GetProtocolChannelName(channel) + ")";
-                richTextBox3.AppendText(Environment.NewLine + $"RequestStream.Context=" + context.ToString("X16"));
-                richTextBox3.AppendText(Environment.NewLine + $"response.GatewayId=" + gatewayId.ToString("X6"));
-                richTextBox3.AppendText(Environment.NewLine + $"response.DeviceId=" + deviceId.ToString("X12"));
-                richTextBox3.AppendText(Environment.NewLine + $"response.Tdu.Length={payload.Length}");
-                richTextBox3.AppendText(Environment.NewLine + BitConverter.ToString(payload));
-                richTextBox3.AppendText(Environment.NewLine);
-                richTextBox3.Text += "Awaiting processing...";
+                uc1textBox3.Text = "RxExt(" + GetProtocolChannelName(channel) + ")";
+                uc1textBox3.AppendText(Environment.NewLine + $"RequestStream.Context=" + context.ToString("X16"));
+                uc1textBox3.AppendText(Environment.NewLine + $"response.GatewayId=" + gatewayId.ToString("X6"));
+                uc1textBox3.AppendText(Environment.NewLine + $"response.DeviceId=" + deviceId.ToString("X12"));
+                uc1textBox3.AppendText(Environment.NewLine + $"response.Tdu.Length={payload.Length}");
+                uc1textBox3.AppendText(Environment.NewLine + BitConverter.ToString(payload));
+                uc1textBox3.AppendText(Environment.NewLine);
+                uc1textBox3.Text += "Awaiting processing...";
             });
 
             switch (channel)
@@ -244,16 +251,16 @@ namespace unit.screen
         {
             this.Invoke((MethodInvoker)delegate ()
             {
-                richTextBox2.Text = "TxExt()";
-                richTextBox2.AppendText(Environment.NewLine + $"RequestStream.OpCode=" + opCode.ToString("X4"));
-                richTextBox2.AppendText(Environment.NewLine + $"RequestStream.Route=" + route.ToString("X8"));
-                richTextBox2.AppendText(Environment.NewLine + $"RequestStream.Argument=" + argument.ToString("X8"));
-                richTextBox2.AppendText(Environment.NewLine + $"RequestStream.GatewayId=" + gatewayId.ToString("X6"));
-                richTextBox2.AppendText(Environment.NewLine + $"RequestStream.DeviceId=" + deviceId.ToString("X12"));
-                richTextBox2.AppendText(Environment.NewLine + $"RequestStream.Tdu.Length={payload.Length}");
-                richTextBox2.AppendText(Environment.NewLine + $"RequestStream.Tdu={BitConverter.ToString(payload).Replace("-", string.Empty)}");
-                richTextBox2.AppendText(Environment.NewLine);
-                richTextBox3.Text = "Replied...";
+                uc1textBox2.Text = "TxExt()";
+                uc1textBox2.AppendText(Environment.NewLine + $"RequestStream.OpCode=" + opCode.ToString("X4"));
+                uc1textBox2.AppendText(Environment.NewLine + $"RequestStream.Route=" + route.ToString("X8"));
+                uc1textBox2.AppendText(Environment.NewLine + $"RequestStream.Argument=" + argument.ToString("X8"));
+                uc1textBox2.AppendText(Environment.NewLine + $"RequestStream.GatewayId=" + gatewayId.ToString("X6"));
+                uc1textBox2.AppendText(Environment.NewLine + $"RequestStream.DeviceId=" + deviceId.ToString("X12"));
+                uc1textBox2.AppendText(Environment.NewLine + $"RequestStream.Tdu.Length={payload.Length}");
+                uc1textBox2.AppendText(Environment.NewLine + $"RequestStream.Tdu={BitConverter.ToString(payload).Replace("-", string.Empty)}");
+                uc1textBox2.AppendText(Environment.NewLine);
+                uc1textBox3.Text = "Replied...";
             });
 
             cmdLink.RequestStream.WriteAsync(new CmdMessage
@@ -271,15 +278,15 @@ namespace unit.screen
         {
             this.Invoke((MethodInvoker)delegate ()
             {
-                richTextBox3.Text = "RxCmd()";
-                richTextBox3.AppendText(Environment.NewLine + $"RequestStream.OpCode=" + opCode.ToString("X4"));
-                richTextBox3.AppendText(Environment.NewLine + $"RequestStream.Route=" + route.ToString("X8"));
-                richTextBox3.AppendText(Environment.NewLine + $"RequestStream.Argument=" + argument.ToString("X8"));
-                richTextBox3.AppendText(Environment.NewLine + $"response.GatewayId=" + gatewayId.ToString("X6"));
-                richTextBox3.AppendText(Environment.NewLine + $"response.DeviceId=" + deviceId.ToString("X12"));
-                richTextBox3.AppendText(Environment.NewLine + $"response.Tdu.Length={payload.Length}");
-                richTextBox3.AppendText(Environment.NewLine + BitConverter.ToString(payload));
-                richTextBox3.AppendText(Environment.NewLine);
+                uc1textBox3.Text = "RxCmd()";
+                uc1textBox3.AppendText(Environment.NewLine + $"RequestStream.OpCode=" + opCode.ToString("X4"));
+                uc1textBox3.AppendText(Environment.NewLine + $"RequestStream.Route=" + route.ToString("X8"));
+                uc1textBox3.AppendText(Environment.NewLine + $"RequestStream.Argument=" + argument.ToString("X8"));
+                uc1textBox3.AppendText(Environment.NewLine + $"response.GatewayId=" + gatewayId.ToString("X6"));
+                uc1textBox3.AppendText(Environment.NewLine + $"response.DeviceId=" + deviceId.ToString("X12"));
+                uc1textBox3.AppendText(Environment.NewLine + $"response.Tdu.Length={payload.Length}");
+                uc1textBox3.AppendText(Environment.NewLine + BitConverter.ToString(payload));
+                uc1textBox3.AppendText(Environment.NewLine);
             });
 
             switch (opCode)
@@ -287,7 +294,7 @@ namespace unit.screen
                 case 0:
                     this.Invoke((MethodInvoker)delegate ()
                     {
-                        richTextBox2.Text += "Gateway... ";
+                        uc1textBox2.Text += "Gateway... ";
                     });
                     break;
             }
@@ -295,78 +302,164 @@ namespace unit.screen
         void sensorDataOutput(byte[] address, byte[] data, string deviceId)
         {
 
-            richTextBox3.Text = $"{deviceId} 센서 데이터";
+            uc1textBox3.Text = $"{deviceId} 센서 데이터";
 
-            for (int i = 0; i < ((address.Length - 3) / 2); i++)
+            for (int i = 1; i < ((address.Length - 3) / 2); i++)
             {
                 //  Console.WriteLine($"1111: {4 + i * 6 -4}");
 
                 //  Console.WriteLine($"2222: {2+i * 2 }");
+          
                 if (data[4 + i * 6] == 0)
                 {
+                 
                     if (address[1 + i * 2] == 0x00 && address[2 + i * 2] == 0x01)
                     {
                         float temValue = GetFloat(data[4 + i * 6 - 5], data[4 + i * 6 - 4], data[4 + i * 6 - 3], data[4 + i * 6 - 2]);
                         byte[] temBytes = BitConverter.GetBytes(temValue);
 
-                        richTextBox3.AppendText(Environment.NewLine + $"{i} : 온도 : {BitConverter.ToSingle(temBytes, 0).ToString("0.00")}");
+                        uc1textBox3.AppendText(Environment.NewLine + $"{i} : 온도 : {BitConverter.ToSingle(temBytes, 0).ToString("0.00")}");
 
                     }
                     else if (address[1 + i * 2] == 0x00 && address[2 + i * 2] == 0x02)
                     {
                         float temValue = GetFloat(data[4 + i * 6 - 5], data[4 + i * 6 - 4], data[4 + i * 6 - 3], data[4 + i * 6 - 2]);
                         byte[] temBytes = BitConverter.GetBytes(temValue);
-                        richTextBox3.AppendText(Environment.NewLine + $"{i} : 습도 : {BitConverter.ToSingle(temBytes, 0).ToString("0.00")}");
+                        uc1textBox3.AppendText(Environment.NewLine + $"{i} : 습도 : {BitConverter.ToSingle(temBytes, 0).ToString("0.00")}");
 
                     }
                     else if (address[1 + i * 2] == 0x00 && address[2 + i * 2] == 0x0b)
                     {
                         float temValue = GetFloat(data[4 + i * 6 - 5], data[4 + i * 6 - 4], data[4 + i * 6 - 3], data[4 + i * 6 - 2]);
                         byte[] temBytes = BitConverter.GetBytes(temValue);
-                        richTextBox3.AppendText(Environment.NewLine + $"{i} : CO2 : {BitConverter.ToSingle(temBytes, 0).ToString("0.00")}");
+                        uc1textBox3.AppendText(Environment.NewLine + $"{i} : CO2 : {BitConverter.ToSingle(temBytes, 0).ToString("0.00")}");
 
                     }
                     else if (address[1 + i * 2] == 0x70 && address[2 + i * 2] == 0x01)
                     {
                         float temValue = GetFloat(data[4 + i * 6 - 5], data[4 + i * 6 - 4], data[4 + i * 6 - 3], data[4 + i * 6 - 2]);
                         byte[] temBytes = BitConverter.GetBytes(temValue);
-                        richTextBox3.AppendText(Environment.NewLine + $"{i} : 암모니아 : {BitConverter.ToSingle(temBytes, 0).ToString("0.00")}");
+                        uc1textBox3.AppendText(Environment.NewLine + $"{i} : 암모니아 : {BitConverter.ToSingle(temBytes, 0).ToString("0.00")}");
 
                     }
                     else if (address[1 + i * 2] == 0x70 && address[2 + i * 2] == 0x02)
                     {
                         float temValue = GetFloat(data[4 + i * 6 - 5], data[4 + i * 6 - 4], data[4 + i * 6 - 3], data[4 + i * 6 - 2]);
                         byte[] temBytes = BitConverter.GetBytes(temValue);
-                        richTextBox3.AppendText(Environment.NewLine + $"{i} : 이산화질소 : {BitConverter.ToSingle(temBytes, 0).ToString("0.00")}");
+                        uc1textBox3.AppendText(Environment.NewLine + $"{i} : 이산화질소 : {BitConverter.ToSingle(temBytes, 0).ToString("0.00")}");
 
                     }
                     else if (address[1 + i * 2] == 0x70 && address[2 + i * 2] == 0x03)
                     {
                         float temValue = GetFloat(data[4 + i * 6 - 5], data[4 + i * 6 - 4], data[4 + i * 6 - 3], data[4 + i * 6 - 2]);
                         byte[] temBytes = BitConverter.GetBytes(temValue);
-                        richTextBox3.AppendText(Environment.NewLine + $"{i} : 일산화탄소 : {BitConverter.ToSingle(temBytes, 0).ToString("0.00")}");
+                        uc1textBox3.AppendText(Environment.NewLine + $"{i} : 일산화탄소 : {BitConverter.ToSingle(temBytes, 0).ToString("0.00")}");
 
                     }
                     else if (address[1 + i * 2] == 0x70 && address[2 + i * 2] == 0x04)
                     {
                         float temValue = GetFloat(data[4 + i * 6 - 5], data[4 + i * 6 - 4], data[4 + i * 6 - 3], data[4 + i * 6 - 2]);
                         byte[] temBytes = BitConverter.GetBytes(temValue);
-                        richTextBox3.AppendText(Environment.NewLine + $"{i} : 조도 : {BitConverter.ToSingle(temBytes, 0).ToString("0.00")}");
+                        uc1textBox3.AppendText(Environment.NewLine + $"{i} : 조도 : {BitConverter.ToSingle(temBytes, 0).ToString("0.00")}");
 
                     }
                     else if (address[1 + i * 2] == 0x70 && address[2 + i * 2] == 0x05)
                     {
                         float temValue = GetFloat(data[4 + i * 6 - 5], data[4 + i * 6 - 4], data[4 + i * 6 - 3], data[4 + i * 6 - 2]);
                         byte[] temBytes = BitConverter.GetBytes(temValue);
-                        richTextBox3.AppendText(Environment.NewLine + $"{i} : 자외선센서 : {BitConverter.ToSingle(temBytes, 0).ToString("0.00")}");
+                        uc1textBox3.AppendText(Environment.NewLine + $"{i} : 자외선센서 : {BitConverter.ToSingle(temBytes, 0).ToString("0.00")}");
 
+                    }
+
+
+
+
+
+
+                    else if (address[1 + i * 2] == 0x60 && address[2 + i * 2] == 0x01)
+                    {
+                        float temValue = GetFloat(data[4 + i * 6 - 5], data[4 + i * 6 - 4], data[4 + i * 6 - 3], data[4 + i * 6 - 2]);
+                        byte[] temBytes = BitConverter.GetBytes(temValue);
+                        uc1textBox3.AppendText(Environment.NewLine + $"{i} : 암모니아 L : {BitConverter.ToSingle(temBytes, 0).ToString("0.00")}");
+
+                    }
+                    else if (address[1 + i * 2] == 0x60 && address[2 + i * 2] == 0x02)
+                    {
+                        float temValue = GetFloat(data[4 + i * 6 - 5], data[4 + i * 6 - 4], data[4 + i * 6 - 3], data[4 + i * 6 - 2]);
+                        byte[] temBytes = BitConverter.GetBytes(temValue);
+                        uc1textBox3.AppendText(Environment.NewLine + $"{i} : 암모니아 M : {BitConverter.ToSingle(temBytes, 0).ToString("0.00")}");
+
+                    }
+                    else if (address[1 + i * 2] == 0x60 && address[2 + i * 2] == 0x03)
+                    {
+                        float temValue = GetFloat(data[4 + i * 6 - 5], data[4 + i * 6 - 4], data[4 + i * 6 - 3], data[4 + i * 6 - 2]);
+                        byte[] temBytes = BitConverter.GetBytes(temValue);
+                        uc1textBox3.AppendText(Environment.NewLine + $"{i} : 암모니아 H : {BitConverter.ToSingle(temBytes, 0).ToString("0.00")}");
+
+                    }
+                    else if (address[1 + i * 2] == 0x50 && address[2 + i * 2] == 0x01)
+                    {
+                        float temValue = GetFloat(data[4 + i * 6 - 5], data[4 + i * 6 - 4], data[4 + i * 6 - 3], data[4 + i * 6 - 2]);
+                        byte[] temBytes = BitConverter.GetBytes(temValue);
+                        uc1textBox3.AppendText(Environment.NewLine + $"{i} : 이산화질소센서 L : {BitConverter.ToSingle(temBytes, 0).ToString("0.00")}");
+
+                    }
+                    else if (address[1 + i * 2] == 0x50 && address[2 + i * 2] == 0x02)
+                    {
+                        float temValue = GetFloat(data[4 + i * 6 - 5], data[4 + i * 6 - 4], data[4 + i * 6 - 3], data[4 + i * 6 - 2]);
+                        byte[] temBytes = BitConverter.GetBytes(temValue);
+                        uc1textBox3.AppendText(Environment.NewLine + $"{i} : 이산화질소센서 M : {BitConverter.ToSingle(temBytes, 0).ToString("0.00")}");
+
+                    }
+                    else if (address[1 + i * 2] == 0x50 && address[2 + i * 2] == 0x03)
+                    {
+                        float temValue = GetFloat(data[4 + i * 6 - 5], data[4 + i * 6 - 4], data[4 + i * 6 - 3], data[4 + i * 6 - 2]);
+                        byte[] temBytes = BitConverter.GetBytes(temValue);
+                        uc1textBox3.AppendText(Environment.NewLine + $"{i} : 이산화질소센서 H : {BitConverter.ToSingle(temBytes, 0).ToString("0.00")}");
+
+                    }
+                    else if (address[1 + i * 2] == 0x40 && address[2 + i * 2] == 0x01)
+                    {
+                        float temValue = GetFloat(data[4 + i * 6 - 5], data[4 + i * 6 - 4], data[4 + i * 6 - 3], data[4 + i * 6 - 2]);
+                        byte[] temBytes = BitConverter.GetBytes(temValue);
+                        uc1textBox3.AppendText(Environment.NewLine + $"{i} : CO일산화탄소 L : {BitConverter.ToSingle(temBytes, 0).ToString("0.00")}");
+
+                    }
+                    else if (address[1 + i * 2] == 0x40 && address[2 + i * 2] == 0x02)
+                    {
+                        float temValue = GetFloat(data[4 + i * 6 - 5], data[4 + i * 6 - 4], data[4 + i * 6 - 3], data[4 + i * 6 - 2]);
+                        byte[] temBytes = BitConverter.GetBytes(temValue);
+                        uc1textBox3.AppendText(Environment.NewLine + $"{i} : CO일산화탄소 M : {BitConverter.ToSingle(temBytes, 0).ToString("0.00")}");
+
+                    }
+                    else if (address[1 + i * 2] == 0x40 && address[2 + i * 2] == 0x03)
+                    {
+                        float temValue = GetFloat(data[4 + i * 6 - 5], data[4 + i * 6 - 4], data[4 + i * 6 - 3], data[4 + i * 6 - 2]);
+                        byte[] temBytes = BitConverter.GetBytes(temValue);
+                        uc1textBox3.AppendText(Environment.NewLine + $"{i} : CO일산화탄소 H : {BitConverter.ToSingle(temBytes, 0).ToString("0.00")}");
+
+                    }
+
+
+
+
+                    else
+                    {
+                        float temValue = GetFloat(data[4 + i * 6 - 5], data[4 + i * 6 - 4], data[4 + i * 6 - 3], data[4 + i * 6 - 2]); 
+                        byte[] temBytes = BitConverter.GetBytes(temValue);
+                        string str = Encoding.Default.GetString(temBytes);
+
+                        uc1textBox3.AppendText(Environment.NewLine + $"{i} : 빈 장비 : {BitConverter.ToSingle(temBytes, 0).ToString("0.00")}");
+                    
+                           
+                    
                     }
 
 
                 }
                 else
                 {
-                    richTextBox3.AppendText(Environment.NewLine + $"{i} : 빈 장비");
+                    uc1textBox3.AppendText(Environment.NewLine + $"{i} : 빈 장비");
                     //    Console.WriteLine("빈 장비");
 
 
@@ -397,7 +490,7 @@ namespace unit.screen
         {
             addressEnd = true;
             TxRtu(++TxCnt, 0, address, new byte[] {   0x01, 0x03,
-          0x00, 101, 0x00,20,
+          0x00, 101, 0x00,deviceCount,
          0xAD, 0xDE});
         }
         bool dataEnd = false;
@@ -406,7 +499,7 @@ namespace unit.screen
         {
 
             TxRtu(++TxCnt, 0, address, new byte[] {   0x01, 0x03,
-          0x00,202, 0x00,61,
+          0x00,202, 0x00, Convert.ToByte(deviceCount*3+1),
          0xAD, 0xDE});
             dataEnd = true;
         }

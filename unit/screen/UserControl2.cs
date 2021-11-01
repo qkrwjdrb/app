@@ -43,12 +43,12 @@ namespace unit.screen
 
             private void addCombobox()
         {
-            UserControl1.f.comboBox1.Items.Clear();
+            UserControl1.uc1.comboBox1.Items.Clear();
             string[] allList1 = listBox2.Items.OfType<string>().ToArray();
-            UserControl1.f.comboBox1.Items.AddRange(allList1); 
-            UserControl1.f.comboBox2.Items.Clear();
+            UserControl1.uc1.comboBox1.Items.AddRange(allList1); 
+            UserControl1.uc1.comboBox2.Items.Clear();
             string[] allList2 = listBox1.Items.OfType<string>().ToArray();
-            UserControl1.f.comboBox2.Items.AddRange(allList2);
+            UserControl1.uc1.comboBox2.Items.AddRange(allList2);
 
         }
 

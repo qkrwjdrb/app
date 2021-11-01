@@ -30,9 +30,9 @@ namespace unit.screen
         private void InitializeComponent()
         {
             this.label1 = new System.Windows.Forms.Label();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
-            this.richTextBox2 = new System.Windows.Forms.RichTextBox();
-            this.richTextBox3 = new System.Windows.Forms.RichTextBox();
+            this.uc1textBox1 = new System.Windows.Forms.RichTextBox();
+            this.uc1textBox2 = new System.Windows.Forms.RichTextBox();
+            this.uc1textBox3 = new System.Windows.Forms.RichTextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.comboBox2 = new System.Windows.Forms.ComboBox();
@@ -47,32 +47,32 @@ namespace unit.screen
             this.label1.TabIndex = 0;
             this.label1.Text = "1";
             // 
-            // richTextBox1
+            // uc1textBox1
             // 
-            this.richTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.richTextBox1.Location = new System.Drawing.Point(0, 50);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(240, 447);
-            this.richTextBox1.TabIndex = 1;
-            this.richTextBox1.Text = "";
+            this.uc1textBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.uc1textBox1.Location = new System.Drawing.Point(0, 50);
+            this.uc1textBox1.Name = "uc1textBox1";
+            this.uc1textBox1.Size = new System.Drawing.Size(240, 447);
+            this.uc1textBox1.TabIndex = 1;
+            this.uc1textBox1.Text = "";
             // 
-            // richTextBox2
+            // uc1textBox2
             // 
-            this.richTextBox2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.richTextBox2.Location = new System.Drawing.Point(246, 50);
-            this.richTextBox2.Name = "richTextBox2";
-            this.richTextBox2.Size = new System.Drawing.Size(240, 447);
-            this.richTextBox2.TabIndex = 2;
-            this.richTextBox2.Text = "";
+            this.uc1textBox2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.uc1textBox2.Location = new System.Drawing.Point(246, 50);
+            this.uc1textBox2.Name = "uc1textBox2";
+            this.uc1textBox2.Size = new System.Drawing.Size(240, 447);
+            this.uc1textBox2.TabIndex = 2;
+            this.uc1textBox2.Text = "";
             // 
-            // richTextBox3
+            // uc1textBox3
             // 
-            this.richTextBox3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.richTextBox3.Location = new System.Drawing.Point(492, 50);
-            this.richTextBox3.Name = "richTextBox3";
-            this.richTextBox3.Size = new System.Drawing.Size(226, 447);
-            this.richTextBox3.TabIndex = 3;
-            this.richTextBox3.Text = "";
+            this.uc1textBox3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.uc1textBox3.Location = new System.Drawing.Point(492, 50);
+            this.uc1textBox3.Name = "uc1textBox3";
+            this.uc1textBox3.Size = new System.Drawing.Size(226, 447);
+            this.uc1textBox3.TabIndex = 3;
+            this.uc1textBox3.Text = "";
             // 
             // button1
             // 
@@ -109,9 +109,9 @@ namespace unit.screen
             this.Controls.Add(this.comboBox2);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.richTextBox3);
-            this.Controls.Add(this.richTextBox2);
-            this.Controls.Add(this.richTextBox1);
+            this.Controls.Add(this.uc1textBox3);
+            this.Controls.Add(this.uc1textBox2);
+            this.Controls.Add(this.uc1textBox1);
             this.Controls.Add(this.label1);
             this.Name = "UserControl1";
             this.Size = new System.Drawing.Size(718, 497);
@@ -124,9 +124,9 @@ namespace unit.screen
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.RichTextBox richTextBox1;
-        private System.Windows.Forms.RichTextBox richTextBox2;
-        private System.Windows.Forms.RichTextBox richTextBox3;
+        private System.Windows.Forms.RichTextBox uc1textBox1;
+        private System.Windows.Forms.RichTextBox uc1textBox2;
+        private System.Windows.Forms.RichTextBox uc1textBox3;
         private System.Windows.Forms.Button button1;
         public System.Windows.Forms.ComboBox comboBox1;
         public System.Windows.Forms.ComboBox comboBox2;
