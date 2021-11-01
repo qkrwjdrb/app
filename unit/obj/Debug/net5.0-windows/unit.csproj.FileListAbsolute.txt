@@ -64,3 +64,7 @@ C:\C#_project\새 폴더\unit\bin\Debug\net5.0-windows\Grpc.Net.Common.dll
 C:\C#_project\새 폴더\unit\bin\Debug\net5.0-windows\Microsoft.Extensions.Logging.Abstractions.dll
 C:\C#_project\새 폴더\unit\obj\Debug\net5.0-windows\unit.csproj.CopyComplete
 C:\C#_project\새 폴더\unit\obj\Debug\net5.0-windows\unit.genruntimeconfig.cache
+C:\C#_project\app\unit\obj\Debug\net5.0-windows\unit.screen.UserControl1.resources
+C:\C#_project\app\unit\obj\Debug\net5.0-windows\unit.screen.UserControl2.resources
+C:\C#_project\app\unit\obj\Debug\net5.0-windows\unit.screen.UserControl3.resources
+C:\C#_project\app\unit\obj\Debug\net5.0-windows\unit.screen.UserControl4.resources

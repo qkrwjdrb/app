@@ -61,7 +61,7 @@ namespace unit.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Empty")]
         public string last_deviceid {
             get {
                 return ((string)(this["last_deviceid"]));
