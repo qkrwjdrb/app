@@ -68,3 +68,4 @@ C:\C#_project\app\unit\obj\Debug\net5.0-windows\unit.screen.UserControl1.resourc
 C:\C#_project\app\unit\obj\Debug\net5.0-windows\unit.screen.UserControl2.resources
 C:\C#_project\app\unit\obj\Debug\net5.0-windows\unit.screen.UserControl3.resources
 C:\C#_project\app\unit\obj\Debug\net5.0-windows\unit.screen.UserControl4.resources
+C:\C#_project\app\unit\obj\Debug\net5.0-windows\unit.screen.UserControl5.resources

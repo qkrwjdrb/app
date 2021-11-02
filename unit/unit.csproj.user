@@ -31,6 +31,9 @@
     <Compile Update="screen\UserControl4.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Update="screen\UserControl5.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Update="ucPanel\uc7Segmant.cs">
       <SubType>UserControl</SubType>
     </Compile>
