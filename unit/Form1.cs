@@ -148,7 +148,7 @@ namespace unit
 
         private void button2_Click(object sender, EventArgs e)
         {
-           
+            UserControl1.isUc4 = false;
             panel3.Controls.Clear();
             panel3.Controls.Add(UserControl1);
         }
@@ -161,6 +161,7 @@ namespace unit
 
         private void button3_Click(object sender, EventArgs e)
         {
+            UserControl1.isUc4 = true;
             panel3.Controls.Clear();
             panel3.Controls.Add(UserControl4);
 

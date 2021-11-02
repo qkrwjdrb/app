@@ -118,15 +118,32 @@ namespace unit.screen
 
             this.Invoke((MethodInvoker)delegate ()
             {
-                uc1textBox1.Text = "TxRtu(" + GetProtocolChannelName(channel) + ")";
-                uc1textBox1.AppendText(Environment.NewLine + $"RequestStream.Channel={channel}");
-                uc1textBox1.AppendText(Environment.NewLine + $"RequestStream.SequenceNumber={sequenceNumber}");
-                uc1textBox1.AppendText(Environment.NewLine + $"RequestStream.GatewayId=" + gatewayId.ToString("X6"));
-                uc1textBox1.AppendText(Environment.NewLine + $"RequestStream.DeviceId=" + deviceId.ToString("X12"));
-                uc1textBox1.AppendText(Environment.NewLine + $"RequestStream.Tdu.Length={payload.Length}");
-                uc1textBox1.AppendText(Environment.NewLine + $"RequestStream.Tdu={BitConverter.ToString(payload).Replace("-", string.Empty)}");
-                uc1textBox1.AppendText(Environment.NewLine);
-                uc1textBox2.Text = "Awaiting response...";
+                if (isUc4)
+                {
+                    UserControl4.uc4.uc4textBox1.Text = "TxRtu(" + GetProtocolChannelName(channel) + ")";
+                    UserControl4.uc4.uc4textBox1.AppendText(Environment.NewLine + $"RequestStream.Channel={channel}");
+                    UserControl4.uc4.uc4textBox1.AppendText(Environment.NewLine + $"RequestStream.SequenceNumber={sequenceNumber}");
+                    UserControl4.uc4.uc4textBox1.AppendText(Environment.NewLine + $"RequestStream.GatewayId=" + gatewayId.ToString("X6"));
+                    UserControl4.uc4.uc4textBox1.AppendText(Environment.NewLine + $"RequestStream.DeviceId=" + deviceId.ToString("X12"));
+                    UserControl4.uc4.uc4textBox1.AppendText(Environment.NewLine + $"RequestStream.Tdu.Length={payload.Length}");
+                    UserControl4.uc4.uc4textBox1.AppendText(Environment.NewLine + $"RequestStream.Tdu={BitConverter.ToString(payload).Replace("-", string.Empty)}");
+                    UserControl4.uc4.uc4textBox1.AppendText(Environment.NewLine);Text += "Responsed... ";
+                    UserControl4.uc4.uc4textBox2.Text = "Awaiting response...";
+
+                }
+
+                else
+                {
+                    uc1textBox1.Text = "TxRtu(" + GetProtocolChannelName(channel) + ")";
+                    uc1textBox1.AppendText(Environment.NewLine + $"RequestStream.Channel={channel}");
+                    uc1textBox1.AppendText(Environment.NewLine + $"RequestStream.SequenceNumber={sequenceNumber}");
+                    uc1textBox1.AppendText(Environment.NewLine + $"RequestStream.GatewayId=" + gatewayId.ToString("X6"));
+                    uc1textBox1.AppendText(Environment.NewLine + $"RequestStream.DeviceId=" + deviceId.ToString("X12"));
+                    uc1textBox1.AppendText(Environment.NewLine + $"RequestStream.Tdu.Length={payload.Length}");
+                    uc1textBox1.AppendText(Environment.NewLine + $"RequestStream.Tdu={BitConverter.ToString(payload).Replace("-", string.Empty)}");
+                    uc1textBox1.AppendText(Environment.NewLine);
+                    uc1textBox2.Text = "Awaiting response...";
+                }
             });
 
             rtuLink.RequestStream.WriteAsync(new RtuMessage
@@ -139,7 +156,7 @@ namespace unit.screen
             });
         }
 
-     byte deviceCount = 30;
+        byte deviceCount = 30;
         public void RxRtu(UInt16 acknowledgeNumber, UInt32 gatewayId, UInt64 deviceId, byte[] payload)
         {
             UInt16 channel = 0;
@@ -149,10 +166,19 @@ namespace unit.screen
 
                 if (isUc4)
                 {
-
+                    UserControl4.uc4.uc4textBox2.Text = "RxRtu(" + GetProtocolChannelName(channel) + ")";
+                    UserControl4.uc4.uc4textBox2.AppendText(Environment.NewLine + $"response.Channel={channel}");
+                    UserControl4.uc4.uc4textBox2.AppendText(Environment.NewLine + $"response.AcknowledgeNumber={acknowledgeNumber}");
+                    UserControl4.uc4.uc4textBox2.AppendText(Environment.NewLine + $"response.GatewayId=" + gatewayId.ToString("X6"));
+                    UserControl4.uc4.uc4textBox2.AppendText(Environment.NewLine + $"response.DeviceId=" + deviceId.ToString("X12"));
+                    UserControl4.uc4.uc4textBox2.AppendText(Environment.NewLine + $"response.Tdu.Length={payload.Length}");
+                    UserControl4.uc4.uc4textBox2.AppendText(Environment.NewLine + BitConverter.ToString(payload));
+                    UserControl4.uc4.uc4textBox2.AppendText(Environment.NewLine);
+                    UserControl4.uc4.uc4textBox1.Text += "Responsed... ";
 
 
                 }
+
                 else { 
                     uc1textBox2.Text = "RxRtu(" + GetProtocolChannelName(channel) + ")";
                     uc1textBox2.AppendText(Environment.NewLine + $"response.Channel={channel}");
