@@ -46,7 +46,7 @@ namespace unit.screen
                 {
                     string aa = comboBox1.SelectedItem.ToString();
                     ulong device = ulong.Parse(aa, System.Globalization.NumberStyles.HexNumber);
-            UserControl1.uc1.TxRtu(++UserControl1.uc1.TxCnt, 0, device, new byte[] {   0x01, 0x03,
+          Form1.form1.TxRtu(++Form1.form1.TxCnt, 0, device, new byte[] {   0x01, 0x03,
                   0x00,Convert.ToByte(textBox1.Text), 0x00, Convert.ToByte(textBox2.Text),
                  0xAD, 0xDE});
                 }

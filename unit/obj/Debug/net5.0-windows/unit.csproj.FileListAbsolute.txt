@@ -30,7 +30,6 @@ C:\C#_project\app\unit\obj\Debug\net5.0-windows\unit.dll
 C:\C#_project\app\unit\obj\Debug\net5.0-windows\ref\unit.dll
 C:\C#_project\app\unit\obj\Debug\net5.0-windows\unit.pdb
 C:\C#_project\app\unit\obj\Debug\net5.0-windows\unit.genruntimeconfig.cache
-C:\C#_project\app\unit\obj\Debug\net5.0-windows\unit.csproj.AssemblyReference.cache
 C:\C#_project\새 폴더\unit\obj\Debug\net5.0-windows\unit.csproj.AssemblyReference.cache
 C:\C#_project\새 폴더\unit\obj\Debug\net5.0-windows\unit.device.ucAdd.resources
 C:\C#_project\새 폴더\unit\obj\Debug\net5.0-windows\unit.device.ucDelete.resources
@@ -69,3 +68,5 @@ C:\C#_project\app\unit\obj\Debug\net5.0-windows\unit.screen.UserControl2.resourc
 C:\C#_project\app\unit\obj\Debug\net5.0-windows\unit.screen.UserControl3.resources
 C:\C#_project\app\unit\obj\Debug\net5.0-windows\unit.screen.UserControl4.resources
 C:\C#_project\app\unit\obj\Debug\net5.0-windows\unit.screen.UserControl5.resources
+C:\C#_project\app\unit\obj\Debug\net5.0-windows\unit.csproj.AssemblyReference.cache
+C:\C#_project\app\unit\obj\Debug\net5.0-windows\unit.Form4.resources

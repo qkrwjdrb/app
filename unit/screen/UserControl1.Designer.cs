@@ -68,7 +68,7 @@ namespace unit.screen
             // uc1textBox3
             // 
             this.uc1textBox3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.uc1textBox3.Location = new System.Drawing.Point(492, 50);
+            this.uc1textBox3.Location = new System.Drawing.Point(489, 47);
             this.uc1textBox3.Name = "uc1textBox3";
             this.uc1textBox3.Size = new System.Drawing.Size(226, 447);
             this.uc1textBox3.TabIndex = 3;
@@ -124,11 +124,11 @@ namespace unit.screen
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.RichTextBox uc1textBox1;
-        private System.Windows.Forms.RichTextBox uc1textBox2;
-        private System.Windows.Forms.RichTextBox uc1textBox3;
         private System.Windows.Forms.Button button1;
         public System.Windows.Forms.ComboBox comboBox1;
         public System.Windows.Forms.ComboBox comboBox2;
+        public System.Windows.Forms.RichTextBox uc1textBox1;
+        public System.Windows.Forms.RichTextBox uc1textBox2;
+        public System.Windows.Forms.RichTextBox uc1textBox3;
     }
 }
