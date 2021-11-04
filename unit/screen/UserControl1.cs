@@ -22,14 +22,14 @@ namespace unit.screen
         {
             InitializeComponent();
 
-            comboBox1.Items.Add("24A16057F685");
-            comboBox1.Items.Add("500291AEBCD9");
-            comboBox1.Items.Add("500291AEBE4D");
+        
+            comboBox1.Items.AddRange(       Form1.form1.addressItems);
+            comboBox1.SelectedIndex = 0;
             uc1 = this;
         }
 
 
-
+        
 
 
 
@@ -170,7 +170,6 @@ namespace unit.screen
                         uc1textBox3.AppendText(Environment.NewLine + $"{i} : CO일산화탄소 H : {BitConverter.ToSingle(temBytes, 0).ToString("0.00")}");
 
                     }
-
                     else
                     {
                         float temValue = GetFloat(data[4 + i * 6 - 5], data[4 + i * 6 - 4], data[4 + i * 6 - 3], data[4 + i * 6 - 2]);

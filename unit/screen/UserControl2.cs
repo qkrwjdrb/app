@@ -12,16 +12,14 @@ namespace unit.screen
 {
     public partial class UserControl2 : UserControl
     {
-        
+
         public UserControl2()
         {
             InitializeComponent();
-            listBox2.Items.Add("24A16057F685"); 
-            listBox2.Items.Add("500291AEBCD9"); 
-            listBox2.Items.Add("500291AEBE4D");
+            listBox2.Items.AddRange(Form1.form1.addressItems);
 
         }
-        
+
 
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -41,11 +39,13 @@ namespace unit.screen
             addCombobox();
         }
 
-            private void addCombobox()
+        private void addCombobox()
         {
+
             UserControl1.uc1.comboBox1.Items.Clear();
             string[] allList1 = listBox2.Items.OfType<string>().ToArray();
-            UserControl1.uc1.comboBox1.Items.AddRange(allList1); 
+            UserControl1.uc1.comboBox1.Items.AddRange(allList1);
+
             UserControl1.uc1.comboBox2.Items.Clear();
             string[] allList2 = listBox1.Items.OfType<string>().ToArray();
             UserControl1.uc1.comboBox2.Items.AddRange(allList2);
@@ -55,8 +55,8 @@ namespace unit.screen
 
         private void button2_Click(object sender, EventArgs e)
         {
-  
-           
+
+
             if (listBox1.SelectedIndex != -1)
             {
                 listBox1.Items.RemoveAt(listBox1.SelectedIndex);
@@ -74,7 +74,7 @@ namespace unit.screen
 
         public void get()
         {
-          
+
 
         }
         public void save()
@@ -95,8 +95,9 @@ namespace unit.screen
         {
             get();
         }
+
     }
+
 }
 
-           
-           
+

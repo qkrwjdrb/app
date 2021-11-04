@@ -16,9 +16,22 @@ namespace unit
     public partial class Form1 : Form
     {
 
+        public static Form1 form1;
+
+        screen.UserControl1 UserControl1 = new screen.UserControl1();
+        screen.UserControl2 UserControl2 = new screen.UserControl2();
+        screen.UserControl3 UserControl3 = new screen.UserControl3();
+        screen.UserControl4 UserControl4 = new screen.UserControl4();
+        screen.UserControl5 UserControl5 = new screen.UserControl5();
 
 
+        private static GrpcChannel channel = GrpcChannel.ForAddress("http://localhost:5054");
+        internal static ExProto.ExProtoClient exchange = new ExProto.ExProtoClient(channel);
 
+        internal static AsyncDuplexStreamingCall<RtuMessage, RtuMessage> rtuLink = exchange.MessageRtu();
+        internal static AsyncDuplexStreamingCall<ExtMessage, ExtMessage> extLink = exchange.MessageExt();
+        internal static AsyncDuplexStreamingCall<CmdMessage, CmdMessage> cmdLink = exchange.MessageCmd();
+        internal UInt16 TxCnt;
 
         string[] save_gateways = new string[5];
 
@@ -26,26 +39,10 @@ namespace unit
         public UInt64 devicead;
         string textData;
 
-
-
-        screen.UserControl1 UserControl1 = new screen.UserControl1();
-        screen.UserControl2 UserControl2 = new screen.UserControl2();
-        screen.UserControl3 UserControl3 = new screen.UserControl3();
-        screen.UserControl4 UserControl4 = new screen.UserControl4();
-        screen.UserControl5 UserControl5 = new screen.UserControl5();
-        private static GrpcChannel channel = GrpcChannel.ForAddress("http://localhost:5054");
-        internal static ExProto.ExProtoClient exchange = new ExProto.ExProtoClient(channel);
-    
-        internal static AsyncDuplexStreamingCall<RtuMessage, RtuMessage> rtuLink = exchange.MessageRtu();
-        internal static AsyncDuplexStreamingCall<ExtMessage, ExtMessage> extLink = exchange.MessageExt();
-        internal static AsyncDuplexStreamingCall<CmdMessage, CmdMessage> cmdLink = exchange.MessageCmd();
-        internal UInt16 TxCnt;
-
-
-        public static Form1 form1;
         public bool isUc4 = false;
         public bool isUc5 = false;
 
+        public string[] addressItems = { "24A16057F685", "500291AEBCD9", "500291AEBE4D" };
 
         public Form1()
         {
@@ -53,7 +50,7 @@ namespace unit
             Task.Run(() => RtuMessageService());
             Task.Run(() => ExtMessageService());
             Task.Run(() => CmdMessageService());
-     
+
             form1 = this;
 
         }
@@ -137,8 +134,8 @@ namespace unit
 
             this.Invoke((MethodInvoker)delegate ()
             {
-                screen.UserControl5.uc5.uc5textBox2.AppendText(Environment.NewLine + $"tx {sequenceNumber}: {BitConverter.ToString(payload).Replace("-", " ")}");
-  dataGridView1.Rows.Add( sequenceNumber, "Tx", deviceId.ToString("X12"),BitConverter.ToString(payload).Replace("-", " "));
+
+                dataGridView1.Rows.Add(sequenceNumber, "Tx", deviceId.ToString("X12"), DateTime.Now, BitConverter.ToString(payload).Replace("-", " "));
 
                 if (isUc4)
                 {
@@ -157,7 +154,16 @@ namespace unit
                 else if (isUc5)
                 {
 
-     
+                    screen.UserControl5.uc5.uc5textBox1.Text = "TxRtu(" + GetProtocolChannelName(channel) + ") RequestStream";
+                    screen.UserControl5.uc5.uc5textBox1.AppendText(Environment.NewLine + $"Channel={channel}");
+                    screen.UserControl5.uc5.uc5textBox1.AppendText(Environment.NewLine + $"SequenceNumber={sequenceNumber}");
+                    screen.UserControl5.uc5.uc5textBox1.AppendText(Environment.NewLine + $"GatewayId=" + gatewayId.ToString("X6"));
+                    screen.UserControl5.uc5.uc5textBox1.AppendText(Environment.NewLine + $"DeviceId=" + deviceId.ToString("X12"));
+                    screen.UserControl5.uc5.uc5textBox1.AppendText(Environment.NewLine + $"Tdu.Length={payload.Length}");
+                    screen.UserControl5.uc5.uc5textBox1.AppendText(Environment.NewLine + $"Tdu={BitConverter.ToString(payload).Replace("-", " ")}");
+                    screen.UserControl5.uc5.uc5textBox1.AppendText(Environment.NewLine);
+                    screen.UserControl5.uc5.uc5textBox2.Text = "Awaiting response...";
+
                 }
 
                 else
@@ -191,7 +197,8 @@ namespace unit
 
             this.Invoke((MethodInvoker)delegate ()
             {
-                screen.UserControl5.uc5.uc5textBox2.AppendText(Environment.NewLine +$"rx {acknowledgeNumber}: {BitConverter.ToString(payload).Replace("-", " ")}");
+                dataGridView1.Rows.Add(acknowledgeNumber, "Rx", deviceId.ToString("X12"), DateTime.Now, BitConverter.ToString(payload).Replace("-", " "));
+
                 if (isUc4)
                 {
                     screen.UserControl4.uc4.uc4textBox2.Text = "RxRtu(" + GetProtocolChannelName(channel) + ")";
@@ -208,7 +215,17 @@ namespace unit
                 }
                 else if (isUc5)
                 {
-                 
+
+
+                    screen.UserControl5.uc5.uc5textBox2.Text = "RxRtu(" + GetProtocolChannelName(channel) + ")";
+                    screen.UserControl5.uc5.uc5textBox2.AppendText(Environment.NewLine + $"response.Channel={channel}");
+                    screen.UserControl5.uc5.uc5textBox2.AppendText(Environment.NewLine + $"response.AcknowledgeNumber={acknowledgeNumber}");
+                    screen.UserControl5.uc5.uc5textBox2.AppendText(Environment.NewLine + $"response.GatewayId=" + gatewayId.ToString("X6"));
+                    screen.UserControl5.uc5.uc5textBox2.AppendText(Environment.NewLine + $"response.DeviceId=" + deviceId.ToString("X12"));
+                    screen.UserControl5.uc5.uc5textBox2.AppendText(Environment.NewLine + $"response.Tdu.Length={payload.Length}");
+                    screen.UserControl5.uc5.uc5textBox2.AppendText(Environment.NewLine + BitConverter.ToString(payload));
+                    screen.UserControl5.uc5.uc5textBox2.AppendText(Environment.NewLine);
+                    screen.UserControl5.uc5.uc5textBox1.Text += "Responsed... ";
 
                 }
 
@@ -366,7 +383,7 @@ namespace unit
         public void Form1_Load(object sender, EventArgs e)
         {
 
-          
+
 
             panel3.Controls.Add(UserControl2);
             string phrase = Properties.Settings.Default.save_gateway; // 변수 이동
@@ -374,10 +391,10 @@ namespace unit
 
             string[] words = phrase.Split(','); // 스플릿 전용 배열 생성
 
-    
+
         }
 
-     
+
 
 
         //comboBox1
@@ -418,7 +435,7 @@ namespace unit
         {
 
         }
-      
+
 
 
         private void richTextBox3_TextChanged(object sender, EventArgs e)
@@ -427,8 +444,8 @@ namespace unit
         }
         //0x4588177F, 0x24A160581B59,
         //0x51894B30, 0x24A16057F6BD,
-    
-        
+
+
         private void button1_Click(object sender, EventArgs e)
         {
             panel3.Controls.Clear();
@@ -436,7 +453,7 @@ namespace unit
         }
         bool addressEnd = false;
         byte[] addressArray;
-public void getAddress(ulong address)
+        public void getAddress(ulong address)
         {
             addressEnd = true;
             TxRtu(++TxCnt, 0, address, new byte[] {   0x01, 0x03,
@@ -449,7 +466,7 @@ public void getAddress(ulong address)
         {
 
             TxRtu(++TxCnt, 0, address, new byte[] {   0x01, 0x03,
-          0x00,202, 0x00, Convert.ToByte(deviceCount*3+1),
+         0x00,202, 0x00, Convert.ToByte(deviceCount*3+1),
          0xAD, 0xDE});
             dataEnd = true;
         }
@@ -479,11 +496,12 @@ public void getAddress(ulong address)
         {
             return GetModbusInt16(receiveData, 0);
         }
-       public ulong dataAddress;
+        public ulong dataAddress;
 
         private void button2_Click(object sender, EventArgs e)
         {
-      isUc4 = false;
+            isUc4 = false;
+            isUc5 = false;
             panel3.Controls.Clear();
             panel3.Controls.Add(UserControl1);
         }
@@ -496,10 +514,9 @@ public void getAddress(ulong address)
 
         private void button3_Click(object sender, EventArgs e)
         {
-           isUc4 = true;
+            isUc4 = true;
+            isUc5 = false;
 
-           isUc5 = false;
-            
             panel3.Controls.Clear();
             panel3.Controls.Add(UserControl4);
 
@@ -507,11 +524,27 @@ public void getAddress(ulong address)
 
         private void button5_Click(object sender, EventArgs e)
         {
-      isUc5 = true;
-isUc4 = false;
+            isUc5 = true;
+            isUc4 = false;
 
             panel3.Controls.Clear();
             panel3.Controls.Add(UserControl5);
+        }
+
+            bool clicked = false;
+        private void button6_Click(object sender, EventArgs e)
+        {
+            if (clicked)
+            {
+                clicked = false;
+                this.Size = new Size(761, 632);
+            }
+            else
+            {
+                clicked = true;
+                this.Size = new Size(1588, 632);
+            }
+
         }
     }
 

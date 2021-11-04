@@ -13,10 +13,18 @@ namespace unit.screen
     public partial class UserControl5 : UserControl
     {
         public static UserControl5 uc5;
+
+
         public UserControl5()
         {
             InitializeComponent();
             uc5 = this;
+            comboBox1.Items.Add("03");
+            comboBox1.Items.Add("06");
+            comboBox2.Items.AddRange(Form1.form1.addressItems);
+            comboBox1.SelectedIndex = 0; 
+            comboBox2.SelectedIndex = 0;
+
         }
 
         private void UserControl5_Load(object sender, EventArgs e)
@@ -26,9 +34,16 @@ namespace unit.screen
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Form1.form1.TxRtu(++Form1.form1.TxCnt, 0, 0x24A16057F685, new byte[] {   Convert.ToByte(textBox1.Text), 0x03,
-                  0x00,Convert.ToByte(textBox2.Text), 0x00, Convert.ToByte(textBox3.Text),
+
+            Form1.form1.TxRtu(++Form1.form1.TxCnt, 0, ulong.Parse(comboBox2.SelectedItem.ToString(), System.Globalization.NumberStyles.HexNumber), new byte[]
+            {   Convert.ToByte(textBox1.Text),  Convert.ToByte(comboBox1.Text),
+                 0x00,Convert.ToByte(textBox2.Text), 0x00, Convert.ToByte(textBox3.Text),
                  0xAD, 0xDE});
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
