@@ -68,7 +68,7 @@ namespace unit.screen
             // uc1textBox3
             // 
             this.uc1textBox3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.uc1textBox3.Location = new System.Drawing.Point(489, 47);
+            this.uc1textBox3.Location = new System.Drawing.Point(492, 50);
             this.uc1textBox3.Name = "uc1textBox3";
             this.uc1textBox3.Size = new System.Drawing.Size(226, 447);
             this.uc1textBox3.TabIndex = 3;

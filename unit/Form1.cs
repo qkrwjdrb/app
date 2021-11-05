@@ -1,6 +1,7 @@
 ﻿
 
 using System;
+using System.IO;
 using System.Drawing;
 using System.Linq;
 using System.Threading;
@@ -11,12 +12,13 @@ using Grpc.Core;
 using Grpc.Net.Client;
 using NetExchange;
 
+
 namespace unit
 {
     public partial class Form1 : Form
     {
 
-        public static Form1 form1;
+        public static Form1 f1;
 
         screen.UserControl1 UserControl1 = new screen.UserControl1();
         screen.UserControl2 UserControl2 = new screen.UserControl2();
@@ -32,6 +34,7 @@ namespace unit
         internal static AsyncDuplexStreamingCall<ExtMessage, ExtMessage> extLink = exchange.MessageExt();
         internal static AsyncDuplexStreamingCall<CmdMessage, CmdMessage> cmdLink = exchange.MessageCmd();
         internal UInt16 TxCnt;
+        internal string[] addressItems;
 
         string[] save_gateways = new string[5];
 
@@ -42,17 +45,16 @@ namespace unit
         public bool isUc4 = false;
         public bool isUc5 = false;
 
-        public string[] addressItems = { "24A16057F685", "500291AEBCD9", "500291AEBE4D" };
 
         public Form1()
         {
+            addressItems = new string[]{ "24A16057F685", "500291AEBCD9", "500291AEBE4D" };
             InitializeComponent();
             Task.Run(() => RtuMessageService());
             Task.Run(() => ExtMessageService());
             Task.Run(() => CmdMessageService());
-
-            form1 = this;
-
+            this.MaximizeBox = false;
+            f1 =  this;
         }
 
         private async void RtuMessageService()
@@ -130,6 +132,18 @@ namespace unit
 
         public void TxRtu(UInt16 sequenceNumber, UInt32 gatewayId, UInt64 deviceId, byte[] payload)
         {
+
+
+
+            addressSaveFile(addressItems);
+
+
+
+
+
+
+
+
             UInt16 channel = 0;
 
             this.Invoke((MethodInvoker)delegate ()
@@ -436,6 +450,27 @@ namespace unit
 
         }
 
+        void addressSaveFile(string[] addressList)
+        {
+
+            FileStream fs = new FileStream("teqwerst.txt", FileMode.Create);
+            StreamWriter sw = new StreamWriter(fs);
+            foreach (string i in addressList)
+            {
+                sw.WriteLine(i);
+            }
+            sw.Close();
+        }
+        void addressLoadFile(string[] addressList)
+        {
+
+            FileStream fs = new FileStream("teqwerst.txt", FileMode.Create);
+            StreamReader sr = new StreamReader(fs);
+         
+              string a =  sr.ReadLine();
+            
+            sr.Close();
+        }
 
 
         private void richTextBox3_TextChanged(object sender, EventArgs e)

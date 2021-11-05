@@ -22,17 +22,22 @@ namespace unit.screen
         {
             InitializeComponent();
 
-        
-            comboBox1.Items.AddRange(       Form1.form1.addressItems);
-            comboBox1.SelectedIndex = 0;
+
             uc1 = this;
         }
 
 
-        
 
 
 
+        private void UserControl1_Load(object sender, EventArgs e)
+        {
+            comboBox1.Items.AddRange(Form1.f1.addressItems);
+            comboBox1.SelectedIndex = 0;
+            Form1.f1.getAddress(0x24A16057F685);
+
+            Form1.f1.dataAddress = 0x24A16057F685;
+        }
 
 
         public void sensorDataOutput(byte[] address, byte[] data, string deviceId)
@@ -220,19 +225,13 @@ namespace unit.screen
 
                 ulong device = ulong.Parse(aa, System.Globalization.NumberStyles.HexNumber);
 
-                Form1.form1.getAddress(device);
-                Form1.form1.dataAddress = device;
+                Form1.f1.getAddress(device);
+                Form1.f1.dataAddress = device;
 
             }
         }
 
-        private void UserControl1_Load(object sender, EventArgs e)
-        {
-
-            Form1.form1.getAddress(0x24A16057F685);
-
-            Form1.form1.dataAddress = 0x24A16057F685;
-        }
+     
 
     }
 

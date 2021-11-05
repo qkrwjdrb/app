@@ -16,8 +16,12 @@ namespace unit.screen
         public UserControl2()
         {
             InitializeComponent();
-            listBox2.Items.AddRange(Form1.form1.addressItems);
 
+        }
+
+        private void UserControl2_Load(object sender, EventArgs e)
+        {
+            listBox2.Items.AddRange(Form1.f1.addressItems);
         }
 
 
@@ -61,7 +65,7 @@ namespace unit.screen
             {
                 listBox1.Items.RemoveAt(listBox1.SelectedIndex);
             }
-            save(); listBox2.Items.Add(listBox2.Text);
+            listBox2.Items.Add(listBox2.Text);
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -70,30 +74,6 @@ namespace unit.screen
             {
                 listBox2.Items.RemoveAt(listBox2.SelectedIndex);
             }
-        }
-
-        public void get()
-        {
-
-
-        }
-        public void save()
-        {
-            const string sPath = "save.txt";
-
-            System.IO.StreamWriter SaveFile = new System.IO.StreamWriter(sPath);
-            foreach (var item in listBox2.Items)
-            {
-                SaveFile.WriteLine(item.ToString());
-            }
-            SaveFile.ToString();
-            SaveFile.Close();
-
-        }
-
-        private void UserControl2_Load(object sender, EventArgs e)
-        {
-            get();
         }
 
     }
