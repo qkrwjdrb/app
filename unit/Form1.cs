@@ -48,13 +48,13 @@ namespace unit
 
         public Form1()
         {
-            addressItems = new string[]{ "24A16057F685", "500291AEBCD9", "500291AEBE4D" };
+            addressItems = new string[] { "24A16057F685", "500291AEBCD9", "500291AEBE4D" };
             InitializeComponent();
             Task.Run(() => RtuMessageService());
             Task.Run(() => ExtMessageService());
             Task.Run(() => CmdMessageService());
             this.MaximizeBox = false;
-            f1 =  this;
+            f1 = this;
         }
 
         private async void RtuMessageService()
@@ -450,25 +450,26 @@ namespace unit
 
         }
 
+        FileStream fs = new FileStream("teqwerst.txt", FileMode.Create);
         void addressSaveFile(string[] addressList)
         {
 
-            FileStream fs = new FileStream("teqwerst.txt", FileMode.Create);
             StreamWriter sw = new StreamWriter(fs);
             foreach (string i in addressList)
             {
-                sw.WriteLine(i);
+                sw.Write(i);
+                sw.WriteLine(',');
             }
             sw.Close();
         }
-        void addressLoadFile(string[] addressList)
+        void addressLoadFile()
         {
 
-            FileStream fs = new FileStream("teqwerst.txt", FileMode.Create);
             StreamReader sr = new StreamReader(fs);
-         
-              string a =  sr.ReadLine();
-            
+
+            string a = sr.ReadToEnd();
+            string[] dataArray = a.Split(',');
+            screen.UserControl1.uc1.comboBox2.Items.AddRange(dataArray);
             sr.Close();
         }
 
@@ -566,7 +567,7 @@ namespace unit
             panel3.Controls.Add(UserControl5);
         }
 
-            bool clicked = false;
+        bool clicked = false;
         private void button6_Click(object sender, EventArgs e)
         {
             if (clicked)
