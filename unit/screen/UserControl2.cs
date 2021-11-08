@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,16 +13,24 @@ namespace unit.screen
 {
     public partial class UserControl2 : UserControl
     {
-
+        public static UserControl2 uc2;
         public UserControl2()
         {
             InitializeComponent();
-
+            uc2 = this;
         }
 
         private void UserControl2_Load(object sender, EventArgs e)
         {
-            listBox2.Items.AddRange(Form1.f1.addressItems);
+            if (Form1.f1.deFile.Exists)
+            {
+                Form1.f1.addressLoadFile();
+            }
+            else
+            {
+                string[] aa = { "24A16057F685", "500291AEBCD9", "500291AEBE4D" };
+                listBox2.Items.AddRange(aa);
+            }
         }
 
 
@@ -41,9 +50,10 @@ namespace unit.screen
             if (addDevBox.Text.Length != 0) { listBox2.Items.Add(addDevBox.Text); addDevBox.Text = String.Empty; }
 
             addCombobox();
+            Form1.f1.addressSaveFile();
         }
 
-        private void addCombobox()
+        public void addCombobox()
         {
 
             UserControl1.uc1.comboBox1.Items.Clear();
@@ -51,9 +61,9 @@ namespace unit.screen
             UserControl1.uc1.comboBox1.Items.AddRange(allList1);
 
             UserControl1.uc1.comboBox2.Items.Clear();
-            string[] allList2 = listBox1.Items.OfType<string>().ToArray();
+            string[] allList2 = listBox1.Items.OfType<string>().ToArray();    
             UserControl1.uc1.comboBox2.Items.AddRange(allList2);
-
+            Form1.f1.addressItems = allList2;
         }
 
 
@@ -65,7 +75,8 @@ namespace unit.screen
             {
                 listBox1.Items.RemoveAt(listBox1.SelectedIndex);
             }
-            listBox2.Items.Add(listBox2.Text);
+            addCombobox(); 
+            Form1.f1.addressSaveFile();
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -74,8 +85,11 @@ namespace unit.screen
             {
                 listBox2.Items.RemoveAt(listBox2.SelectedIndex);
             }
+            addCombobox(); Form1.f1.addressSaveFile();
         }
 
+     
+        
     }
 
 }

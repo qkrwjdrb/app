@@ -45,10 +45,11 @@ namespace unit
         public bool isUc4 = false;
         public bool isUc5 = false;
 
+        public FileInfo deFile = new FileInfo("device.txt");
 
         public Form1()
         {
-            addressItems = new string[] { "24A16057F685", "500291AEBCD9", "500291AEBE4D" };
+
             InitializeComponent();
             Task.Run(() => RtuMessageService());
             Task.Run(() => ExtMessageService());
@@ -135,7 +136,7 @@ namespace unit
 
 
 
-            addressSaveFile(addressItems);
+            addressSaveFile();
 
 
 
@@ -400,10 +401,6 @@ namespace unit
 
 
             panel3.Controls.Add(UserControl2);
-            string phrase = Properties.Settings.Default.save_gateway; // 변수 이동
-
-
-            string[] words = phrase.Split(','); // 스플릿 전용 배열 생성
 
 
         }
@@ -450,26 +447,39 @@ namespace unit
 
         }
 
-        FileStream fs = new FileStream("teqwerst.txt", FileMode.Create);
-        void addressSaveFile(string[] addressList)
+        public void addressSaveFile()
         {
+            if (deFile.Exists)
+            {
 
+            }
+            else
+            {
+                addressItems = new string[] { "24A16057F685", "500291AEBCD9", "500291AEBE4D" };
+            }
+
+
+            FileStream fs = new FileStream("device.txt", FileMode.Create);
             StreamWriter sw = new StreamWriter(fs);
-            foreach (string i in addressList)
+            foreach (string i in screen.UserControl2.uc2.listBox2.Items.OfType<string>().ToArray())
             {
                 sw.Write(i);
-                sw.WriteLine(',');
+                sw.Write(',');
             }
-            sw.Close();
+            sw.Close(); addressLoadFile();
         }
-        void addressLoadFile()
+        public void addressLoadFile()
         {
 
+            FileStream fs = new FileStream("device.txt", FileMode.Open, FileAccess.Read);
             StreamReader sr = new StreamReader(fs);
 
             string a = sr.ReadToEnd();
             string[] dataArray = a.Split(',');
-            screen.UserControl1.uc1.comboBox2.Items.AddRange(dataArray);
+            dataArray = dataArray.Where(x => !string.IsNullOrEmpty(x)).ToArray();
+            screen.UserControl2.uc2.listBox2.Items.Clear();
+            screen.UserControl2.uc2.listBox2.Items.AddRange(dataArray);
+            screen.UserControl2.uc2.addCombobox();
             sr.Close();
         }
 

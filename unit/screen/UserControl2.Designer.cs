@@ -160,7 +160,6 @@ namespace unit.screen
 
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ListBox listBox1;
-        private System.Windows.Forms.ListBox listBox2;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.TextBox addGateBox;
         private System.Windows.Forms.TextBox addDevBox;
@@ -168,5 +167,6 @@ namespace unit.screen
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
+        public System.Windows.Forms.ListBox listBox2;
     }
 }
