@@ -66,32 +66,27 @@ namespace unit.screen
             Form1.f1.addressItems = allList2;
         }
 
-
         private void button2_Click(object sender, EventArgs e)
         {
-
 
             if (listBox1.SelectedIndex != -1)
             {
                 listBox1.Items.RemoveAt(listBox1.SelectedIndex);
             }
-            addCombobox(); 
+            addCombobox();
             Form1.f1.addressSaveFile();
+        
         }
-
         private void button3_Click(object sender, EventArgs e)
         {
+
             if (listBox2.SelectedIndex != -1)
             {
                 listBox2.Items.RemoveAt(listBox2.SelectedIndex);
             }
             addCombobox(); Form1.f1.addressSaveFile();
         }
-
-     
         
     }
 
 }
-
-

@@ -20,7 +20,7 @@ namespace unit.screen
             InitializeComponent();
             uc5 = this;
             comboBox1.Items.Add("03");
-            comboBox1.Items.Add("06");
+            comboBox1.Items.Add("06"); comboBox2.Items.Add("24A16057F685");
             comboBox1.SelectedIndex = 0; 
 
           //  comboBox2.SelectedIndex = 0;

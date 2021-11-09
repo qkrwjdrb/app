@@ -134,16 +134,7 @@ namespace unit
         public void TxRtu(UInt16 sequenceNumber, UInt32 gatewayId, UInt64 deviceId, byte[] payload)
         {
 
-
-
             addressSaveFile();
-
-
-
-
-
-
-
 
             UInt16 channel = 0;
 
@@ -216,6 +207,7 @@ namespace unit
 
                 if (isUc4)
                 {
+
                     screen.UserControl4.uc4.uc4textBox2.Text = "RxRtu(" + GetProtocolChannelName(channel) + ")";
                     screen.UserControl4.uc4.uc4textBox2.AppendText(Environment.NewLine + $"response.Channel={channel}");
                     screen.UserControl4.uc4.uc4textBox2.AppendText(Environment.NewLine + $"response.AcknowledgeNumber={acknowledgeNumber}");
@@ -226,11 +218,9 @@ namespace unit
                     screen.UserControl4.uc4.uc4textBox2.AppendText(Environment.NewLine);
                     screen.UserControl4.uc4.uc4textBox1.Text += "Responsed... ";
 
-
                 }
                 else if (isUc5)
                 {
-
 
                     screen.UserControl5.uc5.uc5textBox2.Text = "RxRtu(" + GetProtocolChannelName(channel) + ")";
                     screen.UserControl5.uc5.uc5textBox2.AppendText(Environment.NewLine + $"response.Channel={channel}");

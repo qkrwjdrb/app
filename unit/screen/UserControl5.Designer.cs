@@ -154,7 +154,7 @@ namespace unit.screen
             this.comboBox3.FormattingEnabled = true;
             this.comboBox3.Location = new System.Drawing.Point(29, 35);
             this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(121, 23);
+            this.comboBox3.Size = new System.Drawing.Size(157, 23);
             this.comboBox3.TabIndex = 15;
             // 
             // label5
