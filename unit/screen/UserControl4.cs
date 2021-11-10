@@ -48,7 +48,8 @@ namespace unit.screen
             ulong device = ulong.Parse(aa, System.Globalization.NumberStyles.HexNumber);
             Form1.f1.TxRtu(++Form1.f1.TxCnt, 0, device, new byte[] {   0x01, 0x03,
                   0x00,Convert.ToByte(textBox1.Text), 0x00, Convert.ToByte(textBox2.Text),
-                 0xAD, 0xDE});
+            //     0xAD, 0xDE
+            });
         }
 
     }

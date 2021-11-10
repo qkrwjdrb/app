@@ -38,7 +38,8 @@ namespace unit.screen
             Form1.f1.TxRtu(++Form1.f1.TxCnt, 0, ulong.Parse(comboBox2.SelectedItem.ToString(), System.Globalization.NumberStyles.HexNumber), new byte[]
             {   Convert.ToByte(textBox1.Text),  Convert.ToByte(comboBox1.Text),
                  0x00,Convert.ToByte(textBox2.Text), 0x00, Convert.ToByte(textBox3.Text),
-                 0xAD, 0xDE});
+                 //0xAD, 0xDE
+            });
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
