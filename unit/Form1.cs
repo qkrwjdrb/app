@@ -1,6 +1,4 @@
-﻿
-
-using System;
+﻿using System;
 using System.IO;
 using System.Drawing;
 using System.Linq;
@@ -34,7 +32,8 @@ namespace unit
         internal static AsyncDuplexStreamingCall<ExtMessage, ExtMessage> extLink = exchange.MessageExt();
         internal static AsyncDuplexStreamingCall<CmdMessage, CmdMessage> cmdLink = exchange.MessageCmd();
         internal UInt16 TxCnt;
-        internal string[] addressItems;
+        internal string[] addressItems; 
+        internal string[] gatewayItems;
 
         string[] save_gateways = new string[5];
 
@@ -114,6 +113,7 @@ namespace unit
             }
             catch (Exception)
             {
+
             }
             finally
             {
@@ -179,7 +179,7 @@ namespace unit
         {
 
             addressSaveFile();
-       
+
             UInt16 channel = 0;
             var list = new List<byte>();
             list.AddRange(payload);
@@ -438,18 +438,9 @@ namespace unit
         public void Form1_Load(object sender, EventArgs e)
         {
 
-
-
             panel3.Controls.Add(UserControl2);
 
-
         }
-
-
-
-
-        //comboBox1
-
 
         private void panel1_Paint(object sender, PaintEventArgs e)
         {
@@ -510,7 +501,6 @@ namespace unit
         }
         public void addressLoadFile()
         {
-
             FileStream fs = new FileStream("device.txt", FileMode.Open, FileAccess.Read);
             StreamReader sr = new StreamReader(fs);
 
@@ -519,6 +509,42 @@ namespace unit
             dataArray = dataArray.Where(x => !string.IsNullOrEmpty(x)).ToArray();
             screen.UserControl2.uc2.listBox2.Items.Clear();
             screen.UserControl2.uc2.listBox2.Items.AddRange(dataArray);
+            screen.UserControl2.uc2.addCombobox();
+            sr.Close();
+        }
+        public void gatewaySaveFile()
+        {
+            if (deFile.Exists)
+            {
+
+            }
+            else
+            {
+                gatewayItems = new string[] { "0" };
+            }
+
+
+            FileStream fs = new FileStream("gateway.txt", FileMode.Create);
+            StreamWriter sw = new StreamWriter(fs);
+            foreach (string i in screen.UserControl2.uc2.listBox1.Items.OfType<string>().ToArray())
+            {
+                sw.Write(i);
+                sw.Write(',');
+            }
+            sw.Close();
+            gatewayLoadFile();
+        }
+        public void gatewayLoadFile()
+        {
+
+            FileStream fs = new FileStream("gateway.txt", FileMode.Open, FileAccess.Read);
+            StreamReader sr = new StreamReader(fs);
+
+            string a = sr.ReadToEnd();
+            string[] dataArray = a.Split(',');
+            dataArray = dataArray.Where(x => !string.IsNullOrEmpty(x)).ToArray();
+            screen.UserControl2.uc2.listBox1.Items.Clear();
+            screen.UserControl2.uc2.listBox1.Items.AddRange(dataArray);
             screen.UserControl2.uc2.addCombobox();
             sr.Close();
         }
@@ -558,38 +584,40 @@ namespace unit
             });
             dataEnd = true;
         }
-        float GetModbusFloat(byte[] receiveData, Int32 offset)
-        {
-            byte[] rData = new byte[4];
+        //float GetModbusFloat(byte[] receiveData, Int32 offset)
+        //{
+        //    byte[] rData = new byte[4];
 
-            rData[0] = receiveData[offset + 1];
-            rData[1] = receiveData[offset + 0];
-            rData[2] = receiveData[offset + 3];
-            rData[3] = receiveData[offset + 2];
+        //    rData[0] = receiveData[offset + 1];
+        //    rData[1] = receiveData[offset + 0];
+        //    rData[2] = receiveData[offset + 3];
+        //    rData[3] = receiveData[offset + 2];
 
-            return BitConverter.ToSingle(rData, 0);
-        }
+        //    return BitConverter.ToSingle(rData, 0);
+        //}
 
-        float GetModbusFloat(byte[] receiveData)
-        {
-            return GetModbusFloat(receiveData, 0);
-        }
+        //float GetModbusFloat(byte[] receiveData)
+        //{
+        //    return GetModbusFloat(receiveData, 0);
+        //}
 
-        Int16 GetModbusInt16(byte[] receiveData, Int32 offset)
-        {
-            return (Int16)((receiveData[offset + 1] << 8) | receiveData[offset + 0]);
-        }
+        //Int16 GetModbusInt16(byte[] receiveData, Int32 offset)
+        //{
+        //    return (Int16)((receiveData[offset + 1] << 8) | receiveData[offset + 0]);
+        //}
 
-        Int16 GetModbusInt16(byte[] receiveData)
-        {
-            return GetModbusInt16(receiveData, 0);
-        }
+        //Int16 GetModbusInt16(byte[] receiveData)
+        //{
+        //    return GetModbusInt16(receiveData, 0);
+        //}
+        
         public ulong dataAddress;
 
         private void button2_Click(object sender, EventArgs e)
         {
             isUc4 = false;
             isUc5 = false;
+
             panel3.Controls.Clear();
             panel3.Controls.Add(UserControl1);
         }
@@ -632,9 +660,6 @@ namespace unit
                 clicked = true;
                 this.Size = new Size(1588, 632);
             }
-
         }
     }
-
 }
-

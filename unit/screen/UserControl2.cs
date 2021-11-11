@@ -43,16 +43,23 @@ namespace unit.screen
         {
 
         }
-
+      
         private void button1_Click(object sender, EventArgs e)
         {
-            if (addGateBox.Text.Length != 0) { listBox1.Items.Add(addGateBox.Text); addGateBox.Text = String.Empty; }
-            if (addDevBox.Text.Length != 0) { listBox2.Items.Add(addDevBox.Text); addDevBox.Text = String.Empty; }
+        
+            if (addDevBox.Text.Length != 0 &&  notEmptyTest(addGateBox.Text)) listBox2.Items.Add(addDevBox.Text); addDevBox.Text = String.Empty; 
+            if (addGateBox.Text.Length != 0 && notEmptyTest(addGateBox.Text)) listBox1.Items.Add(addGateBox.Text); addGateBox.Text = String.Empty; 
 
             addCombobox();
             Form1.f1.addressSaveFile();
         }
-
+        bool notEmptyTest(string s)
+        {
+            if (String.IsNullOrEmpty(s))
+               return true;
+            else
+                return false;
+        }
         public void addCombobox()
         {
 
@@ -86,7 +93,24 @@ namespace unit.screen
             }
             addCombobox(); Form1.f1.addressSaveFile();
         }
-        
+
+        private void addDevBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!(char.IsDigit(e.KeyChar) || e.KeyChar == Convert.ToChar(Keys.Back) ||
+                  "ABCDEF0123456789abcdef".IndexOf(e.KeyChar) != -1))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void addGateBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!(char.IsDigit(e.KeyChar) || e.KeyChar == Convert.ToChar(Keys.Back) ||
+      "ABCDEF0123456789abcdef".IndexOf(e.KeyChar) != -1)) 
+            {
+                e.Handled = true;
+            }
+        }
     }
 
 }

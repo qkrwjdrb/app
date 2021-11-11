@@ -86,6 +86,7 @@ namespace unit.screen
             this.addGateBox.Name = "addGateBox";
             this.addGateBox.Size = new System.Drawing.Size(192, 23);
             this.addGateBox.TabIndex = 59;
+            this.addGateBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.addGateBox_KeyPress);
             // 
             // addDevBox
             // 
@@ -93,6 +94,7 @@ namespace unit.screen
             this.addDevBox.Name = "addDevBox";
             this.addDevBox.Size = new System.Drawing.Size(192, 23);
             this.addDevBox.TabIndex = 60;
+            this.addDevBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.addDevBox_KeyPress);
             // 
             // label12
             // 
@@ -159,7 +161,6 @@ namespace unit.screen
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ListBox listBox1;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.TextBox addGateBox;
         private System.Windows.Forms.TextBox addDevBox;
@@ -168,5 +169,6 @@ namespace unit.screen
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
         public System.Windows.Forms.ListBox listBox2;
+        public System.Windows.Forms.ListBox listBox1;
     }
 }
