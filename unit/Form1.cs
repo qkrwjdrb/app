@@ -1,4 +1,4 @@
-﻿using System;
+﻿ using System;
 using System.IO;
 using System.Drawing;
 using System.Linq;
@@ -24,7 +24,6 @@ namespace unit
         screen.UserControl4 UserControl4 = new screen.UserControl4();
         screen.UserControl5 UserControl5 = new screen.UserControl5();
 
-
         private static GrpcChannel channel = GrpcChannel.ForAddress("http://localhost:5054");
         internal static ExProto.ExProtoClient exchange = new ExProto.ExProtoClient(channel);
 
@@ -45,16 +44,40 @@ namespace unit
         public bool isUc5 = false;
 
         public FileInfo deFile = new FileInfo("device.txt");
+        public FileInfo gaFile = new FileInfo("gateway.txt");
 
         public Form1()
         {
-
             InitializeComponent();
             Task.Run(() => RtuMessageService());
             Task.Run(() => ExtMessageService());
             Task.Run(() => CmdMessageService());
             this.MaximizeBox = false;
             f1 = this;
+        }
+
+        //form1_load
+        public void Form1_Load(object sender, EventArgs e)
+        {
+            if (deFile.Exists)
+            {
+                addressLoadFile();
+            }
+            else
+            {
+                string[] aa = { "24A16057F685", "500291AEBCD9", "500291AEBE4D" };
+                screen.UserControl2.uc2.listBox2.Items.AddRange(aa);
+            }
+            if (gaFile.Exists)
+            {
+                gatewayLoadFile();
+            }
+            else
+            {
+                string[] aa = { "0" };
+                screen.UserControl2.uc2.listBox1.Items.AddRange(aa);
+            }
+            panel3.Controls.Add(UserControl1);
         }
 
         private async void RtuMessageService()
@@ -92,6 +115,7 @@ namespace unit
             }
             catch (Exception)
             {
+
             }
             finally
             {
@@ -179,7 +203,7 @@ namespace unit
         {
 
             addressSaveFile();
-
+            gatewaySaveFile();
             UInt16 channel = 0;
             var list = new List<byte>();
             list.AddRange(payload);
@@ -434,14 +458,6 @@ namespace unit
 
 
 
-        //form1_load
-        public void Form1_Load(object sender, EventArgs e)
-        {
-
-            panel3.Controls.Add(UserControl2);
-
-        }
-
         private void panel1_Paint(object sender, PaintEventArgs e)
         {
 
@@ -514,7 +530,7 @@ namespace unit
         }
         public void gatewaySaveFile()
         {
-            if (deFile.Exists)
+            if (gaFile.Exists)
             {
 
             }

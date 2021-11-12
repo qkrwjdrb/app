@@ -61,7 +61,7 @@ namespace unit.screen
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(121, 23);
             this.textBox2.TabIndex = 1;
-            this.textBox2.Text = "102";
+            this.textBox2.Text = "22";
             // 
             // textBox1
             // 
@@ -148,6 +148,7 @@ namespace unit.screen
             this.comboBox2.Name = "comboBox2";
             this.comboBox2.Size = new System.Drawing.Size(157, 23);
             this.comboBox2.TabIndex = 14;
+            this.comboBox2.SelectedIndexChanged += new System.EventHandler(this.comboBox2_SelectedIndexChanged);
             // 
             // comboBox3
             // 

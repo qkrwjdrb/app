@@ -22,15 +22,7 @@ namespace unit.screen
 
         private void UserControl2_Load(object sender, EventArgs e)
         {
-            if (Form1.f1.deFile.Exists)
-            {
-                Form1.f1.addressLoadFile();
-            }
-            else
-            {
-                string[] aa = { "24A16057F685", "500291AEBCD9", "500291AEBE4D" };
-                listBox2.Items.AddRange(aa);
-            }
+          
         }
 
 
@@ -43,23 +35,18 @@ namespace unit.screen
         {
 
         }
-      
+
         private void button1_Click(object sender, EventArgs e)
         {
-        
-            if (addDevBox.Text.Length != 0 &&  notEmptyTest(addGateBox.Text)) listBox2.Items.Add(addDevBox.Text); addDevBox.Text = String.Empty; 
-            if (addGateBox.Text.Length != 0 && notEmptyTest(addGateBox.Text)) listBox1.Items.Add(addGateBox.Text); addGateBox.Text = String.Empty; 
+
+            if (addDevBox.Text.Length != 0) listBox2.Items.Add(addDevBox.Text); addDevBox.Text = String.Empty;
+            if (addGateBox.Text.Length != 0) listBox1.Items.Add(addGateBox.Text); addGateBox.Text = String.Empty;
 
             addCombobox();
-            Form1.f1.addressSaveFile();
+            Form1.f1.addressSaveFile(); 
+            Form1.f1.gatewaySaveFile();
         }
-        bool notEmptyTest(string s)
-        {
-            if (String.IsNullOrEmpty(s))
-               return true;
-            else
-                return false;
-        }
+
         public void addCombobox()
         {
 
@@ -68,9 +55,10 @@ namespace unit.screen
             UserControl1.uc1.comboBox1.Items.AddRange(allList1);
 
             UserControl1.uc1.comboBox2.Items.Clear();
-            string[] allList2 = listBox1.Items.OfType<string>().ToArray();    
+            string[] allList2 = listBox1.Items.OfType<string>().ToArray();
             UserControl1.uc1.comboBox2.Items.AddRange(allList2);
             Form1.f1.addressItems = allList2;
+            Form1.f1.gatewayItems = allList2;
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -82,7 +70,8 @@ namespace unit.screen
             }
             addCombobox();
             Form1.f1.addressSaveFile();
-        
+            Form1.f1.gatewaySaveFile();
+
         }
         private void button3_Click(object sender, EventArgs e)
         {
@@ -91,13 +80,14 @@ namespace unit.screen
             {
                 listBox2.Items.RemoveAt(listBox2.SelectedIndex);
             }
-            addCombobox(); Form1.f1.addressSaveFile();
+            addCombobox();
+            Form1.f1.addressSaveFile();
+            Form1.f1.gatewaySaveFile();
         }
 
         private void addDevBox_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (!(char.IsDigit(e.KeyChar) || e.KeyChar == Convert.ToChar(Keys.Back) ||
-                  "ABCDEF0123456789abcdef".IndexOf(e.KeyChar) != -1))
+            if (!(char.IsDigit(e.KeyChar) || e.KeyChar == Convert.ToChar(Keys.Back) || "ABCDEF0123456789abcdef".IndexOf(e.KeyChar) != -1))
             {
                 e.Handled = true;
             }
@@ -105,12 +95,10 @@ namespace unit.screen
 
         private void addGateBox_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (!(char.IsDigit(e.KeyChar) || e.KeyChar == Convert.ToChar(Keys.Back) ||
-      "ABCDEF0123456789abcdef".IndexOf(e.KeyChar) != -1)) 
+            if (!(char.IsDigit(e.KeyChar) || e.KeyChar == Convert.ToChar(Keys.Back) || "ABCDEF0123456789abcdef".IndexOf(e.KeyChar) != -1))
             {
                 e.Handled = true;
             }
         }
     }
-
 }
