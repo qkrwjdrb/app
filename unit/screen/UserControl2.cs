@@ -22,7 +22,8 @@ namespace unit.screen
 
         private void UserControl2_Load(object sender, EventArgs e)
         {
-          
+
+
         }
 
 
@@ -57,7 +58,7 @@ namespace unit.screen
             UserControl1.uc1.comboBox2.Items.Clear();
             string[] allList2 = listBox1.Items.OfType<string>().ToArray();
             UserControl1.uc1.comboBox2.Items.AddRange(allList2);
-            Form1.f1.addressItems = allList2;
+            Form1.f1.addressItems = allList1;
             Form1.f1.gatewayItems = allList2;
         }
 

@@ -32,10 +32,7 @@ namespace unit.screen
 
         private void UserControl1_Load(object sender, EventArgs e)
         {
-            comboBox1.Items.AddRange(Form1.f1.addressItems);
-            Form1.f1.getAddress(0x24A16057F685);
-
-            Form1.f1.dataAddress = 0x24A16057F685;
+            //comboBox1.Items.AddRange(Form1.f1.addressItems);
             comboBox1.SelectedIndex = 0;
         }
 
@@ -217,9 +214,13 @@ namespace unit.screen
         */
 
 
-
+       
         private void button1_Click(object sender, EventArgs e)
         {
+            if (!String.IsNullOrEmpty(textBox1.Text))
+            {
+                Form1.f1.deviceCount = Convert.ToByte(textBox1.Text);
+            }
             if (comboBox1.SelectedItem != null)
             {
                 string aa = comboBox1.SelectedItem.ToString();
@@ -232,11 +233,17 @@ namespace unit.screen
             }
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void textBox1_TextChanged(object sender, EventArgs e)
         {
-            comboBox1.SelectedIndex = 1;
 
-            comboBox1.Items.Add("a");
+        }
+
+        private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if(!(char.IsDigit(e.KeyChar) || e.KeyChar == Convert.ToChar(Keys.Back)))
+            {
+                e.Handled = true;
+            }
         }
     }
 

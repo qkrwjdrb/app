@@ -31,8 +31,8 @@ namespace unit
         internal static AsyncDuplexStreamingCall<ExtMessage, ExtMessage> extLink = exchange.MessageExt();
         internal static AsyncDuplexStreamingCall<CmdMessage, CmdMessage> cmdLink = exchange.MessageCmd();
         internal UInt16 TxCnt;
-        internal string[] addressItems; 
         internal string[] gatewayItems;
+        internal string[] addressItems; 
 
         string[] save_gateways = new string[5];
 
@@ -59,6 +59,7 @@ namespace unit
         //form1_load
         public void Form1_Load(object sender, EventArgs e)
         {
+
             if (deFile.Exists)
             {
                 addressLoadFile();
@@ -78,6 +79,8 @@ namespace unit
                 screen.UserControl2.uc2.listBox1.Items.AddRange(aa);
             }
             panel3.Controls.Add(UserControl1);
+            getAddress(ulong.Parse(screen.UserControl2.uc2.listBox2.Items[0].ToString(), System.Globalization.NumberStyles.HexNumber));
+            dataAddress = ulong.Parse(screen.UserControl2.uc2.listBox2.Items[0].ToString(), System.Globalization.NumberStyles.HexNumber);
         }
 
         private async void RtuMessageService()
@@ -202,8 +205,8 @@ namespace unit
         public void TxRtu(UInt16 sequenceNumber, UInt32 gatewayId, UInt64 deviceId, byte[] payload)
         {
 
-            addressSaveFile();
-            gatewaySaveFile();
+            //addressSaveFile();
+            //gatewaySaveFile();
             UInt16 channel = 0;
             var list = new List<byte>();
             list.AddRange(payload);
@@ -270,7 +273,7 @@ namespace unit
             });
         }
 
-        byte deviceCount = 30;
+        public byte deviceCount = 30;
         public void RxRtu(UInt16 acknowledgeNumber, UInt32 gatewayId, UInt64 deviceId, byte[] payload)
         {
             UInt16 channel = 0;
@@ -524,6 +527,7 @@ namespace unit
             string[] dataArray = a.Split(',');
             dataArray = dataArray.Where(x => !string.IsNullOrEmpty(x)).ToArray();
             screen.UserControl2.uc2.listBox2.Items.Clear();
+            //screen.UserControl1.uc1.comboBox1.Items.Clear();
             screen.UserControl2.uc2.listBox2.Items.AddRange(dataArray);
             screen.UserControl2.uc2.addCombobox();
             sr.Close();
@@ -560,6 +564,7 @@ namespace unit
             string[] dataArray = a.Split(',');
             dataArray = dataArray.Where(x => !string.IsNullOrEmpty(x)).ToArray();
             screen.UserControl2.uc2.listBox1.Items.Clear();
+            //screen.UserControl1.uc1.comboBox2.Items.Clear();
             screen.UserControl2.uc2.listBox1.Items.AddRange(dataArray);
             screen.UserControl2.uc2.addCombobox();
             sr.Close();
