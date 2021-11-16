@@ -111,9 +111,9 @@ namespace unit.screen
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(319, 107);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(79, 15);
+            this.label4.Size = new System.Drawing.Size(72, 15);
             this.label4.TabIndex = 9;
-            this.label4.Text = "Length (DEC)";
+            this.label4.Text = "Value (DEC)";
             // 
             // uc5textBox1
             // 

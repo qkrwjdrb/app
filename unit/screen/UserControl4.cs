@@ -28,9 +28,8 @@ namespace unit.screen
 
 
             //   Task.Run(() => RtuMessageService());
-            comboBox1.Items.Add("24A16057F685");
-            comboBox1.Items.Add("500291AEBCD9");
-            comboBox1.Items.Add("500291AEBE4D");
+            comboBox1.Items.Add("03");
+            comboBox2.Items.Add("24A16057F685");
             comboBox1.SelectedIndex = 0;
             uc4 = this;
         }
