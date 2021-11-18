@@ -43,24 +43,12 @@ namespace unit.screen
             if (addDevBox.Text.Length != 0) listBox2.Items.Add(addDevBox.Text); addDevBox.Text = String.Empty;
             if (addGateBox.Text.Length != 0) listBox1.Items.Add(addGateBox.Text); addGateBox.Text = String.Empty;
 
-            addCombobox();
+            Form1.f1.addCombobox();
             Form1.f1.addressSaveFile(); 
             Form1.f1.gatewaySaveFile();
         }
 
-        public void addCombobox()
-        {
-
-            UserControl1.uc1.comboBox1.Items.Clear();
-            string[] allList1 = listBox2.Items.OfType<string>().ToArray();
-            UserControl1.uc1.comboBox1.Items.AddRange(allList1);
-
-            UserControl1.uc1.comboBox2.Items.Clear();
-            string[] allList2 = listBox1.Items.OfType<string>().ToArray();
-            UserControl1.uc1.comboBox2.Items.AddRange(allList2);
-            Form1.f1.addressItems = allList1;
-            Form1.f1.gatewayItems = allList2;
-        }
+  
 
         private void button2_Click(object sender, EventArgs e)
         {
@@ -69,7 +57,7 @@ namespace unit.screen
             {
                 listBox1.Items.RemoveAt(listBox1.SelectedIndex);
             }
-            addCombobox();
+            Form1.f1.addCombobox();
             Form1.f1.addressSaveFile();
             Form1.f1.gatewaySaveFile();
 
@@ -81,7 +69,7 @@ namespace unit.screen
             {
                 listBox2.Items.RemoveAt(listBox2.SelectedIndex);
             }
-            addCombobox();
+            Form1.f1.addCombobox();
             Form1.f1.addressSaveFile();
             Form1.f1.gatewaySaveFile();
         }

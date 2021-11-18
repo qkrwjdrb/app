@@ -19,37 +19,57 @@ namespace unit.screen
     public partial class UserControl4 : UserControl
     {
 
-
-
         public static UserControl4 uc4;
         public UserControl4()
         {
             InitializeComponent();
 
+            uc4 = this;
 
-            //   Task.Run(() => RtuMessageService());
-            comboBox1.Items.Add("03");
+            comboBox1.Items.Add("03"); 
             comboBox2.Items.Add("24A16057F685");
             comboBox1.SelectedIndex = 0;
-            uc4 = this;
         }
 
+        public class ComboboxItem
+        {
+            public string Text { get; set; }
+            public object Value { get; set; }
 
+            public override string ToString()
+            {
+                return Text;
+            }
+        }
+        private void Test()
+        {
+            ComboboxItem item = new ComboboxItem();
+            item.Text = "Item text1";
+            item.Value = 12;
 
+            comboBox1.Items.Add(item);
+
+            comboBox1.SelectedIndex = 0;
+
+            MessageBox.Show((comboBox1.SelectedItem as ComboboxItem).Value.ToString());
+        }
         private void UserControl4_Load(object sender, EventArgs e)
         {
-
+            comboBox2.Items.AddRange(Form1.f1.addressItems);
+            comboBox2.SelectedIndex = 0;
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             string aa = comboBox1.SelectedItem.ToString();
             ulong device = ulong.Parse(aa, System.Globalization.NumberStyles.HexNumber);
-            Form1.f1.TxRtu(++Form1.f1.TxCnt, 0, device, new byte[] {   0x01, 0x03,
-                  0x00,Convert.ToByte(textBox1.Text), 0x00, Convert.ToByte(textBox2.Text),
-            //     0xAD, 0xDE
-            });
+            Form1.f1.TxRtu(++Form1.f1.TxCnt, 0, ulong.Parse(comboBox2.SelectedItem.ToString(), System.Globalization.NumberStyles.HexNumber), new byte[]
+                {
+                    Convert.ToByte(textBox1.Text),Convert.ToByte(comboBox1.Text),
+                    (byte)(Convert.ToInt32(textBox2.Text) >> 8), 
+                    (byte)Convert.ToInt32(textBox2.Text) , 0x00,
+                    Convert.ToByte(textBox3.Text),
+                });
         }
-
     }
 }

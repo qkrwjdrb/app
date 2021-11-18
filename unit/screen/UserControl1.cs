@@ -55,131 +55,115 @@ namespace unit.screen
                     {
                         float temValue = GetFloat(data[4 + i * 6 - 5], data[4 + i * 6 - 4], data[4 + i * 6 - 3], data[4 + i * 6 - 2]);
                         byte[] temBytes = BitConverter.GetBytes(temValue);
-
-                        uc1textBox3.AppendText(Environment.NewLine + $"{i} : 온도 : {BitConverter.ToSingle(temBytes, 0).ToString("0.00")}");
-
+                        uc1textBox3.AppendText(Environment.NewLine + $"온도 : {BitConverter.ToSingle(temBytes, 0).ToString("0.00")}");
                     }
                     else if (address[1 + i * 2] == 0x00 && address[2 + i * 2] == 0x02)
                     {
                         float temValue = GetFloat(data[4 + i * 6 - 5], data[4 + i * 6 - 4], data[4 + i * 6 - 3], data[4 + i * 6 - 2]);
                         byte[] temBytes = BitConverter.GetBytes(temValue);
-                        uc1textBox3.AppendText(Environment.NewLine + $"{i} : 습도 : {BitConverter.ToSingle(temBytes, 0).ToString("0.00")}");
-
+                        uc1textBox3.AppendText(Environment.NewLine + $"습도 : {BitConverter.ToSingle(temBytes, 0).ToString("0.00")}");
                     }
                     else if (address[1 + i * 2] == 0x00 && address[2 + i * 2] == 0x0b)
                     {
                         float temValue = GetFloat(data[4 + i * 6 - 5], data[4 + i * 6 - 4], data[4 + i * 6 - 3], data[4 + i * 6 - 2]);
                         byte[] temBytes = BitConverter.GetBytes(temValue);
-                        uc1textBox3.AppendText(Environment.NewLine + $"{i} : CO2 : {BitConverter.ToSingle(temBytes, 0).ToString("0.00")}");
-
+                        uc1textBox3.AppendText(Environment.NewLine + $"CO2 : {BitConverter.ToSingle(temBytes, 0).ToString("0.00")}");
                     }
                     else if (address[1 + i * 2] == 0x70 && address[2 + i * 2] == 0x01)
                     {
                         float temValue = GetFloat(data[4 + i * 6 - 5], data[4 + i * 6 - 4], data[4 + i * 6 - 3], data[4 + i * 6 - 2]);
                         byte[] temBytes = BitConverter.GetBytes(temValue);
-                        uc1textBox3.AppendText(Environment.NewLine + $"{i} : 암모니아 : {BitConverter.ToSingle(temBytes, 0).ToString("0.00")}");
-
+                        uc1textBox3.AppendText(Environment.NewLine + $"암모니아 : {BitConverter.ToSingle(temBytes, 0).ToString("0.00")}");
                     }
                     else if (address[1 + i * 2] == 0x70 && address[2 + i * 2] == 0x02)
                     {
                         float temValue = GetFloat(data[4 + i * 6 - 5], data[4 + i * 6 - 4], data[4 + i * 6 - 3], data[4 + i * 6 - 2]);
                         byte[] temBytes = BitConverter.GetBytes(temValue);
-                        uc1textBox3.AppendText(Environment.NewLine + $"{i} : 이산화질소 : {BitConverter.ToSingle(temBytes, 0).ToString("0.00")}");
-
+                        uc1textBox3.AppendText(Environment.NewLine + $"이산화질소 : {BitConverter.ToSingle(temBytes, 0).ToString("0.00")}");
                     }
                     else if (address[1 + i * 2] == 0x70 && address[2 + i * 2] == 0x03)
                     {
                         float temValue = GetFloat(data[4 + i * 6 - 5], data[4 + i * 6 - 4], data[4 + i * 6 - 3], data[4 + i * 6 - 2]);
                         byte[] temBytes = BitConverter.GetBytes(temValue);
-                        uc1textBox3.AppendText(Environment.NewLine + $"{i} : 일산화탄소 : {BitConverter.ToSingle(temBytes, 0).ToString("0.00")}");
-
+                        uc1textBox3.AppendText(Environment.NewLine + $"일산화탄소 : {BitConverter.ToSingle(temBytes, 0).ToString("0.00")}");
                     }
                     else if (address[1 + i * 2] == 0x70 && address[2 + i * 2] == 0x04)
                     {
                         float temValue = GetFloat(data[4 + i * 6 - 5], data[4 + i * 6 - 4], data[4 + i * 6 - 3], data[4 + i * 6 - 2]);
                         byte[] temBytes = BitConverter.GetBytes(temValue);
-                        uc1textBox3.AppendText(Environment.NewLine + $"{i} : 조도 : {BitConverter.ToSingle(temBytes, 0).ToString("0.00")}");
-
+                        uc1textBox3.AppendText(Environment.NewLine + $"조도 : {BitConverter.ToSingle(temBytes, 0).ToString("0.00")}");
                     }
                     else if (address[1 + i * 2] == 0x70 && address[2 + i * 2] == 0x05)
                     {
                         float temValue = GetFloat(data[4 + i * 6 - 5], data[4 + i * 6 - 4], data[4 + i * 6 - 3], data[4 + i * 6 - 2]);
                         byte[] temBytes = BitConverter.GetBytes(temValue);
-                        uc1textBox3.AppendText(Environment.NewLine + $"{i} : 자외선센서 : {BitConverter.ToSingle(temBytes, 0).ToString("0.00")}");
-
+                        uc1textBox3.AppendText(Environment.NewLine + $"자외선센서 : {BitConverter.ToSingle(temBytes, 0).ToString("0.00")}");
                     }
-
                     else if (address[1 + i * 2] == 0x60 && address[2 + i * 2] == 0x01)
                     {
                         float temValue = GetFloat(data[4 + i * 6 - 5], data[4 + i * 6 - 4], data[4 + i * 6 - 3], data[4 + i * 6 - 2]);
                         byte[] temBytes = BitConverter.GetBytes(temValue);
-
-                        uc1textBox3.AppendText(Environment.NewLine + $"{i} : 암모니아 L : {BitConverter.ToSingle(temBytes, 0).ToString("0.00")}");
-
+                        uc1textBox3.AppendText(Environment.NewLine + $"암모니아 L : {BitConverter.ToSingle(temBytes, 0).ToString("0.00")}");
                     }
                     else if (address[1 + i * 2] == 0x60 && address[2 + i * 2] == 0x02)
                     {
                         float temValue = GetFloat(data[4 + i * 6 - 5], data[4 + i * 6 - 4], data[4 + i * 6 - 3], data[4 + i * 6 - 2]);
                         byte[] temBytes = BitConverter.GetBytes(temValue);
-                        uc1textBox3.AppendText(Environment.NewLine + $"{i} : 암모니아 M : {BitConverter.ToSingle(temBytes, 0).ToString("0.00")}");
-
+                        uc1textBox3.AppendText(Environment.NewLine + $"암모니아 M : {BitConverter.ToSingle(temBytes, 0).ToString("0.00")}");
                     }
                     else if (address[1 + i * 2] == 0x60 && address[2 + i * 2] == 0x03)
                     {
                         float temValue = GetFloat(data[4 + i * 6 - 5], data[4 + i * 6 - 4], data[4 + i * 6 - 3], data[4 + i * 6 - 2]);
                         byte[] temBytes = BitConverter.GetBytes(temValue);
-                        uc1textBox3.AppendText(Environment.NewLine + $"{i} : 암모니아 H : {BitConverter.ToSingle(temBytes, 0).ToString("0.00")}");
-
+                        uc1textBox3.AppendText(Environment.NewLine + $"암모니아 H : {BitConverter.ToSingle(temBytes, 0).ToString("0.00")}");
                     }
                     else if (address[1 + i * 2] == 0x50 && address[2 + i * 2] == 0x01)
                     {
                         float temValue = GetFloat(data[4 + i * 6 - 5], data[4 + i * 6 - 4], data[4 + i * 6 - 3], data[4 + i * 6 - 2]);
                         byte[] temBytes = BitConverter.GetBytes(temValue);
-                        uc1textBox3.AppendText(Environment.NewLine + $"{i} : 이산화질소센서 L : {BitConverter.ToSingle(temBytes, 0).ToString("0.00")}");
-
+                        uc1textBox3.AppendText(Environment.NewLine + $"이산화질소센서 L : {BitConverter.ToSingle(temBytes, 0).ToString("0.00")}");
                     }
                     else if (address[1 + i * 2] == 0x50 && address[2 + i * 2] == 0x02)
                     {
                         float temValue = GetFloat(data[4 + i * 6 - 5], data[4 + i * 6 - 4], data[4 + i * 6 - 3], data[4 + i * 6 - 2]);
                         byte[] temBytes = BitConverter.GetBytes(temValue);
-                        uc1textBox3.AppendText(Environment.NewLine + $"{i} : 이산화질소센서 M : {BitConverter.ToSingle(temBytes, 0).ToString("0.00")}");
-
+                        uc1textBox3.AppendText(Environment.NewLine + $"이산화질소센서 M : {BitConverter.ToSingle(temBytes, 0).ToString("0.00")}");
                     }
                     else if (address[1 + i * 2] == 0x50 && address[2 + i * 2] == 0x03)
                     {
                         float temValue = GetFloat(data[4 + i * 6 - 5], data[4 + i * 6 - 4], data[4 + i * 6 - 3], data[4 + i * 6 - 2]);
                         byte[] temBytes = BitConverter.GetBytes(temValue);
-                        uc1textBox3.AppendText(Environment.NewLine + $"{i} : 이산화질소센서 H : {BitConverter.ToSingle(temBytes, 0).ToString("0.00")}");
-
+                        uc1textBox3.AppendText(Environment.NewLine + $"이산화질소센서 H : {BitConverter.ToSingle(temBytes, 0).ToString("0.00")}");
                     }
                     else if (address[1 + i * 2] == 0x40 && address[2 + i * 2] == 0x01)
                     {
                         float temValue = GetFloat(data[4 + i * 6 - 5], data[4 + i * 6 - 4], data[4 + i * 6 - 3], data[4 + i * 6 - 2]);
                         byte[] temBytes = BitConverter.GetBytes(temValue);
-                        uc1textBox3.AppendText(Environment.NewLine + $"{i} : CO일산화탄소 L : {BitConverter.ToSingle(temBytes, 0).ToString("0.00")}");
-
+                        uc1textBox3.AppendText(Environment.NewLine + $"CO일산화탄소 L : {BitConverter.ToSingle(temBytes, 0).ToString("0.00")}");
                     }
                     else if (address[1 + i * 2] == 0x40 && address[2 + i * 2] == 0x02)
                     {
                         float temValue = GetFloat(data[4 + i * 6 - 5], data[4 + i * 6 - 4], data[4 + i * 6 - 3], data[4 + i * 6 - 2]);
                         byte[] temBytes = BitConverter.GetBytes(temValue);
-                        uc1textBox3.AppendText(Environment.NewLine + $"{i} : CO일산화탄소 M : {BitConverter.ToSingle(temBytes, 0).ToString("0.00")}");
-
+                        uc1textBox3.AppendText(Environment.NewLine + $"CO일산화탄소 M : {BitConverter.ToSingle(temBytes, 0).ToString("0.00")}");
                     }
                     else if (address[1 + i * 2] == 0x40 && address[2 + i * 2] == 0x03)
                     {
                         float temValue = GetFloat(data[4 + i * 6 - 5], data[4 + i * 6 - 4], data[4 + i * 6 - 3], data[4 + i * 6 - 2]);
                         byte[] temBytes = BitConverter.GetBytes(temValue);
-                        uc1textBox3.AppendText(Environment.NewLine + $"{i} : CO일산화탄소 H : {BitConverter.ToSingle(temBytes, 0).ToString("0.00")}");
-
+                        uc1textBox3.AppendText(Environment.NewLine + $"CO일산화탄소 H : {BitConverter.ToSingle(temBytes, 0).ToString("0.00")}");
                     }
                     else
                     {
                         float temValue = GetFloat(data[4 + i * 6 - 5], data[4 + i * 6 - 4], data[4 + i * 6 - 3], data[4 + i * 6 - 2]);
                         byte[] temBytes = BitConverter.GetBytes(temValue);
+                        byte[] addressBytes = new byte[2];
+                        addressBytes[0] = address[1 + i * 2];
+                        addressBytes[1] = address[2 + i * 2];
+
                         string str = Encoding.Default.GetString(temBytes);
 
-                        uc1textBox3.AppendText(Environment.NewLine + $"{i} : 빈 장비 : {BitConverter.ToSingle(temBytes, 0).ToString("0.00")}");
+                        uc1textBox3.AppendText(Environment.NewLine + $"미정의 장비 {ToReadableByteArray(addressBytes)} : {BitConverter.ToSingle(temBytes, 0).ToString("0.00")}");
 
 
 
@@ -189,8 +173,8 @@ namespace unit.screen
                 }
                 else
                 {
-                    uc1textBox3.AppendText(Environment.NewLine + $"{i} : 빈 장비");
-                    //    Console.WriteLine("빈 장비");
+                   // uc1textBox3.AppendText(Environment.NewLine + $"{i} : 빈 장비");
+                        Console.WriteLine("빈 장비");
 
 
                 }
@@ -214,7 +198,10 @@ namespace unit.screen
         */
 
 
-       
+        static public string ToReadableByteArray(byte[] bytes)
+        {
+            return System.BitConverter.ToString(bytes); ;
+        }
         private void button1_Click(object sender, EventArgs e)
         {
             if (!String.IsNullOrEmpty(textBox1.Text))

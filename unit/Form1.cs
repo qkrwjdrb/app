@@ -24,7 +24,7 @@ namespace unit
         screen.UserControl4 UserControl4 = new screen.UserControl4();
         screen.UserControl5 UserControl5 = new screen.UserControl5();
 
-        private static GrpcChannel channel = GrpcChannel.ForAddress("http://localhost:5054");
+        private static GrpcChannel channel = GrpcChannel.ForAddress("http://192.168.0.219:5054");
         internal static ExProto.ExProtoClient exchange = new ExProto.ExProtoClient(channel);
 
         internal static AsyncDuplexStreamingCall<RtuMessage, RtuMessage> rtuLink = exchange.MessageRtu();
@@ -529,7 +529,7 @@ namespace unit
             screen.UserControl2.uc2.listBox2.Items.Clear();
             //screen.UserControl1.uc1.comboBox1.Items.Clear();
             screen.UserControl2.uc2.listBox2.Items.AddRange(dataArray);
-            screen.UserControl2.uc2.addCombobox();
+            addCombobox();
             sr.Close();
         }
         public void gatewaySaveFile()
@@ -566,10 +566,23 @@ namespace unit
             screen.UserControl2.uc2.listBox1.Items.Clear();
             //screen.UserControl1.uc1.comboBox2.Items.Clear();
             screen.UserControl2.uc2.listBox1.Items.AddRange(dataArray);
-            screen.UserControl2.uc2.addCombobox();
+            addCombobox();
             sr.Close();
         }
+        public void addCombobox()
+        {
 
+            screen.UserControl1.uc1.comboBox1.Items.Clear();
+            string[] allList1 = screen.UserControl2.uc2.listBox2.Items.OfType<string>().ToArray();
+            screen.UserControl1.uc1.comboBox1.Items.AddRange(allList1);
+
+            screen.UserControl1.uc1.comboBox2.Items.Clear();
+            string[] allList2 = screen.UserControl2.uc2.listBox1.Items.OfType<string>().ToArray();
+            screen.UserControl1.uc1.comboBox2.Items.AddRange(allList2);
+
+            Form1.f1.addressItems = allList1;
+            Form1.f1.gatewayItems = allList2;
+        }
 
         private void richTextBox3_TextChanged(object sender, EventArgs e)
         {
@@ -673,11 +686,13 @@ namespace unit
         {
             if (clicked)
             {
+                button6.Text = "기록 펼치기";
                 clicked = false;
                 this.Size = new Size(761, 632);
             }
             else
             {
+                button6.Text = "기록 접기";
                 clicked = true;
                 this.Size = new Size(1588, 632);
             }
