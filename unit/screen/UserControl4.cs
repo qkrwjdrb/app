@@ -26,7 +26,14 @@ namespace unit.screen
 
             uc4 = this;
 
-            comboBox1.Items.Add("03"); 
+            comboBox1.DisplayMember = "Text";
+            comboBox1.ValueMember = "Value";
+            var ritems = new[] {
+                new { Text = "Word Read[03]", Value = 3},
+         
+            };
+
+            comboBox1.DataSource = ritems;
             comboBox2.Items.Add("24A16057F685");
             comboBox1.SelectedIndex = 0;
         }

@@ -18,13 +18,19 @@ namespace unit.screen
         {
             InitializeComponent();
             uc5 = this;
-            comboBox1.Items.Add("06"); 
-            comboBox1.Items.Add("16");
+            /* comboBox1.Items.Add("06"); 
+             comboBox1.Items.Add("16");*/
 
             comboBox2.Items.Add("24A16057F685");
-            comboBox1.SelectedIndex = 0;
+            comboBox1.DisplayMember = "Text";
+            comboBox1.ValueMember = "Value";
+            var items = new[] {
+                new { Text = "multi Word Write[10]", Value = 16 },
+                new { Text = "One Word Write[06]", Value = 06 },
+            };
 
-            //  comboBox2.SelectedIndex = 0;
+            comboBox1.DataSource = items;
+            comboBox1.SelectedIndex = 0;
         }
 
         private void UserControl5_Load(object sender, EventArgs e)
@@ -35,10 +41,10 @@ namespace unit.screen
 
         private void button1_Click(object sender, EventArgs e)
         {
- 
+
             Form1.f1.TxRtu(++Form1.f1.TxCnt, 0, ulong.Parse(comboBox2.SelectedItem.ToString(), System.Globalization.NumberStyles.HexNumber), new byte[]
             {
-                Convert.ToByte(textBox1.Text),Convert.ToByte(comboBox1.Text),
+                Convert.ToByte(textBox1.Text),Convert.ToByte(comboBox1.SelectedValue),
 
                 (byte)(Convert.ToInt32(textBox2.Text) >> 8),  (byte)Convert.ToInt32(textBox2.Text) , 0x00, Convert.ToByte(textBox3.Text),
                //0xAD, 0xDE

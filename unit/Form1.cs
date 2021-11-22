@@ -59,6 +59,7 @@ namespace unit
         //form1_load
         public void Form1_Load(object sender, EventArgs e)
         {
+            this.Size = new Size(761, 632);
 
             if (deFile.Exists)
             {
@@ -218,7 +219,7 @@ namespace unit
             this.Invoke((MethodInvoker)delegate ()
             {
 
-                dataGridView1.Rows.Add(sequenceNumber, "Tx", deviceId.ToString("X12"), DateTime.Now, BitConverter.ToString(payload).Replace("-", " "));
+                dataGridView1.Rows.Add(sequenceNumber, "Tx", gatewayId.ToString("X12"), deviceId.ToString("X12"), DateTime.Now, BitConverter.ToString(payload).Replace("-", " "));
 
                 if (isUc4)
                 {
@@ -280,7 +281,7 @@ namespace unit
 
             this.Invoke((MethodInvoker)delegate ()
             {
-                dataGridView1.Rows.Add(acknowledgeNumber, "Rx", deviceId.ToString("X12"), DateTime.Now, BitConverter.ToString(payload).Replace("-", " "));
+                dataGridView1.Rows.Add(acknowledgeNumber, "Rx",gatewayId.ToString("X12"), deviceId.ToString("X12"), DateTime.Now, BitConverter.ToString(payload).Replace("-", " "));
 
                 if (isUc4)
                 {
