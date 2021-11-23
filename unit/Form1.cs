@@ -23,6 +23,7 @@ namespace unit
         screen.UserControl3 UserControl3 = new screen.UserControl3();
         screen.UserControl4 UserControl4 = new screen.UserControl4();
         screen.UserControl5 UserControl5 = new screen.UserControl5();
+        screen.UserControl6 UserControl6 = new screen.UserControl6();
 
         private static GrpcChannel channel = GrpcChannel.ForAddress("http://192.168.0.219:5054");
         internal static ExProto.ExProtoClient exchange = new ExProto.ExProtoClient(channel);
@@ -697,6 +698,12 @@ namespace unit
                 clicked = true;
                 this.Size = new Size(1588, 632);
             }
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            panel3.Controls.Clear();
+            panel3.Controls.Add(UserControl6);
         }
     }
 }

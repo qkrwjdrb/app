@@ -68,11 +68,10 @@ namespace unit.screen
 
         private void button1_Click(object sender, EventArgs e)
         {
-            string aa = comboBox1.SelectedItem.ToString();
-            ulong device = ulong.Parse(aa, System.Globalization.NumberStyles.HexNumber);
+            
             Form1.f1.TxRtu(++Form1.f1.TxCnt, 0, ulong.Parse(comboBox2.SelectedItem.ToString(), System.Globalization.NumberStyles.HexNumber), new byte[]
                 {
-                    Convert.ToByte(textBox1.Text),Convert.ToByte(comboBox1.Text),
+                    Convert.ToByte(textBox1.Text),Convert.ToByte(comboBox1.SelectedValue),
                     (byte)(Convert.ToInt32(textBox2.Text) >> 8), 
                     (byte)Convert.ToInt32(textBox2.Text) , 0x00,
                     Convert.ToByte(textBox3.Text),
