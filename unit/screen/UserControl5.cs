@@ -41,14 +41,27 @@ namespace unit.screen
 
         private void button1_Click(object sender, EventArgs e)
         {
-
-            Form1.f1.TxRtu(++Form1.f1.TxCnt, 0, ulong.Parse(comboBox2.SelectedItem.ToString(), System.Globalization.NumberStyles.HexNumber), new byte[]
+            if ((int)comboBox1.SelectedValue == 16)
             {
+                string[] qwer = textBox3.Text.Split(',');
+                byte[] a =new byte[qwer.Length];
+                for (int i = 0; i < qwer.Length; i++)
+                {
+                    a[i] = Convert.ToByte( qwer[i]); 
+                }
+                byte[] multi = { Convert.ToByte(textBox1.Text), Convert.ToByte(comboBox1.SelectedValue), (byte)(Convert.ToInt32(textBox2.Text) >> 8), (byte)Convert.ToInt32(textBox2.Text),(byte)qwer.Length };
+                
+            }
+            else {
+                Form1.f1.TxRtu(++Form1.f1.TxCnt, 0, ulong.Parse(comboBox2.SelectedItem.ToString(), System.Globalization.NumberStyles.HexNumber), new byte[]
+                {
                 Convert.ToByte(textBox1.Text),Convert.ToByte(comboBox1.SelectedValue),
 
                 (byte)(Convert.ToInt32(textBox2.Text) >> 8),  (byte)Convert.ToInt32(textBox2.Text) , 0x00, Convert.ToByte(textBox3.Text),
-               //0xAD, 0xDE
-             });
+                    //0xAD, 0xDE
+                }); 
+            
+            }
             //Form1.f1.TxRtu(++Form1.f1.TxCnt, 0, 0x24A16057F685, new byte[]
             //{  
             //    01,0x0,1,0x91,00,03
