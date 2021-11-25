@@ -34,7 +34,7 @@ namespace unit.screen
             };
 
             comboBox1.DataSource = ritems;
-            comboBox2.Items.Add("24A16057F685");
+
             comboBox1.SelectedIndex = 0;
         }
 

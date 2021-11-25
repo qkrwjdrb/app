@@ -21,7 +21,6 @@ namespace unit.screen
             /* comboBox1.Items.Add("06"); 
              comboBox1.Items.Add("16");*/
 
-            comboBox2.Items.Add("24A16057F685");
             comboBox1.DisplayMember = "Text";
             comboBox1.ValueMember = "Value";
             var items = new[] {
@@ -44,13 +43,24 @@ namespace unit.screen
             if ((int)comboBox1.SelectedValue == 16)
             {
                 string[] qwer = textBox3.Text.Split(',');
-                byte[] a =new byte[qwer.Length];
-                for (int i = 0; i < qwer.Length; i++)
+                byte[] a =new byte[qwer.Length * 2];
+                for (int i = 0; i < qwer.Length; i++ )
                 {
-                    a[i] = Convert.ToByte( qwer[i]); 
+                    if (i==0)
+                    {
+                        a[1] = (byte)Convert.ToInt32(qwer[0]);
+                        a[0] = (byte)(Convert.ToInt32(qwer[0]) >> 8);
+                    }
+                    else {
+                        a[i * 2] = (byte)Convert.ToInt32(qwer[i]);
+                        a[i * 2 - 1] = (byte)(Convert.ToInt32(qwer[i]) >> 8);
+                    }
                 }
-                byte[] multi = { Convert.ToByte(textBox1.Text), Convert.ToByte(comboBox1.SelectedValue), (byte)(Convert.ToInt32(textBox2.Text) >> 8), (byte)Convert.ToInt32(textBox2.Text),(byte)qwer.Length };
-                
+                byte[] multi = { Convert.ToByte(textBox1.Text), Convert.ToByte(comboBox1.SelectedValue), (byte)(Convert.ToInt32(textBox2.Text) >> 8), (byte)Convert.ToInt32(textBox2.Text),00, (byte)qwer.Length, (byte)a.Length };
+                byte[] pay= new byte[a.Length + multi.Length];
+                Array.Copy(multi, 0, pay, 0, multi.Length);
+                Array.Copy(a, 0, pay, multi.Length, a.Length);
+                Form1.f1.TxRtu(++Form1.f1.TxCnt, 0, ulong.Parse(comboBox2.SelectedItem.ToString(), System.Globalization.NumberStyles.HexNumber), pay);
             }
             else {
                 Form1.f1.TxRtu(++Form1.f1.TxCnt, 0, ulong.Parse(comboBox2.SelectedItem.ToString(), System.Globalization.NumberStyles.HexNumber), new byte[]

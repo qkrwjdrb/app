@@ -25,7 +25,7 @@ namespace unit
         screen.UserControl5 UserControl5 = new screen.UserControl5();
         screen.UserControl6 UserControl6 = new screen.UserControl6();
 
-        private static GrpcChannel channel = GrpcChannel.ForAddress("http://192.168.0.219:5054");
+        private static GrpcChannel channel = GrpcChannel.ForAddress("http://localhost:5044");
         internal static ExProto.ExProtoClient exchange = new ExProto.ExProtoClient(channel);
 
         internal static AsyncDuplexStreamingCall<RtuMessage, RtuMessage> rtuLink = exchange.MessageRtu();
@@ -68,6 +68,8 @@ namespace unit
             }
             else
             {
+                /*서울 "308398D9E8F5" ,"500291AEBD15"*/
+                /*양양 "24A16057F685", "500291AEBCD9", "500291AEBE4D"*/
                 string[] aa = { "24A16057F685", "500291AEBCD9", "500291AEBE4D" };
                 screen.UserControl2.uc2.listBox2.Items.AddRange(aa);
             }
@@ -325,7 +327,7 @@ namespace unit
                     screen.UserControl1.uc1.uc1textBox2.AppendText(Environment.NewLine);
                     screen.UserControl1.uc1.uc1textBox1.Text += "Responsed... ";
 
-                    if (addressEnd == true && payload.Length == (deviceCount * 2 + 5))
+                    if (addressEnd && payload.Length == (deviceCount * 2 + 5))
                     {
                         addressArray = payload;
 
@@ -333,13 +335,17 @@ namespace unit
 
                         getData(dataAddress);
                     }
-                    if (dataEnd == true && payload.Length == (deviceCount * 6 + 7))
+                    if (dataEnd && payload.Length == (deviceCount * 6 + 7))
                     {
                         dataArray = payload;
 
                         dataEnd = false;
 
                         screen.UserControl1.uc1.sensorDataOutput(addressArray, dataArray, deviceId.ToString("X12"));
+                    }
+                    if (isNode)
+                    {
+                        screen.UserControl1.uc1.NodeDataOutput(payload, deviceId.ToString("X12"));
                     }
 
                 }
@@ -573,14 +579,24 @@ namespace unit
         }
         public void addCombobox()
         {
-
-            screen.UserControl1.uc1.comboBox1.Items.Clear();
             string[] allList1 = screen.UserControl2.uc2.listBox2.Items.OfType<string>().ToArray();
-            screen.UserControl1.uc1.comboBox1.Items.AddRange(allList1);
-
-            screen.UserControl1.uc1.comboBox2.Items.Clear();
             string[] allList2 = screen.UserControl2.uc2.listBox1.Items.OfType<string>().ToArray();
+
+            //gateway combobox
+            screen.UserControl1.uc1.comboBox1.Items.Clear();
+            screen.UserControl1.uc1.comboBox1.Items.AddRange(allList1);
+            screen.UserControl4.uc4.comboBox3.Items.Clear();
+            screen.UserControl4.uc4.comboBox3.Items.AddRange(allList1);
+            screen.UserControl5.uc5.comboBox3.Items.Clear();
+            screen.UserControl5.uc5.comboBox3.Items.AddRange(allList1);
+
+            //device combobox
+            screen.UserControl1.uc1.comboBox2.Items.Clear();
             screen.UserControl1.uc1.comboBox2.Items.AddRange(allList2);
+            screen.UserControl4.uc4.comboBox2.Items.Clear();
+            screen.UserControl4.uc4.comboBox2.Items.AddRange(allList2);
+            screen.UserControl5.uc5.comboBox2.Items.Clear();
+            screen.UserControl5.uc5.comboBox2.Items.AddRange(allList2);
 
             Form1.f1.addressItems = allList1;
             Form1.f1.gatewayItems = allList2;
@@ -607,6 +623,15 @@ namespace unit
             TxRtu(++TxCnt, 0, address, new byte[] {   0x01, 0x03,
           0x00, 101, 0x00,deviceCount,
         // 0xAD, 0xDE
+            });
+        }
+        bool isNode = false;
+        public void getNode(ulong address)
+        {
+            isNode = true;
+            TxRtu(++TxCnt, 0, address, new byte[] {   0x01, 0x03,
+          0x00, 1, 0x00,8,
+        
             });
         }
         bool dataEnd = false;
