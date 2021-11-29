@@ -62,7 +62,7 @@ namespace unit.screen
         }
         private void UserControl4_Load(object sender, EventArgs e)
         {
-            comboBox2.Items.AddRange(Form1.f1.addressItems);
+            Form1.f1.addCombobox();
             comboBox2.SelectedIndex = 0;
         }
 

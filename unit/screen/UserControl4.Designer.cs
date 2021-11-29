@@ -102,26 +102,27 @@ namespace unit.screen
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 26;
-            this.button1.Text = "button1";
+            this.button1.Text = "읽기";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(319, 107);
+            this.label4.Location = new System.Drawing.Point(319, 108);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(72, 15);
+            this.label4.Size = new System.Drawing.Size(79, 15);
             this.label4.TabIndex = 25;
-            this.label4.Text = "Value (DEC)";
+            this.label4.Text = "Length (DEC)";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(314, 77);
+            this.label3.Location = new System.Drawing.Point(285, 78);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(84, 15);
+            this.label3.Size = new System.Drawing.Size(113, 15);
             this.label3.TabIndex = 24;
-            this.label3.Text = "Address (DEC)";
+            this.label3.Text = "Start Address (DEC)";
             // 
             // label2
             // 
@@ -206,8 +207,6 @@ namespace unit.screen
         public System.Windows.Forms.RichTextBox uc4textBox2;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.ComboBox comboBox3;
-        private System.Windows.Forms.ComboBox comboBox2;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
@@ -217,5 +216,7 @@ namespace unit.screen
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.ComboBox comboBox1;
+        public System.Windows.Forms.ComboBox comboBox3;
+        public System.Windows.Forms.ComboBox comboBox2;
     }
 }

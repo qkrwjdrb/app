@@ -12,9 +12,10 @@ namespace unit.screen
 {
     public partial class UserControl3 : UserControl
     {
+            public static UserControl3 uc3;
         public UserControl3()
-        {
-            InitializeComponent();
+        {       
+        InitializeComponent(); uc3 = this;
             panel1.Controls.Add(ucMod1);
             panel2.Controls.Add(ucSelect1);
 

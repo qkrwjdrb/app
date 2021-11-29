@@ -61,7 +61,7 @@ namespace unit.screen
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(121, 23);
             this.textBox2.TabIndex = 1;
-            this.textBox2.Text = "22";
+            this.textBox2.Text = "400";
             // 
             // textBox1
             // 
@@ -133,11 +133,11 @@ namespace unit.screen
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(596, 102);
+            this.button1.Location = new System.Drawing.Point(608, 104);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 12;
-            this.button1.Text = "button1";
+            this.button1.Text = "쓰기";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
@@ -214,11 +214,11 @@ namespace unit.screen
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.ComboBox comboBox2;
-        private System.Windows.Forms.ComboBox comboBox3;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
         public System.Windows.Forms.RichTextBox uc5textBox2;
         public System.Windows.Forms.RichTextBox uc5textBox1;
+        public System.Windows.Forms.ComboBox comboBox2;
+        public System.Windows.Forms.ComboBox comboBox3;
     }
 }

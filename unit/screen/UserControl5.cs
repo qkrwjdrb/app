@@ -34,7 +34,7 @@ namespace unit.screen
 
         private void UserControl5_Load(object sender, EventArgs e)
         {
-            comboBox2.Items.AddRange(Form1.f1.addressItems);
+            Form1.f1.addCombobox();
             comboBox2.SelectedIndex = 0;
         }
 
@@ -48,12 +48,12 @@ namespace unit.screen
                 {
                     if (i==0)
                     {
+                        a[0] = Convert.ToByte(Convert.ToInt32(qwer[0]) >> 8);
                         a[1] = (byte)Convert.ToInt32(qwer[0]);
-                        a[0] = (byte)(Convert.ToInt32(qwer[0]) >> 8);
                     }
                     else {
-                        a[i * 2] = (byte)Convert.ToInt32(qwer[i]);
-                        a[i * 2 - 1] = (byte)(Convert.ToInt32(qwer[i]) >> 8);
+                        a[i * 2] = Convert.ToByte(Convert.ToInt32(qwer[i]) >> 8);
+                        a[i * 2 + 1] = (byte)Convert.ToInt32(qwer[i]);
                     }
                 }
                 byte[] multi = { Convert.ToByte(textBox1.Text), Convert.ToByte(comboBox1.SelectedValue), (byte)(Convert.ToInt32(textBox2.Text) >> 8), (byte)Convert.ToInt32(textBox2.Text),00, (byte)qwer.Length, (byte)a.Length };

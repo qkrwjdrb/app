@@ -32,7 +32,7 @@ namespace unit.screen
 
         private void UserControl1_Load(object sender, EventArgs e)
         {
-          
+            Form1.f1.addCombobox();
             comboBox1.SelectedIndex = 0;
          
             comboBox3.DisplayMember = "Text";

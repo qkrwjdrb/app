@@ -43,6 +43,7 @@ namespace unit
 
         public bool isUc4 = false;
         public bool isUc5 = false;
+        public bool isUc6 = false;
 
         public FileInfo deFile = new FileInfo("device.txt");
         public FileInfo gaFile = new FileInfo("gateway.txt");
@@ -60,8 +61,8 @@ namespace unit
         //form1_load
         public void Form1_Load(object sender, EventArgs e)
         {
-            this.Size = new Size(761, 632);
-
+           // this.Size = new Size(761, 632);
+          
             if (deFile.Exists)
             {
                 addressLoadFile();
@@ -82,7 +83,7 @@ namespace unit
                 string[] aa = { "0" };
                 screen.UserControl2.uc2.listBox1.Items.AddRange(aa);
             }
-            panel3.Controls.Add(UserControl1);
+            panel3.Controls.Add(UserControl6);
             getAddress(ulong.Parse(screen.UserControl2.uc2.listBox2.Items[0].ToString(), System.Globalization.NumberStyles.HexNumber));
             dataAddress = ulong.Parse(screen.UserControl2.uc2.listBox2.Items[0].ToString(), System.Globalization.NumberStyles.HexNumber);
         }
@@ -252,7 +253,10 @@ namespace unit
                     screen.UserControl5.uc5.uc5textBox2.Text = "Awaiting response...";
 
                 }
+                else if (isUc6)
+                {
 
+                }
                 else
                 {
                     screen.UserControl1.uc1.uc1textBox1.Text = "TxRtu(" + GetProtocolChannelName(channel) + ") RequestStream";
@@ -314,7 +318,10 @@ namespace unit
                     screen.UserControl5.uc5.uc5textBox1.Text += "Responsed... ";
 
                 }
-
+                else if (isUc6) 
+                {
+                
+                }
                 else
                 {
                     screen.UserControl1.uc1.uc1textBox2.Text = "RxRtu(" + GetProtocolChannelName(channel) + ")";
@@ -579,27 +586,27 @@ namespace unit
         }
         public void addCombobox()
         {
-            string[] allList1 = screen.UserControl2.uc2.listBox2.Items.OfType<string>().ToArray();
-            string[] allList2 = screen.UserControl2.uc2.listBox1.Items.OfType<string>().ToArray();
+            string[] allList1 = screen.UserControl2.uc2.listBox1.Items.OfType<string>().ToArray();
+            string[] allList2 = screen.UserControl2.uc2.listBox2.Items.OfType<string>().ToArray();
 
             //gateway combobox
-            screen.UserControl1.uc1.comboBox1.Items.Clear();
-            screen.UserControl1.uc1.comboBox1.Items.AddRange(allList1);
+            screen.UserControl1.uc1.comboBox2.Items.Clear();
+            screen.UserControl1.uc1.comboBox2.Items.AddRange(allList1);
             screen.UserControl4.uc4.comboBox3.Items.Clear();
             screen.UserControl4.uc4.comboBox3.Items.AddRange(allList1);
             screen.UserControl5.uc5.comboBox3.Items.Clear();
             screen.UserControl5.uc5.comboBox3.Items.AddRange(allList1);
 
             //device combobox
-            screen.UserControl1.uc1.comboBox2.Items.Clear();
-            screen.UserControl1.uc1.comboBox2.Items.AddRange(allList2);
+            screen.UserControl1.uc1.comboBox1.Items.Clear();
+            screen.UserControl1.uc1.comboBox1.Items.AddRange(allList2);
             screen.UserControl4.uc4.comboBox2.Items.Clear();
             screen.UserControl4.uc4.comboBox2.Items.AddRange(allList2);
             screen.UserControl5.uc5.comboBox2.Items.Clear();
             screen.UserControl5.uc5.comboBox2.Items.AddRange(allList2);
 
-            Form1.f1.addressItems = allList1;
-            Form1.f1.gatewayItems = allList2;
+            Form1.f1.gatewayItems = allList1;
+            Form1.f1.addressItems = allList2;
         }
 
         private void richTextBox3_TextChanged(object sender, EventArgs e)
@@ -678,6 +685,7 @@ namespace unit
         {
             isUc4 = false;
             isUc5 = false;
+            isUc6 = false;
 
             panel3.Controls.Clear();
             panel3.Controls.Add(UserControl1);
@@ -693,6 +701,7 @@ namespace unit
         {
             isUc4 = true;
             isUc5 = false;
+            isUc6 = false;
 
             panel3.Controls.Clear();
             panel3.Controls.Add(UserControl4);
@@ -703,6 +712,7 @@ namespace unit
         {
             isUc5 = true;
             isUc4 = false;
+            isUc6 = false;
 
             panel3.Controls.Clear();
             panel3.Controls.Add(UserControl5);
@@ -727,8 +737,11 @@ namespace unit
 
         private void button7_Click(object sender, EventArgs e)
         {
+            isUc6 = true;
+            isUc4 = false;
+            isUc5 = false;
             panel3.Controls.Clear();
             panel3.Controls.Add(UserControl6);
-        }
+        }    
     }
 }
