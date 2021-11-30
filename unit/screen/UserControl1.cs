@@ -34,7 +34,7 @@ namespace unit.screen
         {
             Form1.f1.addCombobox();
             comboBox1.SelectedIndex = 0;
-         
+
             comboBox3.DisplayMember = "Text";
             comboBox3.ValueMember = "Value";
             var items = new[] {
@@ -50,14 +50,22 @@ namespace unit.screen
         public void NodeDataOutput(byte[] address, string deviceId)
         {
             uc1textBox3.Text = $"{deviceId} 노드 정보";
-            uc1textBox3.AppendText(Environment.NewLine + BitConverter.ToString(address));
+
+
+            uc1textBox3.AppendText(Environment.NewLine + "기관코드" + BitConverter.ToUInt16(new byte[2] { address[3],address[4] },1));
+            uc1textBox3.AppendText(Environment.NewLine + "회사코드" + BitConverter.ToUInt16(new byte[2] { address[5], address[6] }, 0));
+            uc1textBox3.AppendText(Environment.NewLine + "제품타입" + BitConverter.ToUInt16(new byte[2] { address[7], address[8] }, 0));
+            uc1textBox3.AppendText(Environment.NewLine + "제품코드" + BitConverter.ToUInt16(new byte[2] { address[9], address[10] }, 0));
+            uc1textBox3.AppendText(Environment.NewLine + "프로토콜 버전" + BitConverter.ToUInt16(new byte[2] { address[11], address[12] }, 0));
+            uc1textBox3.AppendText(Environment.NewLine + "연결가능디바이스수" + BitConverter.ToUInt16(new byte[2] { address[13], address[14] }, 0));
+            uc1textBox3.AppendText(Environment.NewLine + "노드시리얼번호" + BitConverter.ToString(new byte[4] { address[15], address[16], address[17], address[18] }, 0));
         }
 
 
-            public void sensorDataOutput(byte[] address, byte[] data, string deviceId)
-            {
+        public void sensorDataOutput(byte[] address, byte[] data, string deviceId)
+        {
 
-                uc1textBox3.Text = $"{deviceId} 센서 데이터";
+            uc1textBox3.Text = $"{deviceId} 센서 데이터";
 
             for (int i = 1; i < ((address.Length - 3) / 2); i++)
             {
@@ -246,7 +254,8 @@ namespace unit.screen
         }
         private void button1_Click(object sender, EventArgs e)
         {
-            if (comboBox3.SelectedValue == "센서") {
+            if (comboBox3.SelectedValue == "센서")
+            {
                 if (!String.IsNullOrEmpty(textBox1.Text))
                 {
                     Form1.f1.deviceCount = Convert.ToByte(textBox1.Text);
@@ -269,7 +278,7 @@ namespace unit.screen
                 Form1.f1.getNode(device);
             }
             else { }
-            }
+        }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
