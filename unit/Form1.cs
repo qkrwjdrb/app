@@ -353,6 +353,7 @@ namespace unit
                     if (isNode)
                     {
                         screen.UserControl1.uc1.NodeDataOutput(payload, deviceId.ToString("X12"));
+                        isNode = false;
                     }
 
                 }

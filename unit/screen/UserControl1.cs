@@ -51,14 +51,14 @@ namespace unit.screen
         {
             uc1textBox3.Text = $"{deviceId} 노드 정보";
 
-
-            uc1textBox3.AppendText(Environment.NewLine + "기관코드" + BitConverter.ToUInt16(new byte[2] { address[3],address[4] },1));
-            uc1textBox3.AppendText(Environment.NewLine + "회사코드" + BitConverter.ToUInt16(new byte[2] { address[5], address[6] }, 0));
-            uc1textBox3.AppendText(Environment.NewLine + "제품타입" + BitConverter.ToUInt16(new byte[2] { address[7], address[8] }, 0));
-            uc1textBox3.AppendText(Environment.NewLine + "제품코드" + BitConverter.ToUInt16(new byte[2] { address[9], address[10] }, 0));
-            uc1textBox3.AppendText(Environment.NewLine + "프로토콜 버전" + BitConverter.ToUInt16(new byte[2] { address[11], address[12] }, 0));
-            uc1textBox3.AppendText(Environment.NewLine + "연결가능디바이스수" + BitConverter.ToUInt16(new byte[2] { address[13], address[14] }, 0));
-            uc1textBox3.AppendText(Environment.NewLine + "노드시리얼번호" + BitConverter.ToString(new byte[4] { address[15], address[16], address[17], address[18] }, 0));
+            uc1textBox3.AppendText(Environment.NewLine + "기관코드 : " + BitConverter.ToUInt16(new byte[2] { address[4], address[3] }, 0)
+                + Environment.NewLine + "회사코드 : " + BitConverter.ToUInt16(new byte[2] { address[6], address[5] }, 0)
+                + Environment.NewLine + "제품타입 : " + BitConverter.ToUInt16(new byte[2] { address[8], address[7] }, 0)
+                + Environment.NewLine + "제품코드 : " + BitConverter.ToUInt16(new byte[2] { address[10], address[9] }, 0)
+                + Environment.NewLine + "프로토콜 버전 : " + BitConverter.ToUInt16(new byte[2] { address[12], address[11] }, 0)
+                + Environment.NewLine + "연결가능디바이스수 : " + BitConverter.ToUInt16(new byte[2] { address[14], address[13] }, 0)
+                + Environment.NewLine + "노드시리얼번호 : " + BitConverter.ToString(new byte[4] { address[15], address[16], address[17], address[18] }, 0)
+            );
         }
 
 
@@ -72,161 +72,96 @@ namespace unit.screen
 
                 if (data[4 + i * 6] == 0)
                 {
+                    float dataFloat = GetFloat(data[4 + i * 6 - 5], data[4 + i * 6 - 4], data[4 + i * 6 - 3], data[4 + i * 6 - 2]);
+                    byte[] dataBytes = BitConverter.GetBytes(dataFloat);
+                    if (BitConverter.IsLittleEndian)
+                        Array.Reverse(dataBytes);
+                    byte[] addressBytes = { address[1 + i * 2], address[2 + i * 2] };
+                    if (BitConverter.IsLittleEndian)
+                        Array.Reverse(addressBytes);
+                    short addressShort = BitConverter.ToInt16(addressBytes, 0);
 
-                    if (address[1 + i * 2] == 0x00 && address[2 + i * 2] == 0x01)
+
+
+                    switch (addressShort)
                     {
-                        float dataFloat = GetFloat(data[4 + i * 6 - 5], data[4 + i * 6 - 4], data[4 + i * 6 - 3], data[4 + i * 6 - 2]);
-                        byte[] dataBytes = BitConverter.GetBytes(dataFloat);
-
-                        if (checkBox1.Checked) uc1textBox3.AppendText(Environment.NewLine + $"{i} 온도 : {BitConverter.ToSingle(dataBytes, 0).ToString("0.00")}");
-                        else uc1textBox3.AppendText(Environment.NewLine + $"온도 : {BitConverter.ToSingle(dataBytes, 0).ToString("0.00")}");
+                        case 0x0001:
+                            if (checkBox1.Checked) uc1textBox3.AppendText(Environment.NewLine + $"{i} 온도 : {BitConverter.ToSingle(dataBytes, 0).ToString("0.00")}");
+                            else uc1textBox3.AppendText(Environment.NewLine + $"온도 : {BitConverter.ToSingle(dataBytes, 0).ToString("0.00")}");
+                            break;
+                        case 0x0002:
+                            if (checkBox1.Checked) uc1textBox3.AppendText(Environment.NewLine + $"{i} 습도 : {BitConverter.ToSingle(dataBytes, 0).ToString("0.00")}");
+                            else uc1textBox3.AppendText(Environment.NewLine + $"습도 : {BitConverter.ToSingle(dataBytes, 0).ToString("0.00")}");
+                            break;
+                        case 0x000b:
+                            if (checkBox1.Checked) uc1textBox3.AppendText(Environment.NewLine + $"{i} CO2 : {BitConverter.ToSingle(dataBytes, 0).ToString("0.00")}");
+                            else uc1textBox3.AppendText(Environment.NewLine + $"CO2 : {BitConverter.ToSingle(dataBytes, 0).ToString("0.00")}");
+                            break;
+                        case 0x7001:
+                            if (checkBox1.Checked) uc1textBox3.AppendText(Environment.NewLine + $"{i} 암모니아 : {BitConverter.ToSingle(dataBytes, 0).ToString("0.00")}");
+                            else uc1textBox3.AppendText(Environment.NewLine + $"암모니아 : {BitConverter.ToSingle(dataBytes, 0).ToString("0.00")}");
+                            break;
+                        case 0x7002:
+                            if (checkBox1.Checked) uc1textBox3.AppendText(Environment.NewLine + $"{i} 이산화질소 : {BitConverter.ToSingle(dataBytes, 0).ToString("0.00")}");
+                            else uc1textBox3.AppendText(Environment.NewLine + $"이산화질소 : {BitConverter.ToSingle(dataBytes, 0).ToString("0.00")}");
+                            break;
+                        case 0x7003:
+                            if (checkBox1.Checked) uc1textBox3.AppendText(Environment.NewLine + $"{i} 일산화탄소 : {BitConverter.ToSingle(dataBytes, 0).ToString("0.00")}");
+                            else uc1textBox3.AppendText(Environment.NewLine + $"일산화탄소 : {BitConverter.ToSingle(dataBytes, 0).ToString("0.00")}");
+                            break;
+                        case 0x7004:
+                            if (checkBox1.Checked) uc1textBox3.AppendText(Environment.NewLine + $"{i} 조도 : {BitConverter.ToSingle(dataBytes, 0).ToString("0.00")}");
+                            else uc1textBox3.AppendText(Environment.NewLine + $"조도 : {BitConverter.ToSingle(dataBytes, 0).ToString("0.00")}");
+                            break;
+                        case 0x7005:
+                            if (checkBox1.Checked) uc1textBox3.AppendText(Environment.NewLine + $"{i} 자외선센서 : {BitConverter.ToSingle(dataBytes, 0).ToString("0.00")}");
+                            else uc1textBox3.AppendText(Environment.NewLine + $"자외선센서 : {BitConverter.ToSingle(dataBytes, 0).ToString("0.00")}");
+                            break;
+                        case 0x6001:
+                            if (checkBox1.Checked) uc1textBox3.AppendText(Environment.NewLine + $"{i} 암모니아 L : {BitConverter.ToSingle(dataBytes, 0).ToString("0.00")}");
+                            else uc1textBox3.AppendText(Environment.NewLine + $"암모니아 L : {BitConverter.ToSingle(dataBytes, 0).ToString("0.00")}");
+                            break;
+                        case 0x6002:
+                            if (checkBox1.Checked) uc1textBox3.AppendText(Environment.NewLine + $"{i} 암모니아 M : {BitConverter.ToSingle(dataBytes, 0).ToString("0.00")}");
+                            else uc1textBox3.AppendText(Environment.NewLine + $"암모니아 M : {BitConverter.ToSingle(dataBytes, 0).ToString("0.00")}");
+                            break;
+                        case 0x6003:
+                            if (checkBox1.Checked) uc1textBox3.AppendText(Environment.NewLine + $"{i} 암모니아 H : {BitConverter.ToSingle(dataBytes, 0).ToString("0.00")}");
+                            else uc1textBox3.AppendText(Environment.NewLine + $"암모니아 H : {BitConverter.ToSingle(dataBytes, 0).ToString("0.00")}");
+                            break;
+                        case 0x5001:
+                            if (checkBox1.Checked) uc1textBox3.AppendText(Environment.NewLine + $"{i} 이산화질소센서 L : {BitConverter.ToSingle(dataBytes, 0).ToString("0.00")}");
+                            else uc1textBox3.AppendText(Environment.NewLine + $"이산화질소센서 L : {BitConverter.ToSingle(dataBytes, 0).ToString("0.00")}");
+                            break;
+                        case 0x5002:
+                            if (checkBox1.Checked) uc1textBox3.AppendText(Environment.NewLine + $"{i} 이산화질소센서 M : {BitConverter.ToSingle(dataBytes, 0).ToString("0.00")}");
+                            else uc1textBox3.AppendText(Environment.NewLine + $"이산화질소센서 M : {BitConverter.ToSingle(dataBytes, 0).ToString("0.00")}");
+                            break;
+                        case 0x5003:
+                            if (checkBox1.Checked) uc1textBox3.AppendText(Environment.NewLine + $"{i} 이산화질소센서 H : {BitConverter.ToSingle(dataBytes, 0).ToString("0.00")}");
+                            else uc1textBox3.AppendText(Environment.NewLine + $"이산화질소센서 H : {BitConverter.ToSingle(dataBytes, 0).ToString("0.00")}");
+                            break;
+                        case 0x4001:
+                            if (checkBox1.Checked) uc1textBox3.AppendText(Environment.NewLine + $"{i} CO일산화탄소 L : {BitConverter.ToSingle(dataBytes, 0).ToString("0.00")}");
+                            else uc1textBox3.AppendText(Environment.NewLine + $"CO일산화탄소 L : {BitConverter.ToSingle(dataBytes, 0).ToString("0.00")}");
+                            break;
+                        case 0x4002:
+                            if (checkBox1.Checked) uc1textBox3.AppendText(Environment.NewLine + $"{i} CO일산화탄소 M : {BitConverter.ToSingle(dataBytes, 0).ToString("0.00")}");
+                            else uc1textBox3.AppendText(Environment.NewLine + $"CO일산화탄소 M : {BitConverter.ToSingle(dataBytes, 0).ToString("0.00")}");
+                            break;
+                        case 0x4003:
+                            if (checkBox1.Checked) uc1textBox3.AppendText(Environment.NewLine + $"{i} CO일산화탄소 H : {BitConverter.ToSingle(dataBytes, 0).ToString("0.00")}");
+                            else uc1textBox3.AppendText(Environment.NewLine + $"CO일산화탄소 H : {BitConverter.ToSingle(dataBytes, 0).ToString("0.00")}");
+                            break;
+                        default:
+                            if (checkBox1.Checked) uc1textBox3.AppendText(Environment.NewLine + $"{i} 미정의 장비 {ToReadableByteArray(addressBytes)} : {BitConverter.ToSingle(dataBytes, 0).ToString("0.00")}");
+                            else uc1textBox3.AppendText(Environment.NewLine + $"미정의 장비 {ToReadableByteArray(addressBytes)} : {BitConverter.ToSingle(dataBytes, 0).ToString("0.00")}");
+                            break;
                     }
-                    else if (address[1 + i * 2] == 0x00 && address[2 + i * 2] == 0x02)
-                    {
-                        float dataFloat = GetFloat(data[4 + i * 6 - 5], data[4 + i * 6 - 4], data[4 + i * 6 - 3], data[4 + i * 6 - 2]);
-                        byte[] dataBytes = BitConverter.GetBytes(dataFloat);
-
-                        if (checkBox1.Checked) uc1textBox3.AppendText(Environment.NewLine + $"{i} 습도 : {BitConverter.ToSingle(dataBytes, 0).ToString("0.00")}");
-                        else uc1textBox3.AppendText(Environment.NewLine + $"습도 : {BitConverter.ToSingle(dataBytes, 0).ToString("0.00")}");
-                    }
-                    else if (address[1 + i * 2] == 0x00 && address[2 + i * 2] == 0x0b)
-                    {
-                        float dataFloat = GetFloat(data[4 + i * 6 - 5], data[4 + i * 6 - 4], data[4 + i * 6 - 3], data[4 + i * 6 - 2]);
-                        byte[] dataBytes = BitConverter.GetBytes(dataFloat);
-
-                        if (checkBox1.Checked) uc1textBox3.AppendText(Environment.NewLine + $"{i} CO2 : {BitConverter.ToSingle(dataBytes, 0).ToString("0.00")}");
-                        else uc1textBox3.AppendText(Environment.NewLine + $"CO2 : {BitConverter.ToSingle(dataBytes, 0).ToString("0.00")}");
-                    }
-                    else if (address[1 + i * 2] == 0x70 && address[2 + i * 2] == 0x01)
-                    {
-                        float dataFloat = GetFloat(data[4 + i * 6 - 5], data[4 + i * 6 - 4], data[4 + i * 6 - 3], data[4 + i * 6 - 2]);
-                        byte[] dataBytes = BitConverter.GetBytes(dataFloat);
-
-                        if (checkBox1.Checked) uc1textBox3.AppendText(Environment.NewLine + $"{i} 암모니아 : {BitConverter.ToSingle(dataBytes, 0).ToString("0.00")}");
-                        else uc1textBox3.AppendText(Environment.NewLine + $"암모니아 : {BitConverter.ToSingle(dataBytes, 0).ToString("0.00")}");
-                    }
-                    else if (address[1 + i * 2] == 0x70 && address[2 + i * 2] == 0x02)
-                    {
-                        float dataFloat = GetFloat(data[4 + i * 6 - 5], data[4 + i * 6 - 4], data[4 + i * 6 - 3], data[4 + i * 6 - 2]);
-                        byte[] dataBytes = BitConverter.GetBytes(dataFloat);
-
-                        if (checkBox1.Checked) uc1textBox3.AppendText(Environment.NewLine + $"{i} 이산화질소 : {BitConverter.ToSingle(dataBytes, 0).ToString("0.00")}");
-                        else uc1textBox3.AppendText(Environment.NewLine + $"이산화질소 : {BitConverter.ToSingle(dataBytes, 0).ToString("0.00")}");
-                    }
-                    else if (address[1 + i * 2] == 0x70 && address[2 + i * 2] == 0x03)
-                    {
-                        float dataFloat = GetFloat(data[4 + i * 6 - 5], data[4 + i * 6 - 4], data[4 + i * 6 - 3], data[4 + i * 6 - 2]);
-                        byte[] dataBytes = BitConverter.GetBytes(dataFloat);
-
-                        if (checkBox1.Checked) uc1textBox3.AppendText(Environment.NewLine + $"{i} 일산화탄소 : {BitConverter.ToSingle(dataBytes, 0).ToString("0.00")}");
-                        else uc1textBox3.AppendText(Environment.NewLine + $"일산화탄소 : {BitConverter.ToSingle(dataBytes, 0).ToString("0.00")}");
-                    }
-                    else if (address[1 + i * 2] == 0x70 && address[2 + i * 2] == 0x04)
-                    {
-                        float dataFloat = GetFloat(data[4 + i * 6 - 5], data[4 + i * 6 - 4], data[4 + i * 6 - 3], data[4 + i * 6 - 2]);
-                        byte[] dataBytes = BitConverter.GetBytes(dataFloat);
-
-                        if (checkBox1.Checked) uc1textBox3.AppendText(Environment.NewLine + $"{i} 조도 : {BitConverter.ToSingle(dataBytes, 0).ToString("0.00")}");
-                        else uc1textBox3.AppendText(Environment.NewLine + $"조도 : {BitConverter.ToSingle(dataBytes, 0).ToString("0.00")}");
-                    }
-                    else if (address[1 + i * 2] == 0x70 && address[2 + i * 2] == 0x05)
-                    {
-
-                        float dataFloat = GetFloat(data[4 + i * 6 - 5], data[4 + i * 6 - 4], data[4 + i * 6 - 3], data[4 + i * 6 - 2]);
-                        byte[] dataBytes = BitConverter.GetBytes(dataFloat);
-
-                        if (checkBox1.Checked) uc1textBox3.AppendText(Environment.NewLine + $"{i} 자외선센서 : {BitConverter.ToSingle(dataBytes, 0).ToString("0.00")}");
-                        else uc1textBox3.AppendText(Environment.NewLine + $"자외선센서 : {BitConverter.ToSingle(dataBytes, 0).ToString("0.00")}");
-                    }
-                    else if (address[1 + i * 2] == 0x60 && address[2 + i * 2] == 0x01)
-                    {
-                        float dataFloat = GetFloat(data[4 + i * 6 - 5], data[4 + i * 6 - 4], data[4 + i * 6 - 3], data[4 + i * 6 - 2]);
-                        byte[] dataBytes = BitConverter.GetBytes(dataFloat);
-
-                        if (checkBox1.Checked) uc1textBox3.AppendText(Environment.NewLine + $"{i} 암모니아 L : {BitConverter.ToSingle(dataBytes, 0).ToString("0.00")}");
-                        else uc1textBox3.AppendText(Environment.NewLine + $"암모니아 L : {BitConverter.ToSingle(dataBytes, 0).ToString("0.00")}");
-                    }
-                    else if (address[1 + i * 2] == 0x60 && address[2 + i * 2] == 0x02)
-                    {
-                        float dataFloat = GetFloat(data[4 + i * 6 - 5], data[4 + i * 6 - 4], data[4 + i * 6 - 3], data[4 + i * 6 - 2]);
-                        byte[] dataBytes = BitConverter.GetBytes(dataFloat);
-
-                        if (checkBox1.Checked) uc1textBox3.AppendText(Environment.NewLine + $"{i} 암모니아 M : {BitConverter.ToSingle(dataBytes, 0).ToString("0.00")}");
-                        else uc1textBox3.AppendText(Environment.NewLine + $"암모니아 M : {BitConverter.ToSingle(dataBytes, 0).ToString("0.00")}");
-                    }
-                    else if (address[1 + i * 2] == 0x60 && address[2 + i * 2] == 0x03)
-                    {
-                        float dataFloat = GetFloat(data[4 + i * 6 - 5], data[4 + i * 6 - 4], data[4 + i * 6 - 3], data[4 + i * 6 - 2]);
-                        byte[] dataBytes = BitConverter.GetBytes(dataFloat);
-
-                        if (checkBox1.Checked) uc1textBox3.AppendText(Environment.NewLine + $"{i} 암모니아 H : {BitConverter.ToSingle(dataBytes, 0).ToString("0.00")}");
-                        else uc1textBox3.AppendText(Environment.NewLine + $"암모니아 H : {BitConverter.ToSingle(dataBytes, 0).ToString("0.00")}");
-                    }
-                    else if (address[1 + i * 2] == 0x50 && address[2 + i * 2] == 0x01)
-                    {
-                        float dataFloat = GetFloat(data[4 + i * 6 - 5], data[4 + i * 6 - 4], data[4 + i * 6 - 3], data[4 + i * 6 - 2]);
-                        byte[] dataBytes = BitConverter.GetBytes(dataFloat);
-
-                        if (checkBox1.Checked) uc1textBox3.AppendText(Environment.NewLine + $"{i} 이산화질소센서 L : {BitConverter.ToSingle(dataBytes, 0).ToString("0.00")}");
-                        else uc1textBox3.AppendText(Environment.NewLine + $"이산화질소센서 L : {BitConverter.ToSingle(dataBytes, 0).ToString("0.00")}");
-                    }
-                    else if (address[1 + i * 2] == 0x50 && address[2 + i * 2] == 0x02)
-                    {
-                        float dataFloat = GetFloat(data[4 + i * 6 - 5], data[4 + i * 6 - 4], data[4 + i * 6 - 3], data[4 + i * 6 - 2]);
-                        byte[] dataBytes = BitConverter.GetBytes(dataFloat);
-
-                        if (checkBox1.Checked) uc1textBox3.AppendText(Environment.NewLine + $"{i} 이산화질소센서 M : {BitConverter.ToSingle(dataBytes, 0).ToString("0.00")}");
-                        else uc1textBox3.AppendText(Environment.NewLine + $"이산화질소센서 M : {BitConverter.ToSingle(dataBytes, 0).ToString("0.00")}");
-                    }
-                    else if (address[1 + i * 2] == 0x50 && address[2 + i * 2] == 0x03)
-                    {
-                        float dataFloat = GetFloat(data[4 + i * 6 - 5], data[4 + i * 6 - 4], data[4 + i * 6 - 3], data[4 + i * 6 - 2]);
-                        byte[] dataBytes = BitConverter.GetBytes(dataFloat);
-
-                        if (checkBox1.Checked) uc1textBox3.AppendText(Environment.NewLine + $"{i} 이산화질소센서 H : {BitConverter.ToSingle(dataBytes, 0).ToString("0.00")}");
-                        else uc1textBox3.AppendText(Environment.NewLine + $"이산화질소센서 H : {BitConverter.ToSingle(dataBytes, 0).ToString("0.00")}");
-                    }
-                    else if (address[1 + i * 2] == 0x40 && address[2 + i * 2] == 0x01)
-                    {
-                        float dataFloat = GetFloat(data[4 + i * 6 - 5], data[4 + i * 6 - 4], data[4 + i * 6 - 3], data[4 + i * 6 - 2]);
-                        byte[] dataBytes = BitConverter.GetBytes(dataFloat);
-
-                        if (checkBox1.Checked) uc1textBox3.AppendText(Environment.NewLine + $"{i} CO일산화탄소 L : {BitConverter.ToSingle(dataBytes, 0).ToString("0.00")}");
-                        else uc1textBox3.AppendText(Environment.NewLine + $"CO일산화탄소 L : {BitConverter.ToSingle(dataBytes, 0).ToString("0.00")}");
-                    }
-                    else if (address[1 + i * 2] == 0x40 && address[2 + i * 2] == 0x02)
-                    {
-                        float dataFloat = GetFloat(data[4 + i * 6 - 5], data[4 + i * 6 - 4], data[4 + i * 6 - 3], data[4 + i * 6 - 2]);
-                        byte[] dataBytes = BitConverter.GetBytes(dataFloat);
-
-                        if (checkBox1.Checked) uc1textBox3.AppendText(Environment.NewLine + $"{i} CO일산화탄소 M : {BitConverter.ToSingle(dataBytes, 0).ToString("0.00")}");
-                        else uc1textBox3.AppendText(Environment.NewLine + $"CO일산화탄소 M : {BitConverter.ToSingle(dataBytes, 0).ToString("0.00")}");
-                    }
-                    else if (address[1 + i * 2] == 0x40 && address[2 + i * 2] == 0x03)
-                    {
-                        float dataFloat = GetFloat(data[4 + i * 6 - 5], data[4 + i * 6 - 4], data[4 + i * 6 - 3], data[4 + i * 6 - 2]);
-                        byte[] dataBytes = BitConverter.GetBytes(dataFloat);
-
-                        if (checkBox1.Checked) uc1textBox3.AppendText(Environment.NewLine + $"{i} CO일산화탄소 H : {BitConverter.ToSingle(dataBytes, 0).ToString("0.00")}");
-                        else uc1textBox3.AppendText(Environment.NewLine + $"CO일산화탄소 H : {BitConverter.ToSingle(dataBytes, 0).ToString("0.00")}");
-                    }
-                    else
-                    {
-                        float dataFloat = GetFloat(data[4 + i * 6 - 5], data[4 + i * 6 - 4], data[4 + i * 6 - 3], data[4 + i * 6 - 2]);
-                        byte[] dataBytes = BitConverter.GetBytes(dataFloat);
-                        byte[] addressBytes = new byte[2];
-                        addressBytes[0] = address[1 + i * 2];
-                        addressBytes[1] = address[2 + i * 2];
-
-                        if (checkBox1.Checked) uc1textBox3.AppendText(Environment.NewLine + $"{i} 미정의 장비 {ToReadableByteArray(addressBytes)} : {BitConverter.ToSingle(dataBytes, 0).ToString("0.00")}");
-                        else uc1textBox3.AppendText(Environment.NewLine + $"미정의 장비 {ToReadableByteArray(addressBytes)} : {BitConverter.ToSingle(dataBytes, 0).ToString("0.00")}");
-                    }
-
                 }
                 else if (checkBox1.Checked)
                 {
                     uc1textBox3.AppendText(Environment.NewLine + $"{i} 빈 장비");
-
                 }
             }
             float GetFloat(byte a, byte b, byte c, byte d)

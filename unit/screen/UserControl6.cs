@@ -36,6 +36,10 @@ namespace unit.screen
                     0x00, 0x01, (byte)Convert.ToInt32(textBox3.Text), (byte)(Convert.ToInt32(textBox1.Text)>>8),
                   });
             }
+            else if (checkBox1.Checked && string.IsNullOrWhiteSpace(textBox3.Text))
+            {
+                MessageBox.Show("OPID를 입력해주세요.", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
             else
             {
                 Form1.f1.TxRtu(++Form1.f1.TxCnt, 0, 0x4C752589170d, new byte[]
@@ -60,13 +64,16 @@ namespace unit.screen
 
                    });
             }
+            else if (checkBox1.Checked && string.IsNullOrWhiteSpace(textBox3.Text))
+            {
+                MessageBox.Show("OPID를 입력해주세요.", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
             else
             {
                 Form1.f1.TxRtu(++Form1.f1.TxCnt, 0, 0x4C752589170d, new byte[]
                 {
                     0x01, 0x10, 0x01, 0xF7, 0x00, 0x04, 0x08,
                     0x01,0x2d, (byte)(opid>>8),(byte)opid, 0x00, 0x00, 0x00, 0x00
-
                 });
                 opid++;
             }
@@ -78,11 +85,14 @@ namespace unit.screen
             if (checkBox1.Checked && !string.IsNullOrWhiteSpace(textBox3.Text))
             {
                 Form1.f1.TxRtu(++Form1.f1.TxCnt, 0, 0x4C752589170d, new byte[]
-                   {
-
+                {
                     0x01, 0x10, 0x01, 0xF7, 0x00, 0x04, 0x08,
                     0x01, 0x2e,  (byte)Convert.ToInt32(textBox3.Text), (byte)(Convert.ToInt32(textBox1.Text)>>8),0x00, 0x00, 0x00, 0x00
-                   });
+                });
+            }
+            else if (checkBox1.Checked && string.IsNullOrWhiteSpace(textBox3.Text))
+            {
+                MessageBox.Show("OPID를 입력해주세요.", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else
             {
@@ -98,7 +108,7 @@ namespace unit.screen
         private void button4_Click(object sender, EventArgs e)
         {
             //타이머 좌회전
-            if ( !string.IsNullOrWhiteSpace(textBox1.Text))
+            if (!string.IsNullOrWhiteSpace(textBox1.Text))
             {
                 if (checkBox1.Checked && !string.IsNullOrWhiteSpace(textBox3.Text))
                 {
@@ -109,43 +119,51 @@ namespace unit.screen
 
                     });
                 }
+                else if (checkBox1.Checked && string.IsNullOrWhiteSpace(textBox3.Text))
+                {
+                    MessageBox.Show("OPID를 입력해주세요.", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
                 else
                 {
                     Form1.f1.TxRtu(++Form1.f1.TxCnt, 0, 0x4C752589170d, new byte[]
                     {
-                    0x01, 0x10, 0x01, 0xF7, 0x00, 0x04, 0x08,
-                    0x01, 0x2F,(byte)(opid>>8),(byte)opid, (byte)(Convert.ToInt32(textBox1.Text)>>8),(byte)Convert.ToInt32(textBox1.Text), 0x00, 0x00
+                        0x01, 0x10, 0x01, 0xF7, 0x00, 0x04, 0x08,
+                        0x01, 0x2F,(byte)(opid>>8),(byte)opid, (byte)(Convert.ToInt32(textBox1.Text)>>8),(byte)Convert.ToInt32(textBox1.Text), 0x00, 0x00
 
                     });
                     opid++;
-
                 }
+
             }
             else
             {
-                //빈칸알림
+                MessageBox.Show("시간을 입력해주세요.", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         private void button5_Click(object sender, EventArgs e)
         {
             //타이머 우회전
-            if ( !string.IsNullOrWhiteSpace(textBox2.Text))
+            if (!string.IsNullOrWhiteSpace(textBox2.Text))
             {
                 if (checkBox1.Checked && !string.IsNullOrWhiteSpace(textBox3.Text))
                 {
                     Form1.f1.TxRtu(++Form1.f1.TxCnt, 0, 0x4C752589170d, new byte[]
-                   {
-                     0x01, 0x10, 0x01, 0xF7, 0x00, 0x04, 0x08,
-                   0x01, 0x30, 0x00, (byte)Convert.ToInt32(textBox3.Text),(byte)(Convert.ToInt32(textBox2.Text)>>8), (byte)Convert.ToInt32(textBox2.Text), 0x00, 0x00
-                   });
+                    {
+                        0x01, 0x10, 0x01, 0xF7, 0x00, 0x04, 0x08,
+                        0x01, 0x30, 0x00, (byte)Convert.ToInt32(textBox3.Text),(byte)(Convert.ToInt32(textBox2.Text)>>8), (byte)Convert.ToInt32(textBox2.Text), 0x00, 0x00
+                    });
+                }
+                else if (checkBox1.Checked && string.IsNullOrWhiteSpace(textBox3.Text))
+                {
+                    MessageBox.Show("OPID를 입력해주세요.", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 else
                 {
                     Form1.f1.TxRtu(++Form1.f1.TxCnt, 0, 0x4C752589170d, new byte[]
                     {
-                     0x01, 0x10, 0x01, 0xF7, 0x00, 0x04, 0x08,
-                    0x01, 0x30, (byte)(opid>>8),(byte)opid,  (byte)(Convert.ToInt32(textBox2.Text)>>8), (byte)Convert.ToInt32(textBox2.Text), 0x00, 0x00
+                        0x01, 0x10, 0x01, 0xF7, 0x00, 0x04, 0x08,
+                        0x01, 0x30, (byte)(opid>>8),(byte)opid,  (byte)(Convert.ToInt32(textBox2.Text)>>8), (byte)Convert.ToInt32(textBox2.Text), 0x00, 0x00
                     });
                     opid++;
                 }
@@ -153,7 +171,7 @@ namespace unit.screen
             }
             else
             {
- //               MessageBox.Show((String msg) "Hello Mablang World!");
+                MessageBox.Show("시간을 입력해주세요.", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         private void button6_Click(object sender, EventArgs e)
@@ -168,6 +186,10 @@ namespace unit.screen
                 0x00, 0x00,  (byte)Convert.ToInt32(textBox3.Text), (byte)(Convert.ToInt32(textBox1.Text)>>8),0x00,0x00,0x00,0x00
 
                    });
+            }
+            else if (checkBox1.Checked && string.IsNullOrWhiteSpace(textBox3.Text))
+            {
+                MessageBox.Show("OPID를 입력해주세요.", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else
             {
