@@ -23,7 +23,8 @@ namespace unit
         screen.UserControl3 UserControl3 = new screen.UserControl3();
         screen.UserControl4 UserControl4 = new screen.UserControl4();
         screen.UserControl5 UserControl5 = new screen.UserControl5();
-        screen.UserControl6 UserControl6 = new screen.UserControl6();
+        screen.UserControl6 UserControl6 = new screen.UserControl6(); 
+        screen.UserControl7 UserControl7 = new screen.UserControl7();
 
         private static GrpcChannel channel = GrpcChannel.ForAddress("http://localhost:5044");
         internal static ExProto.ExProtoClient exchange = new ExProto.ExProtoClient(channel);
@@ -597,6 +598,8 @@ namespace unit
             screen.UserControl4.uc4.comboBox3.Items.AddRange(allList1);
             screen.UserControl5.uc5.comboBox3.Items.Clear();
             screen.UserControl5.uc5.comboBox3.Items.AddRange(allList1);
+            screen.UserControl7.uc7.comboBox2.Items.Clear();
+            screen.UserControl7.uc7.comboBox2.Items.AddRange(allList1);
 
             //device combobox
             screen.UserControl1.uc1.comboBox1.Items.Clear();
@@ -605,6 +608,8 @@ namespace unit
             screen.UserControl4.uc4.comboBox2.Items.AddRange(allList2);
             screen.UserControl5.uc5.comboBox2.Items.Clear();
             screen.UserControl5.uc5.comboBox2.Items.AddRange(allList2);
+            screen.UserControl7.uc7.comboBox1.Items.Clear();
+            screen.UserControl7.uc7.comboBox1.Items.AddRange(allList2);
 
             Form1.f1.gatewayItems = allList1;
             Form1.f1.addressItems = allList2;
@@ -743,6 +748,15 @@ namespace unit
             isUc5 = false;
             panel3.Controls.Clear();
             panel3.Controls.Add(UserControl6);
-        }    
+        }
+
+        private void button9_Click(object sender, EventArgs e)
+        {
+            isUc4 = false;
+            isUc5 = false;
+            isUc6 = false;
+            panel3.Controls.Clear();
+            panel3.Controls.Add(UserControl7);
+        }
     }
 }

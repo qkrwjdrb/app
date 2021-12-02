@@ -33,7 +33,7 @@ namespace unit.screen
         private void UserControl1_Load(object sender, EventArgs e)
         {
             Form1.f1.addCombobox();
-            comboBox1.SelectedIndex = 0;
+            comboBox1.SelectedIndex = 0; comboBox2.SelectedIndex = 0;
 
             comboBox3.DisplayMember = "Text";
             comboBox3.ValueMember = "Value";
@@ -74,14 +74,9 @@ namespace unit.screen
                 {
                     float dataFloat = GetFloat(data[4 + i * 6 - 5], data[4 + i * 6 - 4], data[4 + i * 6 - 3], data[4 + i * 6 - 2]);
                     byte[] dataBytes = BitConverter.GetBytes(dataFloat);
-                    if (BitConverter.IsLittleEndian)
-                        Array.Reverse(dataBytes);
                     byte[] addressBytes = { address[1 + i * 2], address[2 + i * 2] };
-                    if (BitConverter.IsLittleEndian)
-                        Array.Reverse(addressBytes);
+                    if (BitConverter.IsLittleEndian) Array.Reverse(addressBytes);
                     short addressShort = BitConverter.ToInt16(addressBytes, 0);
-
-
 
                     switch (addressShort)
                     {

@@ -35,7 +35,6 @@ namespace unit.screen
 
             comboBox1.DataSource = ritems;
 
-            comboBox1.SelectedIndex = 0;
         }
 
         public class ComboboxItem
@@ -48,7 +47,7 @@ namespace unit.screen
                 return Text;
             }
         }
-        private void Test()
+      /*  private void Test()
         {
             ComboboxItem item = new ComboboxItem();
             item.Text = "Item text1";
@@ -59,11 +58,13 @@ namespace unit.screen
             comboBox1.SelectedIndex = 0;
 
             MessageBox.Show((comboBox1.SelectedItem as ComboboxItem).Value.ToString());
-        }
+        }*/
         private void UserControl4_Load(object sender, EventArgs e)
         {
             Form1.f1.addCombobox();
-            comboBox2.SelectedIndex = 0;
+            comboBox1.SelectedIndex = 0; 
+            comboBox2.SelectedIndex = 0; 
+            comboBox3.SelectedIndex = 0;
         }
 
         private void button1_Click(object sender, EventArgs e)

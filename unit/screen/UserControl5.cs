@@ -29,13 +29,13 @@ namespace unit.screen
             };
 
             comboBox1.DataSource = items;
-            comboBox1.SelectedIndex = 0;
+            comboBox1.SelectedIndex = 0; 
         }
 
         private void UserControl5_Load(object sender, EventArgs e)
         {
             Form1.f1.addCombobox();
-            comboBox2.SelectedIndex = 0;
+            comboBox2.SelectedIndex = 0; comboBox3.SelectedIndex = 0;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -68,7 +68,6 @@ namespace unit.screen
                 Convert.ToByte(textBox1.Text),Convert.ToByte(comboBox1.SelectedValue),
 
                 (byte)(Convert.ToInt32(textBox2.Text) >> 8),  (byte)Convert.ToInt32(textBox2.Text) , 0x00, Convert.ToByte(textBox3.Text),
-                    //0xAD, 0xDE
                 }); 
             
             }
