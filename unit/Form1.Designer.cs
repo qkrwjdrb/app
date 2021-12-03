@@ -48,6 +48,7 @@ namespace unit
             this.button6 = new System.Windows.Forms.Button();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.button7 = new System.Windows.Forms.Button();
+            this.button9 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -115,7 +116,7 @@ namespace unit
             // 
             this.Column4.HeaderText = "gateway address";
             this.Column4.Name = "Column4";
-            this.Column4.Width = 80;
+            this.Column4.Width = 95;
             // 
             // dataGridViewTextBoxColumn2
             // 
@@ -128,7 +129,7 @@ namespace unit
             this.Column2.DefaultCellStyle = dataGridViewCellStyle2;
             this.Column2.HeaderText = "time";
             this.Column2.Name = "Column2";
-            this.Column2.Width = 180;
+            this.Column2.Width = 155;
             // 
             // Column3
             // 
@@ -211,16 +212,28 @@ namespace unit
             this.button7.UseVisualStyleBackColor = true;
             this.button7.Click += new System.EventHandler(this.button7_Click);
             // 
+            // button9
+            // 
+            this.button9.Location = new System.Drawing.Point(395, 7);
+            this.button9.Margin = new System.Windows.Forms.Padding(4);
+            this.button9.Name = "button9";
+            this.button9.Size = new System.Drawing.Size(107, 31);
+            this.button9.TabIndex = 1;
+            this.button9.Text = "aaaa";
+            this.button9.UseVisualStyleBackColor = true;
+            this.button9.Click += new System.EventHandler(this.button9_Click);
+            // 
             // Form1
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.ClientSize = new System.Drawing.Size(1572, 593);
+            this.ClientSize = new System.Drawing.Size(1573, 593);
             this.Controls.Add(this.button7);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.button6);
             this.Controls.Add(this.button5);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
+            this.Controls.Add(this.button9);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.label1);
@@ -245,14 +258,15 @@ namespace unit
         private System.Windows.Forms.Button button6;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
+        private System.Windows.Forms.Button button7;
+        private System.Windows.Forms.Button button8;
+        private System.Windows.Forms.Button button9;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Col1n4;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
-        private System.Windows.Forms.Button button7;
-        private System.Windows.Forms.Button button8;
     }
 }
 

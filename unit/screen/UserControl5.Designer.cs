@@ -100,7 +100,7 @@ namespace unit.screen
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(314, 77);
+            this.label3.Location = new System.Drawing.Point(314, 78);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(84, 15);
             this.label3.TabIndex = 8;
@@ -109,7 +109,7 @@ namespace unit.screen
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(319, 107);
+            this.label4.Location = new System.Drawing.Point(325, 108);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(72, 15);
             this.label4.TabIndex = 9;

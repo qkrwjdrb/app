@@ -43,11 +43,15 @@ namespace unit.screen
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.label2 = new System.Windows.Forms.Label();
             this.button6 = new System.Windows.Forms.Button();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(43, 88);
+            this.button1.Location = new System.Drawing.Point(56, 101);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(274, 23);
             this.button1.TabIndex = 0;
@@ -57,7 +61,7 @@ namespace unit.screen
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(43, 122);
+            this.button2.Location = new System.Drawing.Point(56, 135);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(274, 23);
             this.button2.TabIndex = 1;
@@ -67,7 +71,7 @@ namespace unit.screen
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(43, 156);
+            this.button3.Location = new System.Drawing.Point(56, 169);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(274, 23);
             this.button3.TabIndex = 2;
@@ -131,15 +135,15 @@ namespace unit.screen
             // 
             // richTextBox2
             // 
-            this.richTextBox2.Location = new System.Drawing.Point(0, 214);
+            this.richTextBox2.Location = new System.Drawing.Point(0, 224);
             this.richTextBox2.Name = "richTextBox2";
-            this.richTextBox2.Size = new System.Drawing.Size(717, 283);
+            this.richTextBox2.Size = new System.Drawing.Size(718, 273);
             this.richTextBox2.TabIndex = 11;
             this.richTextBox2.Text = "";
             // 
             // textBox3
             // 
-            this.textBox3.Location = new System.Drawing.Point(601, 61);
+            this.textBox3.Location = new System.Drawing.Point(590, 87);
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(77, 23);
             this.textBox3.TabIndex = 12;
@@ -147,7 +151,7 @@ namespace unit.screen
             // checkBox1
             // 
             this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(378, 63);
+            this.checkBox1.Location = new System.Drawing.Point(378, 91);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(102, 19);
             this.checkBox1.TabIndex = 13;
@@ -159,7 +163,7 @@ namespace unit.screen
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("맑은 고딕", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label2.Location = new System.Drawing.Point(516, 62);
+            this.label2.Location = new System.Drawing.Point(503, 90);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(81, 19);
             this.label2.TabIndex = 14;
@@ -167,7 +171,7 @@ namespace unit.screen
             // 
             // button6
             // 
-            this.button6.Location = new System.Drawing.Point(43, 54);
+            this.button6.Location = new System.Drawing.Point(56, 67);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(274, 23);
             this.button6.TabIndex = 15;
@@ -175,10 +179,48 @@ namespace unit.screen
             this.button6.UseVisualStyleBackColor = true;
             this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(109, 29);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(121, 23);
+            this.comboBox1.TabIndex = 16;
+            // 
+            // comboBox2
+            // 
+            this.comboBox2.FormattingEnabled = true;
+            this.comboBox2.Location = new System.Drawing.Point(236, 29);
+            this.comboBox2.Name = "comboBox2";
+            this.comboBox2.Size = new System.Drawing.Size(121, 23);
+            this.comboBox2.TabIndex = 17;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(236, 11);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(89, 15);
+            this.label6.TabIndex = 33;
+            this.label6.Text = "Device Address";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(281, 215);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(98, 15);
+            this.label5.TabIndex = 32;
+            this.label5.Text = "Gateway Address";
+            // 
             // UserControl6
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.comboBox2);
+            this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.button6);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.checkBox1);
@@ -216,5 +258,9 @@ namespace unit.screen
         private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label5;
     }
 }

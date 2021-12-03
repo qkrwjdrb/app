@@ -222,8 +222,6 @@ namespace unit.screen
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
 
-
         }
-
     }
 }
