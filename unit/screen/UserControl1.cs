@@ -33,17 +33,18 @@ namespace unit.screen
         private void UserControl1_Load(object sender, EventArgs e)
         {
             Form1.f1.addCombobox();
-            comboBox1.SelectedIndex = 0; comboBox2.SelectedIndex = 0;
 
-            comboBox3.DisplayMember = "Text";
-            comboBox3.ValueMember = "Value";
+            datetypeBox.DisplayMember = "Text";
+            datetypeBox.ValueMember = "Value";
             var items = new[] {
                 new { Text = "센서 데이터", Value = "센서" },
                 new { Text = "노드정보", Value = "노드정보" },
             };
 
-            comboBox3.DataSource = items;
-            comboBox3.SelectedIndex = 0;
+            datetypeBox.DataSource = items;
+            deviceBox.SelectedIndex = 0; 
+            gatewayBox.SelectedIndex = 0;
+            datetypeBox.SelectedIndex = 0;
         }
 
 
@@ -51,7 +52,8 @@ namespace unit.screen
         {
             uc1textBox3.Text = $"{deviceId} 노드 정보";
 
-            uc1textBox3.AppendText(Environment.NewLine + "기관코드 : " + BitConverter.ToUInt16(new byte[2] { address[4], address[3] }, 0)
+            uc1textBox3.AppendText(
+                Environment.NewLine + "기관코드 : " + BitConverter.ToUInt16(new byte[2] { address[4], address[3] }, 0)
                 + Environment.NewLine + "회사코드 : " + BitConverter.ToUInt16(new byte[2] { address[6], address[5] }, 0)
                 + Environment.NewLine + "제품타입 : " + BitConverter.ToUInt16(new byte[2] { address[8], address[7] }, 0)
                 + Environment.NewLine + "제품코드 : " + BitConverter.ToUInt16(new byte[2] { address[10], address[9] }, 0)
@@ -81,80 +83,80 @@ namespace unit.screen
                     switch (addressShort)
                     {
                         case 0x0001:
-                            if (checkBox1.Checked) uc1textBox3.AppendText(Environment.NewLine + $"{i} 온도 : {BitConverter.ToSingle(dataBytes, 0).ToString("0.00")}");
+                            if (emptyDeviceCheck.Checked) uc1textBox3.AppendText(Environment.NewLine + $"{i} 온도 : {BitConverter.ToSingle(dataBytes, 0).ToString("0.00")}");
                             else uc1textBox3.AppendText(Environment.NewLine + $"온도 : {BitConverter.ToSingle(dataBytes, 0).ToString("0.00")}");
                             break;
                         case 0x0002:
-                            if (checkBox1.Checked) uc1textBox3.AppendText(Environment.NewLine + $"{i} 습도 : {BitConverter.ToSingle(dataBytes, 0).ToString("0.00")}");
+                            if (emptyDeviceCheck.Checked) uc1textBox3.AppendText(Environment.NewLine + $"{i} 습도 : {BitConverter.ToSingle(dataBytes, 0).ToString("0.00")}");
                             else uc1textBox3.AppendText(Environment.NewLine + $"습도 : {BitConverter.ToSingle(dataBytes, 0).ToString("0.00")}");
                             break;
                         case 0x000b:
-                            if (checkBox1.Checked) uc1textBox3.AppendText(Environment.NewLine + $"{i} CO2 : {BitConverter.ToSingle(dataBytes, 0).ToString("0.00")}");
+                            if (emptyDeviceCheck.Checked) uc1textBox3.AppendText(Environment.NewLine + $"{i} CO2 : {BitConverter.ToSingle(dataBytes, 0).ToString("0.00")}");
                             else uc1textBox3.AppendText(Environment.NewLine + $"CO2 : {BitConverter.ToSingle(dataBytes, 0).ToString("0.00")}");
                             break;
                         case 0x7001:
-                            if (checkBox1.Checked) uc1textBox3.AppendText(Environment.NewLine + $"{i} 암모니아 : {BitConverter.ToSingle(dataBytes, 0).ToString("0.00")}");
+                            if (emptyDeviceCheck.Checked) uc1textBox3.AppendText(Environment.NewLine + $"{i} 암모니아 : {BitConverter.ToSingle(dataBytes, 0).ToString("0.00")}");
                             else uc1textBox3.AppendText(Environment.NewLine + $"암모니아 : {BitConverter.ToSingle(dataBytes, 0).ToString("0.00")}");
                             break;
                         case 0x7002:
-                            if (checkBox1.Checked) uc1textBox3.AppendText(Environment.NewLine + $"{i} 이산화질소 : {BitConverter.ToSingle(dataBytes, 0).ToString("0.00")}");
+                            if (emptyDeviceCheck.Checked) uc1textBox3.AppendText(Environment.NewLine + $"{i} 이산화질소 : {BitConverter.ToSingle(dataBytes, 0).ToString("0.00")}");
                             else uc1textBox3.AppendText(Environment.NewLine + $"이산화질소 : {BitConverter.ToSingle(dataBytes, 0).ToString("0.00")}");
                             break;
                         case 0x7003:
-                            if (checkBox1.Checked) uc1textBox3.AppendText(Environment.NewLine + $"{i} 일산화탄소 : {BitConverter.ToSingle(dataBytes, 0).ToString("0.00")}");
+                            if (emptyDeviceCheck.Checked) uc1textBox3.AppendText(Environment.NewLine + $"{i} 일산화탄소 : {BitConverter.ToSingle(dataBytes, 0).ToString("0.00")}");
                             else uc1textBox3.AppendText(Environment.NewLine + $"일산화탄소 : {BitConverter.ToSingle(dataBytes, 0).ToString("0.00")}");
                             break;
                         case 0x7004:
-                            if (checkBox1.Checked) uc1textBox3.AppendText(Environment.NewLine + $"{i} 조도 : {BitConverter.ToSingle(dataBytes, 0).ToString("0.00")}");
+                            if (emptyDeviceCheck.Checked) uc1textBox3.AppendText(Environment.NewLine + $"{i} 조도 : {BitConverter.ToSingle(dataBytes, 0).ToString("0.00")}");
                             else uc1textBox3.AppendText(Environment.NewLine + $"조도 : {BitConverter.ToSingle(dataBytes, 0).ToString("0.00")}");
                             break;
                         case 0x7005:
-                            if (checkBox1.Checked) uc1textBox3.AppendText(Environment.NewLine + $"{i} 자외선센서 : {BitConverter.ToSingle(dataBytes, 0).ToString("0.00")}");
+                            if (emptyDeviceCheck.Checked) uc1textBox3.AppendText(Environment.NewLine + $"{i} 자외선센서 : {BitConverter.ToSingle(dataBytes, 0).ToString("0.00")}");
                             else uc1textBox3.AppendText(Environment.NewLine + $"자외선센서 : {BitConverter.ToSingle(dataBytes, 0).ToString("0.00")}");
                             break;
                         case 0x6001:
-                            if (checkBox1.Checked) uc1textBox3.AppendText(Environment.NewLine + $"{i} 암모니아 L : {BitConverter.ToSingle(dataBytes, 0).ToString("0.00")}");
+                            if (emptyDeviceCheck.Checked) uc1textBox3.AppendText(Environment.NewLine + $"{i} 암모니아 L : {BitConverter.ToSingle(dataBytes, 0).ToString("0.00")}");
                             else uc1textBox3.AppendText(Environment.NewLine + $"암모니아 L : {BitConverter.ToSingle(dataBytes, 0).ToString("0.00")}");
                             break;
                         case 0x6002:
-                            if (checkBox1.Checked) uc1textBox3.AppendText(Environment.NewLine + $"{i} 암모니아 M : {BitConverter.ToSingle(dataBytes, 0).ToString("0.00")}");
+                            if (emptyDeviceCheck.Checked) uc1textBox3.AppendText(Environment.NewLine + $"{i} 암모니아 M : {BitConverter.ToSingle(dataBytes, 0).ToString("0.00")}");
                             else uc1textBox3.AppendText(Environment.NewLine + $"암모니아 M : {BitConverter.ToSingle(dataBytes, 0).ToString("0.00")}");
                             break;
                         case 0x6003:
-                            if (checkBox1.Checked) uc1textBox3.AppendText(Environment.NewLine + $"{i} 암모니아 H : {BitConverter.ToSingle(dataBytes, 0).ToString("0.00")}");
+                            if (emptyDeviceCheck.Checked) uc1textBox3.AppendText(Environment.NewLine + $"{i} 암모니아 H : {BitConverter.ToSingle(dataBytes, 0).ToString("0.00")}");
                             else uc1textBox3.AppendText(Environment.NewLine + $"암모니아 H : {BitConverter.ToSingle(dataBytes, 0).ToString("0.00")}");
                             break;
                         case 0x5001:
-                            if (checkBox1.Checked) uc1textBox3.AppendText(Environment.NewLine + $"{i} 이산화질소센서 L : {BitConverter.ToSingle(dataBytes, 0).ToString("0.00")}");
+                            if (emptyDeviceCheck.Checked) uc1textBox3.AppendText(Environment.NewLine + $"{i} 이산화질소센서 L : {BitConverter.ToSingle(dataBytes, 0).ToString("0.00")}");
                             else uc1textBox3.AppendText(Environment.NewLine + $"이산화질소센서 L : {BitConverter.ToSingle(dataBytes, 0).ToString("0.00")}");
                             break;
                         case 0x5002:
-                            if (checkBox1.Checked) uc1textBox3.AppendText(Environment.NewLine + $"{i} 이산화질소센서 M : {BitConverter.ToSingle(dataBytes, 0).ToString("0.00")}");
+                            if (emptyDeviceCheck.Checked) uc1textBox3.AppendText(Environment.NewLine + $"{i} 이산화질소센서 M : {BitConverter.ToSingle(dataBytes, 0).ToString("0.00")}");
                             else uc1textBox3.AppendText(Environment.NewLine + $"이산화질소센서 M : {BitConverter.ToSingle(dataBytes, 0).ToString("0.00")}");
                             break;
                         case 0x5003:
-                            if (checkBox1.Checked) uc1textBox3.AppendText(Environment.NewLine + $"{i} 이산화질소센서 H : {BitConverter.ToSingle(dataBytes, 0).ToString("0.00")}");
+                            if (emptyDeviceCheck.Checked) uc1textBox3.AppendText(Environment.NewLine + $"{i} 이산화질소센서 H : {BitConverter.ToSingle(dataBytes, 0).ToString("0.00")}");
                             else uc1textBox3.AppendText(Environment.NewLine + $"이산화질소센서 H : {BitConverter.ToSingle(dataBytes, 0).ToString("0.00")}");
                             break;
                         case 0x4001:
-                            if (checkBox1.Checked) uc1textBox3.AppendText(Environment.NewLine + $"{i} CO일산화탄소 L : {BitConverter.ToSingle(dataBytes, 0).ToString("0.00")}");
+                            if (emptyDeviceCheck.Checked) uc1textBox3.AppendText(Environment.NewLine + $"{i} CO일산화탄소 L : {BitConverter.ToSingle(dataBytes, 0).ToString("0.00")}");
                             else uc1textBox3.AppendText(Environment.NewLine + $"CO일산화탄소 L : {BitConverter.ToSingle(dataBytes, 0).ToString("0.00")}");
                             break;
                         case 0x4002:
-                            if (checkBox1.Checked) uc1textBox3.AppendText(Environment.NewLine + $"{i} CO일산화탄소 M : {BitConverter.ToSingle(dataBytes, 0).ToString("0.00")}");
+                            if (emptyDeviceCheck.Checked) uc1textBox3.AppendText(Environment.NewLine + $"{i} CO일산화탄소 M : {BitConverter.ToSingle(dataBytes, 0).ToString("0.00")}");
                             else uc1textBox3.AppendText(Environment.NewLine + $"CO일산화탄소 M : {BitConverter.ToSingle(dataBytes, 0).ToString("0.00")}");
                             break;
                         case 0x4003:
-                            if (checkBox1.Checked) uc1textBox3.AppendText(Environment.NewLine + $"{i} CO일산화탄소 H : {BitConverter.ToSingle(dataBytes, 0).ToString("0.00")}");
+                            if (emptyDeviceCheck.Checked) uc1textBox3.AppendText(Environment.NewLine + $"{i} CO일산화탄소 H : {BitConverter.ToSingle(dataBytes, 0).ToString("0.00")}");
                             else uc1textBox3.AppendText(Environment.NewLine + $"CO일산화탄소 H : {BitConverter.ToSingle(dataBytes, 0).ToString("0.00")}");
                             break;
                         default:
-                            if (checkBox1.Checked) uc1textBox3.AppendText(Environment.NewLine + $"{i} 미정의 장비 {ToReadableByteArray(addressBytes)} : {BitConverter.ToSingle(dataBytes, 0).ToString("0.00")}");
+                            if (emptyDeviceCheck.Checked) uc1textBox3.AppendText(Environment.NewLine + $"{i} 미정의 장비 {ToReadableByteArray(addressBytes)} : {BitConverter.ToSingle(dataBytes, 0).ToString("0.00")}");
                             else uc1textBox3.AppendText(Environment.NewLine + $"미정의 장비 {ToReadableByteArray(addressBytes)} : {BitConverter.ToSingle(dataBytes, 0).ToString("0.00")}");
                             break;
                     }
                 }
-                else if (checkBox1.Checked)
+                else if (emptyDeviceCheck.Checked)
                 {
                     uc1textBox3.AppendText(Environment.NewLine + $"{i} 빈 장비");
                 }
@@ -184,28 +186,29 @@ namespace unit.screen
         }
         private void button1_Click(object sender, EventArgs e)
         {
-            if (comboBox3.SelectedValue == "센서")
+            if (datetypeBox.SelectedValue == "센서")
             {
-                if (!String.IsNullOrEmpty(textBox1.Text))
+                if (!String.IsNullOrEmpty(deviceNumberBox.Text))
                 {
-                    Form1.f1.deviceCount = Convert.ToByte(textBox1.Text);
+                    Form1.f1.deviceCount = Convert.ToByte(deviceNumberBox.Text);
                 }
-                if (comboBox1.SelectedItem != null)
+                if (deviceBox.SelectedItem != null)
                 {
-                    string aa = comboBox1.SelectedItem.ToString();
+                    uint gateway= uint.Parse(gatewayBox.SelectedItem.ToString(), System.Globalization.NumberStyles.HexNumber);
+                    ulong device = ulong.Parse(deviceBox.SelectedItem.ToString(), System.Globalization.NumberStyles.HexNumber);
 
-                    ulong device = ulong.Parse(aa, System.Globalization.NumberStyles.HexNumber);
-
-                    Form1.f1.getAddress(device);
+                    Form1.f1.dataGateway = gateway;
                     Form1.f1.dataAddress = device;
-
+                    Form1.f1.getAddress(gateway,device);
                 }
             }
-            if (comboBox3.SelectedValue == "노드정보")
+            if (datetypeBox.SelectedValue == "노드정보")
             {
-                string aa = comboBox1.SelectedItem.ToString();
+                string aa = deviceBox.SelectedItem.ToString();
+
+                uint gateway = uint.Parse(gatewayBox.SelectedItem.ToString(), System.Globalization.NumberStyles.HexNumber);
                 ulong device = ulong.Parse(aa, System.Globalization.NumberStyles.HexNumber);
-                Form1.f1.getNode(device);
+                Form1.f1.getNode(gateway,device);
             }
             else { }
         }
@@ -221,6 +224,11 @@ namespace unit.screen
             {
                 e.Handled = true;
             }
+        }
+
+        private void comboBox22_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 

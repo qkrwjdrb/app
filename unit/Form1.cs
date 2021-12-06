@@ -1,15 +1,15 @@
-﻿ using System;
-using System.IO;
+﻿using Google.Protobuf;
+using Grpc.Core;
+using Grpc.Net.Client;
+using NetExchange;
+using System;
+using System.Collections.Generic;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Collections.Generic;
-using Google.Protobuf;
-using Grpc.Core;
-using Grpc.Net.Client;
-using NetExchange;
 
 namespace unit
 {
@@ -23,7 +23,7 @@ namespace unit
         screen.UserControl3 UserControl3 = new screen.UserControl3();
         screen.UserControl4 UserControl4 = new screen.UserControl4();
         screen.UserControl5 UserControl5 = new screen.UserControl5();
-        screen.UserControl6 UserControl6 = new screen.UserControl6(); 
+        screen.UserControl6 UserControl6 = new screen.UserControl6();
         screen.UserControl7 UserControl7 = new screen.UserControl7();
 
         private static GrpcChannel channel = GrpcChannel.ForAddress("http://localhost:5044");
@@ -34,7 +34,7 @@ namespace unit
         internal static AsyncDuplexStreamingCall<CmdMessage, CmdMessage> cmdLink = exchange.MessageCmd();
         internal UInt16 TxCnt;
         internal string[] gatewayItems;
-        internal string[] addressItems; 
+        internal string[] addressItems;
 
         string[] save_gateways = new string[5];
 
@@ -49,6 +49,9 @@ namespace unit
         public FileInfo deFile = new FileInfo("device.txt");
         public FileInfo gaFile = new FileInfo("gateway.txt");
 
+        public ulong dataAddress;
+        public uint dataGateway;
+
         public Form1()
         {
             InitializeComponent();
@@ -62,8 +65,8 @@ namespace unit
         //form1_load
         public void Form1_Load(object sender, EventArgs e)
         {
-           // this.Size = new Size(761, 632);
-          
+            // this.Size = new Size(761, 632);
+
             if (deFile.Exists)
             {
                 addressLoadFile();
@@ -73,7 +76,7 @@ namespace unit
                 /*서울 "308398D9E8F5" ,"500291AEBD15"*/
                 /*양양 "24A16057F685", "500291AEBCD9", "500291AEBE4D"*/
                 string[] aa = { "24A16057F685", "500291AEBCD9", "500291AEBE4D" };
-                screen.UserControl2.uc2.listBox2.Items.AddRange(aa);
+                screen.UserControl2.uc2.deviceListBox.Items.AddRange(aa);
             }
             if (gaFile.Exists)
             {
@@ -82,11 +85,11 @@ namespace unit
             else
             {
                 string[] aa = { "0" };
-                screen.UserControl2.uc2.listBox1.Items.AddRange(aa);
+                screen.UserControl2.uc2.gatewayListBox.Items.AddRange(aa);
             }
             panel3.Controls.Add(UserControl6);
-            getAddress(ulong.Parse(screen.UserControl2.uc2.listBox2.Items[0].ToString(), System.Globalization.NumberStyles.HexNumber));
-            dataAddress = ulong.Parse(screen.UserControl2.uc2.listBox2.Items[0].ToString(), System.Globalization.NumberStyles.HexNumber);
+            getAddress(uint.Parse(screen.UserControl2.uc2.gatewayListBox.Items[0].ToString(), System.Globalization.NumberStyles.HexNumber), ulong.Parse(screen.UserControl2.uc2.deviceListBox.Items[0].ToString(), System.Globalization.NumberStyles.HexNumber));
+            dataAddress = ulong.Parse(screen.UserControl2.uc2.deviceListBox.Items[0].ToString(), System.Globalization.NumberStyles.HexNumber);
         }
 
         private async void RtuMessageService()
@@ -164,33 +167,33 @@ namespace unit
             return "Unknown probotol";
         }
         static private readonly ushort[] wCRCTable =
-              {
-        0X0000, 0XC0C1, 0XC181, 0X0140, 0XC301, 0X03C0, 0X0280, 0XC241, 0XC601, 0X06C0,
-        0X0780, 0XC741, 0X0500, 0XC5C1, 0XC481, 0X0440, 0XCC01, 0X0CC0, 0X0D80, 0XCD41,
-        0X0F00, 0XCFC1, 0XCE81, 0X0E40, 0X0A00, 0XCAC1, 0XCB81, 0X0B40, 0XC901, 0X09C0,
-        0X0880, 0XC841, 0XD801, 0X18C0, 0X1980, 0XD941, 0X1B00, 0XDBC1, 0XDA81, 0X1A40,
-        0X1E00, 0XDEC1, 0XDF81, 0X1F40, 0XDD01, 0X1DC0, 0X1C80, 0XDC41, 0X1400, 0XD4C1,
-        0XD581, 0X1540, 0XD701, 0X17C0, 0X1680, 0XD641, 0XD201, 0X12C0, 0X1380, 0XD341,
-        0X1100, 0XD1C1, 0XD081, 0X1040, 0XF001, 0X30C0, 0X3180, 0XF141, 0X3300, 0XF3C1,
-        0XF281, 0X3240, 0X3600, 0XF6C1, 0XF781, 0X3740, 0XF501, 0X35C0, 0X3480, 0XF441,
-        0X3C00, 0XFCC1, 0XFD81, 0X3D40, 0XFF01, 0X3FC0, 0X3E80, 0XFE41, 0XFA01, 0X3AC0,
-        0X3B80, 0XFB41, 0X3900, 0XF9C1, 0XF881, 0X3840, 0X2800, 0XE8C1, 0XE981, 0X2940,
-        0XEB01, 0X2BC0, 0X2A80, 0XEA41, 0XEE01, 0X2EC0, 0X2F80, 0XEF41, 0X2D00, 0XEDC1,
-        0XEC81, 0X2C40, 0XE401, 0X24C0, 0X2580, 0XE541, 0X2700, 0XE7C1, 0XE681, 0X2640,
-        0X2200, 0XE2C1, 0XE381, 0X2340, 0XE101, 0X21C0, 0X2080, 0XE041, 0XA001, 0X60C0,
-        0X6180, 0XA141, 0X6300, 0XA3C1, 0XA281, 0X6240, 0X6600, 0XA6C1, 0XA781, 0X6740,
-        0XA501, 0X65C0, 0X6480, 0XA441, 0X6C00, 0XACC1, 0XAD81, 0X6D40, 0XAF01, 0X6FC0,
-        0X6E80, 0XAE41, 0XAA01, 0X6AC0, 0X6B80, 0XAB41, 0X6900, 0XA9C1, 0XA881, 0X6840,
-        0X7800, 0XB8C1, 0XB981, 0X7940, 0XBB01, 0X7BC0, 0X7A80, 0XBA41, 0XBE01, 0X7EC0,
-        0X7F80, 0XBF41, 0X7D00, 0XBDC1, 0XBC81, 0X7C40, 0XB401, 0X74C0, 0X7580, 0XB541,
-        0X7700, 0XB7C1, 0XB681, 0X7640, 0X7200, 0XB2C1, 0XB381, 0X7340, 0XB101, 0X71C0,
-        0X7080, 0XB041, 0X5000, 0X90C1, 0X9181, 0X5140, 0X9301, 0X53C0, 0X5280, 0X9241,
-        0X9601, 0X56C0, 0X5780, 0X9741, 0X5500, 0X95C1, 0X9481, 0X5440, 0X9C01, 0X5CC0,
-        0X5D80, 0X9D41, 0X5F00, 0X9FC1, 0X9E81, 0X5E40, 0X5A00, 0X9AC1, 0X9B81, 0X5B40,
-        0X9901, 0X59C0, 0X5880, 0X9841, 0X8801, 0X48C0, 0X4980, 0X8941, 0X4B00, 0X8BC1,
-        0X8A81, 0X4A40, 0X4E00, 0X8EC1, 0X8F81, 0X4F40, 0X8D01, 0X4DC0, 0X4C80, 0X8C41,
-        0X4400, 0X84C1, 0X8581, 0X4540, 0X8701, 0X47C0, 0X4680, 0X8641, 0X8201, 0X42C0,
-        0X4380, 0X8341, 0X4100, 0X81C1, 0X8081, 0X4040
+        {
+            0X0000, 0XC0C1, 0XC181, 0X0140, 0XC301, 0X03C0, 0X0280, 0XC241, 0XC601, 0X06C0,
+            0X0780, 0XC741, 0X0500, 0XC5C1, 0XC481, 0X0440, 0XCC01, 0X0CC0, 0X0D80, 0XCD41,
+            0X0F00, 0XCFC1, 0XCE81, 0X0E40, 0X0A00, 0XCAC1, 0XCB81, 0X0B40, 0XC901, 0X09C0,
+            0X0880, 0XC841, 0XD801, 0X18C0, 0X1980, 0XD941, 0X1B00, 0XDBC1, 0XDA81, 0X1A40,
+            0X1E00, 0XDEC1, 0XDF81, 0X1F40, 0XDD01, 0X1DC0, 0X1C80, 0XDC41, 0X1400, 0XD4C1,
+            0XD581, 0X1540, 0XD701, 0X17C0, 0X1680, 0XD641, 0XD201, 0X12C0, 0X1380, 0XD341,
+            0X1100, 0XD1C1, 0XD081, 0X1040, 0XF001, 0X30C0, 0X3180, 0XF141, 0X3300, 0XF3C1,
+            0XF281, 0X3240, 0X3600, 0XF6C1, 0XF781, 0X3740, 0XF501, 0X35C0, 0X3480, 0XF441,
+            0X3C00, 0XFCC1, 0XFD81, 0X3D40, 0XFF01, 0X3FC0, 0X3E80, 0XFE41, 0XFA01, 0X3AC0,
+            0X3B80, 0XFB41, 0X3900, 0XF9C1, 0XF881, 0X3840, 0X2800, 0XE8C1, 0XE981, 0X2940,
+            0XEB01, 0X2BC0, 0X2A80, 0XEA41, 0XEE01, 0X2EC0, 0X2F80, 0XEF41, 0X2D00, 0XEDC1,
+            0XEC81, 0X2C40, 0XE401, 0X24C0, 0X2580, 0XE541, 0X2700, 0XE7C1, 0XE681, 0X2640,
+            0X2200, 0XE2C1, 0XE381, 0X2340, 0XE101, 0X21C0, 0X2080, 0XE041, 0XA001, 0X60C0,
+            0X6180, 0XA141, 0X6300, 0XA3C1, 0XA281, 0X6240, 0X6600, 0XA6C1, 0XA781, 0X6740,
+            0XA501, 0X65C0, 0X6480, 0XA441, 0X6C00, 0XACC1, 0XAD81, 0X6D40, 0XAF01, 0X6FC0,
+            0X6E80, 0XAE41, 0XAA01, 0X6AC0, 0X6B80, 0XAB41, 0X6900, 0XA9C1, 0XA881, 0X6840,
+            0X7800, 0XB8C1, 0XB981, 0X7940, 0XBB01, 0X7BC0, 0X7A80, 0XBA41, 0XBE01, 0X7EC0,
+            0X7F80, 0XBF41, 0X7D00, 0XBDC1, 0XBC81, 0X7C40, 0XB401, 0X74C0, 0X7580, 0XB541,
+            0X7700, 0XB7C1, 0XB681, 0X7640, 0X7200, 0XB2C1, 0XB381, 0X7340, 0XB101, 0X71C0,
+            0X7080, 0XB041, 0X5000, 0X90C1, 0X9181, 0X5140, 0X9301, 0X53C0, 0X5280, 0X9241,
+            0X9601, 0X56C0, 0X5780, 0X9741, 0X5500, 0X95C1, 0X9481, 0X5440, 0X9C01, 0X5CC0,
+            0X5D80, 0X9D41, 0X5F00, 0X9FC1, 0X9E81, 0X5E40, 0X5A00, 0X9AC1, 0X9B81, 0X5B40,
+            0X9901, 0X59C0, 0X5880, 0X9841, 0X8801, 0X48C0, 0X4980, 0X8941, 0X4B00, 0X8BC1,
+            0X8A81, 0X4A40, 0X4E00, 0X8EC1, 0X8F81, 0X4F40, 0X8D01, 0X4DC0, 0X4C80, 0X8C41,
+            0X4400, 0X84C1, 0X8581, 0X4540, 0X8701, 0X47C0, 0X4680, 0X8641, 0X8201, 0X42C0,
+            0X4380, 0X8341, 0X4100, 0X81C1, 0X8081, 0X4040
         };
 
 
@@ -289,7 +292,7 @@ namespace unit
 
             this.Invoke((MethodInvoker)delegate ()
             {
-                dataGridView1.Rows.Add(acknowledgeNumber, "Rx",gatewayId.ToString("X12"), deviceId.ToString("X12"), DateTime.Now, BitConverter.ToString(payload).Replace("-", " "));
+                dataGridView1.Rows.Add(acknowledgeNumber, "Rx", gatewayId.ToString("X12"), deviceId.ToString("X12"), DateTime.Now, BitConverter.ToString(payload).Replace("-", " "));
 
                 if (isUc4)
                 {
@@ -319,9 +322,9 @@ namespace unit
                     screen.UserControl5.uc5.uc5textBox1.Text += "Responsed... ";
 
                 }
-                else if (isUc6) 
+                else if (isUc6)
                 {
-                
+
                 }
                 else
                 {
@@ -341,7 +344,7 @@ namespace unit
 
                         addressEnd = false;
 
-                        getData(dataAddress);
+                        getData(dataGateway, dataAddress);
                     }
                     if (dataEnd && payload.Length == (deviceCount * 6 + 7))
                     {
@@ -422,7 +425,6 @@ namespace unit
                     break;
             }
         }
-
         public void TxCmd(UInt16 opCode, UInt32 route, UInt32 argument, UInt32 gatewayId, UInt64 deviceId, byte[] payload)
         {
             this.Invoke((MethodInvoker)delegate ()
@@ -475,45 +477,6 @@ namespace unit
                     break;
             }
         }
-
-
-
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-
-        private void panel2_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void richTextBox2_TextChanged(object sender, EventArgs e)
-        {
-            //ucPanel.ucScreen2.DataSendEvent = new ucPanel.DataPushEventHandler();
-        }
-
-        private void b(object sender, MouseEventArgs e)
-        {
-
-        }
-
-        private void richTextBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void groupBox5_Enter(object sender, EventArgs e)
-        {
-
-        }
-
-        private void groupBox4_Enter(object sender, EventArgs e)
-        {
-
-        }
-
         public void addressSaveFile()
         {
             if (deFile.Exists)
@@ -528,7 +491,7 @@ namespace unit
 
             FileStream fs = new FileStream("device.txt", FileMode.Create);
             StreamWriter sw = new StreamWriter(fs);
-            foreach (string i in screen.UserControl2.uc2.listBox2.Items.OfType<string>().ToArray())
+            foreach (string i in screen.UserControl2.uc2.deviceListBox.Items.OfType<string>().ToArray())
             {
                 sw.Write(i);
                 sw.Write(',');
@@ -542,10 +505,10 @@ namespace unit
 
             string a = sr.ReadToEnd();
             string[] dataArray = a.Split(',');
-            dataArray = dataArray.Where(x => !string.IsNullOrEmpty(x)).ToArray();
-            screen.UserControl2.uc2.listBox2.Items.Clear();
+            dataArray = dataArray.Where(x => !string.IsNullOrWhiteSpace(x)).ToArray();
+            screen.UserControl2.uc2.deviceListBox.Items.Clear();
             //screen.UserControl1.uc1.comboBox1.Items.Clear();
-            screen.UserControl2.uc2.listBox2.Items.AddRange(dataArray);
+            screen.UserControl2.uc2.deviceListBox.Items.AddRange(dataArray);
             addCombobox();
             sr.Close();
         }
@@ -563,7 +526,7 @@ namespace unit
 
             FileStream fs = new FileStream("gateway.txt", FileMode.Create);
             StreamWriter sw = new StreamWriter(fs);
-            foreach (string i in screen.UserControl2.uc2.listBox1.Items.OfType<string>().ToArray())
+            foreach (string i in screen.UserControl2.uc2.gatewayListBox.Items.OfType<string>().ToArray())
             {
                 sw.Write(i);
                 sw.Write(',');
@@ -579,37 +542,41 @@ namespace unit
 
             string a = sr.ReadToEnd();
             string[] dataArray = a.Split(',');
-            dataArray = dataArray.Where(x => !string.IsNullOrEmpty(x)).ToArray();
-            screen.UserControl2.uc2.listBox1.Items.Clear();
+            dataArray = dataArray.Where(x => !string.IsNullOrWhiteSpace(x)).ToArray();
+            screen.UserControl2.uc2.gatewayListBox.Items.Clear();
             //screen.UserControl1.uc1.comboBox2.Items.Clear();
-            screen.UserControl2.uc2.listBox1.Items.AddRange(dataArray);
+            screen.UserControl2.uc2.gatewayListBox.Items.AddRange(dataArray);
             addCombobox();
             sr.Close();
         }
         public void addCombobox()
         {
-            string[] allList1 = screen.UserControl2.uc2.listBox1.Items.OfType<string>().ToArray();
-            string[] allList2 = screen.UserControl2.uc2.listBox2.Items.OfType<string>().ToArray();
+            string[] allList1 = screen.UserControl2.uc2.gatewayListBox.Items.OfType<string>().ToArray();
+            string[] allList2 = screen.UserControl2.uc2.deviceListBox.Items.OfType<string>().ToArray();
 
             //gateway combobox
-            screen.UserControl1.uc1.comboBox2.Items.Clear();
-            screen.UserControl1.uc1.comboBox2.Items.AddRange(allList1);
-            screen.UserControl4.uc4.comboBox3.Items.Clear();
-            screen.UserControl4.uc4.comboBox3.Items.AddRange(allList1);
-            screen.UserControl5.uc5.comboBox3.Items.Clear();
-            screen.UserControl5.uc5.comboBox3.Items.AddRange(allList1);
-            screen.UserControl7.uc7.comboBox2.Items.Clear();
-            screen.UserControl7.uc7.comboBox2.Items.AddRange(allList1);
+            screen.UserControl1.uc1.gatewayBox.Items.Clear();
+            screen.UserControl1.uc1.gatewayBox.Items.AddRange(allList1);
+            screen.UserControl4.uc4.gatewayBox.Items.Clear();
+            screen.UserControl4.uc4.gatewayBox.Items.AddRange(allList1);
+            screen.UserControl5.uc5.gatewayBox.Items.Clear();
+            screen.UserControl5.uc5.gatewayBox.Items.AddRange(allList1);
+            screen.UserControl6.uc6.gatewayBox.Items.Clear();
+            screen.UserControl6.uc6.gatewayBox.Items.AddRange(allList1);
+            screen.UserControl7.uc7.gatewayBox.Items.Clear();
+            screen.UserControl7.uc7.gatewayBox.Items.AddRange(allList1);
 
             //device combobox
-            screen.UserControl1.uc1.comboBox1.Items.Clear();
-            screen.UserControl1.uc1.comboBox1.Items.AddRange(allList2);
-            screen.UserControl4.uc4.comboBox2.Items.Clear();
-            screen.UserControl4.uc4.comboBox2.Items.AddRange(allList2);
-            screen.UserControl5.uc5.comboBox2.Items.Clear();
-            screen.UserControl5.uc5.comboBox2.Items.AddRange(allList2);
-            screen.UserControl7.uc7.comboBox1.Items.Clear();
-            screen.UserControl7.uc7.comboBox1.Items.AddRange(allList2);
+            screen.UserControl1.uc1.deviceBox.Items.Clear();
+            screen.UserControl1.uc1.deviceBox.Items.AddRange(allList2);
+            screen.UserControl4.uc4.deviceBox.Items.Clear();
+            screen.UserControl4.uc4.deviceBox.Items.AddRange(allList2);
+            screen.UserControl5.uc5.deviceBox.Items.Clear();
+            screen.UserControl5.uc5.deviceBox.Items.AddRange(allList2);
+            screen.UserControl6.uc6.deviceBox.Items.Clear();
+            screen.UserControl6.uc6.deviceBox.Items.AddRange(allList2);
+            screen.UserControl7.uc7.deviceBox.Items.Clear();
+            screen.UserControl7.uc7.deviceBox.Items.AddRange(allList2);
 
             Form1.f1.gatewayItems = allList1;
             Form1.f1.addressItems = allList2;
@@ -630,62 +597,33 @@ namespace unit
         }
         bool addressEnd = false;
         byte[] addressArray;
-        public void getAddress(ulong address)
+        public void getAddress(uint gatewayID, ulong deviceID)
         {
             addressEnd = true;
-            TxRtu(++TxCnt, 0, address, new byte[] {   0x01, 0x03,
-          0x00, 101, 0x00,deviceCount,
-        // 0xAD, 0xDE
+            TxRtu(++TxCnt, gatewayID, deviceID, new byte[] {   0x01, 0x03,
+            0x00, 101, 0x00,deviceCount,
             });
         }
         bool isNode = false;
-        public void getNode(ulong address)
+        public void getNode(uint gatewayID, ulong deviceID)
         {
             isNode = true;
-            TxRtu(++TxCnt, 0, address, new byte[] {   0x01, 0x03,
-          0x00, 1, 0x00,8,
-        
+            TxRtu(++TxCnt, gatewayID, deviceID, new byte[] {   0x01, 0x03,
+                0x00, 1, 0x00,8,
             });
         }
         bool dataEnd = false;
         byte[] dataArray;
-        public void getData(ulong address)
+        public void getData(uint gatewayID, ulong deviceID)
         {
-
-            TxRtu(++TxCnt, 0, address, new byte[] {   0x01, 0x03,
-         0x00,202, 0x00, Convert.ToByte(deviceCount*3+1),
-         //0xAD, 0xDE
-            });
             dataEnd = true;
+            TxRtu(++TxCnt, gatewayID, deviceID, new byte[] {   0x01, 0x03,
+                0x00,202, 0x00, Convert.ToByte(deviceCount*3+1),
+            });
         }
-        //float GetModbusFloat(byte[] receiveData, Int32 offset)
-        //{
-        //    byte[] rData = new byte[4];
 
-        //    rData[0] = receiveData[offset + 1];
-        //    rData[1] = receiveData[offset + 0];
-        //    rData[2] = receiveData[offset + 3];
-        //    rData[3] = receiveData[offset + 2];
 
-        //    return BitConverter.ToSingle(rData, 0);
-        //}
 
-        //float GetModbusFloat(byte[] receiveData)
-        //{
-        //    return GetModbusFloat(receiveData, 0);
-        //}
-
-        //Int16 GetModbusInt16(byte[] receiveData, Int32 offset)
-        //{
-        //    return (Int16)((receiveData[offset + 1] << 8) | receiveData[offset + 0]);
-        //}
-
-        //Int16 GetModbusInt16(byte[] receiveData)
-        //{
-        //    return GetModbusInt16(receiveData, 0);
-        //}
-        
-        public ulong dataAddress;
 
         private void button2_Click(object sender, EventArgs e)
         {

@@ -21,20 +21,22 @@ namespace unit.screen
 
         private void UserControl6_Load(object sender, EventArgs e)
         {
-
+            deviceBox.SelectedIndex = 0;
+            gatewayBox.SelectedIndex = 0;
         }
         ushort opid = 0;
+        // 구동기 모터 주소 : 0x4C752589170d
         private void button1_Click(object sender, EventArgs e)
         {
             textBox3.Text = Convert.ToString(opid);
             //리셋
             if (checkBox1.Checked && !string.IsNullOrWhiteSpace(textBox3.Text))
             {
-                Form1.f1.TxRtu(++Form1.f1.TxCnt, 0, 0x4C752589170d, new byte[]
-                  {
+                Form1.f1.TxRtu(++Form1.f1.TxCnt, uint.Parse(gatewayBox.SelectedItem.ToString(), System.Globalization.NumberStyles.HexNumber), ulong.Parse(deviceBox.SelectedItem.ToString(), System.Globalization.NumberStyles.HexNumber), new byte[]
+                {
                     0x01, 0x10, 0x01, 0xF5, 0x00, 0x02, 0x04,
                     0x00, 0x01, (byte)Convert.ToInt32(textBox3.Text), (byte)(Convert.ToInt32(textBox1.Text)>>8),
-                  });
+                });
             }
             else if (checkBox1.Checked && string.IsNullOrWhiteSpace(textBox3.Text))
             {
@@ -42,7 +44,7 @@ namespace unit.screen
             }
             else
             {
-                Form1.f1.TxRtu(++Form1.f1.TxCnt, 0, 0x4C752589170d, new byte[]
+                Form1.f1.TxRtu(++Form1.f1.TxCnt, uint.Parse(gatewayBox.SelectedItem.ToString(), System.Globalization.NumberStyles.HexNumber), ulong.Parse(deviceBox.SelectedItem.ToString(), System.Globalization.NumberStyles.HexNumber),new byte[]
                 {
                     0x01, 0x10, 0x01, 0xF5, 0x00, 0x02, 0x04,
                     0x00, 0x01, (byte)(opid>>8),(byte)opid
@@ -57,7 +59,7 @@ namespace unit.screen
             //좌회전
             if (checkBox1.Checked && !string.IsNullOrWhiteSpace(textBox3.Text))
             {
-                Form1.f1.TxRtu(++Form1.f1.TxCnt, 0, 0x4C752589170d, new byte[]
+                Form1.f1.TxRtu(++Form1.f1.TxCnt, uint.Parse(gatewayBox.SelectedItem.ToString(), System.Globalization.NumberStyles.HexNumber), ulong.Parse(deviceBox.SelectedItem.ToString(), System.Globalization.NumberStyles.HexNumber),new byte[]
                    {
                     0x01, 0x10, 0x01, 0xF7, 0x00, 0x04, 0x08,
                     0x01,0x2d,  (byte)Convert.ToInt32(textBox3.Text), (byte)(Convert.ToInt32(textBox1.Text)>>8), 0x00, 0x00, 0x00, 0x00
@@ -70,7 +72,7 @@ namespace unit.screen
             }
             else
             {
-                Form1.f1.TxRtu(++Form1.f1.TxCnt, 0, 0x4C752589170d, new byte[]
+                Form1.f1.TxRtu(++Form1.f1.TxCnt, uint.Parse(gatewayBox.SelectedItem.ToString(), System.Globalization.NumberStyles.HexNumber), ulong.Parse(deviceBox.SelectedItem.ToString(), System.Globalization.NumberStyles.HexNumber),new byte[]
                 {
                     0x01, 0x10, 0x01, 0xF7, 0x00, 0x04, 0x08,
                     0x01,0x2d, (byte)(opid>>8),(byte)opid, 0x00, 0x00, 0x00, 0x00
@@ -84,7 +86,7 @@ namespace unit.screen
             //우회전
             if (checkBox1.Checked && !string.IsNullOrWhiteSpace(textBox3.Text))
             {
-                Form1.f1.TxRtu(++Form1.f1.TxCnt, 0, 0x4C752589170d, new byte[]
+                Form1.f1.TxRtu(++Form1.f1.TxCnt, uint.Parse(gatewayBox.SelectedItem.ToString(), System.Globalization.NumberStyles.HexNumber), ulong.Parse(deviceBox.SelectedItem.ToString(), System.Globalization.NumberStyles.HexNumber),new byte[]
                 {
                     0x01, 0x10, 0x01, 0xF7, 0x00, 0x04, 0x08,
                     0x01, 0x2e,  (byte)Convert.ToInt32(textBox3.Text), (byte)(Convert.ToInt32(textBox1.Text)>>8),0x00, 0x00, 0x00, 0x00
@@ -96,7 +98,7 @@ namespace unit.screen
             }
             else
             {
-                Form1.f1.TxRtu(++Form1.f1.TxCnt, 0, 0x4C752589170d, new byte[]
+                Form1.f1.TxRtu(++Form1.f1.TxCnt, uint.Parse(gatewayBox.SelectedItem.ToString(), System.Globalization.NumberStyles.HexNumber), ulong.Parse(deviceBox.SelectedItem.ToString(), System.Globalization.NumberStyles.HexNumber),new byte[]
                 {
 
                     0x01, 0x10, 0x01, 0xF7, 0x00, 0x04, 0x08,
@@ -112,11 +114,10 @@ namespace unit.screen
             {
                 if (checkBox1.Checked && !string.IsNullOrWhiteSpace(textBox3.Text))
                 {
-                    Form1.f1.TxRtu(++Form1.f1.TxCnt, 0, 0x4C752589170d, new byte[]
+                    Form1.f1.TxRtu(++Form1.f1.TxCnt, uint.Parse(gatewayBox.SelectedItem.ToString(), System.Globalization.NumberStyles.HexNumber), ulong.Parse(deviceBox.SelectedItem.ToString(), System.Globalization.NumberStyles.HexNumber),new byte[]
                     {
-                    0x01, 0x10, 0x01, 0xF7, 0x00, 0x04, 0x08,
-                    0x01, 0x2F, 0x00, (byte)Convert.ToInt32(textBox3.Text), (byte)(Convert.ToInt32(textBox1.Text)>>8),(byte)Convert.ToInt32(textBox1.Text), 0x00, 0x00
-
+                        0x01, 0x10, 0x01, 0xF7, 0x00, 0x04, 0x08,
+                        0x01, 0x2F, 0x00, (byte)Convert.ToInt32(textBox3.Text), (byte)(Convert.ToInt32(textBox1.Text)>>8),(byte)Convert.ToInt32(textBox1.Text), 0x00, 0x00
                     });
                 }
                 else if (checkBox1.Checked && string.IsNullOrWhiteSpace(textBox3.Text))
@@ -125,11 +126,10 @@ namespace unit.screen
                 }
                 else
                 {
-                    Form1.f1.TxRtu(++Form1.f1.TxCnt, 0, 0x4C752589170d, new byte[]
+                    Form1.f1.TxRtu(++Form1.f1.TxCnt, uint.Parse(gatewayBox.SelectedItem.ToString(), System.Globalization.NumberStyles.HexNumber), ulong.Parse(deviceBox.SelectedItem.ToString(), System.Globalization.NumberStyles.HexNumber),new byte[]
                     {
                         0x01, 0x10, 0x01, 0xF7, 0x00, 0x04, 0x08,
                         0x01, 0x2F,(byte)(opid>>8),(byte)opid, (byte)(Convert.ToInt32(textBox1.Text)>>8),(byte)Convert.ToInt32(textBox1.Text), 0x00, 0x00
-
                     });
                     opid++;
                 }
@@ -148,7 +148,7 @@ namespace unit.screen
             {
                 if (checkBox1.Checked && !string.IsNullOrWhiteSpace(textBox3.Text))
                 {
-                    Form1.f1.TxRtu(++Form1.f1.TxCnt, 0, 0x4C752589170d, new byte[]
+                    Form1.f1.TxRtu(++Form1.f1.TxCnt, uint.Parse(gatewayBox.SelectedItem.ToString(), System.Globalization.NumberStyles.HexNumber), ulong.Parse(deviceBox.SelectedItem.ToString(), System.Globalization.NumberStyles.HexNumber),new byte[]
                     {
                         0x01, 0x10, 0x01, 0xF7, 0x00, 0x04, 0x08,
                         0x01, 0x30, 0x00, (byte)Convert.ToInt32(textBox3.Text),(byte)(Convert.ToInt32(textBox2.Text)>>8), (byte)Convert.ToInt32(textBox2.Text), 0x00, 0x00
@@ -160,14 +160,13 @@ namespace unit.screen
                 }
                 else
                 {
-                    Form1.f1.TxRtu(++Form1.f1.TxCnt, 0, 0x4C752589170d, new byte[]
+                    Form1.f1.TxRtu(++Form1.f1.TxCnt, uint.Parse(gatewayBox.SelectedItem.ToString(), System.Globalization.NumberStyles.HexNumber), ulong.Parse(deviceBox.SelectedItem.ToString(), System.Globalization.NumberStyles.HexNumber),new byte[]
                     {
                         0x01, 0x10, 0x01, 0xF7, 0x00, 0x04, 0x08,
                         0x01, 0x30, (byte)(opid>>8),(byte)opid,  (byte)(Convert.ToInt32(textBox2.Text)>>8), (byte)Convert.ToInt32(textBox2.Text), 0x00, 0x00
                     });
                     opid++;
                 }
-
             }
             else
             {
@@ -177,15 +176,14 @@ namespace unit.screen
         private void button6_Click(object sender, EventArgs e)
         {
             //정지
-
             if (checkBox1.Checked && !string.IsNullOrWhiteSpace(textBox3.Text))
             {
-                Form1.f1.TxRtu(++Form1.f1.TxCnt, 0, 0x4C752589170d, new byte[]
-                   {
-                0x01, 0x10, 0x01, 0xF7, 0x00, 0x04, 0x08,
-                0x00, 0x00,  (byte)Convert.ToInt32(textBox3.Text), (byte)(Convert.ToInt32(textBox1.Text)>>8),0x00,0x00,0x00,0x00
+                Form1.f1.TxRtu(++Form1.f1.TxCnt, uint.Parse(gatewayBox.SelectedItem.ToString(), System.Globalization.NumberStyles.HexNumber), ulong.Parse(deviceBox.SelectedItem.ToString(), System.Globalization.NumberStyles.HexNumber),new byte[]
+                {
+                    0x01, 0x10, 0x01, 0xF7, 0x00, 0x04, 0x08,
+                    0x00, 0x00,  (byte)Convert.ToInt32(textBox3.Text), (byte)(Convert.ToInt32(textBox1.Text)>>8),0x00,0x00,0x00,0x00
 
-                   });
+                });
             }
             else if (checkBox1.Checked && string.IsNullOrWhiteSpace(textBox3.Text))
             {
@@ -193,11 +191,10 @@ namespace unit.screen
             }
             else
             {
-                Form1.f1.TxRtu(++Form1.f1.TxCnt, 0, 0x4C752589170d, new byte[]
+                Form1.f1.TxRtu(++Form1.f1.TxCnt, uint.Parse(gatewayBox.SelectedItem.ToString(), System.Globalization.NumberStyles.HexNumber), ulong.Parse(deviceBox.SelectedItem.ToString(), System.Globalization.NumberStyles.HexNumber),new byte[]
                 {
-                0x01, 0x10, 0x01, 0xF7, 0x00, 0x04, 0x08,
-                0x00, 0x00, (byte)(opid>>8),(byte)opid,0x00,0x00,0x00,0x00
-
+                    0x01, 0x10, 0x01, 0xF7, 0x00, 0x04, 0x08,
+                    0x00, 0x00, (byte)(opid>>8),(byte)opid,0x00,0x00,0x00,0x00
                 });
                 opid++;
             }

@@ -40,8 +40,8 @@ namespace unit.screen
         private void button1_Click(object sender, EventArgs e)
         {
 
-            if (addDevBox.Text.Length != 0) listBox2.Items.Add(addDevBox.Text); addDevBox.Text = String.Empty;
-            if (addGateBox.Text.Length != 0) listBox1.Items.Add(addGateBox.Text); addGateBox.Text = String.Empty;
+            if (addDevBox.Text.Length != 0) deviceListBox.Items.Add(addDevBox.Text); addDevBox.Text = String.Empty;
+            if (addGateBox.Text.Length != 0) gatewayListBox.Items.Add(addGateBox.Text); addGateBox.Text = String.Empty;
 
             Form1.f1.addCombobox();
             Form1.f1.addressSaveFile(); 
@@ -53,9 +53,9 @@ namespace unit.screen
         private void button2_Click(object sender, EventArgs e)
         {
 
-            if (listBox1.SelectedIndex != -1)
+            if (gatewayListBox.SelectedIndex != -1)
             {
-                listBox1.Items.RemoveAt(listBox1.SelectedIndex);
+                gatewayListBox.Items.RemoveAt(gatewayListBox.SelectedIndex);
             }
             Form1.f1.addCombobox();
             Form1.f1.addressSaveFile();
@@ -65,9 +65,9 @@ namespace unit.screen
         private void button3_Click(object sender, EventArgs e)
         {
 
-            if (listBox2.SelectedIndex != -1)
+            if (deviceListBox.SelectedIndex != -1)
             {
-                listBox2.Items.RemoveAt(listBox2.SelectedIndex);
+                deviceListBox.Items.RemoveAt(deviceListBox.SelectedIndex);
             }
             Form1.f1.addCombobox();
             Form1.f1.addressSaveFile();

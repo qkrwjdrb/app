@@ -26,14 +26,14 @@ namespace unit.screen
 
             uc4 = this;
 
-            comboBox1.DisplayMember = "Text";
-            comboBox1.ValueMember = "Value";
+            comboBox3.DisplayMember = "Text";
+            comboBox3.ValueMember = "Value";
             var ritems = new[] {
                 new { Text = "Word Read[03]", Value = 3},
          
             };
 
-            comboBox1.DataSource = ritems;
+            comboBox3.DataSource = ritems;
 
         }
 
@@ -62,21 +62,30 @@ namespace unit.screen
         private void UserControl4_Load(object sender, EventArgs e)
         {
             Form1.f1.addCombobox();
-            comboBox1.SelectedIndex = 0; 
-            comboBox2.SelectedIndex = 0; 
-            comboBox3.SelectedIndex = 0;
+            comboBox3.SelectedIndex = 0; 
+            deviceBox.SelectedIndex = 0; 
+            gatewayBox.SelectedIndex = 0;
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            
-            Form1.f1.TxRtu(++Form1.f1.TxCnt, 0, ulong.Parse(comboBox2.SelectedItem.ToString(), System.Globalization.NumberStyles.HexNumber), new byte[]
-                {
-                    Convert.ToByte(textBox1.Text),Convert.ToByte(comboBox1.SelectedValue),
-                    (byte)(Convert.ToInt32(textBox2.Text) >> 8), 
+            if (!string.IsNullOrWhiteSpace(textBox1.Text) && !string.IsNullOrWhiteSpace(textBox2.Text) && !string.IsNullOrWhiteSpace(textBox3.Text) && !string.IsNullOrWhiteSpace(gatewayBox.Text) && !string.IsNullOrWhiteSpace(deviceBox.Text) && !string.IsNullOrWhiteSpace(comboBox3.Text))
+            {
+                Form1.f1.TxRtu(++Form1.f1.TxCnt, uint.Parse(gatewayBox.SelectedItem.ToString(), System.Globalization.NumberStyles.HexNumber), ulong.Parse(deviceBox.SelectedItem.ToString(), System.Globalization.NumberStyles.HexNumber), new byte[]
+                    {
+                    Convert.ToByte(textBox1.Text),Convert.ToByte(comboBox3.SelectedValue),
+                    (byte)(Convert.ToInt32(textBox2.Text) >> 8),
                     (byte)Convert.ToInt32(textBox2.Text) , 0x00,
                     Convert.ToByte(textBox3.Text),
-                });
+                    });
+            }
+            else if (string.IsNullOrWhiteSpace(textBox1.Text)) MessageBox.Show("Slave Address를 입력해주세요.", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            else if (string.IsNullOrWhiteSpace(textBox2.Text)) MessageBox.Show("Start Address를 입력해주세요.", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            else if (string.IsNullOrWhiteSpace(textBox3.Text)) MessageBox.Show("Length를 입력해주세요.", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            else if (string.IsNullOrWhiteSpace(gatewayBox.Text)) MessageBox.Show("Gateway Address를 입력해주세요.", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            else if (string.IsNullOrWhiteSpace(deviceBox.Text)) MessageBox.Show("Device Address를 입력해주세요.", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            else if (string.IsNullOrWhiteSpace(comboBox3.Text)) MessageBox.Show("Commend를 입력해주세요.", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            
         }
     }
 }
