@@ -69,15 +69,15 @@ namespace unit.screen
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (!string.IsNullOrWhiteSpace(textBox1.Text) && !string.IsNullOrWhiteSpace(textBox2.Text) && !string.IsNullOrWhiteSpace(textBox3.Text) && !string.IsNullOrWhiteSpace(gatewayBox.Text) && !string.IsNullOrWhiteSpace(deviceBox.Text) && !string.IsNullOrWhiteSpace(comboBox3.Text))
+            if (int.TryParse(gatewayBox.SelectedItem.ToString(), System.Globalization.NumberStyles.HexNumber, System.Globalization.CultureInfo.InvariantCulture,out _) && !string.IsNullOrWhiteSpace(textBox3.Text) && !string.IsNullOrWhiteSpace(gatewayBox.Text) && !string.IsNullOrWhiteSpace(deviceBox.Text) && !string.IsNullOrWhiteSpace(comboBox3.Text))
             {
-                Form1.f1.TxRtu(++Form1.f1.TxCnt, uint.Parse(gatewayBox.SelectedItem.ToString(), System.Globalization.NumberStyles.HexNumber), ulong.Parse(deviceBox.SelectedItem.ToString(), System.Globalization.NumberStyles.HexNumber), new byte[]
-                    {
+                Form1.f1.TxRtu(++Form1.f1.TxCnt, (uint)int.Parse(gatewayBox.SelectedItem.ToString(), System.Globalization.NumberStyles.HexNumber), ulong.Parse(deviceBox.SelectedItem.ToString(), System.Globalization.NumberStyles.HexNumber), new byte[]
+                {
                     Convert.ToByte(textBox1.Text),Convert.ToByte(comboBox3.SelectedValue),
-                    (byte)(Convert.ToInt32(textBox2.Text) >> 8),
-                    (byte)Convert.ToInt32(textBox2.Text) , 0x00,
-                    Convert.ToByte(textBox3.Text),
-                    });
+                    (byte)(Int32.Parse(textBox2.Text) >> 8),
+                    (byte)Int32.Parse(textBox2.Text) , 0x00,
+                    byte.Parse(textBox3.Text),
+                });
             }
             else if (string.IsNullOrWhiteSpace(textBox1.Text)) MessageBox.Show("Slave Address를 입력해주세요.", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
             else if (string.IsNullOrWhiteSpace(textBox2.Text)) MessageBox.Show("Start Address를 입력해주세요.", "", MessageBoxButtons.OK, MessageBoxIcon.Error);

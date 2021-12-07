@@ -194,7 +194,7 @@ namespace unit.screen
                 }
                 if (deviceBox.SelectedItem != null)
                 {
-                    uint gateway= uint.Parse(gatewayBox.SelectedItem.ToString(), System.Globalization.NumberStyles.HexNumber);
+                    uint gateway= (uint)int.Parse(gatewayBox.SelectedItem.ToString(), System.Globalization.NumberStyles.HexNumber);
                     ulong device = ulong.Parse(deviceBox.SelectedItem.ToString(), System.Globalization.NumberStyles.HexNumber);
 
                     Form1.f1.dataGateway = gateway;
@@ -206,7 +206,7 @@ namespace unit.screen
             {
                 string aa = deviceBox.SelectedItem.ToString();
 
-                uint gateway = uint.Parse(gatewayBox.SelectedItem.ToString(), System.Globalization.NumberStyles.HexNumber);
+                uint gateway = (uint)int.Parse(gatewayBox.SelectedItem.ToString(), System.Globalization.NumberStyles.HexNumber);
                 ulong device = ulong.Parse(aa, System.Globalization.NumberStyles.HexNumber);
                 Form1.f1.getNode(gateway,device);
             }

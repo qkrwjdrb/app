@@ -40,7 +40,7 @@ namespace unit.screen
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (!string.IsNullOrWhiteSpace(textBox1.Text) && !string.IsNullOrWhiteSpace(gatewayBox.Text) && !string.IsNullOrWhiteSpace(deviceBox.Text)) Form1.f1.TxRtu(++Form1.f1.TxCnt, uint.Parse(gatewayBox.SelectedItem.ToString(), System.Globalization.NumberStyles.HexNumber), ulong.Parse(deviceBox.SelectedItem.ToString(), System.Globalization.NumberStyles.HexNumber), new byte[]
+            if (!string.IsNullOrWhiteSpace(textBox1.Text) && !string.IsNullOrWhiteSpace(gatewayBox.Text) && !string.IsNullOrWhiteSpace(deviceBox.Text)) Form1.f1.TxRtu(++Form1.f1.TxCnt, (uint)int.Parse(gatewayBox.SelectedItem.ToString(), System.Globalization.NumberStyles.HexNumber), ulong.Parse(deviceBox.SelectedItem.ToString(), System.Globalization.NumberStyles.HexNumber), new byte[]
             {
                 0x01, 0x06, (byte)(Convert.ToInt32(label1.Text) >> 8),(byte)Convert.ToInt32(label1.Text),(byte)(Convert.ToInt32(textBox1.Text) >> 8),  (byte)Convert.ToInt32(textBox1.Text)
             });
@@ -51,7 +51,7 @@ namespace unit.screen
 
         private void button2_Click(object sender, EventArgs e)
         {
-            if (!string.IsNullOrWhiteSpace(textBox2.Text)) Form1.f1.TxRtu(++Form1.f1.TxCnt, uint.Parse(gatewayBox.SelectedItem.ToString(), System.Globalization.NumberStyles.HexNumber), ulong.Parse(deviceBox.SelectedItem.ToString(), System.Globalization.NumberStyles.HexNumber), new byte[]
+            if (!string.IsNullOrWhiteSpace(textBox2.Text)) Form1.f1.TxRtu(++Form1.f1.TxCnt, (uint)int.Parse(gatewayBox.SelectedItem.ToString(), System.Globalization.NumberStyles.HexNumber), ulong.Parse(deviceBox.SelectedItem.ToString(), System.Globalization.NumberStyles.HexNumber), new byte[]
             {
                 0x01, 0x06, (byte)(Convert.ToInt32(label2.Text) >> 8),(byte)Convert.ToInt32(label2.Text),(byte)(Convert.ToInt32(textBox2.Text) >> 8),  (byte)Convert.ToInt32(textBox2.Text)
             });
@@ -62,7 +62,7 @@ namespace unit.screen
 
         private void button3_Click(object sender, EventArgs e)
         {
-            if (!string.IsNullOrWhiteSpace(textBox3.Text)) Form1.f1.TxRtu(++Form1.f1.TxCnt, uint.Parse(gatewayBox.SelectedItem.ToString(), System.Globalization.NumberStyles.HexNumber), ulong.Parse(deviceBox.SelectedItem.ToString(), System.Globalization.NumberStyles.HexNumber), new byte[]
+            if (!string.IsNullOrWhiteSpace(textBox3.Text)) Form1.f1.TxRtu(++Form1.f1.TxCnt, (uint)int.Parse(gatewayBox.SelectedItem.ToString(), System.Globalization.NumberStyles.HexNumber), ulong.Parse(deviceBox.SelectedItem.ToString(), System.Globalization.NumberStyles.HexNumber), new byte[]
             {
                 0x01, 0x06, (byte)(Convert.ToInt32(label3.Text) >> 8),(byte)Convert.ToInt32(label3.Text),(byte)(Convert.ToInt32(textBox3.Text) >> 8),  (byte)Convert.ToInt32(textBox3.Text)
             });
@@ -73,7 +73,7 @@ namespace unit.screen
 
         private void button4_Click(object sender, EventArgs e)
         {
-            if (!string.IsNullOrWhiteSpace(textBox4.Text)) Form1.f1.TxRtu(++Form1.f1.TxCnt, uint.Parse(gatewayBox.SelectedItem.ToString(), System.Globalization.NumberStyles.HexNumber), ulong.Parse(deviceBox.SelectedItem.ToString(), System.Globalization.NumberStyles.HexNumber), new byte[]
+            if (!string.IsNullOrWhiteSpace(textBox4.Text)) Form1.f1.TxRtu(++Form1.f1.TxCnt, (uint)int.Parse(gatewayBox.SelectedItem.ToString(), System.Globalization.NumberStyles.HexNumber), ulong.Parse(deviceBox.SelectedItem.ToString(), System.Globalization.NumberStyles.HexNumber), new byte[]
             {
                 0x01, 0x06, (byte)(Convert.ToInt32(label4.Text) >> 8),(byte)Convert.ToInt32(label4.Text),(byte)(Convert.ToInt32(textBox4.Text) >> 8),  (byte)Convert.ToInt32(textBox4.Text)
             });
@@ -84,7 +84,7 @@ namespace unit.screen
 
         private void button5_Click(object sender, EventArgs e)
         {
-            if (!string.IsNullOrWhiteSpace(textBox5.Text)) Form1.f1.TxRtu(++Form1.f1.TxCnt, uint.Parse(gatewayBox.SelectedItem.ToString(), System.Globalization.NumberStyles.HexNumber), ulong.Parse(deviceBox.SelectedItem.ToString(), System.Globalization.NumberStyles.HexNumber), new byte[]
+            if (!string.IsNullOrWhiteSpace(textBox5.Text)) Form1.f1.TxRtu(++Form1.f1.TxCnt, (uint)int.Parse(gatewayBox.SelectedItem.ToString(), System.Globalization.NumberStyles.HexNumber), ulong.Parse(deviceBox.SelectedItem.ToString(), System.Globalization.NumberStyles.HexNumber), new byte[]
             {
                 0x01, 0x06, (byte)(Convert.ToInt32(label5.Text) >> 8),(byte)Convert.ToInt32(label5.Text),(byte)(Convert.ToInt32(textBox5.Text) >> 8),  (byte)Convert.ToInt32(textBox5.Text)
             });
@@ -95,7 +95,7 @@ namespace unit.screen
 
         private void button6_Click(object sender, EventArgs e)
         {
-            if (!string.IsNullOrWhiteSpace(textBox6.Text)) Form1.f1.TxRtu(++Form1.f1.TxCnt, uint.Parse(gatewayBox.SelectedItem.ToString(), System.Globalization.NumberStyles.HexNumber), ulong.Parse(deviceBox.SelectedItem.ToString(), System.Globalization.NumberStyles.HexNumber), new byte[]
+            if (!string.IsNullOrWhiteSpace(textBox6.Text)) Form1.f1.TxRtu(++Form1.f1.TxCnt, (uint)int.Parse(gatewayBox.SelectedItem.ToString(), System.Globalization.NumberStyles.HexNumber), ulong.Parse(deviceBox.SelectedItem.ToString(), System.Globalization.NumberStyles.HexNumber), new byte[]
             {
                 0x01, 0x06, (byte)(Convert.ToInt32(label6.Text) >> 8),(byte)Convert.ToInt32(label6.Text),(byte)(Convert.ToInt32(textBox6.Text) >> 8),  (byte)Convert.ToInt32(textBox6.Text)
             });
@@ -106,7 +106,7 @@ namespace unit.screen
 
         private void button7_Click(object sender, EventArgs e)
         {
-            if (!string.IsNullOrWhiteSpace(textBox7.Text)) Form1.f1.TxRtu(++Form1.f1.TxCnt, uint.Parse(gatewayBox.SelectedItem.ToString(), System.Globalization.NumberStyles.HexNumber), ulong.Parse(deviceBox.SelectedItem.ToString(), System.Globalization.NumberStyles.HexNumber), new byte[]
+            if (!string.IsNullOrWhiteSpace(textBox7.Text)) Form1.f1.TxRtu(++Form1.f1.TxCnt, (uint)int.Parse(gatewayBox.SelectedItem.ToString(), System.Globalization.NumberStyles.HexNumber), ulong.Parse(deviceBox.SelectedItem.ToString(), System.Globalization.NumberStyles.HexNumber), new byte[]
             {
                 0x01, 0x06, (byte)(Convert.ToInt32(label7.Text) >> 8),(byte)Convert.ToInt32(label7.Text),(byte)(Convert.ToInt32(textBox7.Text) >> 8),  (byte)Convert.ToInt32(textBox7.Text)
             });
@@ -117,7 +117,7 @@ namespace unit.screen
 
         private void button8_Click(object sender, EventArgs e)
         {
-            if (!string.IsNullOrWhiteSpace(textBox8.Text)) Form1.f1.TxRtu(++Form1.f1.TxCnt, uint.Parse(gatewayBox.SelectedItem.ToString(), System.Globalization.NumberStyles.HexNumber), ulong.Parse(deviceBox.SelectedItem.ToString(), System.Globalization.NumberStyles.HexNumber), new byte[]
+            if (!string.IsNullOrWhiteSpace(textBox8.Text)) Form1.f1.TxRtu(++Form1.f1.TxCnt, (uint)int.Parse(gatewayBox.SelectedItem.ToString(), System.Globalization.NumberStyles.HexNumber), ulong.Parse(deviceBox.SelectedItem.ToString(), System.Globalization.NumberStyles.HexNumber), new byte[]
             {
                 0x01, 0x06, (byte)(Convert.ToInt32(label8.Text) >> 8),(byte)Convert.ToInt32(label8.Text),(byte)(Convert.ToInt32(textBox8.Text) >> 8),  (byte)Convert.ToInt32(textBox8.Text)
             });

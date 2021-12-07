@@ -85,10 +85,10 @@ namespace unit
             else
             {
                 string[] aa = { "0" };
-                screen.UserControl2.uc2.gatewayListBox.Items.AddRange(aa);
+                screen.UserControl2.uc2.gatewayListBox.Items.AddRange(aa); 
             }
             panel3.Controls.Add(UserControl6);
-            getAddress(uint.Parse(screen.UserControl2.uc2.gatewayListBox.Items[0].ToString(), System.Globalization.NumberStyles.HexNumber), ulong.Parse(screen.UserControl2.uc2.deviceListBox.Items[0].ToString(), System.Globalization.NumberStyles.HexNumber));
+            getAddress((uint)int.Parse(screen.UserControl2.uc2.gatewayListBox.Items[0].ToString(), System.Globalization.NumberStyles.HexNumber), ulong.Parse(screen.UserControl2.uc2.deviceListBox.Items[0].ToString(), System.Globalization.NumberStyles.HexNumber));
             dataAddress = ulong.Parse(screen.UserControl2.uc2.deviceListBox.Items[0].ToString(), System.Globalization.NumberStyles.HexNumber);
         }
 
@@ -106,6 +106,7 @@ namespace unit
             }
             catch (Exception)
             {
+
             }
             finally
             {
@@ -195,10 +196,6 @@ namespace unit
             0X4400, 0X84C1, 0X8581, 0X4540, 0X8701, 0X47C0, 0X4680, 0X8641, 0X8201, 0X42C0,
             0X4380, 0X8341, 0X4100, 0X81C1, 0X8081, 0X4040
         };
-
-
-
-
         public byte[] fn_makeCRC16_byte(byte[] bytes)
         {
             int ilen = bytes.Length;
@@ -296,7 +293,6 @@ namespace unit
 
                 if (isUc4)
                 {
-
                     screen.UserControl4.uc4.uc4textBox2.Text = "RxRtu(" + GetProtocolChannelName(channel) + ")";
                     screen.UserControl4.uc4.uc4textBox2.AppendText(Environment.NewLine + $"response.Channel={channel}");
                     screen.UserControl4.uc4.uc4textBox2.AppendText(Environment.NewLine + $"response.AcknowledgeNumber={acknowledgeNumber}");
@@ -306,11 +302,9 @@ namespace unit
                     screen.UserControl4.uc4.uc4textBox2.AppendText(Environment.NewLine + BitConverter.ToString(payload));
                     screen.UserControl4.uc4.uc4textBox2.AppendText(Environment.NewLine);
                     screen.UserControl4.uc4.uc4textBox1.Text += "Responsed... ";
-
                 }
                 else if (isUc5)
                 {
-
                     screen.UserControl5.uc5.uc5textBox2.Text = "RxRtu(" + GetProtocolChannelName(channel) + ")";
                     screen.UserControl5.uc5.uc5textBox2.AppendText(Environment.NewLine + $"response.Channel={channel}");
                     screen.UserControl5.uc5.uc5textBox2.AppendText(Environment.NewLine + $"response.AcknowledgeNumber={acknowledgeNumber}");
@@ -621,10 +615,6 @@ namespace unit
                 0x00,202, 0x00, Convert.ToByte(deviceCount*3+1),
             });
         }
-
-
-
-
         private void button2_Click(object sender, EventArgs e)
         {
             isUc4 = false;
@@ -649,7 +639,6 @@ namespace unit
 
             panel3.Controls.Clear();
             panel3.Controls.Add(UserControl4);
-
         }
 
         private void button5_Click(object sender, EventArgs e)
