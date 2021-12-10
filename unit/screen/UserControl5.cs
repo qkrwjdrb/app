@@ -48,7 +48,7 @@ namespace unit.screen
             {
              
                 if (int.TryParse(gatewayBox.SelectedItem.ToString(), System.Globalization.NumberStyles.HexNumber, System.Globalization.CultureInfo.InvariantCulture, out _)
-                    && ulong.TryParse(gatewayBox.SelectedItem.ToString(), System.Globalization.NumberStyles.HexNumber, System.Globalization.CultureInfo.InvariantCulture, out _)
+                    && ulong.TryParse(deviceBox.SelectedItem.ToString(), System.Globalization.NumberStyles.HexNumber, System.Globalization.CultureInfo.InvariantCulture, out _)
                     && byte.TryParse(textBox1.Text, out _)
                     && int.TryParse(textBox2.Text, out _)
                     )

@@ -33,15 +33,15 @@ namespace unit.screen
             this.uc1textBox2 = new System.Windows.Forms.RichTextBox();
             this.uc1textBox3 = new System.Windows.Forms.RichTextBox();
             this.button1 = new System.Windows.Forms.Button();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.deviceBox = new System.Windows.Forms.ComboBox();
+            this.gatewayBox = new System.Windows.Forms.ComboBox();
+            this.deviceNumberBox = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.emptyDeviceCheck = new System.Windows.Forms.CheckBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.comboBox3 = new System.Windows.Forms.ComboBox();
+            this.datetypeBox = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // uc1textBox1
@@ -81,51 +81,52 @@ namespace unit.screen
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // comboBox1
+            // deviceBox
             // 
-            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(135, 38);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(192, 23);
-            this.comboBox1.TabIndex = 5;
+            this.deviceBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.deviceBox.FormattingEnabled = true;
+            this.deviceBox.Location = new System.Drawing.Point(135, 38);
+            this.deviceBox.Name = "deviceBox";
+            this.deviceBox.Size = new System.Drawing.Size(192, 23);
+            this.deviceBox.TabIndex = 5;
             // 
-            // comboBox2
+            // gatewayBox
             // 
-            this.comboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(0, 38);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(125, 23);
-            this.comboBox2.TabIndex = 6;
+            this.gatewayBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.gatewayBox.FormattingEnabled = true;
+            this.gatewayBox.Location = new System.Drawing.Point(0, 38);
+            this.gatewayBox.Name = "gatewayBox";
+            this.gatewayBox.Size = new System.Drawing.Size(125, 23);
+            this.gatewayBox.TabIndex = 6;
+            this.gatewayBox.SelectedIndexChanged += new System.EventHandler(this.comboBox22_SelectedIndexChanged);
             // 
-            // textBox1
+            // deviceNumberBox
             // 
-            this.textBox1.Location = new System.Drawing.Point(441, 37);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(65, 23);
-            this.textBox1.TabIndex = 7;
-            this.textBox1.Text = "30";
-            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
-            this.textBox1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox1_KeyPress);
+            this.deviceNumberBox.Location = new System.Drawing.Point(441, 37);
+            this.deviceNumberBox.Name = "deviceNumberBox";
+            this.deviceNumberBox.Size = new System.Drawing.Size(65, 23);
+            this.deviceNumberBox.TabIndex = 7;
+            this.deviceNumberBox.Text = "30";
+            this.deviceNumberBox.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            this.deviceNumberBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox1_KeyPress);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(0, 20);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(51, 15);
+            this.label1.Size = new System.Drawing.Size(98, 15);
             this.label1.TabIndex = 8;
-            this.label1.Text = "gateway";
+            this.label1.Text = "Gateway Address";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(135, 20);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(41, 15);
+            this.label2.Size = new System.Drawing.Size(89, 15);
             this.label2.TabIndex = 9;
-            this.label2.Text = "device";
+            this.label2.Text = "Device Address";
             // 
             // label3
             // 
@@ -136,15 +137,15 @@ namespace unit.screen
             this.label3.TabIndex = 10;
             this.label3.Text = "장치 수 ";
             // 
-            // checkBox1
+            // emptyDeviceCheck
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(517, 38);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(94, 19);
-            this.checkBox1.TabIndex = 11;
-            this.checkBox1.Text = "빈 장비 표시";
-            this.checkBox1.UseVisualStyleBackColor = true;
+            this.emptyDeviceCheck.AutoSize = true;
+            this.emptyDeviceCheck.Location = new System.Drawing.Point(517, 38);
+            this.emptyDeviceCheck.Name = "emptyDeviceCheck";
+            this.emptyDeviceCheck.Size = new System.Drawing.Size(94, 19);
+            this.emptyDeviceCheck.TabIndex = 11;
+            this.emptyDeviceCheck.Text = "빈 장비 표시";
+            this.emptyDeviceCheck.UseVisualStyleBackColor = true;
             // 
             // label4
             // 
@@ -155,28 +156,28 @@ namespace unit.screen
             this.label4.TabIndex = 13;
             this.label4.Text = "데이터 종류";
             // 
-            // comboBox3
+            // datetypeBox
             // 
-            this.comboBox3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox3.FormattingEnabled = true;
-            this.comboBox3.Location = new System.Drawing.Point(338, 38);
-            this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(94, 23);
-            this.comboBox3.TabIndex = 12;
+            this.datetypeBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.datetypeBox.FormattingEnabled = true;
+            this.datetypeBox.Location = new System.Drawing.Point(338, 38);
+            this.datetypeBox.Name = "datetypeBox";
+            this.datetypeBox.Size = new System.Drawing.Size(94, 23);
+            this.datetypeBox.TabIndex = 12;
             // 
             // UserControl1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.comboBox3);
-            this.Controls.Add(this.checkBox1);
+            this.Controls.Add(this.datetypeBox);
+            this.Controls.Add(this.emptyDeviceCheck);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.comboBox2);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.deviceNumberBox);
+            this.Controls.Add(this.gatewayBox);
+            this.Controls.Add(this.deviceBox);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.uc1textBox3);
             this.Controls.Add(this.uc1textBox2);
@@ -191,17 +192,17 @@ namespace unit.screen
 
         #endregion
         private System.Windows.Forms.Button button1;
-        public System.Windows.Forms.ComboBox comboBox1;
-        public System.Windows.Forms.ComboBox comboBox2;
+        public System.Windows.Forms.ComboBox deviceBox;
+        public System.Windows.Forms.ComboBox gatewayBox;
         public System.Windows.Forms.RichTextBox uc1textBox1;
         public System.Windows.Forms.RichTextBox uc1textBox2;
         public System.Windows.Forms.RichTextBox uc1textBox3;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox deviceNumberBox;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.CheckBox emptyDeviceCheck;
         private System.Windows.Forms.Label label4;
-        public System.Windows.Forms.ComboBox comboBox3;
+        public System.Windows.Forms.ComboBox datetypeBox;
     }
 }

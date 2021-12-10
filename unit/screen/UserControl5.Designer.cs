@@ -29,7 +29,7 @@ namespace unit.screen
         /// </summary>
         private void InitializeComponent()
         {
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.comboBox3 = new System.Windows.Forms.ComboBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.textBox3 = new System.Windows.Forms.TextBox();
@@ -40,26 +40,27 @@ namespace unit.screen
             this.uc5textBox1 = new System.Windows.Forms.RichTextBox();
             this.uc5textBox2 = new System.Windows.Forms.RichTextBox();
             this.button1 = new System.Windows.Forms.Button();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.comboBox3 = new System.Windows.Forms.ComboBox();
+            this.deviceBox = new System.Windows.Forms.ComboBox();
+            this.gatewayBox = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // comboBox1
+            // comboBox3
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(417, 43);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 23);
-            this.comboBox1.TabIndex = 0;
-            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            this.comboBox3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox3.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.comboBox3.FormattingEnabled = true;
+            this.comboBox3.Location = new System.Drawing.Point(417, 43);
+            this.comboBox3.Name = "comboBox3";
+            this.comboBox3.Size = new System.Drawing.Size(146, 23);
+            this.comboBox3.TabIndex = 0;
             // 
             // textBox2
             // 
             this.textBox2.Location = new System.Drawing.Point(417, 74);
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(121, 23);
+            this.textBox2.Size = new System.Drawing.Size(146, 23);
             this.textBox2.TabIndex = 1;
             this.textBox2.Text = "400";
             // 
@@ -67,7 +68,7 @@ namespace unit.screen
             // 
             this.textBox1.Location = new System.Drawing.Point(417, 14);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(121, 23);
+            this.textBox1.Size = new System.Drawing.Size(146, 23);
             this.textBox1.TabIndex = 4;
             this.textBox1.Text = "1";
             // 
@@ -75,7 +76,7 @@ namespace unit.screen
             // 
             this.textBox3.Location = new System.Drawing.Point(417, 104);
             this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(121, 23);
+            this.textBox3.Size = new System.Drawing.Size(146, 23);
             this.textBox3.TabIndex = 5;
             this.textBox3.Text = "20";
             // 
@@ -141,22 +142,21 @@ namespace unit.screen
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // comboBox2
+            // deviceBox
             // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(29, 87);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(157, 23);
-            this.comboBox2.TabIndex = 14;
-            this.comboBox2.SelectedIndexChanged += new System.EventHandler(this.comboBox2_SelectedIndexChanged);
+            this.deviceBox.FormattingEnabled = true;
+            this.deviceBox.Location = new System.Drawing.Point(29, 87);
+            this.deviceBox.Name = "deviceBox";
+            this.deviceBox.Size = new System.Drawing.Size(157, 23);
+            this.deviceBox.TabIndex = 14;
             // 
-            // comboBox3
+            // gatewayBox
             // 
-            this.comboBox3.FormattingEnabled = true;
-            this.comboBox3.Location = new System.Drawing.Point(29, 35);
-            this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(157, 23);
-            this.comboBox3.TabIndex = 15;
+            this.gatewayBox.FormattingEnabled = true;
+            this.gatewayBox.Location = new System.Drawing.Point(29, 35);
+            this.gatewayBox.Name = "gatewayBox";
+            this.gatewayBox.Size = new System.Drawing.Size(157, 23);
+            this.gatewayBox.TabIndex = 15;
             // 
             // label5
             // 
@@ -182,8 +182,8 @@ namespace unit.screen
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.comboBox3);
-            this.Controls.Add(this.comboBox2);
+            this.Controls.Add(this.gatewayBox);
+            this.Controls.Add(this.deviceBox);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.uc5textBox2);
             this.Controls.Add(this.uc5textBox1);
@@ -194,7 +194,7 @@ namespace unit.screen
             this.Controls.Add(this.textBox3);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.comboBox3);
             this.Name = "UserControl5";
             this.Size = new System.Drawing.Size(718, 497);
             this.Load += new System.EventHandler(this.UserControl5_Load);
@@ -205,7 +205,7 @@ namespace unit.screen
 
         #endregion
 
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox comboBox3;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.TextBox textBox3;
@@ -218,7 +218,7 @@ namespace unit.screen
         private System.Windows.Forms.Label label6;
         public System.Windows.Forms.RichTextBox uc5textBox2;
         public System.Windows.Forms.RichTextBox uc5textBox1;
-        public System.Windows.Forms.ComboBox comboBox2;
-        public System.Windows.Forms.ComboBox comboBox3;
+        public System.Windows.Forms.ComboBox deviceBox;
+        public System.Windows.Forms.ComboBox gatewayBox;
     }
 }

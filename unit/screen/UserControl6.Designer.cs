@@ -43,10 +43,11 @@ namespace unit.screen
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.label2 = new System.Windows.Forms.Label();
             this.button6 = new System.Windows.Forms.Button();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.gatewayBox = new System.Windows.Forms.ComboBox();
+            this.deviceBox = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // button1
@@ -179,26 +180,26 @@ namespace unit.screen
             this.button6.UseVisualStyleBackColor = true;
             this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
-            // comboBox1
+            // gatewayBox
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(109, 29);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 23);
-            this.comboBox1.TabIndex = 16;
+            this.gatewayBox.FormattingEnabled = true;
+            this.gatewayBox.Location = new System.Drawing.Point(57, 29);
+            this.gatewayBox.Name = "gatewayBox";
+            this.gatewayBox.Size = new System.Drawing.Size(121, 23);
+            this.gatewayBox.TabIndex = 16;
             // 
-            // comboBox2
+            // deviceBox
             // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(236, 29);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(121, 23);
-            this.comboBox2.TabIndex = 17;
+            this.deviceBox.FormattingEnabled = true;
+            this.deviceBox.Location = new System.Drawing.Point(198, 29);
+            this.deviceBox.Name = "deviceBox";
+            this.deviceBox.Size = new System.Drawing.Size(121, 23);
+            this.deviceBox.TabIndex = 17;
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(236, 11);
+            this.label6.Location = new System.Drawing.Point(195, 11);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(89, 15);
             this.label6.TabIndex = 33;
@@ -207,20 +208,30 @@ namespace unit.screen
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(281, 215);
+            this.label5.Location = new System.Drawing.Point(57, 11);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(98, 15);
             this.label5.TabIndex = 32;
             this.label5.Text = "Gateway Address";
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(341, 29);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(208, 15);
+            this.label4.TabIndex = 34;
+            this.label4.Text = "구동기 모터 주소 : 0x4C752589170d";
+            // 
             // UserControl6
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.label4);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.comboBox2);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.deviceBox);
+            this.Controls.Add(this.gatewayBox);
             this.Controls.Add(this.button6);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.checkBox1);
@@ -237,6 +248,7 @@ namespace unit.screen
             this.Controls.Add(this.button1);
             this.Name = "UserControl6";
             this.Size = new System.Drawing.Size(718, 497);
+            this.Load += new System.EventHandler(this.UserControl6_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -258,9 +270,10 @@ namespace unit.screen
         private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button button6;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.ComboBox comboBox2;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
+        public System.Windows.Forms.ComboBox gatewayBox;
+        public System.Windows.Forms.ComboBox deviceBox;
+        private System.Windows.Forms.Label label4;
     }
 }
