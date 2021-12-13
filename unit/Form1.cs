@@ -65,7 +65,7 @@ namespace unit
         //form1_load
         public void Form1_Load(object sender, EventArgs e)
         {
-            // this.Size = new Size(761, 632);
+             this.Size = new Size(761, 632);
 
             if (deFile.Exists)
             {
@@ -87,7 +87,7 @@ namespace unit
                 string[] aa = { "0" };
                 screen.UserControl2.uc2.gatewayListBox.Items.AddRange(aa); 
             }
-            panel3.Controls.Add(UserControl6);
+            panel3.Controls.Add(UserControl1);
             getAddress((uint)int.Parse(screen.UserControl2.uc2.gatewayListBox.Items[0].ToString(), System.Globalization.NumberStyles.HexNumber), ulong.Parse(screen.UserControl2.uc2.deviceListBox.Items[0].ToString(), System.Globalization.NumberStyles.HexNumber));
             dataAddress = ulong.Parse(screen.UserControl2.uc2.deviceListBox.Items[0].ToString(), System.Globalization.NumberStyles.HexNumber);
         }

@@ -46,9 +46,9 @@ namespace unit.screen
                 && !string.IsNullOrWhiteSpace(comboBox3.Text)
                 )
             {
-             
-                if (int.TryParse(gatewayBox.SelectedItem.ToString(), System.Globalization.NumberStyles.HexNumber, System.Globalization.CultureInfo.InvariantCulture, out _)
-                    && ulong.TryParse(deviceBox.SelectedItem.ToString(), System.Globalization.NumberStyles.HexNumber, System.Globalization.CultureInfo.InvariantCulture, out _)
+
+                if (int.TryParse(gatewayBox.Text.ToString(), System.Globalization.NumberStyles.HexNumber, System.Globalization.CultureInfo.InvariantCulture, out _)
+                    && ulong.TryParse(deviceBox.Text.ToString(), System.Globalization.NumberStyles.HexNumber, System.Globalization.CultureInfo.InvariantCulture, out _)
                     && byte.TryParse(textBox1.Text, out _)
                     && int.TryParse(textBox2.Text, out _)
                     )
@@ -56,16 +56,16 @@ namespace unit.screen
 
                     string[] valueString = textBox3.Text.Split(',');
                     bool valueIsNotNull = true;
-                    
-                    for (int i = 0; i < valueString.Length; i++) 
+
+                    for (int i = 0; i < valueString.Length; i++)
                     {
-                        if (string.IsNullOrWhiteSpace(valueString[i]) && !int.TryParse(valueString[i], out _) )
-                        { 
-                            valueIsNotNull = false; 
+                        if (string.IsNullOrWhiteSpace(valueString[i]) && !int.TryParse(valueString[i], out _))
+                        {
+                            valueIsNotNull = false;
                         }
                     }
                     byte[] valueByte = new byte[valueString.Length * 2];
-                    
+
                     if (valueIsNotNull)
                     {
                         for (int i = 0; i < valueString.Length; i++)
@@ -90,11 +90,11 @@ namespace unit.screen
                     {
                         if ((int)comboBox3.SelectedValue == 16)
                         {
-                            Form1.f1.TxRtu(++Form1.f1.TxCnt, (uint)int.Parse(gatewayBox.Text.ToString(), System.Globalization.NumberStyles.HexNumber), ulong.Parse(deviceBox.SelectedItem.ToString(), System.Globalization.NumberStyles.HexNumber), pay);
+                            Form1.f1.TxRtu(++Form1.f1.TxCnt, (uint)int.Parse(gatewayBox.Text.ToString(), System.Globalization.NumberStyles.HexNumber), ulong.Parse(deviceBox.Text.ToString(), System.Globalization.NumberStyles.HexNumber), pay);
                         }
                         else
                         {
-                            Form1.f1.TxRtu(++Form1.f1.TxCnt, (uint)int.Parse(gatewayBox.Text.ToString(), System.Globalization.NumberStyles.HexNumber), ulong.Parse(deviceBox.SelectedItem.ToString(), System.Globalization.NumberStyles.HexNumber), new byte[]
+                            Form1.f1.TxRtu(++Form1.f1.TxCnt, (uint)int.Parse(gatewayBox.Text.ToString(), System.Globalization.NumberStyles.HexNumber), ulong.Parse(deviceBox.Text.ToString(), System.Globalization.NumberStyles.HexNumber), new byte[]
                             {
                             Convert.ToByte(textBox1.Text),Convert.ToByte(comboBox3.SelectedValue),
                             (byte)(Convert.ToInt32(textBox2.Text) >> 8),  (byte)Convert.ToInt32(textBox2.Text) ,   valueByte[0],valueByte[1],

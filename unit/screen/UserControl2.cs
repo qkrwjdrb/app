@@ -23,36 +23,44 @@ namespace unit.screen
         private void UserControl2_Load(object sender, EventArgs e)
         {
 
-
-        }
-
-
-        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void listBox2_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
+            if (!string.IsNullOrWhiteSpace(addGateBox.Text))
+            {
+                if (int.TryParse(addGateBox.Text.ToString(), System.Globalization.NumberStyles.HexNumber, System.Globalization.CultureInfo.InvariantCulture, out _))
+                {
+                    gatewayListBox.Items.Add(addGateBox.Text.ToUpper()); addGateBox.Text = String.Empty;
+                }
+                else
+                {
+                    MessageBox.Show("입력값을 확인하세요.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
 
-            if (addDevBox.Text.Length != 0) deviceListBox.Items.Add(addDevBox.Text); addDevBox.Text = String.Empty;
-            if (addGateBox.Text.Length != 0) gatewayListBox.Items.Add(addGateBox.Text); addGateBox.Text = String.Empty;
+            if (!string.IsNullOrWhiteSpace(addDevBox.Text))
+            {
+                if (ulong.TryParse(addDevBox.Text.ToString(), System.Globalization.NumberStyles.HexNumber, System.Globalization.CultureInfo.InvariantCulture, out _))
+                {
+                    deviceListBox.Items.Add(addDevBox.Text.ToUpper()); addDevBox.Text = String.Empty;
+                }
+                else
+                {
+                    MessageBox.Show("입력값을 확인하세요.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+
 
             Form1.f1.addCombobox();
-            Form1.f1.addressSaveFile(); 
+            Form1.f1.addressSaveFile();
             Form1.f1.gatewaySaveFile();
         }
 
-  
+
 
         private void button2_Click(object sender, EventArgs e)
         {
-
             if (gatewayListBox.SelectedIndex != -1)
             {
                 gatewayListBox.Items.RemoveAt(gatewayListBox.SelectedIndex);
@@ -72,22 +80,6 @@ namespace unit.screen
             Form1.f1.addCombobox();
             Form1.f1.addressSaveFile();
             Form1.f1.gatewaySaveFile();
-        }
-
-        private void addDevBox_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (!(char.IsDigit(e.KeyChar) || e.KeyChar == Convert.ToChar(Keys.Back) || "ABCDEF0123456789abcdef".IndexOf(e.KeyChar) != -1))
-            {
-                e.Handled = true;
-            }
-        }
-
-        private void addGateBox_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (!(char.IsDigit(e.KeyChar) || e.KeyChar == Convert.ToChar(Keys.Back) || "ABCDEF0123456789abcdef".IndexOf(e.KeyChar) != -1))
-            {
-                e.Handled = true;
-            }
         }
     }
 }

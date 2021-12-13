@@ -47,18 +47,7 @@ namespace unit.screen
                 return Text;
             }
         }
-        /*  private void Test()
-          {
-              ComboboxItem item = new ComboboxItem();
-              item.Text = "Item text1";
-              item.Value = 12;
 
-              comboBox1.Items.Add(item);
-
-              comboBox1.SelectedIndex = 0;
-
-              MessageBox.Show((comboBox1.SelectedItem as ComboboxItem).Value.ToString());
-          }*/
         private void UserControl4_Load(object sender, EventArgs e)
         {
             Form1.f1.addCombobox();
@@ -69,11 +58,17 @@ namespace unit.screen
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (!string.IsNullOrWhiteSpace(textBox1.Text) && !string.IsNullOrWhiteSpace(textBox2.Text) && !string.IsNullOrWhiteSpace(textBox3.Text) && !string.IsNullOrWhiteSpace(gatewayBox.Text) && !string.IsNullOrWhiteSpace(deviceBox.Text) && !string.IsNullOrWhiteSpace(comboBox3.Text))
+            if (!string.IsNullOrWhiteSpace(textBox1.Text)
+                && !string.IsNullOrWhiteSpace(textBox2.Text)
+                && !string.IsNullOrWhiteSpace(textBox3.Text)
+                && !string.IsNullOrWhiteSpace(gatewayBox.Text)
+                && !string.IsNullOrWhiteSpace(deviceBox.Text)
+                && !string.IsNullOrWhiteSpace(comboBox3.Text)
+                )
             {
-                if (int.TryParse(gatewayBox.SelectedItem.ToString(), System.Globalization.NumberStyles.HexNumber, System.Globalization.CultureInfo.InvariantCulture, out _) && ulong.TryParse(gatewayBox.SelectedItem.ToString(), System.Globalization.NumberStyles.HexNumber, System.Globalization.CultureInfo.InvariantCulture, out _) && byte.TryParse(textBox1.Text, out _) && int.TryParse(textBox2.Text, out _) && byte.TryParse(textBox3.Text, out _))
+                if (int.TryParse(gatewayBox.Text.ToString(), System.Globalization.NumberStyles.HexNumber, System.Globalization.CultureInfo.InvariantCulture, out _) && ulong.TryParse(gatewayBox.Text.ToString(), System.Globalization.NumberStyles.HexNumber, System.Globalization.CultureInfo.InvariantCulture, out _) && byte.TryParse(textBox1.Text, out _) && int.TryParse(textBox2.Text, out _) && byte.TryParse(textBox3.Text, out _))
                 {
-                    Form1.f1.TxRtu(++Form1.f1.TxCnt, (uint)int.Parse(gatewayBox.SelectedItem.ToString(), System.Globalization.NumberStyles.HexNumber), ulong.Parse(deviceBox.SelectedItem.ToString(), System.Globalization.NumberStyles.HexNumber), new byte[]
+                    Form1.f1.TxRtu(++Form1.f1.TxCnt, (uint)int.Parse(gatewayBox.Text.ToString(), System.Globalization.NumberStyles.HexNumber), ulong.Parse(deviceBox.Text.ToString(), System.Globalization.NumberStyles.HexNumber), new byte[]
                     {
                     byte.Parse(textBox1.Text),Convert.ToByte(comboBox3.SelectedValue),
                     (byte)(int.Parse(textBox2.Text) >> 8),
@@ -81,14 +76,35 @@ namespace unit.screen
                     byte.Parse(textBox3.Text),
                     });
                 }
-                else MessageBox.Show("입력값을 확인하세요.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                else 
+                {
+                    MessageBox.Show("입력값을 확인하세요.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
-            else if (string.IsNullOrWhiteSpace(textBox1.Text)) MessageBox.Show("Slave Address를 입력해주세요.", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            else if (string.IsNullOrWhiteSpace(textBox3.Text)) MessageBox.Show("Length를 입력해주세요.", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            else if (string.IsNullOrWhiteSpace(textBox2.Text)) MessageBox.Show("Start Address를 입력해주세요.", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            else if (string.IsNullOrWhiteSpace(gatewayBox.Text)) MessageBox.Show("Gateway Address를 입력해주세요.", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            else if (string.IsNullOrWhiteSpace(deviceBox.Text)) MessageBox.Show("Device Address를 입력해주세요.", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            else if (string.IsNullOrWhiteSpace(comboBox3.Text)) MessageBox.Show("Commend를 입력해주세요.", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            else if (string.IsNullOrWhiteSpace(textBox1.Text))
+            {
+                MessageBox.Show("Slave Address를 입력해주세요.", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else if (string.IsNullOrWhiteSpace(textBox3.Text))
+            {
+                MessageBox.Show("Length를 입력해주세요.", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else if (string.IsNullOrWhiteSpace(textBox2.Text))
+            {
+                MessageBox.Show("Start Address를 입력해주세요.", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else if (string.IsNullOrWhiteSpace(gatewayBox.Text))
+            {
+                MessageBox.Show("Gateway Address를 입력해주세요.", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else if (string.IsNullOrWhiteSpace(deviceBox.Text))
+            {
+                MessageBox.Show("Device Address를 입력해주세요.", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else if (string.IsNullOrWhiteSpace(comboBox3.Text))
+            {
+                MessageBox.Show("Commend를 입력해주세요.", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }
