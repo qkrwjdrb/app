@@ -41,6 +41,8 @@ namespace unit.screen
             deviceBox.SelectedIndex = 0;
             gatewayBox.SelectedIndex = 0;
             datetypeBox.SelectedIndex = 0;
+            Form1.f1.LoadUc1 = true;
+            Form1.f1.comboboxSelect();
         }
 
 
@@ -243,5 +245,15 @@ namespace unit.screen
             }
             else MessageBox.Show("입력값을 확인하세요.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
+
+        private void gatewayBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Form1.f1.getewayBoxIndex = gatewayBox.SelectedIndex;
+        }
+        private void deviceBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+           Form1.f1.deviceBoxIndex = deviceBox.SelectedIndex;
+        }
+
     }
 }

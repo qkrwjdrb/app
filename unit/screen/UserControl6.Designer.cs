@@ -38,7 +38,6 @@ namespace unit.screen
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.richTextBox2 = new System.Windows.Forms.RichTextBox();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -48,13 +47,21 @@ namespace unit.screen
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
+            this.uc5textBox2 = new System.Windows.Forms.RichTextBox();
+            this.uc5textBox1 = new System.Windows.Forms.RichTextBox();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.groupBox2.SuspendLayout();
+            this.groupBox1.SuspendLayout();
+            this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(56, 101);
+            this.button1.Location = new System.Drawing.Point(15, 26);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(274, 23);
+            this.button1.Size = new System.Drawing.Size(122, 23);
             this.button1.TabIndex = 0;
             this.button1.Text = "리셋";
             this.button1.UseVisualStyleBackColor = true;
@@ -62,9 +69,9 @@ namespace unit.screen
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(56, 135);
+            this.button2.Location = new System.Drawing.Point(157, 26);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(274, 23);
+            this.button2.Size = new System.Drawing.Size(122, 23);
             this.button2.TabIndex = 1;
             this.button2.Text = "좌회전";
             this.button2.UseVisualStyleBackColor = true;
@@ -72,9 +79,9 @@ namespace unit.screen
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(56, 169);
+            this.button3.Location = new System.Drawing.Point(157, 60);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(274, 23);
+            this.button3.Size = new System.Drawing.Size(122, 23);
             this.button3.TabIndex = 2;
             this.button3.Text = "우회전";
             this.button3.UseVisualStyleBackColor = true;
@@ -82,9 +89,9 @@ namespace unit.screen
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(515, 123);
+            this.button4.Location = new System.Drawing.Point(156, 93);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(135, 23);
+            this.button4.Size = new System.Drawing.Size(122, 23);
             this.button4.TabIndex = 3;
             this.button4.Text = "타이머 좌회전";
             this.button4.UseVisualStyleBackColor = true;
@@ -92,9 +99,9 @@ namespace unit.screen
             // 
             // button5
             // 
-            this.button5.Location = new System.Drawing.Point(515, 156);
+            this.button5.Location = new System.Drawing.Point(156, 126);
             this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(135, 23);
+            this.button5.Size = new System.Drawing.Size(122, 23);
             this.button5.TabIndex = 4;
             this.button5.Text = "타이머 우회전";
             this.button5.UseVisualStyleBackColor = true;
@@ -102,24 +109,22 @@ namespace unit.screen
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(376, 123);
+            this.textBox1.Location = new System.Drawing.Point(15, 93);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(100, 23);
             this.textBox1.TabIndex = 5;
-            this.textBox1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox1_KeyPress);
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(376, 156);
+            this.textBox2.Location = new System.Drawing.Point(15, 126);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(100, 23);
             this.textBox2.TabIndex = 6;
-            this.textBox2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox2_KeyPress);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(482, 126);
+            this.label1.Location = new System.Drawing.Point(119, 96);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(27, 15);
             this.label1.TabIndex = 7;
@@ -128,23 +133,15 @@ namespace unit.screen
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(482, 160);
+            this.label3.Location = new System.Drawing.Point(119, 130);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(27, 15);
             this.label3.TabIndex = 9;
             this.label3.Text = "(초)";
             // 
-            // richTextBox2
-            // 
-            this.richTextBox2.Location = new System.Drawing.Point(0, 224);
-            this.richTextBox2.Name = "richTextBox2";
-            this.richTextBox2.Size = new System.Drawing.Size(718, 273);
-            this.richTextBox2.TabIndex = 11;
-            this.richTextBox2.Text = "";
-            // 
             // textBox3
             // 
-            this.textBox3.Location = new System.Drawing.Point(590, 87);
+            this.textBox3.Location = new System.Drawing.Point(93, 25);
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(77, 23);
             this.textBox3.TabIndex = 12;
@@ -152,19 +149,18 @@ namespace unit.screen
             // checkBox1
             // 
             this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(378, 91);
+            this.checkBox1.Location = new System.Drawing.Point(176, 27);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(102, 19);
             this.checkBox1.TabIndex = 13;
             this.checkBox1.Text = "OPID수동설정";
             this.checkBox1.UseVisualStyleBackColor = true;
-            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("맑은 고딕", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label2.Location = new System.Drawing.Point(503, 90);
+            this.label2.Location = new System.Drawing.Point(6, 28);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(81, 19);
             this.label2.TabIndex = 14;
@@ -172,9 +168,9 @@ namespace unit.screen
             // 
             // button6
             // 
-            this.button6.Location = new System.Drawing.Point(56, 67);
+            this.button6.Location = new System.Drawing.Point(15, 60);
             this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(274, 23);
+            this.button6.Size = new System.Drawing.Size(122, 23);
             this.button6.TabIndex = 15;
             this.button6.Text = "정지";
             this.button6.UseVisualStyleBackColor = true;
@@ -183,23 +179,25 @@ namespace unit.screen
             // gatewayBox
             // 
             this.gatewayBox.FormattingEnabled = true;
-            this.gatewayBox.Location = new System.Drawing.Point(57, 29);
+            this.gatewayBox.Location = new System.Drawing.Point(13, 51);
             this.gatewayBox.Name = "gatewayBox";
-            this.gatewayBox.Size = new System.Drawing.Size(121, 23);
+            this.gatewayBox.Size = new System.Drawing.Size(108, 23);
             this.gatewayBox.TabIndex = 16;
+            this.gatewayBox.SelectedIndexChanged += new System.EventHandler(this.gatewayBox_SelectedIndexChanged);
             // 
             // deviceBox
             // 
             this.deviceBox.FormattingEnabled = true;
-            this.deviceBox.Location = new System.Drawing.Point(198, 29);
+            this.deviceBox.Location = new System.Drawing.Point(131, 51);
             this.deviceBox.Name = "deviceBox";
-            this.deviceBox.Size = new System.Drawing.Size(121, 23);
+            this.deviceBox.Size = new System.Drawing.Size(141, 23);
             this.deviceBox.TabIndex = 17;
+            this.deviceBox.SelectedIndexChanged += new System.EventHandler(this.deviceBox_SelectedIndexChanged);
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(195, 11);
+            this.label6.Location = new System.Drawing.Point(128, 33);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(89, 15);
             this.label6.TabIndex = 33;
@@ -208,7 +206,7 @@ namespace unit.screen
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(57, 11);
+            this.label5.Location = new System.Drawing.Point(13, 33);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(98, 15);
             this.label5.TabIndex = 32;
@@ -217,40 +215,93 @@ namespace unit.screen
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(341, 29);
+            this.label4.Location = new System.Drawing.Point(13, 77);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(208, 15);
             this.label4.TabIndex = 34;
             this.label4.Text = "구동기 모터 주소 : 0x4C752589170d";
+            this.label4.Click += new System.EventHandler(this.label4_Click);
+            // 
+            // uc5textBox2
+            // 
+            this.uc5textBox2.Location = new System.Drawing.Point(362, 196);
+            this.uc5textBox2.Name = "uc5textBox2";
+            this.uc5textBox2.Size = new System.Drawing.Size(356, 301);
+            this.uc5textBox2.TabIndex = 36;
+            this.uc5textBox2.Text = "";
+            // 
+            // uc5textBox1
+            // 
+            this.uc5textBox1.Location = new System.Drawing.Point(0, 196);
+            this.uc5textBox1.Name = "uc5textBox1";
+            this.uc5textBox1.Size = new System.Drawing.Size(356, 301);
+            this.uc5textBox1.TabIndex = 35;
+            this.uc5textBox1.Text = "";
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.label5);
+            this.groupBox2.Controls.Add(this.gatewayBox);
+            this.groupBox2.Controls.Add(this.deviceBox);
+            this.groupBox2.Controls.Add(this.label6);
+            this.groupBox2.Controls.Add(this.label4);
+            this.groupBox2.Location = new System.Drawing.Point(1, 21);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(284, 100);
+            this.groupBox2.TabIndex = 38;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Address";
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.checkBox1);
+            this.groupBox1.Controls.Add(this.textBox3);
+            this.groupBox1.Controls.Add(this.label2);
+            this.groupBox1.Location = new System.Drawing.Point(1, 127);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(284, 63);
+            this.groupBox1.TabIndex = 39;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "OPID";
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.button5);
+            this.groupBox3.Controls.Add(this.button1);
+            this.groupBox3.Controls.Add(this.button2);
+            this.groupBox3.Controls.Add(this.button3);
+            this.groupBox3.Controls.Add(this.button4);
+            this.groupBox3.Controls.Add(this.textBox1);
+            this.groupBox3.Controls.Add(this.button6);
+            this.groupBox3.Controls.Add(this.textBox2);
+            this.groupBox3.Controls.Add(this.label3);
+            this.groupBox3.Controls.Add(this.label1);
+            this.groupBox3.Location = new System.Drawing.Point(297, 21);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(297, 169);
+            this.groupBox3.TabIndex = 40;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "구동기 제어";
             // 
             // UserControl6
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.label6);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.deviceBox);
-            this.Controls.Add(this.gatewayBox);
-            this.Controls.Add(this.button6);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.checkBox1);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.richTextBox2);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.button5);
-            this.Controls.Add(this.button4);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.groupBox3);
+            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.groupBox2);
+            this.Controls.Add(this.uc5textBox2);
+            this.Controls.Add(this.uc5textBox1);
             this.Name = "UserControl6";
             this.Size = new System.Drawing.Size(718, 497);
             this.Load += new System.EventHandler(this.UserControl6_Load);
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -265,7 +316,6 @@ namespace unit.screen
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label3;
-        public System.Windows.Forms.RichTextBox richTextBox2;
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.Label label2;
@@ -275,5 +325,10 @@ namespace unit.screen
         public System.Windows.Forms.ComboBox gatewayBox;
         public System.Windows.Forms.ComboBox deviceBox;
         private System.Windows.Forms.Label label4;
+        public System.Windows.Forms.RichTextBox uc5textBox2;
+        public System.Windows.Forms.RichTextBox uc5textBox1;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox groupBox3;
     }
 }

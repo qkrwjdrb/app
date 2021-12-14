@@ -23,6 +23,8 @@ namespace unit.screen
         {
             deviceBox.SelectedIndex = 0;
             gatewayBox.SelectedIndex = 0;
+            Form1.f1.LoadUc6 = true;
+            Form1.f1.comboboxSelect();
         }
         ushort opid = 0;
         // 구동기 모터 주소 : 0x4C752589170d
@@ -256,6 +258,19 @@ namespace unit.screen
             {
                 MessageBox.Show("입력값을 확인하세요.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void gatewayBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Form1.f1.getewayBoxIndex = gatewayBox.SelectedIndex;
+        }
+        private void deviceBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Form1.f1.deviceBoxIndex = deviceBox.SelectedIndex;
         }
     }
 }

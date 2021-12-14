@@ -24,6 +24,8 @@ namespace unit.screen
             Form1.f1.addCombobox();
             deviceBox.SelectedIndex = 0;
             gatewayBox.SelectedIndex = 0;
+            Form1.f1.LoadUc7 = true;
+            Form1.f1.comboboxSelect();
         }
 
         private void button9_Click(object sender, EventArgs e)
@@ -124,6 +126,14 @@ namespace unit.screen
             else if (string.IsNullOrWhiteSpace(gatewayBox.Text)) MessageBox.Show("Gateway Address를 입력해주세요.", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
             else if (string.IsNullOrWhiteSpace(deviceBox.Text)) MessageBox.Show("Device Address를 입력해주세요.", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
             else MessageBox.Show("Value를 입력해주세요.", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+        private void gatewayBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Form1.f1.getewayBoxIndex = gatewayBox.SelectedIndex;
+        }
+        private void deviceBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Form1.f1.deviceBoxIndex = deviceBox.SelectedIndex;
         }
     }
 }

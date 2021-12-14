@@ -73,7 +73,7 @@ namespace unit.screen
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(621, 37);
+            this.button1.Location = new System.Drawing.Point(630, 37);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 4;
@@ -85,35 +85,34 @@ namespace unit.screen
             // 
             this.deviceBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.deviceBox.FormattingEnabled = true;
-            this.deviceBox.Location = new System.Drawing.Point(135, 38);
+            this.deviceBox.Location = new System.Drawing.Point(144, 38);
             this.deviceBox.Name = "deviceBox";
             this.deviceBox.Size = new System.Drawing.Size(192, 23);
             this.deviceBox.TabIndex = 5;
+            this.deviceBox.SelectedIndexChanged += new System.EventHandler(this.deviceBox_SelectedIndexChanged);
             // 
             // gatewayBox
             // 
             this.gatewayBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.gatewayBox.FormattingEnabled = true;
-            this.gatewayBox.Location = new System.Drawing.Point(0, 38);
+            this.gatewayBox.Location = new System.Drawing.Point(9, 38);
             this.gatewayBox.Name = "gatewayBox";
             this.gatewayBox.Size = new System.Drawing.Size(125, 23);
             this.gatewayBox.TabIndex = 6;
-            this.gatewayBox.SelectedIndexChanged += new System.EventHandler(this.comboBox22_SelectedIndexChanged);
+            this.gatewayBox.SelectedIndexChanged += new System.EventHandler(this.gatewayBox_SelectedIndexChanged);
             // 
             // deviceNumberBox
             // 
-            this.deviceNumberBox.Location = new System.Drawing.Point(441, 37);
+            this.deviceNumberBox.Location = new System.Drawing.Point(450, 37);
             this.deviceNumberBox.Name = "deviceNumberBox";
             this.deviceNumberBox.Size = new System.Drawing.Size(65, 23);
             this.deviceNumberBox.TabIndex = 7;
             this.deviceNumberBox.Text = "30";
-            this.deviceNumberBox.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
-            this.deviceNumberBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox1_KeyPress);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(0, 20);
+            this.label1.Location = new System.Drawing.Point(9, 20);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(98, 15);
             this.label1.TabIndex = 8;
@@ -122,7 +121,7 @@ namespace unit.screen
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(135, 20);
+            this.label2.Location = new System.Drawing.Point(144, 20);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(89, 15);
             this.label2.TabIndex = 9;
@@ -131,7 +130,7 @@ namespace unit.screen
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(441, 19);
+            this.label3.Location = new System.Drawing.Point(450, 19);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(51, 15);
             this.label3.TabIndex = 10;
@@ -140,7 +139,7 @@ namespace unit.screen
             // emptyDeviceCheck
             // 
             this.emptyDeviceCheck.AutoSize = true;
-            this.emptyDeviceCheck.Location = new System.Drawing.Point(517, 38);
+            this.emptyDeviceCheck.Location = new System.Drawing.Point(526, 38);
             this.emptyDeviceCheck.Name = "emptyDeviceCheck";
             this.emptyDeviceCheck.Size = new System.Drawing.Size(94, 19);
             this.emptyDeviceCheck.TabIndex = 11;
@@ -150,7 +149,7 @@ namespace unit.screen
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(338, 20);
+            this.label4.Location = new System.Drawing.Point(347, 20);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(71, 15);
             this.label4.TabIndex = 13;
@@ -160,7 +159,7 @@ namespace unit.screen
             // 
             this.datetypeBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.datetypeBox.FormattingEnabled = true;
-            this.datetypeBox.Location = new System.Drawing.Point(338, 38);
+            this.datetypeBox.Location = new System.Drawing.Point(347, 38);
             this.datetypeBox.Name = "datetypeBox";
             this.datetypeBox.Size = new System.Drawing.Size(94, 23);
             this.datetypeBox.TabIndex = 12;

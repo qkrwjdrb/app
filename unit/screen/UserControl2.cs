@@ -22,6 +22,7 @@ namespace unit.screen
 
         private void UserControl2_Load(object sender, EventArgs e)
         {
+            Form1.f1.LoadUc2 = true;
 
         }
 
@@ -61,18 +62,20 @@ namespace unit.screen
 
         private void button2_Click(object sender, EventArgs e)
         {
+            Form1.f1.deviceBoxIndex = 0;
+            Form1.f1.getewayBoxIndex = 0;
             if (gatewayListBox.SelectedIndex != -1)
             {
                 gatewayListBox.Items.RemoveAt(gatewayListBox.SelectedIndex);
             }
             Form1.f1.addCombobox();
             Form1.f1.addressSaveFile();
-            Form1.f1.gatewaySaveFile();
-
+            Form1.f1.gatewaySaveFile(); 
         }
         private void button3_Click(object sender, EventArgs e)
         {
-
+            Form1.f1.deviceBoxIndex = 0;
+            Form1.f1.getewayBoxIndex = 0;
             if (deviceListBox.SelectedIndex != -1)
             {
                 deviceListBox.Items.RemoveAt(deviceListBox.SelectedIndex);

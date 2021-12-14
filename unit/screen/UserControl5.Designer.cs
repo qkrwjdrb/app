@@ -44,21 +44,25 @@ namespace unit.screen
             this.gatewayBox = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.groupBox1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // comboBox3
             // 
             this.comboBox3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox3.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.comboBox3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.comboBox3.FormattingEnabled = true;
-            this.comboBox3.Location = new System.Drawing.Point(417, 43);
+            this.comboBox3.Location = new System.Drawing.Point(155, 53);
             this.comboBox3.Name = "comboBox3";
             this.comboBox3.Size = new System.Drawing.Size(146, 23);
             this.comboBox3.TabIndex = 0;
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(417, 74);
+            this.textBox2.Location = new System.Drawing.Point(155, 84);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(146, 23);
             this.textBox2.TabIndex = 1;
@@ -66,7 +70,7 @@ namespace unit.screen
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(417, 14);
+            this.textBox1.Location = new System.Drawing.Point(155, 24);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(146, 23);
             this.textBox1.TabIndex = 4;
@@ -74,7 +78,7 @@ namespace unit.screen
             // 
             // textBox3
             // 
-            this.textBox3.Location = new System.Drawing.Point(417, 104);
+            this.textBox3.Location = new System.Drawing.Point(155, 114);
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(146, 23);
             this.textBox3.TabIndex = 5;
@@ -83,7 +87,7 @@ namespace unit.screen
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(282, 18);
+            this.label1.Location = new System.Drawing.Point(20, 28);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(116, 15);
             this.label1.TabIndex = 6;
@@ -92,7 +96,7 @@ namespace unit.screen
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(299, 47);
+            this.label2.Location = new System.Drawing.Point(37, 57);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(99, 15);
             this.label2.TabIndex = 7;
@@ -101,7 +105,7 @@ namespace unit.screen
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(314, 78);
+            this.label3.Location = new System.Drawing.Point(52, 88);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(84, 15);
             this.label3.TabIndex = 8;
@@ -110,7 +114,7 @@ namespace unit.screen
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(325, 108);
+            this.label4.Location = new System.Drawing.Point(63, 118);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(72, 15);
             this.label4.TabIndex = 9;
@@ -118,23 +122,23 @@ namespace unit.screen
             // 
             // uc5textBox1
             // 
-            this.uc5textBox1.Location = new System.Drawing.Point(0, 147);
+            this.uc5textBox1.Location = new System.Drawing.Point(0, 187);
             this.uc5textBox1.Name = "uc5textBox1";
-            this.uc5textBox1.Size = new System.Drawing.Size(356, 350);
+            this.uc5textBox1.Size = new System.Drawing.Size(356, 310);
             this.uc5textBox1.TabIndex = 10;
             this.uc5textBox1.Text = "";
             // 
             // uc5textBox2
             // 
-            this.uc5textBox2.Location = new System.Drawing.Point(362, 147);
+            this.uc5textBox2.Location = new System.Drawing.Point(362, 187);
             this.uc5textBox2.Name = "uc5textBox2";
-            this.uc5textBox2.Size = new System.Drawing.Size(356, 350);
+            this.uc5textBox2.Size = new System.Drawing.Size(356, 310);
             this.uc5textBox2.TabIndex = 11;
             this.uc5textBox2.Text = "";
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(608, 104);
+            this.button1.Location = new System.Drawing.Point(226, 143);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 12;
@@ -145,23 +149,25 @@ namespace unit.screen
             // deviceBox
             // 
             this.deviceBox.FormattingEnabled = true;
-            this.deviceBox.Location = new System.Drawing.Point(29, 87);
+            this.deviceBox.Location = new System.Drawing.Point(24, 110);
             this.deviceBox.Name = "deviceBox";
             this.deviceBox.Size = new System.Drawing.Size(157, 23);
             this.deviceBox.TabIndex = 14;
+            this.deviceBox.SelectedIndexChanged += new System.EventHandler(this.deviceBox_SelectedIndexChanged);
             // 
             // gatewayBox
             // 
             this.gatewayBox.FormattingEnabled = true;
-            this.gatewayBox.Location = new System.Drawing.Point(29, 35);
+            this.gatewayBox.Location = new System.Drawing.Point(24, 58);
             this.gatewayBox.Name = "gatewayBox";
             this.gatewayBox.Size = new System.Drawing.Size(157, 23);
             this.gatewayBox.TabIndex = 15;
+            this.gatewayBox.SelectedIndexChanged += new System.EventHandler(this.gatewayBox_SelectedIndexChanged);
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(29, 14);
+            this.label5.Location = new System.Drawing.Point(24, 37);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(98, 15);
             this.label5.TabIndex = 16;
@@ -170,36 +176,59 @@ namespace unit.screen
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(29, 66);
+            this.label6.Location = new System.Drawing.Point(24, 89);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(89, 15);
             this.label6.TabIndex = 17;
             this.label6.Text = "Device Address";
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.label5);
+            this.groupBox1.Controls.Add(this.deviceBox);
+            this.groupBox1.Controls.Add(this.label6);
+            this.groupBox1.Controls.Add(this.gatewayBox);
+            this.groupBox1.Location = new System.Drawing.Point(1, 3);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(200, 178);
+            this.groupBox1.TabIndex = 18;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Address";
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.comboBox3);
+            this.groupBox2.Controls.Add(this.textBox2);
+            this.groupBox2.Controls.Add(this.textBox1);
+            this.groupBox2.Controls.Add(this.textBox3);
+            this.groupBox2.Controls.Add(this.label1);
+            this.groupBox2.Controls.Add(this.label2);
+            this.groupBox2.Controls.Add(this.button1);
+            this.groupBox2.Controls.Add(this.label3);
+            this.groupBox2.Controls.Add(this.label4);
+            this.groupBox2.Location = new System.Drawing.Point(207, 3);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(316, 178);
+            this.groupBox2.TabIndex = 19;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Write Request";
+            // 
             // UserControl5
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.label6);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.gatewayBox);
-            this.Controls.Add(this.deviceBox);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.groupBox2);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.uc5textBox2);
             this.Controls.Add(this.uc5textBox1);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.comboBox3);
             this.Name = "UserControl5";
             this.Size = new System.Drawing.Size(718, 497);
             this.Load += new System.EventHandler(this.UserControl5_Load);
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -220,5 +249,7 @@ namespace unit.screen
         public System.Windows.Forms.RichTextBox uc5textBox1;
         public System.Windows.Forms.ComboBox deviceBox;
         public System.Windows.Forms.ComboBox gatewayBox;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox groupBox2;
     }
 }

@@ -54,6 +54,8 @@ namespace unit.screen
             comboBox3.SelectedIndex = 0;
             deviceBox.SelectedIndex = 0;
             gatewayBox.SelectedIndex = 0;
+            Form1.f1.LoadUc4 = true;
+            Form1.f1.comboboxSelect();
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -105,6 +107,14 @@ namespace unit.screen
             {
                 MessageBox.Show("Commend를 입력해주세요.", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+        private void gatewayBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Form1.f1.getewayBoxIndex = gatewayBox.SelectedIndex;
+        }
+        private void deviceBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Form1.f1.deviceBoxIndex = deviceBox.SelectedIndex;
         }
     }
 }

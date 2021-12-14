@@ -48,7 +48,6 @@ namespace unit.screen
             this.gatewayListBox.Name = "gatewayListBox";
             this.gatewayListBox.Size = new System.Drawing.Size(228, 364);
             this.gatewayListBox.TabIndex = 1;
-            this.gatewayListBox.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
             // 
             // deviceListBox
             // 
@@ -58,7 +57,6 @@ namespace unit.screen
             this.deviceListBox.Name = "deviceListBox";
             this.deviceListBox.Size = new System.Drawing.Size(228, 364);
             this.deviceListBox.TabIndex = 2;
-            this.deviceListBox.SelectedIndexChanged += new System.EventHandler(this.listBox2_SelectedIndexChanged);
             // 
             // button1
             // 
@@ -76,7 +74,6 @@ namespace unit.screen
             this.addGateBox.Name = "addGateBox";
             this.addGateBox.Size = new System.Drawing.Size(192, 23);
             this.addGateBox.TabIndex = 59;
-            this.addGateBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.addGateBox_KeyPress);
             // 
             // addDevBox
             // 
@@ -84,7 +81,6 @@ namespace unit.screen
             this.addDevBox.Name = "addDevBox";
             this.addDevBox.Size = new System.Drawing.Size(192, 23);
             this.addDevBox.TabIndex = 60;
-            this.addDevBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.addDevBox_KeyPress);
             // 
             // label12
             // 

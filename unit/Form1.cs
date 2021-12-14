@@ -45,6 +45,15 @@ namespace unit
         public bool isUc4 = false;
         public bool isUc5 = false;
         public bool isUc6 = false;
+        public bool isUc7 = false;
+
+        public bool LoadUc1 = false;
+        public bool LoadUc2 = false;
+        public bool LoadUc3 = false;
+        public bool LoadUc4 = false;
+        public bool LoadUc5 = false;
+        public bool LoadUc6 = false;
+        public bool LoadUc7 = false;
 
         public FileInfo deFile = new FileInfo("device.txt");
         public FileInfo gaFile = new FileInfo("gateway.txt");
@@ -65,7 +74,9 @@ namespace unit
         //form1_load
         public void Form1_Load(object sender, EventArgs e)
         {
-             this.Size = new Size(761, 632);
+            this.Size = new Size(761, 632);
+
+
 
             if (deFile.Exists)
             {
@@ -85,7 +96,7 @@ namespace unit
             else
             {
                 string[] aa = { "0" };
-                screen.UserControl2.uc2.gatewayListBox.Items.AddRange(aa); 
+                screen.UserControl2.uc2.gatewayListBox.Items.AddRange(aa);
             }
             panel3.Controls.Add(UserControl1);
             getAddress((uint)int.Parse(screen.UserControl2.uc2.gatewayListBox.Items[0].ToString(), System.Globalization.NumberStyles.HexNumber), ulong.Parse(screen.UserControl2.uc2.deviceListBox.Items[0].ToString(), System.Globalization.NumberStyles.HexNumber));
@@ -256,6 +267,24 @@ namespace unit
                 }
                 else if (isUc6)
                 {
+                    screen.UserControl5.uc5.uc5textBox1.AppendText(Environment.NewLine + $"Channel={channel}");
+                    screen.UserControl5.uc5.uc5textBox1.AppendText(Environment.NewLine + $"SequenceNumber={sequenceNumber}");
+                    screen.UserControl5.uc5.uc5textBox1.AppendText(Environment.NewLine + $"GatewayId=" + gatewayId.ToString("X6"));
+                    screen.UserControl5.uc5.uc5textBox1.AppendText(Environment.NewLine + $"DeviceId=" + deviceId.ToString("X12"));
+                    screen.UserControl5.uc5.uc5textBox1.AppendText(Environment.NewLine + $"Tdu.Length={payload.Length}");
+
+                }
+                else if (isUc7)
+                {
+                    screen.UserControl7.uc7.uc7textBox1.Text = "TxRtu(" + GetProtocolChannelName(channel) + ") RequestStream";
+                    screen.UserControl7.uc7.uc7textBox1.AppendText(Environment.NewLine + $"Channel={channel}");
+                    screen.UserControl7.uc7.uc7textBox1.AppendText(Environment.NewLine + $"SequenceNumber={sequenceNumber}");
+                    screen.UserControl7.uc7.uc7textBox1.AppendText(Environment.NewLine + $"GatewayId=" + gatewayId.ToString("X6"));
+                    screen.UserControl7.uc7.uc7textBox1.AppendText(Environment.NewLine + $"DeviceId=" + deviceId.ToString("X12"));
+                    screen.UserControl7.uc7.uc7textBox1.AppendText(Environment.NewLine + $"Tdu.Length={payload.Length}");
+                    screen.UserControl7.uc7.uc7textBox1.AppendText(Environment.NewLine + $"Tdu={BitConverter.ToString(payload).Replace("-", " ")}");
+                    screen.UserControl7.uc7.uc7textBox1.AppendText(Environment.NewLine);
+                    screen.UserControl7.uc7.uc7textBox2.Text = "Awaiting response...";
 
                 }
                 else
@@ -319,6 +348,18 @@ namespace unit
                 else if (isUc6)
                 {
 
+                }
+                else if (isUc7)
+                {
+                    screen.UserControl7.uc7.uc7textBox2.Text = "RxRtu(" + GetProtocolChannelName(channel) + ")";
+                    screen.UserControl7.uc7.uc7textBox2.AppendText(Environment.NewLine + $"response.Channel={channel}");
+                    screen.UserControl7.uc7.uc7textBox2.AppendText(Environment.NewLine + $"response.AcknowledgeNumber={acknowledgeNumber}");
+                    screen.UserControl7.uc7.uc7textBox2.AppendText(Environment.NewLine + $"response.GatewayId=" + gatewayId.ToString("X6"));
+                    screen.UserControl7.uc7.uc7textBox2.AppendText(Environment.NewLine + $"response.DeviceId=" + deviceId.ToString("X12"));
+                    screen.UserControl7.uc7.uc7textBox2.AppendText(Environment.NewLine + $"response.Tdu.Length={payload.Length}");
+                    screen.UserControl7.uc7.uc7textBox2.AppendText(Environment.NewLine + BitConverter.ToString(payload));
+                    screen.UserControl7.uc7.uc7textBox2.AppendText(Environment.NewLine);
+                    screen.UserControl7.uc7.uc7textBox1.Text += "Responsed... ";
                 }
                 else
                 {
@@ -572,9 +613,49 @@ namespace unit
             screen.UserControl7.uc7.deviceBox.Items.Clear();
             screen.UserControl7.uc7.deviceBox.Items.AddRange(allList2);
 
-            Form1.f1.gatewayItems = allList1;
-            Form1.f1.addressItems = allList2;
+            gatewayItems = allList1;
+            addressItems = allList2;
+            comboboxSelect();
         }
+        public int deviceBoxIndex = 0;
+        public int getewayBoxIndex = 0;
+        
+        public void comboboxSelect()
+        {
+            if (LoadUc1)
+            {
+                screen.UserControl1.uc1.deviceBox.SelectedIndex = deviceBoxIndex;
+                screen.UserControl1.uc1.gatewayBox.SelectedIndex = getewayBoxIndex;
+            }
+            if (LoadUc4)
+            {
+                screen.UserControl4.uc4.deviceBox.SelectedIndex = deviceBoxIndex;
+                screen.UserControl4.uc4.gatewayBox.SelectedIndex = getewayBoxIndex;
+            }
+            if (LoadUc5)
+            {
+                screen.UserControl5.uc5.deviceBox.SelectedIndex = deviceBoxIndex;
+                screen.UserControl5.uc5.gatewayBox.SelectedIndex = getewayBoxIndex;
+            }
+            if (LoadUc6)
+            {
+                screen.UserControl6.uc6.deviceBox.SelectedIndex = deviceBoxIndex;
+                screen.UserControl6.uc6.gatewayBox.SelectedIndex = getewayBoxIndex;
+            }
+            if (LoadUc7)
+            {
+                screen.UserControl7.uc7.deviceBox.SelectedIndex = deviceBoxIndex;
+                screen.UserControl7.uc7.gatewayBox.SelectedIndex = getewayBoxIndex;
+            }
+
+        }
+
+
+
+
+
+
+
 
         private void richTextBox3_TextChanged(object sender, EventArgs e)
         {
@@ -615,42 +696,47 @@ namespace unit
                 0x00,202, 0x00, Convert.ToByte(deviceCount*3+1),
             });
         }
+        //센서 데이터 버튼
         private void button2_Click(object sender, EventArgs e)
         {
             isUc4 = false;
             isUc5 = false;
             isUc6 = false;
+            isUc7 = false;
 
             panel3.Controls.Clear();
-            panel3.Controls.Add(UserControl1);
+            panel3.Controls.Add(UserControl1); comboboxSelect();
         }
-
+        //장치 목록 편집 버튼
         private void button4_Click(object sender, EventArgs e)
         {
             panel3.Controls.Clear();
-            panel3.Controls.Add(UserControl2);
+            panel3.Controls.Add(UserControl2); comboboxSelect();
         }
-
+        //모드버스 읽기 버튼
         private void button3_Click(object sender, EventArgs e)
         {
             isUc4 = true;
             isUc5 = false;
             isUc6 = false;
+            isUc7 = false;
 
             panel3.Controls.Clear();
-            panel3.Controls.Add(UserControl4);
+            panel3.Controls.Add(UserControl4); comboboxSelect();
         }
-
+        //모드버스 쓰기 버튼
         private void button5_Click(object sender, EventArgs e)
         {
             isUc5 = true;
             isUc4 = false;
             isUc6 = false;
+            isUc7 = false;
 
             panel3.Controls.Clear();
-            panel3.Controls.Add(UserControl5);
+            panel3.Controls.Add(UserControl5); comboboxSelect();
         }
 
+        //기록 펼치기 버튼
         bool clicked = false;
         private void button6_Click(object sender, EventArgs e)
         {
@@ -666,24 +752,29 @@ namespace unit
                 clicked = true;
                 this.Size = new Size(1588, 632);
             }
+            comboboxSelect();
         }
-
+        //구동기 제어
         private void button7_Click(object sender, EventArgs e)
         {
             isUc6 = true;
             isUc4 = false;
             isUc5 = false;
-            panel3.Controls.Clear();
-            panel3.Controls.Add(UserControl6);
-        }
+            isUc7 = false;
 
+            panel3.Controls.Clear();
+            panel3.Controls.Add(UserControl6); comboboxSelect();
+        }
+        //멀티 쓰기
         private void button9_Click(object sender, EventArgs e)
         {
+            isUc7 = true;
             isUc4 = false;
             isUc5 = false;
             isUc6 = false;
+
             panel3.Controls.Clear();
-            panel3.Controls.Add(UserControl7);
+            panel3.Controls.Add(UserControl7); comboboxSelect();
         }
     }
 }
