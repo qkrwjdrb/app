@@ -64,7 +64,7 @@ namespace unit.screen
         {
             Form1.f1.deviceBoxIndex = 0;
             Form1.f1.getewayBoxIndex = 0;
-            if (gatewayListBox.SelectedIndex != -1)
+            if (gatewayListBox.SelectedIndex != -1 && gatewayListBox.SelectedIndex != 0 && gatewayListBox.SelectedIndex != 1)
             {
                 gatewayListBox.Items.RemoveAt(gatewayListBox.SelectedIndex);
             }
@@ -76,7 +76,7 @@ namespace unit.screen
         {
             Form1.f1.deviceBoxIndex = 0;
             Form1.f1.getewayBoxIndex = 0;
-            if (deviceListBox.SelectedIndex != -1)
+            if (deviceListBox.SelectedIndex != -1 && deviceListBox.SelectedIndex != 0 && deviceListBox.SelectedIndex != 1)
             {
                 deviceListBox.Items.RemoveAt(deviceListBox.SelectedIndex);
             }

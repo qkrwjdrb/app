@@ -619,35 +619,37 @@ namespace unit
         }
         public int deviceBoxIndex = 0;
         public int getewayBoxIndex = 0;
-        
+
         public void comboboxSelect()
         {
-            if (LoadUc1)
+            if (true)
             {
-                screen.UserControl1.uc1.deviceBox.SelectedIndex = deviceBoxIndex;
-                screen.UserControl1.uc1.gatewayBox.SelectedIndex = getewayBoxIndex;
+                if (LoadUc1)
+                {
+                    screen.UserControl1.uc1.deviceBox.SelectedIndex = deviceBoxIndex;
+                    screen.UserControl1.uc1.gatewayBox.SelectedIndex = getewayBoxIndex;
+                }
+                if (LoadUc4)
+                {
+                    screen.UserControl4.uc4.deviceBox.SelectedIndex = deviceBoxIndex;
+                    screen.UserControl4.uc4.gatewayBox.SelectedIndex = getewayBoxIndex;
+                }
+                if (LoadUc5)
+                {
+                    screen.UserControl5.uc5.deviceBox.SelectedIndex = deviceBoxIndex;
+                    screen.UserControl5.uc5.gatewayBox.SelectedIndex = getewayBoxIndex;
+                }
+                if (LoadUc6)
+                {
+                    screen.UserControl6.uc6.deviceBox.SelectedIndex = deviceBoxIndex;
+                    screen.UserControl6.uc6.gatewayBox.SelectedIndex = getewayBoxIndex;
+                }
+                if (LoadUc7)
+                {
+                    screen.UserControl7.uc7.deviceBox.SelectedIndex = deviceBoxIndex;
+                    screen.UserControl7.uc7.gatewayBox.SelectedIndex = getewayBoxIndex;
+                }
             }
-            if (LoadUc4)
-            {
-                screen.UserControl4.uc4.deviceBox.SelectedIndex = deviceBoxIndex;
-                screen.UserControl4.uc4.gatewayBox.SelectedIndex = getewayBoxIndex;
-            }
-            if (LoadUc5)
-            {
-                screen.UserControl5.uc5.deviceBox.SelectedIndex = deviceBoxIndex;
-                screen.UserControl5.uc5.gatewayBox.SelectedIndex = getewayBoxIndex;
-            }
-            if (LoadUc6)
-            {
-                screen.UserControl6.uc6.deviceBox.SelectedIndex = deviceBoxIndex;
-                screen.UserControl6.uc6.gatewayBox.SelectedIndex = getewayBoxIndex;
-            }
-            if (LoadUc7)
-            {
-                screen.UserControl7.uc7.deviceBox.SelectedIndex = deviceBoxIndex;
-                screen.UserControl7.uc7.gatewayBox.SelectedIndex = getewayBoxIndex;
-            }
-
         }
 
 
