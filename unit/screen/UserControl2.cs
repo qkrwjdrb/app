@@ -64,21 +64,37 @@ namespace unit.screen
         {
             Form1.f1.deviceBoxIndex = 0;
             Form1.f1.getewayBoxIndex = 0;
-            if (gatewayListBox.SelectedIndex != -1 && gatewayListBox.SelectedIndex != 0 && gatewayListBox.SelectedIndex != 1)
+            if (gatewayListBox.SelectedIndex != -1)
             {
-                gatewayListBox.Items.RemoveAt(gatewayListBox.SelectedIndex);
+                if (gatewayListBox.Items.Count >= 1)
+                {
+                    gatewayListBox.Items.RemoveAt(gatewayListBox.SelectedIndex);
+                }
+                else
+                {
+                    MessageBox.Show("입력값을 확인하세요.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
             Form1.f1.addCombobox();
             Form1.f1.addressSaveFile();
-            Form1.f1.gatewaySaveFile(); 
+            Form1.f1.gatewaySaveFile();
         }
         private void button3_Click(object sender, EventArgs e)
         {
             Form1.f1.deviceBoxIndex = 0;
             Form1.f1.getewayBoxIndex = 0;
-            if (deviceListBox.SelectedIndex != -1 && deviceListBox.SelectedIndex != 0 && deviceListBox.SelectedIndex != 1)
+            if (deviceListBox.SelectedIndex != -1)
             {
-                deviceListBox.Items.RemoveAt(deviceListBox.SelectedIndex);
+                if (deviceListBox.Items.Count >= 1)
+                {
+
+                    deviceListBox.Items.RemoveAt(deviceListBox.SelectedIndex);
+                }
+                else
+                {
+                    MessageBox.Show("입력값을 확인하세요.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+
             }
             Form1.f1.addCombobox();
             Form1.f1.addressSaveFile();
