@@ -16,10 +16,10 @@ namespace unit.screen
         public static UserControl2 uc2;
         public UserControl2()
         {
+
             InitializeComponent();
             uc2 = this;
         }
-
         private void UserControl2_Load(object sender, EventArgs e)
         {
             Form1.f1.LoadUc2 = true;
@@ -51,14 +51,10 @@ namespace unit.screen
                     MessageBox.Show("입력값을 확인하세요.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
-
-
             Form1.f1.addCombobox();
             Form1.f1.addressSaveFile();
             Form1.f1.gatewaySaveFile();
         }
-
-
 
         private void button2_Click(object sender, EventArgs e)
         {
@@ -72,7 +68,7 @@ namespace unit.screen
                 }
                 else
                 {
-                    MessageBox.Show("입력값을 확인하세요.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(".", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             Form1.f1.addCombobox();
@@ -92,9 +88,8 @@ namespace unit.screen
                 }
                 else
                 {
-                    MessageBox.Show("입력값을 확인하세요.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(".", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-
             }
             Form1.f1.addCombobox();
             Form1.f1.addressSaveFile();

@@ -38,6 +38,14 @@ namespace unit.screen
             this.label13 = new System.Windows.Forms.Label();
             this.gatewayDeleteButton = new System.Windows.Forms.Button();
             this.deviceDeleteButton = new System.Windows.Forms.Button();
+            this.label5 = new System.Windows.Forms.Label();
+            this.deviceBox = new System.Windows.Forms.ComboBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.gatewayBox = new System.Windows.Forms.ComboBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // gatewayListBox
@@ -122,10 +130,84 @@ namespace unit.screen
             this.deviceDeleteButton.UseVisualStyleBackColor = true;
             this.deviceDeleteButton.Click += new System.EventHandler(this.button3_Click);
             // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(499, 82);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(98, 15);
+            this.label5.TabIndex = 66;
+            this.label5.Text = "Gateway Address";
+            // 
+            // deviceBox
+            // 
+            this.deviceBox.FormattingEnabled = true;
+            this.deviceBox.Location = new System.Drawing.Point(499, 288);
+            this.deviceBox.Name = "deviceBox";
+            this.deviceBox.Size = new System.Drawing.Size(157, 23);
+            this.deviceBox.TabIndex = 64;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(499, 270);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(89, 15);
+            this.label6.TabIndex = 67;
+            this.label6.Text = "Device Address";
+            // 
+            // gatewayBox
+            // 
+            this.gatewayBox.FormattingEnabled = true;
+            this.gatewayBox.Location = new System.Drawing.Point(499, 103);
+            this.gatewayBox.Name = "gatewayBox";
+            this.gatewayBox.Size = new System.Drawing.Size(157, 23);
+            this.gatewayBox.TabIndex = 65;
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(499, 132);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(104, 23);
+            this.textBox1.TabIndex = 68;
+            // 
+            // textBox2
+            // 
+            this.textBox2.Location = new System.Drawing.Point(499, 317);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(104, 23);
+            this.textBox2.TabIndex = 69;
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(609, 131);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 70;
+            this.button2.Text = "button2";
+            this.button2.UseVisualStyleBackColor = true;
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(609, 316);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(75, 23);
+            this.button3.TabIndex = 71;
+            this.button3.Text = "button3";
+            this.button3.UseVisualStyleBackColor = true;
+            // 
             // UserControl2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.button3);
+            this.Controls.Add(this.button2);
+            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.deviceBox);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.gatewayBox);
             this.Controls.Add(this.deviceDeleteButton);
             this.Controls.Add(this.gatewayDeleteButton);
             this.Controls.Add(this.button1);
@@ -153,5 +235,13 @@ namespace unit.screen
         private System.Windows.Forms.Button deviceDeleteButton;
         public System.Windows.Forms.ListBox deviceListBox;
         public System.Windows.Forms.ListBox gatewayListBox;
+        private System.Windows.Forms.Label label5;
+        public System.Windows.Forms.ComboBox deviceBox;
+        private System.Windows.Forms.Label label6;
+        public System.Windows.Forms.ComboBox gatewayBox;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button3;
     }
 }
