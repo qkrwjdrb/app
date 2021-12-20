@@ -12,10 +12,10 @@ namespace unit.screen
 {
     public partial class UserControl3 : UserControl
     {
-            public static UserControl3 uc3;
+        public static UserControl3 uc3;
         public UserControl3()
-        {       
-        InitializeComponent(); uc3 = this;
+        {
+            InitializeComponent(); uc3 = this;
             panel1.Controls.Add(ucMod1);
             panel2.Controls.Add(ucSelect1);
 
@@ -26,7 +26,12 @@ namespace unit.screen
             ucPanel.ucText.textSender += UcText_textSender;
             ucPanel.ucLED.ledSender += UcLED_eventModSender;
 
-  
+
+        }
+        private class Role
+        {
+            public int Id { get; set; }
+            public string Name { get; set; }
         }
         string[] save_gateways = new string[5];
 
@@ -45,8 +50,8 @@ namespace unit.screen
         device.ucAdd device2 = new device.ucAdd();
         device.ucDelete ucDelete3 = new device.ucDelete();
 
-    
-   
+
+
         // select_combo_gateway();
 
         //networkService
@@ -287,7 +292,7 @@ namespace unit.screen
             //  TxMbRtu(0, gateway, devicead, new byte[] { adress, fc, 0x00, startad, 0x00, length, crc1, crc2 });
         }
 
-    
+
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -334,12 +339,32 @@ namespace unit.screen
 
         private void button8_Click(object sender, EventArgs e)
         {
-            remove_rich(richTextBox1);
+            button1.Text = Convert.ToString(listBox1.SelectedValue);
         }
 
         private void button9_Click(object sender, EventArgs e)
         {
-            remove_rich(richTextBox2);
+            int sel = listBox1.SelectedIndex;
+
+            listBox1.Items[sel] ="wer|";
+        }
+
+        private void UserControl3_Load(object sender, EventArgs e)
+        {
+            var roles = new List<Role>()
+           {
+        new Role() { Name = "My Role 1", Id = 1 },
+        new Role() { Name = "My Role 2", Id = 2},
+        new Role() { Name = "My Role 3", Id = 3}
+      };
+
+            listBox1.DataSource = roles;
+
+            listBox1.DisplayMember = "Name";
+
+            listBox1.ValueMember = "Id";
+            //      string[] allList112341 = screen.UserControl2.uc2.deviceListBox.Items.OfType<string>().ToArray();
+            //      listBox1.Items.AddRange(allList112341);
         }
     }
 }

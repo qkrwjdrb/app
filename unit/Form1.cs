@@ -10,6 +10,8 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Text;
+
 
 namespace unit
 {
@@ -778,5 +780,109 @@ namespace unit
             panel3.Controls.Clear();
             panel3.Controls.Add(UserControl7); comboboxSelect();
         }
+
+        private void button10_Click(object sender, EventArgs e)
+        {
+
+            panel3.Controls.Clear();
+            panel3.Controls.Add(UserControl3); 
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+//--------------------------------
+namespace ConsoleApplication1
+{
+    class Program
+    {
+
+        static void Mainn(string[] args)
+        {
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+            Application.Run(new MainForm());
+
+        }
+    }
+
+    class DataType1 : Object
+    {
+        private string _name;
+        private System.Drawing.Point _point;
+        public string Name
+        {
+            // 이전 소스의 ToString()의 내용이 여기를 통해 처리하게 됩니다.
+            get
+            {
+                StringBuilder sb = new StringBuilder();
+                sb.Append(_name);
+                sb.Append(" [ ");
+                sb.Append(_point.X.ToString());
+                sb.Append(",");
+                sb.Append(_point.Y.ToString());
+                sb.Append(" ]");
+                return sb.ToString();
+            }
+            set { _name = Name; }
+        }
+        public Point Pos
+        {
+            get { return _point; }
+            set { _point = Pos; }
+        }
+        public DataType1(string name, System.Drawing.Point pos)
+        {
+            _name = name;
+            _point = pos;
+        }
+        // 이제 이 부분은 더이상 쓰이지 않습니다.
+        //public override string ToString()
+        //{
+        //    StringBuilder sb = new StringBuilder();
+        //    sb.Append(_name);
+        //    sb.Append(" [ ");
+        //    sb.Append(_point.X.ToString());
+        //    sb.Append(",");
+        //    sb.Append(_point.Y.ToString());
+        //    sb.Append(" ]");
+        //    return sb.ToString();
+        //}
+    }
+    class MainForm : Form
+    {
+        ListBox listTest;
+        List<DataType1> listDataSource;
+        public MainForm()
+        {
+            listTest = new ListBox();
+            listDataSource = new List<DataType1>(); // 데이터 소스 개체 생성
+
+            this.listTest.FormattingEnabled = true;
+            this.listTest.Location = new System.Drawing.Point(5, 5);
+            this.listTest.Name = "TestListBox";
+            this.listTest.Size = new System.Drawing.Size(300, 400);
+            this.listTest.TabIndex = 1;
+            this.Load += new System.EventHandler(this.OnLoad);
+        }
+        private void OnLoad(object sender, EventArgs e)
+        {
+            this.Controls.Add(listTest);
+            listDataSource.Add(new DataType1("항목1", new Point(1, 1)));
+            listDataSource.Add(new DataType1("항목2", new Point(5, 6)));
+            listDataSource.Add(new DataType1("항목3", new Point(2, 1)));
+            this.listTest.DataSource = listDataSource; // ListBox와의 바인딩(연결)
+            this.listTest.DisplayMember = "Name"; // DataType1의 Name 프로퍼티의 Get 내용이 출력
+            this.listTest.ValueMember = "Pos"; // DataType1의 Pos 프로퍼티의 Get 내용이 내장 값
+        }
+
     }
 }

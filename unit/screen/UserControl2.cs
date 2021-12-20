@@ -16,7 +16,6 @@ namespace unit.screen
         public static UserControl2 uc2;
         public UserControl2()
         {
-
             InitializeComponent();
             uc2 = this;
         }
