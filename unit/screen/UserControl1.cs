@@ -28,7 +28,7 @@ namespace unit.screen
 
         private void UserControl1_Load(object sender, EventArgs e)
         {
-            Form1.f1.addCombobox();
+            UserControl2.uc2.addCombobox();
 
             datetypeBox.DisplayMember = "Text";
             datetypeBox.ValueMember = "Value";

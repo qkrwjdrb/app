@@ -47,8 +47,8 @@ namespace unit.screen
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.uc5textBox2 = new System.Windows.Forms.RichTextBox();
-            this.uc5textBox1 = new System.Windows.Forms.RichTextBox();
+            this.uc6textBox2 = new System.Windows.Forms.RichTextBox();
+            this.uc6textBox1 = new System.Windows.Forms.RichTextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
@@ -222,21 +222,21 @@ namespace unit.screen
             this.label4.Text = "구동기 모터 주소 : 0x4C752589170d";
             this.label4.Click += new System.EventHandler(this.label4_Click);
             // 
-            // uc5textBox2
+            // uc6textBox2
             // 
-            this.uc5textBox2.Location = new System.Drawing.Point(362, 196);
-            this.uc5textBox2.Name = "uc5textBox2";
-            this.uc5textBox2.Size = new System.Drawing.Size(356, 301);
-            this.uc5textBox2.TabIndex = 36;
-            this.uc5textBox2.Text = "";
+            this.uc6textBox2.Location = new System.Drawing.Point(362, 196);
+            this.uc6textBox2.Name = "uc6textBox2";
+            this.uc6textBox2.Size = new System.Drawing.Size(356, 301);
+            this.uc6textBox2.TabIndex = 36;
+            this.uc6textBox2.Text = "";
             // 
-            // uc5textBox1
+            // uc6textBox1
             // 
-            this.uc5textBox1.Location = new System.Drawing.Point(0, 196);
-            this.uc5textBox1.Name = "uc5textBox1";
-            this.uc5textBox1.Size = new System.Drawing.Size(356, 301);
-            this.uc5textBox1.TabIndex = 35;
-            this.uc5textBox1.Text = "";
+            this.uc6textBox1.Location = new System.Drawing.Point(0, 196);
+            this.uc6textBox1.Name = "uc6textBox1";
+            this.uc6textBox1.Size = new System.Drawing.Size(356, 301);
+            this.uc6textBox1.TabIndex = 35;
+            this.uc6textBox1.Text = "";
             // 
             // groupBox2
             // 
@@ -290,8 +290,8 @@ namespace unit.screen
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupBox2);
-            this.Controls.Add(this.uc5textBox2);
-            this.Controls.Add(this.uc5textBox1);
+            this.Controls.Add(this.uc6textBox2);
+            this.Controls.Add(this.uc6textBox1);
             this.Name = "UserControl6";
             this.Size = new System.Drawing.Size(718, 497);
             this.Load += new System.EventHandler(this.UserControl6_Load);
@@ -325,8 +325,8 @@ namespace unit.screen
         public System.Windows.Forms.ComboBox gatewayBox;
         public System.Windows.Forms.ComboBox deviceBox;
         private System.Windows.Forms.Label label4;
-        public System.Windows.Forms.RichTextBox uc5textBox2;
-        public System.Windows.Forms.RichTextBox uc5textBox1;
+        public System.Windows.Forms.RichTextBox uc6textBox2;
+        public System.Windows.Forms.RichTextBox uc6textBox1;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox3;

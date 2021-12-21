@@ -50,7 +50,7 @@ namespace unit.screen
 
         private void UserControl4_Load(object sender, EventArgs e)
         {
-            Form1.f1.addCombobox();
+            UserControl2.uc2.addCombobox();
             comboBox3.SelectedIndex = 0;
             deviceBox.SelectedIndex = 0;
             gatewayBox.SelectedIndex = 0;

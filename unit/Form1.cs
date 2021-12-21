@@ -82,7 +82,7 @@ namespace unit
 
             if (deFile.Exists)
             {
-                addressLoadFile();
+                screen.UserControl2.uc2.addressLoadFile();
             }
             else
             {
@@ -93,7 +93,7 @@ namespace unit
             }
             if (gaFile.Exists)
             {
-                gatewayLoadFile();
+                screen.UserControl2.uc2.gatewayLoadFile();
             }
             else
             {
@@ -269,11 +269,15 @@ namespace unit
                 }
                 else if (isUc6)
                 {
-                    screen.UserControl5.uc5.uc5textBox1.AppendText(Environment.NewLine + $"Channel={channel}");
-                    screen.UserControl5.uc5.uc5textBox1.AppendText(Environment.NewLine + $"SequenceNumber={sequenceNumber}");
-                    screen.UserControl5.uc5.uc5textBox1.AppendText(Environment.NewLine + $"GatewayId=" + gatewayId.ToString("X6"));
-                    screen.UserControl5.uc5.uc5textBox1.AppendText(Environment.NewLine + $"DeviceId=" + deviceId.ToString("X12"));
-                    screen.UserControl5.uc5.uc5textBox1.AppendText(Environment.NewLine + $"Tdu.Length={payload.Length}");
+                    screen.UserControl6.uc6.uc6textBox1.Text = "TxRtu(" + GetProtocolChannelName(channel) + ") RequestStream";
+                    screen.UserControl6.uc6.uc6textBox1.AppendText(Environment.NewLine + $"Channel={channel}");
+                    screen.UserControl6.uc6.uc6textBox1.AppendText(Environment.NewLine + $"SequenceNumber={sequenceNumber}");
+                    screen.UserControl6.uc6.uc6textBox1.AppendText(Environment.NewLine + $"GatewayId=" + gatewayId.ToString("X6"));
+                    screen.UserControl6.uc6.uc6textBox1.AppendText(Environment.NewLine + $"DeviceId=" + deviceId.ToString("X12"));
+                    screen.UserControl6.uc6.uc6textBox1.AppendText(Environment.NewLine + $"Tdu.Length={payload.Length}");
+                    screen.UserControl6.uc6.uc6textBox1.AppendText(Environment.NewLine + $"Tdu={BitConverter.ToString(payload).Replace("-", " ")}");
+                    screen.UserControl6.uc6.uc6textBox1.AppendText(Environment.NewLine);
+                    screen.UserControl6.uc6.uc6textBox2.Text = "Awaiting response...";
 
                 }
                 else if (isUc7)
@@ -349,7 +353,15 @@ namespace unit
                 }
                 else if (isUc6)
                 {
-
+                    screen.UserControl6.uc6.uc6textBox2.Text = "RxRtu(" + GetProtocolChannelName(channel) + ")";
+                    screen.UserControl6.uc6.uc6textBox2.AppendText(Environment.NewLine + $"response.Channel={channel}");
+                    screen.UserControl6.uc6.uc6textBox2.AppendText(Environment.NewLine + $"response.AcknowledgeNumber={acknowledgeNumber}");
+                    screen.UserControl6.uc6.uc6textBox2.AppendText(Environment.NewLine + $"response.GatewayId=" + gatewayId.ToString("X6"));
+                    screen.UserControl6.uc6.uc6textBox2.AppendText(Environment.NewLine + $"response.DeviceId=" + deviceId.ToString("X12"));
+                    screen.UserControl6.uc6.uc6textBox2.AppendText(Environment.NewLine + $"response.Tdu.Length={payload.Length}");
+                    screen.UserControl6.uc6.uc6textBox2.AppendText(Environment.NewLine + BitConverter.ToString(payload));
+                    screen.UserControl6.uc6.uc6textBox2.AppendText(Environment.NewLine);
+                    screen.UserControl6.uc6.uc6textBox1.Text += "Responsed... ";
                 }
                 else if (isUc7)
                 {
@@ -514,111 +526,8 @@ namespace unit
                     break;
             }
         }
-        public void addressSaveFile()
-        {
-            if (deFile.Exists)
-            {
-
-            }
-            else
-            {
-                addressItems = new string[] { "24A16057F685", "500291AEBCD9", "500291AEBE4D" };
-            }
-
-
-            FileStream fs = new FileStream("device.txt", FileMode.Create);
-            StreamWriter sw = new StreamWriter(fs);
-            foreach (string i in screen.UserControl2.uc2.deviceListBox.Items.OfType<string>().ToArray())
-            {
-                sw.Write(i);
-                sw.Write(',');
-            }
-            sw.Close(); addressLoadFile();
-        }
-        public void addressLoadFile()
-        {
-            FileStream fs = new FileStream("device.txt", FileMode.Open, FileAccess.Read);
-            StreamReader sr = new StreamReader(fs);
-
-            string a = sr.ReadToEnd();
-            string[] dataArray = a.Split(',');
-            dataArray = dataArray.Where(x => !string.IsNullOrWhiteSpace(x)).ToArray();
-            screen.UserControl2.uc2.deviceListBox.Items.Clear();
-            //screen.UserControl1.uc1.comboBox1.Items.Clear();
-            screen.UserControl2.uc2.deviceListBox.Items.AddRange(dataArray);
-            addCombobox();
-            sr.Close();
-        }
-        public void gatewaySaveFile()
-        {
-            if (gaFile.Exists)
-            {
-
-            }
-            else
-            {
-                gatewayItems = new string[] { "0" };
-            }
-
-
-            FileStream fs = new FileStream("gateway.txt", FileMode.Create);
-            StreamWriter sw = new StreamWriter(fs);
-            foreach (string i in screen.UserControl2.uc2.gatewayListBox.Items.OfType<string>().ToArray())
-            {
-                sw.Write(i);
-                sw.Write(',');
-            }
-            sw.Close();
-            gatewayLoadFile();
-        }
-        public void gatewayLoadFile()
-        {
-
-            FileStream fs = new FileStream("gateway.txt", FileMode.Open, FileAccess.Read);
-            StreamReader sr = new StreamReader(fs);
-
-            string a = sr.ReadToEnd();
-            string[] dataArray = a.Split(',');
-            dataArray = dataArray.Where(x => !string.IsNullOrWhiteSpace(x)).ToArray();
-            screen.UserControl2.uc2.gatewayListBox.Items.Clear();
-            //screen.UserControl1.uc1.comboBox2.Items.Clear();
-            screen.UserControl2.uc2.gatewayListBox.Items.AddRange(dataArray);
-            addCombobox();
-            sr.Close();
-        }
-        public void addCombobox()
-        {
-            string[] allList1 = screen.UserControl2.uc2.gatewayListBox.Items.OfType<string>().ToArray();
-            string[] allList2 = screen.UserControl2.uc2.deviceListBox.Items.OfType<string>().ToArray();
-
-            //gateway combobox
-            screen.UserControl1.uc1.gatewayBox.Items.Clear();
-            screen.UserControl1.uc1.gatewayBox.Items.AddRange(allList1);
-            screen.UserControl4.uc4.gatewayBox.Items.Clear();
-            screen.UserControl4.uc4.gatewayBox.Items.AddRange(allList1);
-            screen.UserControl5.uc5.gatewayBox.Items.Clear();
-            screen.UserControl5.uc5.gatewayBox.Items.AddRange(allList1);
-            screen.UserControl6.uc6.gatewayBox.Items.Clear();
-            screen.UserControl6.uc6.gatewayBox.Items.AddRange(allList1);
-            screen.UserControl7.uc7.gatewayBox.Items.Clear();
-            screen.UserControl7.uc7.gatewayBox.Items.AddRange(allList1);
-
-            //device combobox
-            screen.UserControl1.uc1.deviceBox.Items.Clear();
-            screen.UserControl1.uc1.deviceBox.Items.AddRange(allList2);
-            screen.UserControl4.uc4.deviceBox.Items.Clear();
-            screen.UserControl4.uc4.deviceBox.Items.AddRange(allList2);
-            screen.UserControl5.uc5.deviceBox.Items.Clear();
-            screen.UserControl5.uc5.deviceBox.Items.AddRange(allList2);
-            screen.UserControl6.uc6.deviceBox.Items.Clear();
-            screen.UserControl6.uc6.deviceBox.Items.AddRange(allList2);
-            screen.UserControl7.uc7.deviceBox.Items.Clear();
-            screen.UserControl7.uc7.deviceBox.Items.AddRange(allList2);
-
-            gatewayItems = allList1;
-            addressItems = allList2;
-            comboboxSelect();
-        }
+       
+        
         public int deviceBoxIndex = 0;
         public int getewayBoxIndex = 0;
 
@@ -817,7 +726,7 @@ namespace ConsoleApplication1
     class DataType1 : Object
     {
         private string _name;
-        private System.Drawing.Point _point;
+        private string _point;
         public string Name
         {
             // 이전 소스의 ToString()의 내용이 여기를 통해 처리하게 됩니다.
@@ -826,20 +735,18 @@ namespace ConsoleApplication1
                 StringBuilder sb = new StringBuilder();
                 sb.Append(_name);
                 sb.Append(" [ ");
-                sb.Append(_point.X.ToString());
-                sb.Append(",");
-                sb.Append(_point.Y.ToString());
+              
                 sb.Append(" ]");
                 return sb.ToString();
             }
             set { _name = Name; }
         }
-        public Point Pos
+     /*   public Point Pos
         {
             get { return _point; }
             set { _point = Pos; }
-        }
-        public DataType1(string name, System.Drawing.Point pos)
+        }*/
+        public DataType1(string name, string pos)
         {
             _name = name;
             _point = pos;
@@ -876,9 +783,9 @@ namespace ConsoleApplication1
         private void OnLoad(object sender, EventArgs e)
         {
             this.Controls.Add(listTest);
-            listDataSource.Add(new DataType1("항목1", new Point(1, 1)));
-            listDataSource.Add(new DataType1("항목2", new Point(5, 6)));
-            listDataSource.Add(new DataType1("항목3", new Point(2, 1)));
+            listDataSource.Add(new DataType1("항목1", "항목1"));
+            listDataSource.Add(new DataType1("항목2", "항목1"));
+            listDataSource.Add(new DataType1("항목3", "항목1"));
             this.listTest.DataSource = listDataSource; // ListBox와의 바인딩(연결)
             this.listTest.DisplayMember = "Name"; // DataType1의 Name 프로퍼티의 Get 내용이 출력
             this.listTest.ValueMember = "Pos"; // DataType1의 Pos 프로퍼티의 Get 내용이 내장 값

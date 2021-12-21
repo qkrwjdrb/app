@@ -32,7 +32,7 @@ namespace unit.screen
 
         private void UserControl5_Load(object sender, EventArgs e)
         {
-            Form1.f1.addCombobox();
+            UserControl2.uc2.addCombobox();
             deviceBox.SelectedIndex = 0; gatewayBox.SelectedIndex = 0;
             Form1.f1.LoadUc5 = true;
             Form1.f1.comboboxSelect();
