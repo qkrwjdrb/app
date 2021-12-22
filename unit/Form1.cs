@@ -101,7 +101,7 @@ namespace unit
                 screen.UserControl2.uc2.gatewayListBox.Items.AddRange(aa);
             }
             panel3.Controls.Add(UserControl1);
-            getAddress((uint)int.Parse(screen.UserControl2.uc2.gatewayListBox.Items[0].ToString(), System.Globalization.NumberStyles.HexNumber), ulong.Parse(screen.UserControl2.uc2.deviceListBox.Items[0].ToString(), System.Globalization.NumberStyles.HexNumber));
+            screen.UserControl1.uc1.getAddress((uint)int.Parse(screen.UserControl2.uc2.gatewayListBox.Items[0].ToString(), System.Globalization.NumberStyles.HexNumber), ulong.Parse(screen.UserControl2.uc2.deviceListBox.Items[0].ToString(), System.Globalization.NumberStyles.HexNumber));
             dataAddress = ulong.Parse(screen.UserControl2.uc2.deviceListBox.Items[0].ToString(), System.Globalization.NumberStyles.HexNumber);
         }
 
@@ -408,6 +408,11 @@ namespace unit
                         screen.UserControl1.uc1.NodeDataOutput(payload, deviceId.ToString("X12"));
                         isNode = false;
                     }
+                    if (isState)
+                    {
+                        screen.UserControl1.uc1.StateDataOutput(payload, deviceId.ToString("X12"));
+                        isState = false;
+                    }
 
                 }
 
@@ -526,7 +531,6 @@ namespace unit
                     break;
             }
         }
-       
         
         public int deviceBoxIndex = 0;
         public int getewayBoxIndex = 0;
@@ -583,24 +587,11 @@ namespace unit
             panel3.Controls.Clear();
             panel3.Controls.Add(UserControl3);
         }
-        bool addressEnd = false;
+        public bool addressEnd = false;
         byte[] addressArray;
-        public void getAddress(uint gatewayID, ulong deviceID)
-        {
-            addressEnd = true;
-            TxRtu(++TxCnt, gatewayID, deviceID, new byte[] {   0x01, 0x03,
-            0x00, 101, 0x00,deviceCount,
-            });
-        }
-        bool isNode = false;
-        public void getNode(uint gatewayID, ulong deviceID)
-        {
-            isNode = true;
-            TxRtu(++TxCnt, gatewayID, deviceID, new byte[] {   0x01, 0x03,
-                0x00, 1, 0x00,8,
-            });
-        }
-        bool dataEnd = false;
+        public bool isNode = false; 
+        public bool dataEnd = false;
+        public bool isState = false;
         byte[] dataArray;
         public void getData(uint gatewayID, ulong deviceID)
         {
@@ -704,16 +695,11 @@ namespace unit
 
 
 
-
-
-
-
 //--------------------------------
 namespace ConsoleApplication1
 {
     class Program
     {
-
         static void Mainn(string[] args)
         {
             Application.EnableVisualStyles();
@@ -790,6 +776,5 @@ namespace ConsoleApplication1
             this.listTest.DisplayMember = "Name"; // DataType1의 Name 프로퍼티의 Get 내용이 출력
             this.listTest.ValueMember = "Pos"; // DataType1의 Pos 프로퍼티의 Get 내용이 내장 값
         }
-
     }
 }

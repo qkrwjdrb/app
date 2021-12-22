@@ -34,7 +34,8 @@ namespace unit.screen
             datetypeBox.ValueMember = "Value";
             var items = new[] {
                 new { Text = "센서 데이터", Value = "센서" },
-                new { Text = "노드정보", Value = "노드정보" },
+                new { Text = "노드정보", Value = "노드정보" },             
+                new { Text = "구동기 상태", Value = "구동기 상태" },
             };
 
             datetypeBox.DataSource = items;
@@ -57,7 +58,18 @@ namespace unit.screen
                 + Environment.NewLine + "제품코드 : " + BitConverter.ToUInt16(new byte[2] { address[10], address[9] }, 0)
                 + Environment.NewLine + "프로토콜 버전 : " + BitConverter.ToUInt16(new byte[2] { address[12], address[11] }, 0)
                 + Environment.NewLine + "연결가능디바이스수 : " + BitConverter.ToUInt16(new byte[2] { address[14], address[13] }, 0)
-                + Environment.NewLine + "노드시리얼번호 : " + BitConverter.ToString(new byte[4] { address[15], address[16], address[17], address[18] }, 0)
+                + Environment.NewLine + "노드시리얼번호 : " + BitConverter.ToString(new byte[4] { address[18], address[17], address[16], address[15] }, 0)
+            );
+        }
+        public void StateDataOutput(byte[] address, string deviceId)
+        {
+            uc1textBox3.Text = $"{deviceId} 구동기 상태";
+
+            uc1textBox3.AppendText(
+                Environment.NewLine + "상태 : " + BitConverter.ToUInt16(new byte[2] { address[8], address[7] }, 0)
+                + Environment.NewLine + "상태코드 : " + BitConverter.ToUInt16(new byte[2] { address[8], address[7] }, 0)
+                + Environment.NewLine + "crc : " + BitConverter.ToUInt16(new byte[2] { address[6], address[5] }, 0)
+                + Environment.NewLine + "남은동작시간 : " + BitConverter.ToUInt16(new byte[2] { address[10], address[9] }, 0)
             );
         }
 
@@ -231,21 +243,50 @@ namespace unit.screen
 
                     Form1.f1.dataGateway = gateway;
                     Form1.f1.dataAddress = device;
-                    Form1.f1.getAddress(gateway, device);
+                    getAddress(gateway, device);
                 }
             }
+            }
+            else MessageBox.Show("입력값을 확인하세요.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             if ((string)datetypeBox.SelectedValue == "노드정보")
             {
                 string aa = deviceBox.Text.ToString();
 
                 uint gateway = (uint)int.Parse(gatewayBox.Text.ToString(), System.Globalization.NumberStyles.HexNumber);
                 ulong device = ulong.Parse(aa, System.Globalization.NumberStyles.HexNumber);
-                Form1.f1.getNode(gateway, device);
+                getNode(gateway, device);
             }
-            }
-            else MessageBox.Show("입력값을 확인하세요.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-        }
+            if ((string)datetypeBox.SelectedValue == "구동기 상태")
+            {
+                string aa = deviceBox.Text.ToString();
 
+                uint gateway = (uint)int.Parse(gatewayBox.Text.ToString(), System.Globalization.NumberStyles.HexNumber);
+                ulong device = ulong.Parse(aa, System.Globalization.NumberStyles.HexNumber);
+                getState(gateway, device);
+            }
+        }
+        public void getAddress(uint gatewayID, ulong deviceID)
+        {
+            Form1.f1.addressEnd = true;
+            Form1.f1.TxRtu(++Form1.f1.TxCnt, gatewayID, deviceID, new byte[] {   0x01, 0x03,
+            0x00, 101, 0x00,Form1.f1.deviceCount,
+            });
+        }
+      
+        private void getNode(uint gatewayID, ulong deviceID)
+        {
+            Form1.f1.isNode = true;
+            Form1.f1.TxRtu(++Form1.f1.TxCnt, gatewayID, deviceID, new byte[] {   0x01, 0x03,
+                0x00, 1, 0x00,8,
+            });
+        }
+        private void getState(uint gatewayID, ulong deviceID)
+        {
+            Form1.f1.isState = true;
+            Form1.f1.TxRtu(++Form1.f1.TxCnt, gatewayID, deviceID, new byte[] {   0x01, 0x03,
+                0x00, 203, 0x00,4,
+            });
+        }
         private void gatewayBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             Form1.f1.getewayBoxIndex = gatewayBox.SelectedIndex;

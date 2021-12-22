@@ -206,7 +206,6 @@ namespace unit.screen
             {
                 if (deviceListBox.Items.Count >= 1)
                 {
-
                     deviceListBox.Items.RemoveAt(deviceListBox.SelectedIndex);
                 }
                 else
