@@ -72,28 +72,28 @@ namespace unit.screen
                && ulong.TryParse(deviceBox.Text.ToString(), System.Globalization.NumberStyles.HexNumber, System.Globalization.CultureInfo.InvariantCulture, out _)
              )
             {
-            if (checkBox1.Checked && !string.IsNullOrWhiteSpace(textBox3.Text))
-            {
-                Form1.f1.TxRtu(++Form1.f1.TxCnt, (uint)int.Parse(gatewayBox.Text.ToString(), System.Globalization.NumberStyles.HexNumber), ulong.Parse(deviceBox.Text.ToString(), System.Globalization.NumberStyles.HexNumber), new byte[]
-                   {
+                if (checkBox1.Checked && !string.IsNullOrWhiteSpace(textBox3.Text))
+                {
+                    Form1.f1.TxRtu(++Form1.f1.TxCnt, (uint)int.Parse(gatewayBox.Text.ToString(), System.Globalization.NumberStyles.HexNumber), ulong.Parse(deviceBox.Text.ToString(), System.Globalization.NumberStyles.HexNumber), new byte[]
+                       {
                     0x01, 0x10, 0x01, 0xF7, 0x00, 0x04, 0x08,
                     0x01,0x2d,  (byte)Convert.ToInt32(textBox3.Text), (byte)(Convert.ToInt32(textBox1.Text)>>8), 0x00, 0x00, 0x00, 0x00
 
-                   });
-            }
-            else if (checkBox1.Checked && string.IsNullOrWhiteSpace(textBox3.Text))
-            {
-                MessageBox.Show("OPID를 입력해주세요.", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            else
-            {
-                Form1.f1.TxRtu(++Form1.f1.TxCnt, (uint)int.Parse(gatewayBox.Text.ToString(), System.Globalization.NumberStyles.HexNumber), ulong.Parse(deviceBox.Text.ToString(), System.Globalization.NumberStyles.HexNumber), new byte[]
+                       });
+                }
+                else if (checkBox1.Checked && string.IsNullOrWhiteSpace(textBox3.Text))
                 {
+                    MessageBox.Show("OPID를 입력해주세요.", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+                    Form1.f1.TxRtu(++Form1.f1.TxCnt, (uint)int.Parse(gatewayBox.Text.ToString(), System.Globalization.NumberStyles.HexNumber), ulong.Parse(deviceBox.Text.ToString(), System.Globalization.NumberStyles.HexNumber), new byte[]
+                    {
                     0x01, 0x10, 0x01, 0xF7, 0x00, 0x04, 0x08,
                     0x01,0x2d, (byte)(opid>>8),(byte)opid, 0x00, 0x00, 0x00, 0x00
-                });
-                opid++;
-            }
+                    });
+                    opid++;
+                }
             }
             else
             {
@@ -109,28 +109,28 @@ namespace unit.screen
             )
             {
 
-            if (checkBox1.Checked && !string.IsNullOrWhiteSpace(textBox3.Text))
-            {
-                Form1.f1.TxRtu(++Form1.f1.TxCnt, (uint)int.Parse(gatewayBox.Text.ToString(), System.Globalization.NumberStyles.HexNumber), ulong.Parse(deviceBox.Text.ToString(), System.Globalization.NumberStyles.HexNumber), new byte[]
+                if (checkBox1.Checked && !string.IsNullOrWhiteSpace(textBox3.Text))
                 {
+                    Form1.f1.TxRtu(++Form1.f1.TxCnt, (uint)int.Parse(gatewayBox.Text.ToString(), System.Globalization.NumberStyles.HexNumber), ulong.Parse(deviceBox.Text.ToString(), System.Globalization.NumberStyles.HexNumber), new byte[]
+                    {
                     0x01, 0x10, 0x01, 0xF7, 0x00, 0x04, 0x08,
                     0x01, 0x2e,  (byte)Convert.ToInt32(textBox3.Text), (byte)(Convert.ToInt32(textBox1.Text)>>8),0x00, 0x00, 0x00, 0x00
-                });
-            }
-            else if (checkBox1.Checked && string.IsNullOrWhiteSpace(textBox3.Text))
-            {
-                MessageBox.Show("OPID를 입력해주세요.", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            else
-            {
-                Form1.f1.TxRtu(++Form1.f1.TxCnt, (uint)int.Parse(gatewayBox.Text.ToString(), System.Globalization.NumberStyles.HexNumber), ulong.Parse(deviceBox.Text.ToString(), System.Globalization.NumberStyles.HexNumber), new byte[]
+                    });
+                }
+                else if (checkBox1.Checked && string.IsNullOrWhiteSpace(textBox3.Text))
                 {
+                    MessageBox.Show("OPID를 입력해주세요.", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+                    Form1.f1.TxRtu(++Form1.f1.TxCnt, (uint)int.Parse(gatewayBox.Text.ToString(), System.Globalization.NumberStyles.HexNumber), ulong.Parse(deviceBox.Text.ToString(), System.Globalization.NumberStyles.HexNumber), new byte[]
+                    {
 
                     0x01, 0x10, 0x01, 0xF7, 0x00, 0x04, 0x08,
                     0x01, 0x2e, (byte)(opid>>8),(byte)opid, 0x00, 0x00, 0x00, 0x00
-                });
-                opid++;
-            }
+                    });
+                    opid++;
+                }
             }
             else
             {
@@ -145,35 +145,35 @@ namespace unit.screen
             )
             {
 
-            if (!string.IsNullOrWhiteSpace(textBox1.Text))
-            {
-                if (checkBox1.Checked && !string.IsNullOrWhiteSpace(textBox3.Text))
+                if (!string.IsNullOrWhiteSpace(textBox1.Text))
                 {
-                    Form1.f1.TxRtu(++Form1.f1.TxCnt, (uint)int.Parse(gatewayBox.Text.ToString(), System.Globalization.NumberStyles.HexNumber), ulong.Parse(deviceBox.Text.ToString(), System.Globalization.NumberStyles.HexNumber), new byte[]
+                    if (checkBox1.Checked && !string.IsNullOrWhiteSpace(textBox3.Text))
                     {
+                        Form1.f1.TxRtu(++Form1.f1.TxCnt, (uint)int.Parse(gatewayBox.Text.ToString(), System.Globalization.NumberStyles.HexNumber), ulong.Parse(deviceBox.Text.ToString(), System.Globalization.NumberStyles.HexNumber), new byte[]
+                        {
                         0x01, 0x10, 0x01, 0xF7, 0x00, 0x04, 0x08,
                         0x01, 0x2F, 0x00, (byte)Convert.ToInt32(textBox3.Text), (byte)(Convert.ToInt32(textBox1.Text)>>8),(byte)Convert.ToInt32(textBox1.Text), 0x00, 0x00
-                    });
-                }
-                else if (checkBox1.Checked && string.IsNullOrWhiteSpace(textBox3.Text))
-                {
-                    MessageBox.Show("OPID를 입력해주세요.", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        });
+                    }
+                    else if (checkBox1.Checked && string.IsNullOrWhiteSpace(textBox3.Text))
+                    {
+                        MessageBox.Show("OPID를 입력해주세요.", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    else
+                    {
+                        Form1.f1.TxRtu(++Form1.f1.TxCnt, (uint)int.Parse(gatewayBox.Text.ToString(), System.Globalization.NumberStyles.HexNumber), ulong.Parse(deviceBox.Text.ToString(), System.Globalization.NumberStyles.HexNumber), new byte[]
+                        {
+                        0x01, 0x10, 0x01, 0xF7, 0x00, 0x04, 0x08,
+                        0x01, 0x2F,(byte)(opid>>8),(byte)opid, (byte)(Convert.ToInt32(textBox1.Text)>>8),(byte)Convert.ToInt32(textBox1.Text), 0x00, 0x00
+                        });
+                        opid++;
+                    }
+
                 }
                 else
                 {
-                    Form1.f1.TxRtu(++Form1.f1.TxCnt, (uint)int.Parse(gatewayBox.Text.ToString(), System.Globalization.NumberStyles.HexNumber), ulong.Parse(deviceBox.Text.ToString(), System.Globalization.NumberStyles.HexNumber), new byte[]
-                    {
-                        0x01, 0x10, 0x01, 0xF7, 0x00, 0x04, 0x08,
-                        0x01, 0x2F,(byte)(opid>>8),(byte)opid, (byte)(Convert.ToInt32(textBox1.Text)>>8),(byte)Convert.ToInt32(textBox1.Text), 0x00, 0x00
-                    });
-                    opid++;
+                    MessageBox.Show("시간을 입력해주세요.", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-
-            }
-            else
-            {
-                MessageBox.Show("시간을 입력해주세요.", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
             }
             else
             {
@@ -189,34 +189,34 @@ namespace unit.screen
      )
             {
 
-            if (!string.IsNullOrWhiteSpace(textBox2.Text))
-            {
-                if (checkBox1.Checked && !string.IsNullOrWhiteSpace(textBox3.Text))
+                if (!string.IsNullOrWhiteSpace(textBox2.Text))
                 {
-                    Form1.f1.TxRtu(++Form1.f1.TxCnt, (uint)int.Parse(gatewayBox.Text.ToString(), System.Globalization.NumberStyles.HexNumber), ulong.Parse(deviceBox.Text.ToString(), System.Globalization.NumberStyles.HexNumber), new byte[]
+                    if (checkBox1.Checked && !string.IsNullOrWhiteSpace(textBox3.Text))
                     {
+                        Form1.f1.TxRtu(++Form1.f1.TxCnt, (uint)int.Parse(gatewayBox.Text.ToString(), System.Globalization.NumberStyles.HexNumber), ulong.Parse(deviceBox.Text.ToString(), System.Globalization.NumberStyles.HexNumber), new byte[]
+                        {
                         0x01, 0x10, 0x01, 0xF7, 0x00, 0x04, 0x08,
                         0x01, 0x30, 0x00, (byte)Convert.ToInt32(textBox3.Text),(byte)(Convert.ToInt32(textBox2.Text)>>8), (byte)Convert.ToInt32(textBox2.Text), 0x00, 0x00
-                    });
-                }
-                else if (checkBox1.Checked && string.IsNullOrWhiteSpace(textBox3.Text))
-                {
-                    MessageBox.Show("OPID를 입력해주세요.", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        });
+                    }
+                    else if (checkBox1.Checked && string.IsNullOrWhiteSpace(textBox3.Text))
+                    {
+                        MessageBox.Show("OPID를 입력해주세요.", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    else
+                    {
+                        Form1.f1.TxRtu(++Form1.f1.TxCnt, (uint)int.Parse(gatewayBox.Text.ToString(), System.Globalization.NumberStyles.HexNumber), ulong.Parse(deviceBox.Text.ToString(), System.Globalization.NumberStyles.HexNumber), new byte[]
+                        {
+                        0x01, 0x10, 0x01, 0xF7, 0x00, 0x04, 0x08,
+                        0x01, 0x30, (byte)(opid>>8),(byte)opid,  (byte)(Convert.ToInt32(textBox2.Text)>>8), (byte)Convert.ToInt32(textBox2.Text), 0x00, 0x00
+                        });
+                        opid++;
+                    }
                 }
                 else
                 {
-                    Form1.f1.TxRtu(++Form1.f1.TxCnt, (uint)int.Parse(gatewayBox.Text.ToString(), System.Globalization.NumberStyles.HexNumber), ulong.Parse(deviceBox.Text.ToString(), System.Globalization.NumberStyles.HexNumber), new byte[]
-                    {
-                        0x01, 0x10, 0x01, 0xF7, 0x00, 0x04, 0x08,
-                        0x01, 0x30, (byte)(opid>>8),(byte)opid,  (byte)(Convert.ToInt32(textBox2.Text)>>8), (byte)Convert.ToInt32(textBox2.Text), 0x00, 0x00
-                    });
-                    opid++;
+                    MessageBox.Show("시간을 입력해주세요.", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-            }
-            else
-            {
-                MessageBox.Show("시간을 입력해주세요.", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
             }
             else
             {
@@ -228,31 +228,31 @@ namespace unit.screen
             //정지
             if (int.TryParse(gatewayBox.Text.ToString(), System.Globalization.NumberStyles.HexNumber, System.Globalization.CultureInfo.InvariantCulture, out _)
        && ulong.TryParse(deviceBox.Text.ToString(), System.Globalization.NumberStyles.HexNumber, System.Globalization.CultureInfo.InvariantCulture, out _)
-     )
+        )
             {
 
-            if (checkBox1.Checked && !string.IsNullOrWhiteSpace(textBox3.Text))
-            {
-                Form1.f1.TxRtu(++Form1.f1.TxCnt, (uint)int.Parse(gatewayBox.Text.ToString(), System.Globalization.NumberStyles.HexNumber), ulong.Parse(deviceBox.Text.ToString(), System.Globalization.NumberStyles.HexNumber), new byte[]
+                if (checkBox1.Checked && !string.IsNullOrWhiteSpace(textBox3.Text))
                 {
+                    Form1.f1.TxRtu(++Form1.f1.TxCnt, (uint)int.Parse(gatewayBox.Text.ToString(), System.Globalization.NumberStyles.HexNumber), ulong.Parse(deviceBox.Text.ToString(), System.Globalization.NumberStyles.HexNumber), new byte[]
+                    {
                     0x01, 0x10, 0x01, 0xF7, 0x00, 0x04, 0x08,
                     0x00, 0x00,  (byte)Convert.ToInt32(textBox3.Text), (byte)(Convert.ToInt32(textBox1.Text)>>8),0x00,0x00,0x00,0x00
 
-                });
-            }
-            else if (checkBox1.Checked && string.IsNullOrWhiteSpace(textBox3.Text))
-            {
-                MessageBox.Show("OPID를 입력해주세요.", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            else
-            {
-                Form1.f1.TxRtu(++Form1.f1.TxCnt, (uint)int.Parse(gatewayBox.Text.ToString(), System.Globalization.NumberStyles.HexNumber), ulong.Parse(deviceBox.Text.ToString(), System.Globalization.NumberStyles.HexNumber), new byte[]
+                    });
+                }
+                else if (checkBox1.Checked && string.IsNullOrWhiteSpace(textBox3.Text))
                 {
+                    MessageBox.Show("OPID를 입력해주세요.", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+                    Form1.f1.TxRtu(++Form1.f1.TxCnt, (uint)int.Parse(gatewayBox.Text.ToString(), System.Globalization.NumberStyles.HexNumber), ulong.Parse(deviceBox.Text.ToString(), System.Globalization.NumberStyles.HexNumber), new byte[]
+                    {
                     0x01, 0x10, 0x01, 0xF7, 0x00, 0x04, 0x08,
                     0x00, 0x00, (byte)(opid>>8),(byte)opid,0x00,0x00,0x00,0x00
-                });
-                opid++;
-            }
+                    });
+                    opid++;
+                }
             }
             else
             {
@@ -262,7 +262,7 @@ namespace unit.screen
 
         private void label4_Click(object sender, EventArgs e)
         {
-
+            statescreen();
         }
         private void gatewayBox_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -271,6 +271,47 @@ namespace unit.screen
         private void deviceBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             Form1.f1.deviceBoxIndex = deviceBox.SelectedIndex;
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            Form3.f3.label1.Text = "fadsaaaaaaaaaaaaas";
+            //  statescreen();
+        }
+        void statescreen() 
+        {
+            Form3 form3 = new Form3();
+            form3.Show();
+        }
+
+        private void label9_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void checkBox2_CheckedChanged(object sender, EventArgs e)
+        {
+            updateState();
+        }
+        void updateState()
+        {
+            if (checkBox2.Checked)
+            {
+                            Timer timer = new Timer();
+            timer.Interval = 500;
+            timer.Tick += Timer_Tick;
+            timer.Start();
+            }
+            else;
+        }
+
+        private void Timer_Tick(object sender, EventArgs e)
+        {
+           
+            if (checkBox2.Checked)
+            {
+                UserControl1.uc1.getState((uint)int.Parse(gatewayBox.Text.ToString(), System.Globalization.NumberStyles.HexNumber), ulong.Parse(deviceBox.Text.ToString(), System.Globalization.NumberStyles.HexNumber));
+            }
         }
     }
 }

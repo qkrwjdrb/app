@@ -44,6 +44,8 @@ namespace unit
         public UInt64 devicead;
         string textData;
 
+
+        public bool isUc1 = false;
         public bool isUc4 = false;
         public bool isUc5 = false;
         public bool isUc6 = false;
@@ -267,7 +269,7 @@ namespace unit
                     screen.UserControl5.uc5.uc5textBox2.Text = "Awaiting response...";
 
                 }
-                else if (isUc6)
+                else if (isUc6&&!screen.UserControl6.uc6.checkBox2.Checked)
                 {
                     screen.UserControl6.uc6.uc6textBox1.Text = "TxRtu(" + GetProtocolChannelName(channel) + ") RequestStream";
                     screen.UserControl6.uc6.uc6textBox1.AppendText(Environment.NewLine + $"Channel={channel}");
@@ -351,7 +353,7 @@ namespace unit
                     screen.UserControl5.uc5.uc5textBox1.Text += "Responsed... ";
 
                 }
-                else if (isUc6)
+                else if (isUc6 && !screen.UserControl6.uc6.checkBox2.Checked)
                 {
                     screen.UserControl6.uc6.uc6textBox2.Text = "RxRtu(" + GetProtocolChannelName(channel) + ")";
                     screen.UserControl6.uc6.uc6textBox2.AppendText(Environment.NewLine + $"response.Channel={channel}");
@@ -415,6 +417,11 @@ namespace unit
                     }
 
                 }
+                    if (isTimer)
+                    {
+                        screen.UserControl1.uc1.StateDataOutput(payload, deviceId.ToString("X12"));
+                        isTimer = false;
+                    }
 
             });
 
@@ -592,6 +599,7 @@ namespace unit
         public bool isNode = false; 
         public bool dataEnd = false;
         public bool isState = false;
+        public bool isTimer = true;
         byte[] dataArray;
         public void getData(uint gatewayID, ulong deviceID)
         {
@@ -603,6 +611,7 @@ namespace unit
         //센서 데이터 버튼
         private void button2_Click(object sender, EventArgs e)
         {
+            isUc1 = true;
             isUc4 = false;
             isUc5 = false;
             isUc6 = false;
@@ -621,6 +630,7 @@ namespace unit
         private void button3_Click(object sender, EventArgs e)
         {
             isUc4 = true;
+            isUc1 = false;
             isUc5 = false;
             isUc6 = false;
             isUc7 = false;
@@ -632,6 +642,7 @@ namespace unit
         private void button5_Click(object sender, EventArgs e)
         {
             isUc5 = true;
+            isUc1 = false;
             isUc4 = false;
             isUc6 = false;
             isUc7 = false;
@@ -662,6 +673,7 @@ namespace unit
         private void button7_Click(object sender, EventArgs e)
         {
             isUc6 = true;
+            isUc1 = false;
             isUc4 = false;
             isUc5 = false;
             isUc7 = false;
@@ -673,6 +685,7 @@ namespace unit
         private void button9_Click(object sender, EventArgs e)
         {
             isUc7 = true;
+            isUc1 = false;
             isUc4 = false;
             isUc5 = false;
             isUc6 = false;

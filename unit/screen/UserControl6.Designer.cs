@@ -52,16 +52,29 @@ namespace unit.screen
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.전압 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.남은시간 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.crc = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.상태코드 = new System.Windows.Forms.Label();
+            this.상태 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.checkBox2 = new System.Windows.Forms.CheckBox();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
+            this.groupBox4.SuspendLayout();
             this.SuspendLayout();
             // 
             // button1
             // 
             this.button1.Location = new System.Drawing.Point(15, 26);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(122, 23);
+            this.button1.Size = new System.Drawing.Size(100, 23);
             this.button1.TabIndex = 0;
             this.button1.Text = "리셋";
             this.button1.UseVisualStyleBackColor = true;
@@ -69,9 +82,9 @@ namespace unit.screen
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(157, 26);
+            this.button2.Location = new System.Drawing.Point(130, 26);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(122, 23);
+            this.button2.Size = new System.Drawing.Size(100, 23);
             this.button2.TabIndex = 1;
             this.button2.Text = "좌회전";
             this.button2.UseVisualStyleBackColor = true;
@@ -79,9 +92,9 @@ namespace unit.screen
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(157, 60);
+            this.button3.Location = new System.Drawing.Point(130, 60);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(122, 23);
+            this.button3.Size = new System.Drawing.Size(100, 23);
             this.button3.TabIndex = 2;
             this.button3.Text = "우회전";
             this.button3.UseVisualStyleBackColor = true;
@@ -89,9 +102,9 @@ namespace unit.screen
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(156, 93);
+            this.button4.Location = new System.Drawing.Point(129, 93);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(122, 23);
+            this.button4.Size = new System.Drawing.Size(100, 23);
             this.button4.TabIndex = 3;
             this.button4.Text = "타이머 좌회전";
             this.button4.UseVisualStyleBackColor = true;
@@ -99,9 +112,9 @@ namespace unit.screen
             // 
             // button5
             // 
-            this.button5.Location = new System.Drawing.Point(156, 126);
+            this.button5.Location = new System.Drawing.Point(129, 126);
             this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(122, 23);
+            this.button5.Size = new System.Drawing.Size(100, 23);
             this.button5.TabIndex = 4;
             this.button5.Text = "타이머 우회전";
             this.button5.UseVisualStyleBackColor = true;
@@ -111,20 +124,20 @@ namespace unit.screen
             // 
             this.textBox1.Location = new System.Drawing.Point(15, 93);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 23);
+            this.textBox1.Size = new System.Drawing.Size(66, 23);
             this.textBox1.TabIndex = 5;
             // 
             // textBox2
             // 
             this.textBox2.Location = new System.Drawing.Point(15, 126);
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(100, 23);
+            this.textBox2.Size = new System.Drawing.Size(66, 23);
             this.textBox2.TabIndex = 6;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(119, 96);
+            this.label1.Location = new System.Drawing.Point(88, 97);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(27, 15);
             this.label1.TabIndex = 7;
@@ -133,7 +146,7 @@ namespace unit.screen
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(119, 130);
+            this.label3.Location = new System.Drawing.Point(87, 130);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(27, 15);
             this.label3.TabIndex = 9;
@@ -141,15 +154,15 @@ namespace unit.screen
             // 
             // textBox3
             // 
-            this.textBox3.Location = new System.Drawing.Point(93, 25);
+            this.textBox3.Location = new System.Drawing.Point(197, 24);
             this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(77, 23);
+            this.textBox3.Size = new System.Drawing.Size(60, 23);
             this.textBox3.TabIndex = 12;
             // 
             // checkBox1
             // 
             this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(176, 27);
+            this.checkBox1.Location = new System.Drawing.Point(6, 27);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(102, 19);
             this.checkBox1.TabIndex = 13;
@@ -160,7 +173,7 @@ namespace unit.screen
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("맑은 고딕", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label2.Location = new System.Drawing.Point(6, 28);
+            this.label2.Location = new System.Drawing.Point(110, 25);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(81, 19);
             this.label2.TabIndex = 14;
@@ -170,7 +183,7 @@ namespace unit.screen
             // 
             this.button6.Location = new System.Drawing.Point(15, 60);
             this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(122, 23);
+            this.button6.Size = new System.Drawing.Size(100, 23);
             this.button6.TabIndex = 15;
             this.button6.Text = "정지";
             this.button6.UseVisualStyleBackColor = true;
@@ -190,7 +203,7 @@ namespace unit.screen
             this.deviceBox.FormattingEnabled = true;
             this.deviceBox.Location = new System.Drawing.Point(131, 51);
             this.deviceBox.Name = "deviceBox";
-            this.deviceBox.Size = new System.Drawing.Size(141, 23);
+            this.deviceBox.Size = new System.Drawing.Size(124, 23);
             this.deviceBox.TabIndex = 17;
             this.deviceBox.SelectedIndexChanged += new System.EventHandler(this.deviceBox_SelectedIndexChanged);
             // 
@@ -247,7 +260,7 @@ namespace unit.screen
             this.groupBox2.Controls.Add(this.label4);
             this.groupBox2.Location = new System.Drawing.Point(1, 21);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(284, 100);
+            this.groupBox2.Size = new System.Drawing.Size(272, 100);
             this.groupBox2.TabIndex = 38;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Address";
@@ -259,7 +272,7 @@ namespace unit.screen
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Location = new System.Drawing.Point(1, 127);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(284, 63);
+            this.groupBox1.Size = new System.Drawing.Size(272, 63);
             this.groupBox1.TabIndex = 39;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "OPID";
@@ -276,17 +289,140 @@ namespace unit.screen
             this.groupBox3.Controls.Add(this.textBox2);
             this.groupBox3.Controls.Add(this.label3);
             this.groupBox3.Controls.Add(this.label1);
-            this.groupBox3.Location = new System.Drawing.Point(297, 21);
+            this.groupBox3.Location = new System.Drawing.Point(284, 21);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(297, 169);
+            this.groupBox3.Size = new System.Drawing.Size(245, 169);
             this.groupBox3.TabIndex = 40;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "구동기 제어";
+            // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.checkBox2);
+            this.groupBox4.Controls.Add(this.전압);
+            this.groupBox4.Controls.Add(this.label11);
+            this.groupBox4.Controls.Add(this.남은시간);
+            this.groupBox4.Controls.Add(this.label10);
+            this.groupBox4.Controls.Add(this.crc);
+            this.groupBox4.Controls.Add(this.label9);
+            this.groupBox4.Controls.Add(this.상태코드);
+            this.groupBox4.Controls.Add(this.상태);
+            this.groupBox4.Controls.Add(this.label8);
+            this.groupBox4.Controls.Add(this.label7);
+            this.groupBox4.Location = new System.Drawing.Point(541, 21);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(177, 169);
+            this.groupBox4.TabIndex = 16;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "구동기 상태";
+            // 
+            // 전압
+            // 
+            this.전압.AutoSize = true;
+            this.전압.Location = new System.Drawing.Point(81, 120);
+            this.전압.Name = "전압";
+            this.전압.Size = new System.Drawing.Size(11, 15);
+            this.전압.TabIndex = 41;
+            this.전압.Text = " ";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(16, 119);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(31, 15);
+            this.label11.TabIndex = 41;
+            this.label11.Text = "전압";
+            // 
+            // 남은시간
+            // 
+            this.남은시간.AutoSize = true;
+            this.남은시간.Location = new System.Drawing.Point(81, 102);
+            this.남은시간.Name = "남은시간";
+            this.남은시간.Size = new System.Drawing.Size(11, 15);
+            this.남은시간.TabIndex = 41;
+            this.남은시간.Text = " ";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(16, 101);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(55, 15);
+            this.label10.TabIndex = 41;
+            this.label10.Text = "남은시간";
+            // 
+            // crc
+            // 
+            this.crc.AutoSize = true;
+            this.crc.Location = new System.Drawing.Point(81, 83);
+            this.crc.Name = "crc";
+            this.crc.Size = new System.Drawing.Size(11, 15);
+            this.crc.TabIndex = 41;
+            this.crc.Text = " ";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(16, 82);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(23, 15);
+            this.label9.TabIndex = 41;
+            this.label9.Text = "crc";
+            this.label9.Click += new System.EventHandler(this.label9_Click);
+            // 
+            // 상태코드
+            // 
+            this.상태코드.AutoSize = true;
+            this.상태코드.Location = new System.Drawing.Point(81, 64);
+            this.상태코드.Name = "상태코드";
+            this.상태코드.Size = new System.Drawing.Size(11, 15);
+            this.상태코드.TabIndex = 41;
+            this.상태코드.Text = " ";
+            // 
+            // 상태
+            // 
+            this.상태.AutoSize = true;
+            this.상태.Location = new System.Drawing.Point(81, 44);
+            this.상태.Name = "상태";
+            this.상태.Size = new System.Drawing.Size(11, 15);
+            this.상태.TabIndex = 41;
+            this.상태.Text = " ";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(16, 63);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(55, 15);
+            this.label8.TabIndex = 41;
+            this.label8.Text = "상태코드";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(16, 44);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(31, 15);
+            this.label7.TabIndex = 41;
+            this.label7.Text = "상태";
+            // 
+            // checkBox2
+            // 
+            this.checkBox2.AutoSize = true;
+            this.checkBox2.Location = new System.Drawing.Point(16, 22);
+            this.checkBox2.Name = "checkBox2";
+            this.checkBox2.Size = new System.Drawing.Size(90, 19);
+            this.checkBox2.TabIndex = 15;
+            this.checkBox2.Text = "실시간 갱신";
+            this.checkBox2.UseVisualStyleBackColor = true;
+            this.checkBox2.CheckedChanged += new System.EventHandler(this.checkBox2_CheckedChanged);
             // 
             // UserControl6
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupBox2);
@@ -301,6 +437,8 @@ namespace unit.screen
             this.groupBox1.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
+            this.groupBox4.ResumeLayout(false);
+            this.groupBox4.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -330,5 +468,17 @@ namespace unit.screen
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label7;
+        public System.Windows.Forms.CheckBox checkBox2;
+        public System.Windows.Forms.Label 전압;
+        public System.Windows.Forms.Label 남은시간;
+        public System.Windows.Forms.Label crc;
+        public System.Windows.Forms.Label 상태코드;
+        public System.Windows.Forms.Label 상태;
     }
 }

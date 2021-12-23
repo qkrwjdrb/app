@@ -1,17 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using Google.Protobuf;
-using Grpc.Core;
-using Grpc.Net.Client;
-using NetExchange;
 
 namespace unit.screen
 {
@@ -34,7 +22,7 @@ namespace unit.screen
             datetypeBox.ValueMember = "Value";
             var items = new[] {
                 new { Text = "센서 데이터", Value = "센서" },
-                new { Text = "노드정보", Value = "노드정보" },             
+                new { Text = "노드정보", Value = "노드정보" },
                 new { Text = "구동기 상태", Value = "구동기 상태" },
             };
 
@@ -65,12 +53,63 @@ namespace unit.screen
         {
             uc1textBox3.Text = $"{deviceId} 구동기 상태";
 
-            uc1textBox3.AppendText(
-                Environment.NewLine + "상태 : " + BitConverter.ToUInt16(new byte[2] { address[8], address[7] }, 0)
+            float dataFloat = GetFloatState(address[21], address[22], address[23], address[24]);
+            string stateText = "";
+            if (BitConverter.ToUInt16(new byte[2] { address[8], address[7] }, 0) == 0)
+            {
+                stateText = "STOP";
+            }
+            if (BitConverter.ToUInt16(new byte[2] { address[8], address[7] }, 0) == 301)
+            {
+                stateText = "OPEN";
+            }
+            if (BitConverter.ToUInt16(new byte[2] { address[8], address[7] }, 0) == 302)
+            {
+                stateText = "CLOSE";
+            }
+            if (BitConverter.ToUInt16(new byte[2] { address[8], address[7] }, 0) == 303)
+            {
+                stateText = "TIMED_OPEN";
+            }
+            if (BitConverter.ToUInt16(new byte[2] { address[8], address[7] }, 0) == 304)
+            {
+                stateText = "TIMED_CLOSE";
+            }
+            if (UserControl6.uc6.checkBox2.Checked)
+            {
+                UserControl6.uc6.상태.Text = stateText;
+                UserControl6.uc6.상태코드.Text = Convert.ToString(BitConverter.ToUInt16(new byte[2] { address[8], address[7] }, 0));
+                UserControl6.uc6.crc.Text = Convert.ToString(BitConverter.ToUInt16(new byte[2] { address[6], address[5] }, 0));
+                UserControl6.uc6.남은시간.Text = Convert.ToString(BitConverter.ToUInt16(new byte[2] { address[10], address[9] }, 0));
+                UserControl6.uc6.전압.Text = Convert.ToString(dataFloat);
+
+
+
+
+
+            }
+            if (Form1.f1.isUc1)
+            { 
+                uc1textBox3.AppendText(
+            Environment.NewLine + "상태 : " + stateText
                 + Environment.NewLine + "상태코드 : " + BitConverter.ToUInt16(new byte[2] { address[8], address[7] }, 0)
                 + Environment.NewLine + "crc : " + BitConverter.ToUInt16(new byte[2] { address[6], address[5] }, 0)
                 + Environment.NewLine + "남은동작시간 : " + BitConverter.ToUInt16(new byte[2] { address[10], address[9] }, 0)
+                + Environment.NewLine + "전압 : " + dataFloat
             );
+            }
+
+            float GetFloatState(byte a, byte b, byte c, byte d)
+            {
+                byte[] rData = new byte[4]; 
+                if (BitConverter.IsLittleEndian) Array.Reverse(rData);
+                rData[0] = b;
+                rData[1] = a;
+                rData[2] = d;
+                rData[3] = c;
+
+                return BitConverter.ToSingle(rData, 0);
+            }
         }
 
 
@@ -134,7 +173,7 @@ namespace unit.screen
                                 uc1textBox3.AppendText(Environment.NewLine + $"조도 : {BitConverter.ToSingle(dataBytes, 0).ToString("0.00")}");
                             break;
                         case 0x7005:
-                            if (emptyDeviceCheck.Checked) 
+                            if (emptyDeviceCheck.Checked)
                                 uc1textBox3.AppendText(Environment.NewLine + $"{i} 자외선센서 : {BitConverter.ToSingle(dataBytes, 0).ToString("0.00")}");
                             else
                                 uc1textBox3.AppendText(Environment.NewLine + $"자외선센서 : {BitConverter.ToSingle(dataBytes, 0).ToString("0.00")}");
@@ -164,7 +203,7 @@ namespace unit.screen
                                 uc1textBox3.AppendText(Environment.NewLine + $"이산화질소센서 L : {BitConverter.ToSingle(dataBytes, 0).ToString("0.00")}");
                             break;
                         case 0x5002:
-                            if(emptyDeviceCheck.Checked)
+                            if (emptyDeviceCheck.Checked)
                                 uc1textBox3.AppendText(Environment.NewLine + $"{i} 이산화질소센서 M : {BitConverter.ToSingle(dataBytes, 0).ToString("0.00")}");
                             else
                                 uc1textBox3.AppendText(Environment.NewLine + $"이산화질소센서 M : {BitConverter.ToSingle(dataBytes, 0).ToString("0.00")}");
@@ -226,26 +265,26 @@ namespace unit.screen
             if (datetypeBox.SelectedValue is string)
             {
 
-            if ((string)datetypeBox.SelectedValue == "센서")
-            {
-                if (!string.IsNullOrWhiteSpace(deviceNumberBox.Text) && byte.TryParse(deviceNumberBox.Text, out _))
+                if ((string)datetypeBox.SelectedValue == "센서")
                 {
-                    Form1.f1.deviceCount = Convert.ToByte(deviceNumberBox.Text);
-                }
-                else
-                {
-                    MessageBox.Show("입력값을 확인하세요.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-                if (deviceBox.Text != null)
-                {
-                    uint gateway = (uint)int.Parse(gatewayBox.Text.ToString(), System.Globalization.NumberStyles.HexNumber);
-                    ulong device = ulong.Parse(deviceBox.Text.ToString(), System.Globalization.NumberStyles.HexNumber);
+                    if (!string.IsNullOrWhiteSpace(deviceNumberBox.Text) && byte.TryParse(deviceNumberBox.Text, out _))
+                    {
+                        Form1.f1.deviceCount = Convert.ToByte(deviceNumberBox.Text);
+                    }
+                    else
+                    {
+                        MessageBox.Show("입력값을 확인하세요.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    if (deviceBox.Text != null)
+                    {
+                        uint gateway = (uint)int.Parse(gatewayBox.Text.ToString(), System.Globalization.NumberStyles.HexNumber);
+                        ulong device = ulong.Parse(deviceBox.Text.ToString(), System.Globalization.NumberStyles.HexNumber);
 
-                    Form1.f1.dataGateway = gateway;
-                    Form1.f1.dataAddress = device;
-                    getAddress(gateway, device);
+                        Form1.f1.dataGateway = gateway;
+                        Form1.f1.dataAddress = device;
+                        getAddress(gateway, device);
+                    }
                 }
-            }
             }
             else MessageBox.Show("입력값을 확인하세요.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             if ((string)datetypeBox.SelectedValue == "노드정보")
@@ -272,7 +311,7 @@ namespace unit.screen
             0x00, 101, 0x00,Form1.f1.deviceCount,
             });
         }
-      
+
         private void getNode(uint gatewayID, ulong deviceID)
         {
             Form1.f1.isNode = true;
@@ -280,11 +319,19 @@ namespace unit.screen
                 0x00, 1, 0x00,8,
             });
         }
-        private void getState(uint gatewayID, ulong deviceID)
+        public void getState(uint gatewayID, ulong deviceID)
         {
-            Form1.f1.isState = true;
+            if (UserControl6.uc6.checkBox2.Checked && Form1.f1.isUc6)
+            {
+                Form1.f1.isTimer = true;
+            }
+            else
+            {
+                Form1.f1.isState = true;
+            }
+
             Form1.f1.TxRtu(++Form1.f1.TxCnt, gatewayID, deviceID, new byte[] {   0x01, 0x03,
-                0x00, 203, 0x00,4,
+                0x00, 203, 0x00,13,
             });
         }
         private void gatewayBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -293,7 +340,7 @@ namespace unit.screen
         }
         private void deviceBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-           Form1.f1.deviceBoxIndex = deviceBox.SelectedIndex;
+            Form1.f1.deviceBoxIndex = deviceBox.SelectedIndex;
         }
 
     }

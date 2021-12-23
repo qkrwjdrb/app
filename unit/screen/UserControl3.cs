@@ -356,7 +356,7 @@ namespace unit.screen
         new Role() { Name = "My Role 1", Id = 1 },
         new Role() { Name = "My Role 2", Id = 2},
         new Role() { Name = "My Role 3", Id = 3}
-      };
+            };
 
             listBox1.DataSource = roles;
 
