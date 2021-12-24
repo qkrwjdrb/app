@@ -239,7 +239,11 @@ namespace unit
             this.Invoke((MethodInvoker)delegate ()
             {
 
+                if (!screen.UserControl6.uc6.checkBox2.Checked&&!isUc6)
+                {
+
                 dataGridView1.Rows.Add(sequenceNumber, "Tx", gatewayId.ToString("X12"), deviceId.ToString("X12"), DateTime.Now, BitConverter.ToString(payload).Replace("-", " "));
+                }
 
                 if (isUc4)
                 {
@@ -326,8 +330,10 @@ namespace unit
 
             this.Invoke((MethodInvoker)delegate ()
             {
-                dataGridView1.Rows.Add(acknowledgeNumber, "Rx", gatewayId.ToString("X12"), deviceId.ToString("X12"), DateTime.Now, BitConverter.ToString(payload).Replace("-", " "));
-
+                if (!screen.UserControl6.uc6.checkBox2.Checked && !isUc6)
+                {
+                    dataGridView1.Rows.Add(acknowledgeNumber, "Rx", gatewayId.ToString("X12"), deviceId.ToString("X12"), DateTime.Now, BitConverter.ToString(payload).Replace("-", " "));
+                }
                 if (isUc4)
                 {
                     screen.UserControl4.uc4.uc4textBox2.Text = "RxRtu(" + GetProtocolChannelName(channel) + ")";
@@ -353,7 +359,7 @@ namespace unit
                     screen.UserControl5.uc5.uc5textBox1.Text += "Responsed... ";
 
                 }
-                else if (isUc6 && !screen.UserControl6.uc6.checkBox2.Checked)
+                else if (isUc6 && !screen.UserControl6.uc6.checkBox2.Checked )
                 {
                     screen.UserControl6.uc6.uc6textBox2.Text = "RxRtu(" + GetProtocolChannelName(channel) + ")";
                     screen.UserControl6.uc6.uc6textBox2.AppendText(Environment.NewLine + $"response.Channel={channel}");
@@ -417,11 +423,11 @@ namespace unit
                     }
 
                 }
-                    if (isTimer)
-                    {
-                        screen.UserControl1.uc1.StateDataOutput(payload, deviceId.ToString("X12"));
-                        isTimer = false;
-                    }
+                if (isTimer && payload.Length == 31)
+                {
+                    screen.UserControl1.uc1.StateDataOutput(payload, deviceId.ToString("X12"));
+                    isTimer = false;
+                }
 
             });
 
@@ -623,6 +629,7 @@ namespace unit
         //장치 목록 편집 버튼
         private void button4_Click(object sender, EventArgs e)
         {
+            isUc6 = false;
             panel3.Controls.Clear();
             panel3.Controls.Add(UserControl2); comboboxSelect();
         }
@@ -696,9 +703,11 @@ namespace unit
 
         private void button10_Click(object sender, EventArgs e)
         {
+            dataGridView1.Rows.Clear();
+          //  isUc6 = false;
+          //  panel3.Controls.Clear();
 
-            panel3.Controls.Clear();
-            panel3.Controls.Add(UserControl3); 
+          //  panel3.Controls.Add(UserControl3); 
         }
     }
 }

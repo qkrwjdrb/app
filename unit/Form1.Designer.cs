@@ -155,7 +155,7 @@ namespace unit
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(625, 46);
+            this.button4.Location = new System.Drawing.Point(510, 7);
             this.button4.Margin = new System.Windows.Forms.Padding(4);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(107, 31);
@@ -226,12 +226,12 @@ namespace unit
             // 
             // button10
             // 
-            this.button10.Location = new System.Drawing.Point(510, 7);
+            this.button10.Location = new System.Drawing.Point(625, 46);
             this.button10.Margin = new System.Windows.Forms.Padding(4);
             this.button10.Name = "button10";
             this.button10.Size = new System.Drawing.Size(107, 31);
             this.button10.TabIndex = 59;
-            this.button10.Text = "test";
+            this.button10.Text = "기록 삭제";
             this.button10.UseVisualStyleBackColor = true;
             this.button10.Click += new System.EventHandler(this.button10_Click);
             // 

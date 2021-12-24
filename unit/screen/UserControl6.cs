@@ -70,7 +70,7 @@ namespace unit.screen
             //좌회전
             if (int.TryParse(gatewayBox.Text.ToString(), System.Globalization.NumberStyles.HexNumber, System.Globalization.CultureInfo.InvariantCulture, out _)
                && ulong.TryParse(deviceBox.Text.ToString(), System.Globalization.NumberStyles.HexNumber, System.Globalization.CultureInfo.InvariantCulture, out _)
-             )
+            )
             {
                 if (checkBox1.Checked && !string.IsNullOrWhiteSpace(textBox3.Text))
                 {
@@ -227,8 +227,8 @@ namespace unit.screen
         {
             //정지
             if (int.TryParse(gatewayBox.Text.ToString(), System.Globalization.NumberStyles.HexNumber, System.Globalization.CultureInfo.InvariantCulture, out _)
-       && ulong.TryParse(deviceBox.Text.ToString(), System.Globalization.NumberStyles.HexNumber, System.Globalization.CultureInfo.InvariantCulture, out _)
-        )
+                && ulong.TryParse(deviceBox.Text.ToString(), System.Globalization.NumberStyles.HexNumber, System.Globalization.CultureInfo.InvariantCulture, out _)
+            )
             {
 
                 if (checkBox1.Checked && !string.IsNullOrWhiteSpace(textBox3.Text))
@@ -278,7 +278,7 @@ namespace unit.screen
             Form3.f3.label1.Text = "fadsaaaaaaaaaaaaas";
             //  statescreen();
         }
-        void statescreen() 
+        void statescreen()
         {
             Form3 form3 = new Form3();
             form3.Show();
@@ -297,20 +297,41 @@ namespace unit.screen
         {
             if (checkBox2.Checked)
             {
-                            Timer timer = new Timer();
-            timer.Interval = 500;
-            timer.Tick += Timer_Tick;
-            timer.Start();
+                Timer timer = new Timer();
+                timer.Interval = timerSec;
+                timer.Tick += Timer_Tick;
+                timer.Start();
             }
             else;
         }
 
+        int timerSec = 500;
         private void Timer_Tick(object sender, EventArgs e)
         {
-           
             if (checkBox2.Checked)
             {
                 UserControl1.uc1.getState((uint)int.Parse(gatewayBox.Text.ToString(), System.Globalization.NumberStyles.HexNumber), ulong.Parse(deviceBox.Text.ToString(), System.Globalization.NumberStyles.HexNumber));
+            }
+        }
+
+        private void button7_Click_1(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrWhiteSpace(textBox4.Text))
+            {
+                if (int.TryParse(gatewayBox.Text.ToString() ,out _))
+                {
+
+
+            timerSec = Convert.ToInt32(textBox4.Text) * 1000;
+                }
+                else
+                {
+                    MessageBox.Show("입력값을 확인하세요.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            else
+            {
+                MessageBox.Show("입력값을 확인하세요.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

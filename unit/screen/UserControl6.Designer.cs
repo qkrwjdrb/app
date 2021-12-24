@@ -53,6 +53,7 @@ namespace unit.screen
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.checkBox2 = new System.Windows.Forms.CheckBox();
             this.전압 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.남은시간 = new System.Windows.Forms.Label();
@@ -63,7 +64,9 @@ namespace unit.screen
             this.상태 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
-            this.checkBox2 = new System.Windows.Forms.CheckBox();
+            this.button7 = new System.Windows.Forms.Button();
+            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.label12 = new System.Windows.Forms.Label();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -298,6 +301,9 @@ namespace unit.screen
             // 
             // groupBox4
             // 
+            this.groupBox4.Controls.Add(this.button7);
+            this.groupBox4.Controls.Add(this.textBox4);
+            this.groupBox4.Controls.Add(this.label12);
             this.groupBox4.Controls.Add(this.checkBox2);
             this.groupBox4.Controls.Add(this.전압);
             this.groupBox4.Controls.Add(this.label11);
@@ -316,97 +322,6 @@ namespace unit.screen
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "구동기 상태";
             // 
-            // 전압
-            // 
-            this.전압.AutoSize = true;
-            this.전압.Location = new System.Drawing.Point(81, 120);
-            this.전압.Name = "전압";
-            this.전압.Size = new System.Drawing.Size(11, 15);
-            this.전압.TabIndex = 41;
-            this.전압.Text = " ";
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(16, 119);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(31, 15);
-            this.label11.TabIndex = 41;
-            this.label11.Text = "전압";
-            // 
-            // 남은시간
-            // 
-            this.남은시간.AutoSize = true;
-            this.남은시간.Location = new System.Drawing.Point(81, 102);
-            this.남은시간.Name = "남은시간";
-            this.남은시간.Size = new System.Drawing.Size(11, 15);
-            this.남은시간.TabIndex = 41;
-            this.남은시간.Text = " ";
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(16, 101);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(55, 15);
-            this.label10.TabIndex = 41;
-            this.label10.Text = "남은시간";
-            // 
-            // crc
-            // 
-            this.crc.AutoSize = true;
-            this.crc.Location = new System.Drawing.Point(81, 83);
-            this.crc.Name = "crc";
-            this.crc.Size = new System.Drawing.Size(11, 15);
-            this.crc.TabIndex = 41;
-            this.crc.Text = " ";
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(16, 82);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(23, 15);
-            this.label9.TabIndex = 41;
-            this.label9.Text = "crc";
-            this.label9.Click += new System.EventHandler(this.label9_Click);
-            // 
-            // 상태코드
-            // 
-            this.상태코드.AutoSize = true;
-            this.상태코드.Location = new System.Drawing.Point(81, 64);
-            this.상태코드.Name = "상태코드";
-            this.상태코드.Size = new System.Drawing.Size(11, 15);
-            this.상태코드.TabIndex = 41;
-            this.상태코드.Text = " ";
-            // 
-            // 상태
-            // 
-            this.상태.AutoSize = true;
-            this.상태.Location = new System.Drawing.Point(81, 44);
-            this.상태.Name = "상태";
-            this.상태.Size = new System.Drawing.Size(11, 15);
-            this.상태.TabIndex = 41;
-            this.상태.Text = " ";
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(16, 63);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(55, 15);
-            this.label8.TabIndex = 41;
-            this.label8.Text = "상태코드";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(16, 44);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(31, 15);
-            this.label7.TabIndex = 41;
-            this.label7.Text = "상태";
-            // 
             // checkBox2
             // 
             this.checkBox2.AutoSize = true;
@@ -417,6 +332,123 @@ namespace unit.screen
             this.checkBox2.Text = "실시간 갱신";
             this.checkBox2.UseVisualStyleBackColor = true;
             this.checkBox2.CheckedChanged += new System.EventHandler(this.checkBox2_CheckedChanged);
+            // 
+            // 전압
+            // 
+            this.전압.AutoSize = true;
+            this.전압.Location = new System.Drawing.Point(81, 122);
+            this.전압.Name = "전압";
+            this.전압.Size = new System.Drawing.Size(11, 15);
+            this.전압.TabIndex = 41;
+            this.전압.Text = " ";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(16, 121);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(31, 15);
+            this.label11.TabIndex = 41;
+            this.label11.Text = "전압";
+            // 
+            // 남은시간
+            // 
+            this.남은시간.AutoSize = true;
+            this.남은시간.Location = new System.Drawing.Point(81, 104);
+            this.남은시간.Name = "남은시간";
+            this.남은시간.Size = new System.Drawing.Size(11, 15);
+            this.남은시간.TabIndex = 41;
+            this.남은시간.Text = " ";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(16, 103);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(55, 15);
+            this.label10.TabIndex = 41;
+            this.label10.Text = "남은시간";
+            // 
+            // crc
+            // 
+            this.crc.AutoSize = true;
+            this.crc.Location = new System.Drawing.Point(81, 85);
+            this.crc.Name = "crc";
+            this.crc.Size = new System.Drawing.Size(11, 15);
+            this.crc.TabIndex = 41;
+            this.crc.Text = " ";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(16, 84);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(23, 15);
+            this.label9.TabIndex = 41;
+            this.label9.Text = "crc";
+            this.label9.Click += new System.EventHandler(this.label9_Click);
+            // 
+            // 상태코드
+            // 
+            this.상태코드.AutoSize = true;
+            this.상태코드.Location = new System.Drawing.Point(81, 66);
+            this.상태코드.Name = "상태코드";
+            this.상태코드.Size = new System.Drawing.Size(11, 15);
+            this.상태코드.TabIndex = 41;
+            this.상태코드.Text = " ";
+            // 
+            // 상태
+            // 
+            this.상태.AutoSize = true;
+            this.상태.Location = new System.Drawing.Point(81, 46);
+            this.상태.Name = "상태";
+            this.상태.Size = new System.Drawing.Size(11, 15);
+            this.상태.TabIndex = 41;
+            this.상태.Text = " ";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(16, 65);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(55, 15);
+            this.label8.TabIndex = 41;
+            this.label8.Text = "상태코드";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(16, 46);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(31, 15);
+            this.label7.TabIndex = 41;
+            this.label7.Text = "상태";
+            // 
+            // button7
+            // 
+            this.button7.Location = new System.Drawing.Point(96, 140);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(75, 23);
+            this.button7.TabIndex = 42;
+            this.button7.Text = "갱신시간";
+            this.button7.UseVisualStyleBackColor = true;
+            this.button7.Click += new System.EventHandler(this.button7_Click_1);
+            // 
+            // textBox4
+            // 
+            this.textBox4.Location = new System.Drawing.Point(6, 139);
+            this.textBox4.Name = "textBox4";
+            this.textBox4.Size = new System.Drawing.Size(51, 23);
+            this.textBox4.TabIndex = 43;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(63, 144);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(27, 15);
+            this.label12.TabIndex = 44;
+            this.label12.Text = "(초)";
             // 
             // UserControl6
             // 
@@ -480,5 +512,8 @@ namespace unit.screen
         public System.Windows.Forms.Label crc;
         public System.Windows.Forms.Label 상태코드;
         public System.Windows.Forms.Label 상태;
+        private System.Windows.Forms.Button button7;
+        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.Label label12;
     }
 }
