@@ -239,11 +239,11 @@ namespace unit
             this.Invoke((MethodInvoker)delegate ()
             {
 
-                if (!screen.UserControl6.uc6.checkBox2.Checked&&!isUc6)
-                {
+           //     if (!screen.UserControl6.uc6.checkBox2.Checked&&!isUc6)
+            
 
                 dataGridView1.Rows.Add(sequenceNumber, "Tx", gatewayId.ToString("X12"), deviceId.ToString("X12"), DateTime.Now, BitConverter.ToString(payload).Replace("-", " "));
-                }
+              
 
                 if (isUc4)
                 {
@@ -330,10 +330,9 @@ namespace unit
 
             this.Invoke((MethodInvoker)delegate ()
             {
-                if (!screen.UserControl6.uc6.checkBox2.Checked && !isUc6)
-                {
+               // if (!screen.UserControl6.uc6.checkBox2.Checked && !isUc6)
                     dataGridView1.Rows.Add(acknowledgeNumber, "Rx", gatewayId.ToString("X12"), deviceId.ToString("X12"), DateTime.Now, BitConverter.ToString(payload).Replace("-", " "));
-                }
+              
                 if (isUc4)
                 {
                     screen.UserControl4.uc4.uc4textBox2.Text = "RxRtu(" + GetProtocolChannelName(channel) + ")";
@@ -708,6 +707,11 @@ namespace unit
           //  panel3.Controls.Clear();
 
           //  panel3.Controls.Add(UserControl3); 
+        }
+
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            screen.UserControl6.uc6.timerStop();
         }
     }
 }

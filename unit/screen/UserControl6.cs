@@ -25,6 +25,7 @@ namespace unit.screen
             gatewayBox.SelectedIndex = 0;
             Form1.f1.LoadUc6 = true;
             Form1.f1.comboboxSelect();
+            timerSec =500;
         }
         ushort opid = 0;
         // 구동기 모터 주소 : 0x4C752589170d
@@ -293,22 +294,29 @@ namespace unit.screen
         {
             updateState();
         }
+        public int timerSec;
+            public Timer timer1 = new Timer();
         void updateState()
         {
             if (checkBox2.Checked)
             {
-                Timer timer = new Timer();
-                timer.Interval = timerSec;
-                timer.Tick += Timer_Tick;
-                timer.Start();
+                timer1.Interval = timerSec;
+                timer1.Tick += Timer_Tick;
+                timer1.Start();
             }
-            else;
+            else
+            {
+             timerStop();
+            }
         }
+     public void timerStop()
+        {
 
-        int timerSec = 500;
+                timer1.Stop();
+        }
         private void Timer_Tick(object sender, EventArgs e)
         {
-            if (checkBox2.Checked)
+      //      if (checkBox2.Checked)
             {
                 UserControl1.uc1.getState((uint)int.Parse(gatewayBox.Text.ToString(), System.Globalization.NumberStyles.HexNumber), ulong.Parse(deviceBox.Text.ToString(), System.Globalization.NumberStyles.HexNumber));
             }
@@ -316,13 +324,14 @@ namespace unit.screen
 
         private void button7_Click_1(object sender, EventArgs e)
         {
+
             if (!string.IsNullOrWhiteSpace(textBox4.Text))
             {
                 if (int.TryParse(gatewayBox.Text.ToString() ,out _))
                 {
 
 
-            timerSec = Convert.ToInt32(textBox4.Text) * 1000;
+                    timer1.Interval = Convert.ToInt32(textBox4.Text) ;
                 }
                 else
                 {
