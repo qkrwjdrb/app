@@ -186,8 +186,8 @@ namespace unit.screen
         {
             //타이머 우회전
             if (int.TryParse(gatewayBox.Text.ToString(), System.Globalization.NumberStyles.HexNumber, System.Globalization.CultureInfo.InvariantCulture, out _)
-       && ulong.TryParse(deviceBox.Text.ToString(), System.Globalization.NumberStyles.HexNumber, System.Globalization.CultureInfo.InvariantCulture, out _)
-     )
+            && ulong.TryParse(deviceBox.Text.ToString(), System.Globalization.NumberStyles.HexNumber, System.Globalization.CultureInfo.InvariantCulture, out _)
+            )
             {
 
                 if (!string.IsNullOrWhiteSpace(textBox2.Text))
@@ -301,22 +301,22 @@ namespace unit.screen
             if (checkBox2.Checked)
             {
                 timer1.Interval = timerSec;
-                timer1.Tick += Timer_Tick;
+                timer1.Tick += new EventHandler(Timer_Tick);
                 timer1.Start();
             }
             else
             {
-             timerStop();
+                timerStop();
             }
         }
-     public void timerStop()
+        public void timerStop()
         {
 
                 timer1.Stop();
         }
         private void Timer_Tick(object sender, EventArgs e)
         {
-      //      if (checkBox2.Checked)
+           if (Form1.f1.isUc6)
             {
                 UserControl1.uc1.getState((uint)int.Parse(gatewayBox.Text.ToString(), System.Globalization.NumberStyles.HexNumber), ulong.Parse(deviceBox.Text.ToString(), System.Globalization.NumberStyles.HexNumber));
             }
@@ -327,16 +327,28 @@ namespace unit.screen
 
             if (!string.IsNullOrWhiteSpace(textBox4.Text))
             {
-                if (int.TryParse(gatewayBox.Text.ToString() ,out _))
+                float b;
+   
+                if (float.TryParse(textBox4.Text.ToString() ,out b) )
                 {
+                    // button7.Text = Convert.ToString((int)(b * 1000));
+                    if ((int)(b * 1000)>0)
+                    {
 
 
-                    timer1.Interval = Convert.ToInt32(textBox4.Text) ;
+                    timer1.Interval = (int)(b*1000) ;
+                    }
+                    else
+                    {
+
+                    MessageBox.Show("숫자가 너무 작습니다.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
                 else
                 {
                     MessageBox.Show("입력값을 확인하세요.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
+                
             }
             else
             {

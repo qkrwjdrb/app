@@ -79,7 +79,7 @@ namespace unit.screen
             {
                 UserControl6.uc6.상태.Text = stateText;
                 UserControl6.uc6.상태코드.Text = Convert.ToString(BitConverter.ToUInt16(new byte[2] { address[8], address[7] }, 0));
-                UserControl6.uc6.crc.Text = Convert.ToString(BitConverter.ToUInt16(new byte[2] { address[6], address[5] }, 0));
+                UserControl6.uc6.OPID.Text = Convert.ToString(BitConverter.ToUInt16(new byte[2] { address[6], address[5] }, 0));
                 UserControl6.uc6.남은시간.Text = Convert.ToString(BitConverter.ToUInt16(new byte[2] { address[10], address[9] }, 0));
                 UserControl6.uc6.전압.Text = Convert.ToString(dataFloat);
 
@@ -93,7 +93,7 @@ namespace unit.screen
                 uc1textBox3.AppendText(
             Environment.NewLine + "상태 : " + stateText
                 + Environment.NewLine + "상태코드 : " + BitConverter.ToUInt16(new byte[2] { address[8], address[7] }, 0)
-                + Environment.NewLine + "crc : " + BitConverter.ToUInt16(new byte[2] { address[6], address[5] }, 0)
+                + Environment.NewLine + "OPID : " + BitConverter.ToUInt16(new byte[2] { address[6], address[5] }, 0)
                 + Environment.NewLine + "남은동작시간 : " + BitConverter.ToUInt16(new byte[2] { address[10], address[9] }, 0)
                 + Environment.NewLine + "전압 : " + dataFloat
             );

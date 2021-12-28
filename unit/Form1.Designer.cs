@@ -57,12 +57,12 @@ namespace unit
             // 
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.label1.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
-            this.label1.Location = new System.Drawing.Point(31, 36);
+            this.label1.Location = new System.Drawing.Point(33, 26);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(208, 29);
+            this.label1.Size = new System.Drawing.Size(214, 29);
             this.label1.TabIndex = 46;
-            this.label1.Text = "modbus test App";
+            this.label1.Text = "Modbus Test App";
             // 
             // panel3
             // 
@@ -79,6 +79,8 @@ namespace unit
             this.dataGridView1.AllowUserToDeleteRows = false;
             this.dataGridView1.AllowUserToResizeColumns = false;
             this.dataGridView1.AllowUserToResizeRows = false;
+            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
+            this.dataGridView1.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn1,
@@ -105,24 +107,25 @@ namespace unit
             this.dataGridViewTextBoxColumn1.DefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridViewTextBoxColumn1.HeaderText = "sequence number";
             this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.Width = 70;
+            this.dataGridViewTextBoxColumn1.Width = 117;
             // 
             // Col1n4
             // 
             this.Col1n4.HeaderText = "Tx/Rx";
             this.Col1n4.Name = "Col1n4";
-            this.Col1n4.Width = 45;
+            this.Col1n4.Width = 62;
             // 
             // Column4
             // 
             this.Column4.HeaderText = "gateway address";
             this.Column4.Name = "Column4";
-            this.Column4.Width = 95;
+            this.Column4.Width = 110;
             // 
             // dataGridViewTextBoxColumn2
             // 
             this.dataGridViewTextBoxColumn2.HeaderText = "device address";
             this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.Width = 101;
             // 
             // Column2
             // 
@@ -130,7 +133,7 @@ namespace unit
             this.Column2.DefaultCellStyle = dataGridViewCellStyle2;
             this.Column2.HeaderText = "time";
             this.Column2.Name = "Column2";
-            this.Column2.Width = 155;
+            this.Column2.Width = 56;
             // 
             // Column3
             // 

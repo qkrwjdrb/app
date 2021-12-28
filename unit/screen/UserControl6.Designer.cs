@@ -29,7 +29,6 @@ namespace unit.screen
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
@@ -47,7 +46,6 @@ namespace unit.screen
             this.deviceBox = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
             this.uc6textBox2 = new System.Windows.Forms.RichTextBox();
             this.uc6textBox1 = new System.Windows.Forms.RichTextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -62,13 +60,12 @@ namespace unit.screen
             this.label11 = new System.Windows.Forms.Label();
             this.남은시간 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
-            this.crc = new System.Windows.Forms.Label();
+            this.OPID = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.상태코드 = new System.Windows.Forms.Label();
             this.상태 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
-            this.timer2 = new System.Windows.Forms.Timer(this.components);
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -230,16 +227,6 @@ namespace unit.screen
             this.label5.TabIndex = 32;
             this.label5.Text = "Gateway Address";
             // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(13, 77);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(208, 15);
-            this.label4.TabIndex = 34;
-            this.label4.Text = "구동기 모터 주소 : 0x4C752589170d";
-            this.label4.Click += new System.EventHandler(this.label4_Click);
-            // 
             // uc6textBox2
             // 
             this.uc6textBox2.Location = new System.Drawing.Point(362, 196);
@@ -262,7 +249,6 @@ namespace unit.screen
             this.groupBox2.Controls.Add(this.gatewayBox);
             this.groupBox2.Controls.Add(this.deviceBox);
             this.groupBox2.Controls.Add(this.label6);
-            this.groupBox2.Controls.Add(this.label4);
             this.groupBox2.Location = new System.Drawing.Point(1, 21);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(272, 100);
@@ -311,7 +297,7 @@ namespace unit.screen
             this.groupBox4.Controls.Add(this.label11);
             this.groupBox4.Controls.Add(this.남은시간);
             this.groupBox4.Controls.Add(this.label10);
-            this.groupBox4.Controls.Add(this.crc);
+            this.groupBox4.Controls.Add(this.OPID);
             this.groupBox4.Controls.Add(this.label9);
             this.groupBox4.Controls.Add(this.상태코드);
             this.groupBox4.Controls.Add(this.상태);
@@ -336,7 +322,7 @@ namespace unit.screen
             // 
             // textBox4
             // 
-            this.textBox4.Location = new System.Drawing.Point(6, 139);
+            this.textBox4.Location = new System.Drawing.Point(12, 139);
             this.textBox4.Name = "textBox4";
             this.textBox4.Size = new System.Drawing.Size(51, 23);
             this.textBox4.TabIndex = 43;
@@ -346,9 +332,9 @@ namespace unit.screen
             this.label12.AutoSize = true;
             this.label12.Location = new System.Drawing.Point(63, 144);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(31, 15);
+            this.label12.Size = new System.Drawing.Size(27, 15);
             this.label12.TabIndex = 44;
-            this.label12.Text = "(ms)";
+            this.label12.Text = "(초)";
             // 
             // checkBox2
             // 
@@ -397,23 +383,23 @@ namespace unit.screen
             this.label10.TabIndex = 41;
             this.label10.Text = "남은시간";
             // 
-            // crc
+            // OPID
             // 
-            this.crc.AutoSize = true;
-            this.crc.Location = new System.Drawing.Point(81, 85);
-            this.crc.Name = "crc";
-            this.crc.Size = new System.Drawing.Size(11, 15);
-            this.crc.TabIndex = 41;
-            this.crc.Text = " ";
+            this.OPID.AutoSize = true;
+            this.OPID.Location = new System.Drawing.Point(81, 85);
+            this.OPID.Name = "OPID";
+            this.OPID.Size = new System.Drawing.Size(11, 15);
+            this.OPID.TabIndex = 41;
+            this.OPID.Text = " ";
             // 
             // label9
             // 
             this.label9.AutoSize = true;
             this.label9.Location = new System.Drawing.Point(16, 84);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(23, 15);
+            this.label9.Size = new System.Drawing.Size(35, 15);
             this.label9.TabIndex = 41;
-            this.label9.Text = "crc";
+            this.label9.Text = "OPID";
             this.label9.Click += new System.EventHandler(this.label9_Click);
             // 
             // 상태코드
@@ -511,12 +497,11 @@ namespace unit.screen
         public System.Windows.Forms.CheckBox checkBox2;
         public System.Windows.Forms.Label 전압;
         public System.Windows.Forms.Label 남은시간;
-        public System.Windows.Forms.Label crc;
+        public System.Windows.Forms.Label OPID;
         public System.Windows.Forms.Label 상태코드;
         public System.Windows.Forms.Label 상태;
         private System.Windows.Forms.Button button7;
         private System.Windows.Forms.TextBox textBox4;
         private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.Timer timer2;
     }
 }
