@@ -26,6 +26,7 @@ namespace unit.screen
             Form1.f1.LoadUc6 = true;
             Form1.f1.comboboxSelect();
             timerSec =500;
+            textBox4.Text = "0.5";
         }
         ushort opid = 0;
         // 구동기 모터 주소 : 0x4C752589170d
