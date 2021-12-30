@@ -60,7 +60,7 @@ namespace unit
             this.label1.Location = new System.Drawing.Point(33, 26);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(214, 29);
+            this.label1.Size = new System.Drawing.Size(218, 29);
             this.label1.TabIndex = 46;
             this.label1.Text = "Modbus Test App";
             // 
