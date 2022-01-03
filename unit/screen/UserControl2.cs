@@ -19,7 +19,7 @@ namespace unit.screen
             InitializeComponent();
             uc2 = this;
         }
-     
+
         private void UserControl2_Load(object sender, EventArgs e)
         {
             Form1.f1.LoadUc2 = true;
@@ -36,7 +36,7 @@ namespace unit.screen
                     {
 
 
-                    gatewayListBox.Items.Add(addGateBox.Text.ToUpper()); addGateBox.Text = String.Empty;
+                        gatewayListBox.Items.Add(addGateBox.Text.ToUpper()); addGateBox.Text = String.Empty;
                     }
                     else
                     {
@@ -214,7 +214,7 @@ namespace unit.screen
                 }
             }
         }
-       private void listMake()
+        private void listMake()
         {
             listde.Clear();
             for (int i = 0; i < deviceListBox.Items.Count; i++)
@@ -227,52 +227,56 @@ namespace unit.screen
 
         private void button2_Click_1(object sender, EventArgs e)
         {
-    /*        KeyValuePair<string, int> item = (KeyValuePair<string, int>)e.ListItem;
-            e.Value = string.Format("{0}({1})", item.Key, item.Value); 
-            foreach (KeyValuePair<string, int> kvp in myDictionary)
+            /*        KeyValuePair<string, int> item = (KeyValuePair<string, int>)e.ListItem;
+                    e.Value = string.Format("{0}({1})", item.Key, item.Value); 
+                    foreach (KeyValuePair<string, int> kvp in myDictionary)
+                    {
+                        lbx.Items.Add(String.Format("{0}({1})", kvp.Key, kvp.Value.ToString()));
+                    }*/
+        }
+        public partial class tester : UserControl2
+        {
+            public tester()
             {
-                lbx.Items.Add(String.Format("{0}({1})", kvp.Key, kvp.Value.ToString()));
-            }*/
-        }
-    public partial class tester : UserControl2
-    {
-        public tester()
-        {
-            InitializeComponent();
-            List<MyObject> myObjects = new List<MyObject>();
-            MyObject testObject = new MyObject("A", "10");
-            myObjects.Add(testObject);
-            BindingSource bindingSource = new BindingSource(myObjects, null);
-            listBox1.DisplayMember = "DisplayValue";
-            listBox1.DataSource = bindingSource;
-        }
-    }
+                InitializeComponent();
+                List<MyObject> myObjects = new List<MyObject>();
+                MyObject testObject = new MyObject("A", "10");
+                myObjects.Add(testObject);
+                BindingSource bindingSource = new BindingSource(myObjects, null);
+                listBox1.DisplayMember = "DisplayValue";
+                listBox1.DataSource = bindingSource;
 
-    public class MyObject
-    {
-        private string _key;
-        private string _value;
-
-        public MyObject(string value, string key)
-        {
-            _value = value;
-            _key = key;
+            }
         }
 
-        public string Key
+        public class MyObject
         {
-            get { return _key; }
-        }
+            private string _key;
+            private string _value;
+            Dictionary<string, string> keyValuePairs;
+            public MyObject(string value, string key)
+            {
+                _value = value;
+                _key = key;
+                keyValuePairs.Add(Key, value);
+                keyValuePairs.Remove("A");
+            }
 
-        public string Value
-        {
-            get { return _value; }
-        }
+            public string Key
+            {
+                get { return _key; }
+            }
 
-        public string DisplayValue
-        {
-            get { return string.Format("{0} ({1})", _key, _value); }
+            public string Value
+            {
+                get { return _value; }
+            }
+
+            public string DisplayValue
+            {
+                get { return string.Format("{0} ({1})", _key, _value); }
+                set { }
+            }
         }
-    }
     }
 }

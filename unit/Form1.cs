@@ -584,12 +584,6 @@ namespace unit
 
 
 
-
-
-        private void richTextBox3_TextChanged(object sender, EventArgs e)
-        {
-
-        }
         //0x4588177F, 0x24A160581B59,
         //0x51894B30, 0x24A16057F6BD,
 

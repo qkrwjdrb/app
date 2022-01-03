@@ -317,7 +317,7 @@ namespace unit.screen
         }
         private void Timer_Tick(object sender, EventArgs e)
         {
-           if (Form1.f1.isUc6)
+            if (Form1.f1.isUc6)
             {
                 UserControl1.uc1.getState((uint)int.Parse(gatewayBox.Text.ToString(), System.Globalization.NumberStyles.HexNumber), ulong.Parse(deviceBox.Text.ToString(), System.Globalization.NumberStyles.HexNumber));
             }

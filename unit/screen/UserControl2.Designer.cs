@@ -126,7 +126,7 @@ namespace unit.screen
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(566, 195);
+            this.button2.Location = new System.Drawing.Point(569, 195);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);
             this.button2.TabIndex = 64;
@@ -138,7 +138,7 @@ namespace unit.screen
             // 
             this.listBox1.FormattingEnabled = true;
             this.listBox1.ItemHeight = 15;
-            this.listBox1.Location = new System.Drawing.Point(503, 260);
+            this.listBox1.Location = new System.Drawing.Point(490, 133);
             this.listBox1.Name = "listBox1";
             this.listBox1.Size = new System.Drawing.Size(228, 364);
             this.listBox1.TabIndex = 65;
