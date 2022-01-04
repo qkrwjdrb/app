@@ -234,8 +234,6 @@ namespace unit
             list.AddRange(fn_makeCRC16_byte(payload));
             payload = list.ToArray();
 
-
-
             this.Invoke((MethodInvoker)delegate ()
             {
 

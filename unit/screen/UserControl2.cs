@@ -245,6 +245,7 @@ namespace unit.screen
                 BindingSource bindingSource = new BindingSource(myObjects, null);
                 listBox1.DisplayMember = "DisplayValue";
                 listBox1.DataSource = bindingSource;
+                MyObject myObject =new MyObject();
 
             }
         }
@@ -254,14 +255,17 @@ namespace unit.screen
             private string _key;
             private string _value;
             Dictionary<string, string> keyValuePairs;
-            public MyObject(string value, string key)
+            public MyObject( string value, string key)
             {
                 _value = value;
                 _key = key;
                 keyValuePairs.Add(Key, value);
                 keyValuePairs.Remove("A");
             }
+            public MyObject()
+            {
 
+            }
             public string Key
             {
                 get { return _key; }
@@ -275,7 +279,7 @@ namespace unit.screen
             public string DisplayValue
             {
                 get { return string.Format("{0} ({1})", _key, _value); }
-                set { }
+                set { _value = value; }
             }
         }
     }
