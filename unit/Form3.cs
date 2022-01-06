@@ -18,5 +18,10 @@ namespace unit
             f3 = this;
             InitializeComponent();
         }
+
+        private void Form3_Load(object sender, EventArgs e)
+        {
+            
+        }
     }
 }
