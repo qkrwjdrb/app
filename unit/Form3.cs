@@ -23,5 +23,19 @@ namespace unit
         {
             
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Button bt = new Button();
+            bt.Text = string.Format("{0}번 버튼", flowLayoutPanel1.Controls.Count);
+        bt.Name =string.Format("_Button_{0}", flowLayoutPanel1.Controls.Count);
+            bt.Click += new_Button_click;
+            flowLayoutPanel1.Controls.Add(bt)
+;        }
+
+        private void new_Button_click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Test");
+        }
     }
 }

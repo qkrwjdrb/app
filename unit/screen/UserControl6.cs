@@ -277,7 +277,7 @@ namespace unit.screen
 
         private void button7_Click(object sender, EventArgs e)
         {
-            Form3.f3.label1.Text = "fadsaaaaaaaaaaaaas";
+         //   Form3.f3.label1.Text = "fadsaaaaaaaaaaaaas";
             //  statescreen();
         }
         void statescreen()
