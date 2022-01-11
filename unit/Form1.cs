@@ -27,6 +27,7 @@ namespace unit
         screen.UserControl5 UserControl5 = new screen.UserControl5();
         screen.UserControl6 UserControl6 = new screen.UserControl6();
         screen.UserControl7 UserControl7 = new screen.UserControl7();
+        screen.UserControl8 UserControl8 = new screen.UserControl8();
 
         private static GrpcChannel channel = GrpcChannel.ForAddress("http://localhost:5044");
         internal static ExProto.ExProtoClient exchange = new ExProto.ExProtoClient(channel);
@@ -58,6 +59,7 @@ namespace unit
         public bool LoadUc5 = false;
         public bool LoadUc6 = false;
         public bool LoadUc7 = false;
+        public bool LoadUc8 = false;
 
         public FileInfo deFile = new FileInfo("device.txt");
         public FileInfo gaFile = new FileInfo("gateway.txt");
@@ -328,9 +330,21 @@ namespace unit
 
             this.Invoke((MethodInvoker)delegate ()
             {
-               // if (!screen.UserControl6.uc6.checkBox2.Checked && !isUc6)
-                    dataGridView1.Rows.Add(acknowledgeNumber, "Rx", gatewayId.ToString("X12"), deviceId.ToString("X12"), DateTime.Now, BitConverter.ToString(payload).Replace("-", " "));
+                // if (!screen.UserControl6.uc6.checkBox2.Checked && !isUc6)
+                if (acknowledgeNumber == 0)
+                {
+                    if (screen.UserControl8.uc8.uc8rtu)
+                    {
+                    screen.UserControl8.uc8.screenrtu(acknowledgeNumber, gatewayId,  deviceId,  payload);
+
+                    } 
+                }
+
+                else
+                {
+                dataGridView1.Rows.Add(acknowledgeNumber, "Rx", gatewayId.ToString("X12"), deviceId.ToString("X12"), DateTime.Now, BitConverter.ToString(payload).Replace("-", " "));
               
+                
                 if (isUc4)
                 {
                     screen.UserControl4.uc4.uc4textBox2.Text = "RxRtu(" + GetProtocolChannelName(channel) + ")";
@@ -419,6 +433,7 @@ namespace unit
                         isState = false;
                     }
 
+                }
                 }
                 if (isTimer && payload.Length == 31)
                 {
@@ -574,6 +589,11 @@ namespace unit
                     screen.UserControl7.uc7.deviceBox.SelectedIndex = deviceBoxIndex;
                     screen.UserControl7.uc7.gatewayBox.SelectedIndex = getewayBoxIndex;
                 }
+                if (LoadUc8)
+                {
+                    screen.UserControl8.uc8.deviceBox.SelectedIndex = deviceBoxIndex;
+                    screen.UserControl8.uc8.gatewayBox.SelectedIndex = getewayBoxIndex;
+                }
             }
         }
 
@@ -704,6 +724,12 @@ namespace unit
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
             screen.UserControl6.uc6.timerStop();
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+            panel3.Controls.Clear();
+            panel3.Controls.Add(UserControl8); comboboxSelect();
         }
     }
 }

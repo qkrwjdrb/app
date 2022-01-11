@@ -180,6 +180,8 @@ namespace unit.screen
             UserControl6.uc6.gatewayBox.Items.AddRange(allList1);
             UserControl7.uc7.gatewayBox.Items.Clear();
             UserControl7.uc7.gatewayBox.Items.AddRange(allList1);
+            UserControl8.uc8.gatewayBox.Items.Clear();
+            UserControl8.uc8.gatewayBox.Items.AddRange(allList1);
 
             //device combobox
             UserControl1.uc1.deviceBox.Items.Clear();
@@ -192,6 +194,8 @@ namespace unit.screen
             UserControl6.uc6.deviceBox.Items.AddRange(allList2);
             UserControl7.uc7.deviceBox.Items.Clear();
             UserControl7.uc7.deviceBox.Items.AddRange(allList2);
+            UserControl8.uc8.deviceBox.Items.Clear();
+            UserControl8.uc8.deviceBox.Items.AddRange(allList2);
 
             Form1.f1.gatewayItems = allList1;
             Form1.f1.addressItems = allList2;

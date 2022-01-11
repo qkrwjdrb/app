@@ -63,6 +63,7 @@ namespace unit
             this.label1.Size = new System.Drawing.Size(218, 29);
             this.label1.TabIndex = 46;
             this.label1.Text = "Modbus Test App";
+            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // panel3
             // 

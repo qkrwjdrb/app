@@ -37,5 +37,22 @@ namespace unit
         {
             MessageBox.Show("Test");
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Form1.f1.TxRtu(++Form1.f1.TxCnt, 0, 0x308398D9E8F5, new byte[] {   0x01, 0x03,
+                0x00, 1, 0x00,8,
+            });
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            flowLayoutPanel1.Controls.Clear();
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
