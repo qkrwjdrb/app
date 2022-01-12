@@ -321,15 +321,10 @@ namespace unit.screen
         }
         public void getState(uint gatewayID, ulong deviceID)
         {
-            if (UserControl6.uc6.checkBox2.Checked && Form1.f1.isUc6)
-            {
-                Form1.f1.isTimer = true;
-            }
-            else
-            {
+   
+         
                 Form1.f1.isState = true;
-            }
-
+          
             Form1.f1.TxRtu(++Form1.f1.TxCnt, gatewayID, deviceID, new byte[] {   0x01, 0x03,
                 0x00, 203, 0x00,13,
             });

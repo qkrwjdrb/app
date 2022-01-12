@@ -239,77 +239,83 @@ namespace unit
             this.Invoke((MethodInvoker)delegate ()
             {
 
-           //     if (!screen.UserControl6.uc6.checkBox2.Checked&&!isUc6)
-            
+                //     if (!screen.UserControl6.uc6.checkBox2.Checked&&!isUc6)
 
-                dataGridView1.Rows.Add(sequenceNumber, "Tx", gatewayId.ToString("X12"), deviceId.ToString("X12"), DateTime.Now, BitConverter.ToString(payload).Replace("-", " "));
-              
-
-                if (isUc4)
+                if (sequenceNumber == 0)
                 {
-
-                    screen.UserControl4.uc4.uc4textBox1.Text = "TxRtu(" + GetProtocolChannelName(channel) + ")";
-                    screen.UserControl4.uc4.uc4textBox1.AppendText(Environment.NewLine + $"RequestStream.Channel={channel}");
-                    screen.UserControl4.uc4.uc4textBox1.AppendText(Environment.NewLine + $"RequestStream.SequenceNumber={sequenceNumber}");
-                    screen.UserControl4.uc4.uc4textBox1.AppendText(Environment.NewLine + $"RequestStream.GatewayId=" + gatewayId.ToString("X6"));
-                    screen.UserControl4.uc4.uc4textBox1.AppendText(Environment.NewLine + $"RequestStream.DeviceId=" + deviceId.ToString("X12"));
-                    screen.UserControl4.uc4.uc4textBox1.AppendText(Environment.NewLine + $"RequestStream.Tdu.Length={payload.Length}");
-                    screen.UserControl4.uc4.uc4textBox1.AppendText(Environment.NewLine + $"RequestStream.Tdu={BitConverter.ToString(payload).Replace("-", string.Empty)}");
-                    screen.UserControl4.uc4.uc4textBox1.AppendText(Environment.NewLine);
-                    screen.UserControl4.uc4.uc4textBox2.Text = "Awaiting response...";
-
-                }
-                else if (isUc5)
-                {
-
-                    screen.UserControl5.uc5.uc5textBox1.Text = "TxRtu(" + GetProtocolChannelName(channel) + ") RequestStream";
-                    screen.UserControl5.uc5.uc5textBox1.AppendText(Environment.NewLine + $"Channel={channel}");
-                    screen.UserControl5.uc5.uc5textBox1.AppendText(Environment.NewLine + $"SequenceNumber={sequenceNumber}");
-                    screen.UserControl5.uc5.uc5textBox1.AppendText(Environment.NewLine + $"GatewayId=" + gatewayId.ToString("X6"));
-                    screen.UserControl5.uc5.uc5textBox1.AppendText(Environment.NewLine + $"DeviceId=" + deviceId.ToString("X12"));
-                    screen.UserControl5.uc5.uc5textBox1.AppendText(Environment.NewLine + $"Tdu.Length={payload.Length}");
-                    screen.UserControl5.uc5.uc5textBox1.AppendText(Environment.NewLine + $"Tdu={BitConverter.ToString(payload).Replace("-", " ")}");
-                    screen.UserControl5.uc5.uc5textBox1.AppendText(Environment.NewLine);
-                    screen.UserControl5.uc5.uc5textBox2.Text = "Awaiting response...";
-
-                }
-                else if (isUc6&&!screen.UserControl6.uc6.checkBox2.Checked)
-                {
-                    screen.UserControl6.uc6.uc6textBox1.Text = "TxRtu(" + GetProtocolChannelName(channel) + ") RequestStream";
-                    screen.UserControl6.uc6.uc6textBox1.AppendText(Environment.NewLine + $"Channel={channel}");
-                    screen.UserControl6.uc6.uc6textBox1.AppendText(Environment.NewLine + $"SequenceNumber={sequenceNumber}");
-                    screen.UserControl6.uc6.uc6textBox1.AppendText(Environment.NewLine + $"GatewayId=" + gatewayId.ToString("X6"));
-                    screen.UserControl6.uc6.uc6textBox1.AppendText(Environment.NewLine + $"DeviceId=" + deviceId.ToString("X12"));
-                    screen.UserControl6.uc6.uc6textBox1.AppendText(Environment.NewLine + $"Tdu.Length={payload.Length}");
-                    screen.UserControl6.uc6.uc6textBox1.AppendText(Environment.NewLine + $"Tdu={BitConverter.ToString(payload).Replace("-", " ")}");
-                    screen.UserControl6.uc6.uc6textBox1.AppendText(Environment.NewLine);
-                    screen.UserControl6.uc6.uc6textBox2.Text = "Awaiting response...";
-
-                }
-                else if (isUc7)
-                {
-                    screen.UserControl7.uc7.uc7textBox1.Text = "TxRtu(" + GetProtocolChannelName(channel) + ") RequestStream";
-                    screen.UserControl7.uc7.uc7textBox1.AppendText(Environment.NewLine + $"Channel={channel}");
-                    screen.UserControl7.uc7.uc7textBox1.AppendText(Environment.NewLine + $"SequenceNumber={sequenceNumber}");
-                    screen.UserControl7.uc7.uc7textBox1.AppendText(Environment.NewLine + $"GatewayId=" + gatewayId.ToString("X6"));
-                    screen.UserControl7.uc7.uc7textBox1.AppendText(Environment.NewLine + $"DeviceId=" + deviceId.ToString("X12"));
-                    screen.UserControl7.uc7.uc7textBox1.AppendText(Environment.NewLine + $"Tdu.Length={payload.Length}");
-                    screen.UserControl7.uc7.uc7textBox1.AppendText(Environment.NewLine + $"Tdu={BitConverter.ToString(payload).Replace("-", " ")}");
-                    screen.UserControl7.uc7.uc7textBox1.AppendText(Environment.NewLine);
-                    screen.UserControl7.uc7.uc7textBox2.Text = "Awaiting response...";
 
                 }
                 else
                 {
-                    screen.UserControl1.uc1.uc1textBox1.Text = "TxRtu(" + GetProtocolChannelName(channel) + ") RequestStream";
-                    screen.UserControl1.uc1.uc1textBox1.AppendText(Environment.NewLine + $"Channel={channel}");
-                    screen.UserControl1.uc1.uc1textBox1.AppendText(Environment.NewLine + $"SequenceNumber={sequenceNumber}");
-                    screen.UserControl1.uc1.uc1textBox1.AppendText(Environment.NewLine + $"GatewayId=" + gatewayId.ToString("X6"));
-                    screen.UserControl1.uc1.uc1textBox1.AppendText(Environment.NewLine + $"DeviceId=" + deviceId.ToString("X12"));
-                    screen.UserControl1.uc1.uc1textBox1.AppendText(Environment.NewLine + $"Tdu.Length={payload.Length}");
-                    screen.UserControl1.uc1.uc1textBox1.AppendText(Environment.NewLine + $"Tdu={BitConverter.ToString(payload).Replace("-", " ")}");
-                    screen.UserControl1.uc1.uc1textBox1.AppendText(Environment.NewLine);
-                    screen.UserControl1.uc1.uc1textBox2.Text = "Awaiting response...";
+                    dataGridView1.Rows.Add(sequenceNumber, "Tx", gatewayId.ToString("X12"), deviceId.ToString("X12"), DateTime.Now, BitConverter.ToString(payload).Replace("-", " "));
+
+
+                    if (isUc4)
+                    {
+
+                        screen.UserControl4.uc4.uc4textBox1.Text = "TxRtu(" + GetProtocolChannelName(channel) + ")";
+                        screen.UserControl4.uc4.uc4textBox1.AppendText(Environment.NewLine + $"RequestStream.Channel={channel}");
+                        screen.UserControl4.uc4.uc4textBox1.AppendText(Environment.NewLine + $"RequestStream.SequenceNumber={sequenceNumber}");
+                        screen.UserControl4.uc4.uc4textBox1.AppendText(Environment.NewLine + $"RequestStream.GatewayId=" + gatewayId.ToString("X6"));
+                        screen.UserControl4.uc4.uc4textBox1.AppendText(Environment.NewLine + $"RequestStream.DeviceId=" + deviceId.ToString("X12"));
+                        screen.UserControl4.uc4.uc4textBox1.AppendText(Environment.NewLine + $"RequestStream.Tdu.Length={payload.Length}");
+                        screen.UserControl4.uc4.uc4textBox1.AppendText(Environment.NewLine + $"RequestStream.Tdu={BitConverter.ToString(payload).Replace("-", string.Empty)}");
+                        screen.UserControl4.uc4.uc4textBox1.AppendText(Environment.NewLine);
+                        screen.UserControl4.uc4.uc4textBox2.Text = "Awaiting response...";
+
+                    }
+                    else if (isUc5)
+                    {
+
+                        screen.UserControl5.uc5.uc5textBox1.Text = "TxRtu(" + GetProtocolChannelName(channel) + ") RequestStream";
+                        screen.UserControl5.uc5.uc5textBox1.AppendText(Environment.NewLine + $"Channel={channel}");
+                        screen.UserControl5.uc5.uc5textBox1.AppendText(Environment.NewLine + $"SequenceNumber={sequenceNumber}");
+                        screen.UserControl5.uc5.uc5textBox1.AppendText(Environment.NewLine + $"GatewayId=" + gatewayId.ToString("X6"));
+                        screen.UserControl5.uc5.uc5textBox1.AppendText(Environment.NewLine + $"DeviceId=" + deviceId.ToString("X12"));
+                        screen.UserControl5.uc5.uc5textBox1.AppendText(Environment.NewLine + $"Tdu.Length={payload.Length}");
+                        screen.UserControl5.uc5.uc5textBox1.AppendText(Environment.NewLine + $"Tdu={BitConverter.ToString(payload).Replace("-", " ")}");
+                        screen.UserControl5.uc5.uc5textBox1.AppendText(Environment.NewLine);
+                        screen.UserControl5.uc5.uc5textBox2.Text = "Awaiting response...";
+
+                    }
+                    else if (isUc6 && !screen.UserControl6.uc6.checkBox2.Checked)
+                    {
+                        screen.UserControl6.uc6.uc6textBox1.Text = "TxRtu(" + GetProtocolChannelName(channel) + ") RequestStream";
+                        screen.UserControl6.uc6.uc6textBox1.AppendText(Environment.NewLine + $"Channel={channel}");
+                        screen.UserControl6.uc6.uc6textBox1.AppendText(Environment.NewLine + $"SequenceNumber={sequenceNumber}");
+                        screen.UserControl6.uc6.uc6textBox1.AppendText(Environment.NewLine + $"GatewayId=" + gatewayId.ToString("X6"));
+                        screen.UserControl6.uc6.uc6textBox1.AppendText(Environment.NewLine + $"DeviceId=" + deviceId.ToString("X12"));
+                        screen.UserControl6.uc6.uc6textBox1.AppendText(Environment.NewLine + $"Tdu.Length={payload.Length}");
+                        screen.UserControl6.uc6.uc6textBox1.AppendText(Environment.NewLine + $"Tdu={BitConverter.ToString(payload).Replace("-", " ")}");
+                        screen.UserControl6.uc6.uc6textBox1.AppendText(Environment.NewLine);
+                        screen.UserControl6.uc6.uc6textBox2.Text = "Awaiting response...";
+
+                    }
+                    else if (isUc7)
+                    {
+                        screen.UserControl7.uc7.uc7textBox1.Text = "TxRtu(" + GetProtocolChannelName(channel) + ") RequestStream";
+                        screen.UserControl7.uc7.uc7textBox1.AppendText(Environment.NewLine + $"Channel={channel}");
+                        screen.UserControl7.uc7.uc7textBox1.AppendText(Environment.NewLine + $"SequenceNumber={sequenceNumber}");
+                        screen.UserControl7.uc7.uc7textBox1.AppendText(Environment.NewLine + $"GatewayId=" + gatewayId.ToString("X6"));
+                        screen.UserControl7.uc7.uc7textBox1.AppendText(Environment.NewLine + $"DeviceId=" + deviceId.ToString("X12"));
+                        screen.UserControl7.uc7.uc7textBox1.AppendText(Environment.NewLine + $"Tdu.Length={payload.Length}");
+                        screen.UserControl7.uc7.uc7textBox1.AppendText(Environment.NewLine + $"Tdu={BitConverter.ToString(payload).Replace("-", " ")}");
+                        screen.UserControl7.uc7.uc7textBox1.AppendText(Environment.NewLine);
+                        screen.UserControl7.uc7.uc7textBox2.Text = "Awaiting response...";
+
+                    }
+                    else
+                    {
+                        screen.UserControl1.uc1.uc1textBox1.Text = "TxRtu(" + GetProtocolChannelName(channel) + ") RequestStream";
+                        screen.UserControl1.uc1.uc1textBox1.AppendText(Environment.NewLine + $"Channel={channel}");
+                        screen.UserControl1.uc1.uc1textBox1.AppendText(Environment.NewLine + $"SequenceNumber={sequenceNumber}");
+                        screen.UserControl1.uc1.uc1textBox1.AppendText(Environment.NewLine + $"GatewayId=" + gatewayId.ToString("X6"));
+                        screen.UserControl1.uc1.uc1textBox1.AppendText(Environment.NewLine + $"DeviceId=" + deviceId.ToString("X12"));
+                        screen.UserControl1.uc1.uc1textBox1.AppendText(Environment.NewLine + $"Tdu.Length={payload.Length}");
+                        screen.UserControl1.uc1.uc1textBox1.AppendText(Environment.NewLine + $"Tdu={BitConverter.ToString(payload).Replace("-", " ")}");
+                        screen.UserControl1.uc1.uc1textBox1.AppendText(Environment.NewLine);
+                        screen.UserControl1.uc1.uc1textBox2.Text = "Awaiting response...";
+                    }
                 }
             });
 
@@ -333,113 +339,118 @@ namespace unit
                 // if (!screen.UserControl6.uc6.checkBox2.Checked && !isUc6)
                 if (acknowledgeNumber == 0)
                 {
+                    if (screen.UserControl6.uc6.checkBox2.Checked)
+                    {
+
+                        screen.UserControl1.uc1.StateDataOutput(payload, deviceId.ToString("X12"));
+                    }
+                }
+
+                else
+                {
+                    dataGridView1.Rows.Add(acknowledgeNumber, "Rx", gatewayId.ToString("X12"), deviceId.ToString("X12"), DateTime.Now, BitConverter.ToString(payload).Replace("-", " "));
+
+
                     if (screen.UserControl8.uc8.uc8rtu)
                     {
-                    screen.UserControl8.uc8.screenrtu(acknowledgeNumber, gatewayId,  deviceId,  payload);
+                        screen.UserControl8.uc8.screenrtu(acknowledgeNumber, gatewayId, deviceId, payload);
 
-                    } 
-                }
-
-                else
-                {
-                dataGridView1.Rows.Add(acknowledgeNumber, "Rx", gatewayId.ToString("X12"), deviceId.ToString("X12"), DateTime.Now, BitConverter.ToString(payload).Replace("-", " "));
-              
-                
-                if (isUc4)
-                {
-                    screen.UserControl4.uc4.uc4textBox2.Text = "RxRtu(" + GetProtocolChannelName(channel) + ")";
-                    screen.UserControl4.uc4.uc4textBox2.AppendText(Environment.NewLine + $"response.Channel={channel}");
-                    screen.UserControl4.uc4.uc4textBox2.AppendText(Environment.NewLine + $"response.AcknowledgeNumber={acknowledgeNumber}");
-                    screen.UserControl4.uc4.uc4textBox2.AppendText(Environment.NewLine + $"response.GatewayId=" + gatewayId.ToString("X6"));
-                    screen.UserControl4.uc4.uc4textBox2.AppendText(Environment.NewLine + $"response.DeviceId=" + deviceId.ToString("X12"));
-                    screen.UserControl4.uc4.uc4textBox2.AppendText(Environment.NewLine + $"response.Tdu.Length={payload.Length}");
-                    screen.UserControl4.uc4.uc4textBox2.AppendText(Environment.NewLine + BitConverter.ToString(payload));
-                    screen.UserControl4.uc4.uc4textBox2.AppendText(Environment.NewLine);
-                    screen.UserControl4.uc4.uc4textBox1.Text += "Responsed... ";
-                }
-                else if (isUc5)
-                {
-                    screen.UserControl5.uc5.uc5textBox2.Text = "RxRtu(" + GetProtocolChannelName(channel) + ")";
-                    screen.UserControl5.uc5.uc5textBox2.AppendText(Environment.NewLine + $"response.Channel={channel}");
-                    screen.UserControl5.uc5.uc5textBox2.AppendText(Environment.NewLine + $"response.AcknowledgeNumber={acknowledgeNumber}");
-                    screen.UserControl5.uc5.uc5textBox2.AppendText(Environment.NewLine + $"response.GatewayId=" + gatewayId.ToString("X6"));
-                    screen.UserControl5.uc5.uc5textBox2.AppendText(Environment.NewLine + $"response.DeviceId=" + deviceId.ToString("X12"));
-                    screen.UserControl5.uc5.uc5textBox2.AppendText(Environment.NewLine + $"response.Tdu.Length={payload.Length}");
-                    screen.UserControl5.uc5.uc5textBox2.AppendText(Environment.NewLine + BitConverter.ToString(payload));
-                    screen.UserControl5.uc5.uc5textBox2.AppendText(Environment.NewLine);
-                    screen.UserControl5.uc5.uc5textBox1.Text += "Responsed... ";
-
-                }
-                else if (isUc6 && !screen.UserControl6.uc6.checkBox2.Checked )
-                {
-                    screen.UserControl6.uc6.uc6textBox2.Text = "RxRtu(" + GetProtocolChannelName(channel) + ")";
-                    screen.UserControl6.uc6.uc6textBox2.AppendText(Environment.NewLine + $"response.Channel={channel}");
-                    screen.UserControl6.uc6.uc6textBox2.AppendText(Environment.NewLine + $"response.AcknowledgeNumber={acknowledgeNumber}");
-                    screen.UserControl6.uc6.uc6textBox2.AppendText(Environment.NewLine + $"response.GatewayId=" + gatewayId.ToString("X6"));
-                    screen.UserControl6.uc6.uc6textBox2.AppendText(Environment.NewLine + $"response.DeviceId=" + deviceId.ToString("X12"));
-                    screen.UserControl6.uc6.uc6textBox2.AppendText(Environment.NewLine + $"response.Tdu.Length={payload.Length}");
-                    screen.UserControl6.uc6.uc6textBox2.AppendText(Environment.NewLine + BitConverter.ToString(payload));
-                    screen.UserControl6.uc6.uc6textBox2.AppendText(Environment.NewLine);
-                    screen.UserControl6.uc6.uc6textBox1.Text += "Responsed... ";
-                }
-                else if (isUc7)
-                {
-                    screen.UserControl7.uc7.uc7textBox2.Text = "RxRtu(" + GetProtocolChannelName(channel) + ")";
-                    screen.UserControl7.uc7.uc7textBox2.AppendText(Environment.NewLine + $"response.Channel={channel}");
-                    screen.UserControl7.uc7.uc7textBox2.AppendText(Environment.NewLine + $"response.AcknowledgeNumber={acknowledgeNumber}");
-                    screen.UserControl7.uc7.uc7textBox2.AppendText(Environment.NewLine + $"response.GatewayId=" + gatewayId.ToString("X6"));
-                    screen.UserControl7.uc7.uc7textBox2.AppendText(Environment.NewLine + $"response.DeviceId=" + deviceId.ToString("X12"));
-                    screen.UserControl7.uc7.uc7textBox2.AppendText(Environment.NewLine + $"response.Tdu.Length={payload.Length}");
-                    screen.UserControl7.uc7.uc7textBox2.AppendText(Environment.NewLine + BitConverter.ToString(payload));
-                    screen.UserControl7.uc7.uc7textBox2.AppendText(Environment.NewLine);
-                    screen.UserControl7.uc7.uc7textBox1.Text += "Responsed... ";
-                }
-                else
-                {
-                    screen.UserControl1.uc1.uc1textBox2.Text = "RxRtu(" + GetProtocolChannelName(channel) + ")";
-                    screen.UserControl1.uc1.uc1textBox2.AppendText(Environment.NewLine + $"response.Channel={channel}");
-                    screen.UserControl1.uc1.uc1textBox2.AppendText(Environment.NewLine + $"response.AcknowledgeNumber={acknowledgeNumber}");
-                    screen.UserControl1.uc1.uc1textBox2.AppendText(Environment.NewLine + $"response.GatewayId=" + gatewayId.ToString("X6"));
-                    screen.UserControl1.uc1.uc1textBox2.AppendText(Environment.NewLine + $"response.DeviceId=" + deviceId.ToString("X12"));
-                    screen.UserControl1.uc1.uc1textBox2.AppendText(Environment.NewLine + $"response.Tdu.Length={payload.Length}");
-                    screen.UserControl1.uc1.uc1textBox2.AppendText(Environment.NewLine + BitConverter.ToString(payload));
-                    screen.UserControl1.uc1.uc1textBox2.AppendText(Environment.NewLine);
-                    screen.UserControl1.uc1.uc1textBox1.Text += "Responsed... ";
-
-                    if (addressEnd && payload.Length == (deviceCount * 2 + 5))
-                    {
-                        addressArray = payload;
-
-                        addressEnd = false;
-
-                        getData(dataGateway, dataAddress);
                     }
-                    if (dataEnd && payload.Length == (deviceCount * 6 + 7))
+                    if (isUc4)
                     {
-                        dataArray = payload;
-
-                        dataEnd = false;
-
-                        screen.UserControl1.uc1.sensorDataOutput(addressArray, dataArray, deviceId.ToString("X12"));
+                        screen.UserControl4.uc4.uc4textBox2.Text = "RxRtu(" + GetProtocolChannelName(channel) + ")";
+                        screen.UserControl4.uc4.uc4textBox2.AppendText(Environment.NewLine + $"response.Channel={channel}");
+                        screen.UserControl4.uc4.uc4textBox2.AppendText(Environment.NewLine + $"response.AcknowledgeNumber={acknowledgeNumber}");
+                        screen.UserControl4.uc4.uc4textBox2.AppendText(Environment.NewLine + $"response.GatewayId=" + gatewayId.ToString("X6"));
+                        screen.UserControl4.uc4.uc4textBox2.AppendText(Environment.NewLine + $"response.DeviceId=" + deviceId.ToString("X12"));
+                        screen.UserControl4.uc4.uc4textBox2.AppendText(Environment.NewLine + $"response.Tdu.Length={payload.Length}");
+                        screen.UserControl4.uc4.uc4textBox2.AppendText(Environment.NewLine + BitConverter.ToString(payload));
+                        screen.UserControl4.uc4.uc4textBox2.AppendText(Environment.NewLine);
+                        screen.UserControl4.uc4.uc4textBox1.Text += "Responsed... ";
                     }
-                    if (isNode)
+                    else if (isUc5)
                     {
-                        screen.UserControl1.uc1.NodeDataOutput(payload, deviceId.ToString("X12"));
-                        isNode = false;
-                    }
-                    if (isState)
-                    {
-                        screen.UserControl1.uc1.StateDataOutput(payload, deviceId.ToString("X12"));
-                        isState = false;
-                    }
+                        screen.UserControl5.uc5.uc5textBox2.Text = "RxRtu(" + GetProtocolChannelName(channel) + ")";
+                        screen.UserControl5.uc5.uc5textBox2.AppendText(Environment.NewLine + $"response.Channel={channel}");
+                        screen.UserControl5.uc5.uc5textBox2.AppendText(Environment.NewLine + $"response.AcknowledgeNumber={acknowledgeNumber}");
+                        screen.UserControl5.uc5.uc5textBox2.AppendText(Environment.NewLine + $"response.GatewayId=" + gatewayId.ToString("X6"));
+                        screen.UserControl5.uc5.uc5textBox2.AppendText(Environment.NewLine + $"response.DeviceId=" + deviceId.ToString("X12"));
+                        screen.UserControl5.uc5.uc5textBox2.AppendText(Environment.NewLine + $"response.Tdu.Length={payload.Length}");
+                        screen.UserControl5.uc5.uc5textBox2.AppendText(Environment.NewLine + BitConverter.ToString(payload));
+                        screen.UserControl5.uc5.uc5textBox2.AppendText(Environment.NewLine);
+                        screen.UserControl5.uc5.uc5textBox1.Text += "Responsed... ";
 
+                    }
+                    else if (isUc6)
+                    {
+                        screen.UserControl6.uc6.uc6textBox2.Text = "RxRtu(" + GetProtocolChannelName(channel) + ")";
+                        screen.UserControl6.uc6.uc6textBox2.AppendText(Environment.NewLine + $"response.Channel={channel}");
+                        screen.UserControl6.uc6.uc6textBox2.AppendText(Environment.NewLine + $"response.AcknowledgeNumber={acknowledgeNumber}");
+                        screen.UserControl6.uc6.uc6textBox2.AppendText(Environment.NewLine + $"response.GatewayId=" + gatewayId.ToString("X6"));
+                        screen.UserControl6.uc6.uc6textBox2.AppendText(Environment.NewLine + $"response.DeviceId=" + deviceId.ToString("X12"));
+                        screen.UserControl6.uc6.uc6textBox2.AppendText(Environment.NewLine + $"response.Tdu.Length={payload.Length}");
+                        screen.UserControl6.uc6.uc6textBox2.AppendText(Environment.NewLine + BitConverter.ToString(payload));
+                        screen.UserControl6.uc6.uc6textBox2.AppendText(Environment.NewLine);
+                        screen.UserControl6.uc6.uc6textBox1.Text += "Responsed... ";
+                    }
+                    else if (isUc7)
+                    {
+                        screen.UserControl7.uc7.uc7textBox2.Text = "RxRtu(" + GetProtocolChannelName(channel) + ")";
+                        screen.UserControl7.uc7.uc7textBox2.AppendText(Environment.NewLine + $"response.Channel={channel}");
+                        screen.UserControl7.uc7.uc7textBox2.AppendText(Environment.NewLine + $"response.AcknowledgeNumber={acknowledgeNumber}");
+                        screen.UserControl7.uc7.uc7textBox2.AppendText(Environment.NewLine + $"response.GatewayId=" + gatewayId.ToString("X6"));
+                        screen.UserControl7.uc7.uc7textBox2.AppendText(Environment.NewLine + $"response.DeviceId=" + deviceId.ToString("X12"));
+                        screen.UserControl7.uc7.uc7textBox2.AppendText(Environment.NewLine + $"response.Tdu.Length={payload.Length}");
+                        screen.UserControl7.uc7.uc7textBox2.AppendText(Environment.NewLine + BitConverter.ToString(payload));
+                        screen.UserControl7.uc7.uc7textBox2.AppendText(Environment.NewLine);
+                        screen.UserControl7.uc7.uc7textBox1.Text += "Responsed... ";
+                    }
+                    else
+                    {
+                        screen.UserControl1.uc1.uc1textBox2.Text = "RxRtu(" + GetProtocolChannelName(channel) + ")";
+                        screen.UserControl1.uc1.uc1textBox2.AppendText(Environment.NewLine + $"response.Channel={channel}");
+                        screen.UserControl1.uc1.uc1textBox2.AppendText(Environment.NewLine + $"response.AcknowledgeNumber={acknowledgeNumber}");
+                        screen.UserControl1.uc1.uc1textBox2.AppendText(Environment.NewLine + $"response.GatewayId=" + gatewayId.ToString("X6"));
+                        screen.UserControl1.uc1.uc1textBox2.AppendText(Environment.NewLine + $"response.DeviceId=" + deviceId.ToString("X12"));
+                        screen.UserControl1.uc1.uc1textBox2.AppendText(Environment.NewLine + $"response.Tdu.Length={payload.Length}");
+                        screen.UserControl1.uc1.uc1textBox2.AppendText(Environment.NewLine + BitConverter.ToString(payload));
+                        screen.UserControl1.uc1.uc1textBox2.AppendText(Environment.NewLine);
+                        screen.UserControl1.uc1.uc1textBox1.Text += "Responsed... ";
+
+                        if (addressEnd && payload.Length == (deviceCount * 2 + 5))
+                        {
+                            addressArray = payload;
+
+                            addressEnd = false;
+
+                            getData(dataGateway, dataAddress);
+                        }
+                        if (dataEnd && payload.Length == (deviceCount * 6 + 7))
+                        {
+                            dataArray = payload;
+
+                            dataEnd = false;
+
+                            screen.UserControl1.uc1.sensorDataOutput(addressArray, dataArray, deviceId.ToString("X12"));
+                        }
+                        if (isNode)
+                        {
+                            screen.UserControl1.uc1.NodeDataOutput(payload, deviceId.ToString("X12"));
+                            isNode = false;
+                        }
+                        if (isState)
+                        {
+                            screen.UserControl1.uc1.StateDataOutput(payload, deviceId.ToString("X12"));
+                            isState = false;
+                        }
+
+                    }
                 }
-                }
-                if (isTimer && payload.Length == 31)
-                {
-                    screen.UserControl1.uc1.StateDataOutput(payload, deviceId.ToString("X12"));
-                    isTimer = false;
-                }
+                /*      if (isTimer && payload.Length == 31)
+                      {
+                          screen.UserControl1.uc1.StateDataOutput(payload, deviceId.ToString("X12"));
+                          isTimer = false;
+                      }*/
 
             });
 
@@ -556,7 +567,7 @@ namespace unit
                     break;
             }
         }
-        
+
         public int deviceBoxIndex = 0;
         public int getewayBoxIndex = 0;
 
@@ -613,7 +624,7 @@ namespace unit
         }
         public bool addressEnd = false;
         byte[] addressArray;
-        public bool isNode = false; 
+        public bool isNode = false;
         public bool dataEnd = false;
         public bool isState = false;
         public bool isTimer = true;
@@ -715,10 +726,10 @@ namespace unit
         private void button10_Click(object sender, EventArgs e)
         {
             dataGridView1.Rows.Clear();
-          //  isUc6 = false;
-          //  panel3.Controls.Clear();
+            //  isUc6 = false;
+            //  panel3.Controls.Clear();
 
-          //  panel3.Controls.Add(UserControl3); 
+            //  panel3.Controls.Add(UserControl3); 
         }
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
@@ -765,17 +776,17 @@ namespace ConsoleApplication1
                 StringBuilder sb = new StringBuilder();
                 sb.Append(_name);
                 sb.Append(" [ ");
-              
+
                 sb.Append(" ]");
                 return sb.ToString();
             }
             set { _name = Name; }
         }
-     /*   public Point Pos
-        {
-            get { return _point; }
-            set { _point = Pos; }
-        }*/
+        /*   public Point Pos
+           {
+               get { return _point; }
+               set { _point = Pos; }
+           }*/
         public DataType1(string name, string pos)
         {
             _name = name;
