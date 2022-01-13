@@ -72,3 +72,4 @@ C:\C#_project\app\unit\obj\Debug\net5.0-windows\ref\unit.dll
 C:\C#_project\app\unit\obj\Debug\net5.0-windows\unit.pdb
 C:\C#_project\app\unit\obj\Debug\net5.0-windows\unit.genruntimeconfig.cache
 C:\C#_project\app\unit\obj\Debug\net5.0-windows\unit.screen.UserControl7.resources
+C:\C#_project\app\unit\obj\Debug\net5.0-windows\unit.screen.UserControl8.resources

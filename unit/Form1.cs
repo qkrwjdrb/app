@@ -344,6 +344,11 @@ namespace unit
 
                         screen.UserControl1.uc1.StateDataOutput(payload, deviceId.ToString("X12"));
                     }
+                    if (screen.UserControl8.uc8.uc8rtu)
+                    {
+                        screen.UserControl8.uc8.screenrtu(acknowledgeNumber, gatewayId, deviceId, payload);
+
+                    }
                 }
 
                 else
@@ -351,11 +356,6 @@ namespace unit
                     dataGridView1.Rows.Add(acknowledgeNumber, "Rx", gatewayId.ToString("X12"), deviceId.ToString("X12"), DateTime.Now, BitConverter.ToString(payload).Replace("-", " "));
 
 
-                    if (screen.UserControl8.uc8.uc8rtu)
-                    {
-                        screen.UserControl8.uc8.screenrtu(acknowledgeNumber, gatewayId, deviceId, payload);
-
-                    }
                     if (isUc4)
                     {
                         screen.UserControl4.uc4.uc4textBox2.Text = "RxRtu(" + GetProtocolChannelName(channel) + ")";

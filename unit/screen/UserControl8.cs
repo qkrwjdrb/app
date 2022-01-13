@@ -55,7 +55,7 @@ namespace unit.screen
         //  UserControl6.uc6.checkBox2.Checked = false;
 
             Form1.f1.TxRtu(
-                0,
+             0,
                 (uint)int.Parse(gatewayBox.Text.ToString(), System.Globalization.NumberStyles.HexNumber),
                 ulong.Parse(deviceBox.Text.ToString(), System.Globalization.NumberStyles.HexNumber),
                 new byte[] { 0x01, 0x03, 0x00, 1, 0x00, 8, }

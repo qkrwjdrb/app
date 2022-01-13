@@ -358,5 +358,10 @@ namespace unit.screen
                 MessageBox.Show("입력값을 확인하세요.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+            checkBox2.Checked = false;
+        }
     }
 }

@@ -180,6 +180,7 @@ namespace unit.screen
             this.label2.Size = new System.Drawing.Size(81, 19);
             this.label2.TabIndex = 14;
             this.label2.Text = "OPID (DEC)";
+            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // button6
             // 
