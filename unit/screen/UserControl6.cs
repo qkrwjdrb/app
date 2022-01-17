@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Diagnostics;
 
 namespace unit.screen
 {
@@ -317,8 +318,8 @@ namespace unit.screen
         }
         private void Timer_Tick(object sender, EventArgs e)
         {
-      
- 
+
+            Debug.WriteLine("TimerTick");
       
             Form1.f1.TxRtu(0, (uint)int.Parse(gatewayBox.Text.ToString(), System.Globalization.NumberStyles.HexNumber), ulong.Parse(deviceBox.Text.ToString(), System.Globalization.NumberStyles.HexNumber), new byte[] {   0x01, 0x03,
                 0x00, 203, 0x00,13,
