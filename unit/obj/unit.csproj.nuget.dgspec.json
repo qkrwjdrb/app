@@ -59,6 +59,10 @@
               "suppressParent": "All",
               "target": "Package",
               "version": "[2.40.0, )"
+            },
+            "InfluxDB.Client": {
+              "target": "Package",
+              "version": "[3.2.0, )"
             }
           },
           "imports": [

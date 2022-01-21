@@ -6,7 +6,8 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Forms;
+using System.Windows.Forms;using InfluxDB.Client;
+using InfluxDB.Client.Writes;
 
 namespace unit.screen
 {
@@ -79,8 +80,17 @@ namespace unit.screen
 
         private void button4_Click(object sender, EventArgs e)
         {
-
+            influxdbTest();
         }
 
+        private void influxdbTest()
+        {
+        var influxDBClient = InfluxDBClientFactory.Create("http://localhost:8086", "t7HUaHSBPVheH6QK351z1qpwuCX_rhq2vsX_-V7kqagcu7cNfRgR-wL0gzM6csRXIE0W8_r3I4AWETwmfSNRVQ==");
+
+            var point = PointData.Measurement( "1" + "2")
+                               .Field("value", 0.1f);
+            influxDBClient.GetWriteApi().WritePoint("farmcare", "saltanb", point);
+            throw new NotImplementedException();
+        }
     }
 }
