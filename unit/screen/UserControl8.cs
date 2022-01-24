@@ -87,10 +87,10 @@ namespace unit.screen
         {
         var influxDBClient = InfluxDBClientFactory.Create("http://localhost:8086", "t7HUaHSBPVheH6QK351z1qpwuCX_rhq2vsX_-V7kqagcu7cNfRgR-wL0gzM6csRXIE0W8_r3I4AWETwmfSNRVQ==");
 
-            var point = PointData.Measurement( "1" + "2")
-                               .Field("value", 0.1f);
+            var point = PointData.Measurement("co_21234")
+                               .Field("value", (float)88);
             influxDBClient.GetWriteApi().WritePoint("farmcare", "saltanb", point);
-            throw new NotImplementedException();
+           // throw new NotImplementedException();
         }
     }
 }
