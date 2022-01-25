@@ -6,7 +6,8 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Forms;using InfluxDB.Client;
+using System.Windows.Forms;
+using InfluxDB.Client;
 using InfluxDB.Client.Writes;
 
 namespace unit.screen
@@ -28,13 +29,13 @@ namespace unit.screen
         }
         private void button1_Click(object sender, EventArgs e)
         {
-            addControl(); 
+            addControl();
         }
         private void addControl()
         {
             Button bt = new Button();
-            bt.Text = string.Format("{0}번 버튼", flowLayoutPanel1.Controls.Count+1);
-            bt.Name = string.Format("_Button_{0}", flowLayoutPanel1.Controls.Count+1);
+            bt.Text = string.Format("{0}번 버튼", flowLayoutPanel1.Controls.Count + 1);
+            bt.Name = string.Format("_Button_{0}", flowLayoutPanel1.Controls.Count + 1);
             bt.Click += new_Button_click;
             flowLayoutPanel1.Controls.Add(bt);
         }
@@ -52,7 +53,7 @@ namespace unit.screen
         public bool uc8rtu = false;
         void screenInfo()
         {
-        //  UserControl6.uc6.checkBox2.Checked = false;
+            //  UserControl6.uc6.checkBox2.Checked = false;
 
             Form1.f1.TxRtu(
              0,
@@ -85,12 +86,12 @@ namespace unit.screen
 
         private void influxdbTest()
         {
-        var influxDBClient = InfluxDBClientFactory.Create("http://localhost:8086", "t7HUaHSBPVheH6QK351z1qpwuCX_rhq2vsX_-V7kqagcu7cNfRgR-wL0gzM6csRXIE0W8_r3I4AWETwmfSNRVQ==");
+            var influxDBClient = InfluxDBClientFactory.Create("http://localhost:8086", "t7HUaHSBPVheH6QK351z1qpwuCX_rhq2vsX_-V7kqagcu7cNfRgR-wL0gzM6csRXIE0W8_r3I4AWETwmfSNRVQ==");
 
             var point = PointData.Measurement("co_21234")
                                .Field("value", (float)88);
             influxDBClient.GetWriteApi().WritePoint("farmcare", "saltanb", point);
-           // throw new NotImplementedException();
+            // throw new NotImplementedException();
         }
     }
 }
