@@ -78,7 +78,7 @@ namespace unit.screen
                     byte.Parse(textBox3.Text),
                     });
                 }
-                else 
+                else
                 {
                     MessageBox.Show("입력값을 확인하세요.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
