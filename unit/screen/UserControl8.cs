@@ -52,18 +52,6 @@ namespace unit.screen
             screenInfo();
         }
         public bool uc8rtu = false;
-        void screenInfo()
-        {
-            //  UserControl6.uc6.checkBox2.Checked = false;
-
-            Form1.f1.TxRtu(
-             0,
-                (uint)int.Parse(gatewayBox.Text.ToString(), System.Globalization.NumberStyles.HexNumber),
-                ulong.Parse(deviceBox.Text.ToString(), System.Globalization.NumberStyles.HexNumber),
-                new byte[] { 0x01, 0x03, 0x00, 1, 0x00, 8, }
-                );
-            uc8rtu = true;
-        }
         public void screenrtu(UInt16 acknowledgeNumber, UInt32 gatewayId, UInt64 deviceId, byte[] payload)
         {
             // button4.Text = Convert.ToString(payload[14]);
@@ -82,9 +70,28 @@ namespace unit.screen
 
         private void button4_Click(object sender, EventArgs e)
         {
-            influxdbTest();
+            InfoLowAdd();
+
         }
 
+        private void InfoLowAdd()
+        {
+            dataGridView1.Rows.Add("-", "1", "2");
+
+        }
+
+        void screenInfo()
+        {
+            //  UserControl6.uc6.checkBox2.Checked = false;
+
+            Form1.f1.TxRtu(
+             0,
+                (uint)int.Parse(gatewayBox.Text.ToString(), System.Globalization.NumberStyles.HexNumber),
+                ulong.Parse(deviceBox.Text.ToString(), System.Globalization.NumberStyles.HexNumber),
+                new byte[] { 0x01, 0x03, 0x00, 1, 0x00, 8, }
+                );
+            uc8rtu = true;
+        }
         private void influxdbTest()
         {
             var influxDBClient = InfluxDBClientFactory.Create("http://localhost:8086", "t7HUaHSBPVheH6QK351z1qpwuCX_rhq2vsX_-V7kqagcu7cNfRgR-wL0gzM6csRXIE0W8_r3I4AWETwmfSNRVQ==");
