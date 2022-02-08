@@ -237,8 +237,7 @@ namespace unit
             payload = list.ToArray();
 
             this.Invoke((MethodInvoker)delegate ()
-            {
-
+            {          
                 //     if (!screen.UserControl6.uc6.checkBox2.Checked&&!isUc6)
 
                 if (sequenceNumber == 0)
