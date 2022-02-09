@@ -15,7 +15,9 @@ namespace unit.screen
 {
     public partial class UserControl8 : UserControl
     {
+        
         public static UserControl8 uc8;
+        public ushort? UC8sequence = null;
         public UserControl8()
         {
             InitializeComponent();
@@ -70,11 +72,11 @@ namespace unit.screen
 
         private void button4_Click(object sender, EventArgs e)
         {
-            InfoLowAdd();
+            screenInfo();
 
         }
 
-        private void InfoLowAdd()
+        public void InfoLowAdd()
         {
             string[] aa = { "4" };
             int count = UserControl2.uc2.deviceListBox.Items.Count;
@@ -84,17 +86,18 @@ namespace unit.screen
             }
             dataGridView1.Rows.Add("-", "1", "2");
         }
-
+        
         void screenInfo()
         {
             //  UserControl6.uc6.checkBox2.Checked = false;
 
             Form1.f1.TxRtu(
-             0,
+                ++Form1.f1.TxCnt,
                 (uint)int.Parse(gatewayBox.Text.ToString(), System.Globalization.NumberStyles.HexNumber),
                 ulong.Parse(deviceBox.Text.ToString(), System.Globalization.NumberStyles.HexNumber),
                 new byte[] { 0x01, 0x03, 0x00, 1, 0x00, 8, }
-                );
+            );
+            UC8sequence = Form1.f1.TxCnt;
             uc8rtu = true;
         }
         private void influxdbTest()
