@@ -39,11 +39,8 @@ namespace unit
         internal string[] gatewayItems;
         internal string[] addressItems;
 
-        string[] save_gateways = new string[5];
-
         public UInt32 gateway;
         public UInt64 devicead;
-        string textData;
 
 
         public bool isUc1 = false;
@@ -338,6 +335,7 @@ namespace unit
         public byte deviceCount = 30;
         public void RxRtu(UInt16 acknowledgeNumber, UInt32 gatewayId, UInt64 deviceId, byte[] payload)
         {
+           
             UInt16 channel = 0;
 
             this.Invoke((MethodInvoker)delegate ()

@@ -166,39 +166,39 @@ namespace unit.screen
         }
         public void addCombobox()
         {
-            string[] allList1 = gatewayListBox.Items.OfType<string>().ToArray();
-            string[] allList2 = deviceListBox.Items.OfType<string>().ToArray();
+            string[] gatewayArray = gatewayListBox.Items.OfType<string>().ToArray();
+            string[] deviceArray = deviceListBox.Items.OfType<string>().ToArray();
 
             //gateway combobox
             UserControl1.uc1.gatewayBox.Items.Clear();
-            UserControl1.uc1.gatewayBox.Items.AddRange(allList1);
+            UserControl1.uc1.gatewayBox.Items.AddRange(gatewayArray);
             UserControl4.uc4.gatewayBox.Items.Clear();
-            UserControl4.uc4.gatewayBox.Items.AddRange(allList1);
+            UserControl4.uc4.gatewayBox.Items.AddRange(gatewayArray);
             UserControl5.uc5.gatewayBox.Items.Clear();
-            UserControl5.uc5.gatewayBox.Items.AddRange(allList1);
+            UserControl5.uc5.gatewayBox.Items.AddRange(gatewayArray);
             UserControl6.uc6.gatewayBox.Items.Clear();
-            UserControl6.uc6.gatewayBox.Items.AddRange(allList1);
+            UserControl6.uc6.gatewayBox.Items.AddRange(gatewayArray);
             UserControl7.uc7.gatewayBox.Items.Clear();
-            UserControl7.uc7.gatewayBox.Items.AddRange(allList1);
+            UserControl7.uc7.gatewayBox.Items.AddRange(gatewayArray);
             UserControl8.uc8.gatewayBox.Items.Clear();
-            UserControl8.uc8.gatewayBox.Items.AddRange(allList1);
+            UserControl8.uc8.gatewayBox.Items.AddRange(gatewayArray);
 
             //device combobox
             UserControl1.uc1.deviceBox.Items.Clear();
-            UserControl1.uc1.deviceBox.Items.AddRange(allList2);
+            UserControl1.uc1.deviceBox.Items.AddRange(deviceArray);
             UserControl4.uc4.deviceBox.Items.Clear();
-            UserControl4.uc4.deviceBox.Items.AddRange(allList2);
+            UserControl4.uc4.deviceBox.Items.AddRange(deviceArray);
             UserControl5.uc5.deviceBox.Items.Clear();
-            UserControl5.uc5.deviceBox.Items.AddRange(allList2);
+            UserControl5.uc5.deviceBox.Items.AddRange(deviceArray);
             UserControl6.uc6.deviceBox.Items.Clear();
-            UserControl6.uc6.deviceBox.Items.AddRange(allList2);
+            UserControl6.uc6.deviceBox.Items.AddRange(deviceArray);
             UserControl7.uc7.deviceBox.Items.Clear();
-            UserControl7.uc7.deviceBox.Items.AddRange(allList2);
+            UserControl7.uc7.deviceBox.Items.AddRange(deviceArray);
             UserControl8.uc8.deviceBox.Items.Clear();
-            UserControl8.uc8.deviceBox.Items.AddRange(allList2);
+            UserControl8.uc8.deviceBox.Items.AddRange(deviceArray);
 
-            Form1.f1.gatewayItems = allList1;
-            Form1.f1.addressItems = allList2;
+            Form1.f1.gatewayItems = gatewayArray;
+            Form1.f1.addressItems = deviceArray;
             Form1.f1.comboboxSelect();
         }
         Dictionary<string, string> listde = new Dictionary<string, string>();
