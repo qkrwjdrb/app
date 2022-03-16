@@ -49,7 +49,7 @@ namespace unit.ucPanel
 
         private void button8_Click(object sender, EventArgs e)
         {
-            //f1.richTextBox2.Text = this.textBox12.Text;
+            //richTextBox2.Text = this.textBox12.Text;
             //Form1 form1 = new Form1(textBox12.Text);
             //Form1.ShowDialog();
             //this.SendEvent(textBox12.Text);

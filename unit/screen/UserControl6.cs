@@ -26,7 +26,7 @@ namespace unit.screen
             gatewayBox.SelectedIndex = 0;
             Form1.f1.LoadUc6 = true;
             Form1.f1.comboboxSelect();
-            timerSec =500;
+            timerSec = 500;
             textBox4.Text = "0.5";
         }
         ushort opid = 0;
@@ -278,7 +278,7 @@ namespace unit.screen
 
         private void button7_Click(object sender, EventArgs e)
         {
-         //   Form3.f3.label1.Text = "fadsaaaaaaaaaaaaas";
+            //   Form3.f3.label1.Text = "fadsaaaaaaaaaaaaas";
             //  statescreen();
         }
         void statescreen()
@@ -297,7 +297,7 @@ namespace unit.screen
             updateState();
         }
         public int timerSec;
-            public Timer timer1 = new Timer();
+        public Timer timer1 = new Timer();
         void updateState()
         {
             if (checkBox2.Checked)
@@ -314,13 +314,13 @@ namespace unit.screen
         public void timerStop()
         {
 
-                timer1.Stop();
+            timer1.Stop();
         }
         private void Timer_Tick(object sender, EventArgs e)
         {
 
             Debug.WriteLine("TimerTick");
-      
+
             Form1.f1.TxRtu(0, (uint)int.Parse(gatewayBox.Text.ToString(), System.Globalization.NumberStyles.HexNumber), ulong.Parse(deviceBox.Text.ToString(), System.Globalization.NumberStyles.HexNumber), new byte[] {   0x01, 0x03,
                 0x00, 203, 0x00,13,
             });
@@ -332,27 +332,27 @@ namespace unit.screen
             if (!string.IsNullOrWhiteSpace(textBox4.Text))
             {
                 float b;
-   
-                if (float.TryParse(textBox4.Text.ToString() ,out b) )
+
+                if (float.TryParse(textBox4.Text.ToString(), out b))
                 {
                     // button7.Text = Convert.ToString((int)(b * 1000));
-                    if ((int)(b * 1000)>0)
+                    if ((int)(b * 1000) > 0)
                     {
 
 
-                    timer1.Interval = (int)(b*1000) ;
+                        timer1.Interval = (int)(b * 1000);
                     }
                     else
                     {
 
-                    MessageBox.Show("숫자가 너무 작습니다.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("숫자가 너무 작습니다.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
                 else
                 {
                     MessageBox.Show("입력값을 확인하세요.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-                
+
             }
             else
             {

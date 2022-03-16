@@ -21,7 +21,7 @@ namespace unit.screen
 
         private void UserControl7_Load(object sender, EventArgs e)
         {
-           UserControl2.uc2.addCombobox();
+            UserControl2.uc2.addCombobox();
             deviceBox.SelectedIndex = 0;
             gatewayBox.SelectedIndex = 0;
             Form1.f1.LoadUc7 = true;

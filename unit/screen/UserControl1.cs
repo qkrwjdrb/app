@@ -89,7 +89,7 @@ namespace unit.screen
 
             }
             if (Form1.f1.isUc1)
-            { 
+            {
                 uc1textBox3.AppendText(
             Environment.NewLine + "상태 : " + stateText
                 + Environment.NewLine + "상태코드 : " + BitConverter.ToUInt16(new byte[2] { address[8], address[7] }, 0)
@@ -101,7 +101,7 @@ namespace unit.screen
 
             float GetFloatState(byte a, byte b, byte c, byte d)
             {
-                byte[] rData = new byte[4]; 
+                byte[] rData = new byte[4];
                 if (BitConverter.IsLittleEndian) Array.Reverse(rData);
                 rData[0] = b;
                 rData[1] = a;
@@ -321,10 +321,10 @@ namespace unit.screen
         }
         public void getState(uint gatewayID, ulong deviceID)
         {
-   
-         
-                Form1.f1.isState = true;
-          
+
+
+            Form1.f1.isState = true;
+
             Form1.f1.TxRtu(++Form1.f1.TxCnt, gatewayID, deviceID, new byte[] {   0x01, 0x03,
                 0x00, 203, 0x00,13,
             });

@@ -238,7 +238,7 @@ namespace unit
                 //     if (!screen.UserControl6.uc6.checkBox2.Checked&&!isUc6)
                 if (sequenceNumber == screen.UserControl8.uc8.UC8sequence)
                 {
-                    
+
                 }
 
 
@@ -335,7 +335,7 @@ namespace unit
         public byte deviceCount = 30;
         public void RxRtu(UInt16 acknowledgeNumber, UInt32 gatewayId, UInt64 deviceId, byte[] payload)
         {
-           
+
             UInt16 channel = 0;
 
             this.Invoke((MethodInvoker)delegate ()

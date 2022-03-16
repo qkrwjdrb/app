@@ -346,7 +346,7 @@ namespace unit.screen
         {
             int sel = listBox1.SelectedIndex;
 
-            listBox1.Items[sel] ="wer|";
+            listBox1.Items[sel] = "wer|";
         }
 
         private void UserControl3_Load(object sender, EventArgs e)

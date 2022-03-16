@@ -15,7 +15,7 @@ namespace unit.screen
 {
     public partial class UserControl8 : UserControl
     {
-        
+
         public static UserControl8 uc8;
         public ushort? UC8sequence = null;
         public UserControl8()
@@ -82,11 +82,11 @@ namespace unit.screen
             int count = UserControl2.uc2.deviceListBox.Items.Count;
             for (int i = 0; i < count; i++)
             {
-                string deAddress =  UserControl2.uc2.deviceListBox.Items[i].ToString();
+                string deAddress = UserControl2.uc2.deviceListBox.Items[i].ToString();
             }
             dataGridView1.Rows.Add("-", "1", "2");
         }
-        
+
         void screenInfo()
         {
             //  UserControl6.uc6.checkBox2.Checked = false;
@@ -107,7 +107,7 @@ namespace unit.screen
             var point = PointData.Measurement("co_21234")
                                .Field("value", (float)88);
             influxDBClient.GetWriteApi().WritePoint("farmcare", "saltanb", point);
-            
+
         }
     }
 }
