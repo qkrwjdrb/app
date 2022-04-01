@@ -66,6 +66,8 @@ namespace unit.screen
             this.상태 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
+            this.전류 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -281,7 +283,7 @@ namespace unit.screen
             this.groupBox3.Controls.Add(this.textBox2);
             this.groupBox3.Controls.Add(this.label3);
             this.groupBox3.Controls.Add(this.label1);
-            this.groupBox3.Location = new System.Drawing.Point(284, 21);
+            this.groupBox3.Location = new System.Drawing.Point(279, 21);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(245, 169);
             this.groupBox3.TabIndex = 40;
@@ -290,6 +292,8 @@ namespace unit.screen
             // 
             // groupBox4
             // 
+            this.groupBox4.Controls.Add(this.전류);
+            this.groupBox4.Controls.Add(this.label14);
             this.groupBox4.Controls.Add(this.button7);
             this.groupBox4.Controls.Add(this.textBox4);
             this.groupBox4.Controls.Add(this.label12);
@@ -310,6 +314,7 @@ namespace unit.screen
             this.groupBox4.TabIndex = 16;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "구동기 상태";
+            this.groupBox4.Enter += new System.EventHandler(this.groupBox4_Enter);
             // 
             // button7
             // 
@@ -340,7 +345,7 @@ namespace unit.screen
             // checkBox2
             // 
             this.checkBox2.AutoSize = true;
-            this.checkBox2.Location = new System.Drawing.Point(16, 22);
+            this.checkBox2.Location = new System.Drawing.Point(16, 15);
             this.checkBox2.Name = "checkBox2";
             this.checkBox2.Size = new System.Drawing.Size(90, 19);
             this.checkBox2.TabIndex = 15;
@@ -351,7 +356,7 @@ namespace unit.screen
             // 전압
             // 
             this.전압.AutoSize = true;
-            this.전압.Location = new System.Drawing.Point(81, 122);
+            this.전압.Location = new System.Drawing.Point(81, 108);
             this.전압.Name = "전압";
             this.전압.Size = new System.Drawing.Size(11, 15);
             this.전압.TabIndex = 41;
@@ -360,7 +365,7 @@ namespace unit.screen
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(16, 121);
+            this.label11.Location = new System.Drawing.Point(16, 107);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(31, 15);
             this.label11.TabIndex = 41;
@@ -369,7 +374,7 @@ namespace unit.screen
             // 남은시간
             // 
             this.남은시간.AutoSize = true;
-            this.남은시간.Location = new System.Drawing.Point(81, 104);
+            this.남은시간.Location = new System.Drawing.Point(81, 91);
             this.남은시간.Name = "남은시간";
             this.남은시간.Size = new System.Drawing.Size(11, 15);
             this.남은시간.TabIndex = 41;
@@ -378,7 +383,7 @@ namespace unit.screen
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(16, 103);
+            this.label10.Location = new System.Drawing.Point(16, 90);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(55, 15);
             this.label10.TabIndex = 41;
@@ -387,7 +392,7 @@ namespace unit.screen
             // OPID
             // 
             this.OPID.AutoSize = true;
-            this.OPID.Location = new System.Drawing.Point(81, 85);
+            this.OPID.Location = new System.Drawing.Point(81, 73);
             this.OPID.Name = "OPID";
             this.OPID.Size = new System.Drawing.Size(11, 15);
             this.OPID.TabIndex = 41;
@@ -396,7 +401,7 @@ namespace unit.screen
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(16, 84);
+            this.label9.Location = new System.Drawing.Point(16, 72);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(35, 15);
             this.label9.TabIndex = 41;
@@ -406,7 +411,7 @@ namespace unit.screen
             // 상태코드
             // 
             this.상태코드.AutoSize = true;
-            this.상태코드.Location = new System.Drawing.Point(81, 66);
+            this.상태코드.Location = new System.Drawing.Point(81, 55);
             this.상태코드.Name = "상태코드";
             this.상태코드.Size = new System.Drawing.Size(11, 15);
             this.상태코드.TabIndex = 41;
@@ -415,7 +420,7 @@ namespace unit.screen
             // 상태
             // 
             this.상태.AutoSize = true;
-            this.상태.Location = new System.Drawing.Point(81, 46);
+            this.상태.Location = new System.Drawing.Point(81, 36);
             this.상태.Name = "상태";
             this.상태.Size = new System.Drawing.Size(11, 15);
             this.상태.TabIndex = 41;
@@ -424,7 +429,7 @@ namespace unit.screen
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(16, 65);
+            this.label8.Location = new System.Drawing.Point(16, 54);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(55, 15);
             this.label8.TabIndex = 41;
@@ -433,11 +438,29 @@ namespace unit.screen
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(16, 46);
+            this.label7.Location = new System.Drawing.Point(16, 36);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(31, 15);
             this.label7.TabIndex = 41;
             this.label7.Text = "상태";
+            // 
+            // 전류
+            // 
+            this.전류.AutoSize = true;
+            this.전류.Location = new System.Drawing.Point(81, 124);
+            this.전류.Name = "전류";
+            this.전류.Size = new System.Drawing.Size(11, 15);
+            this.전류.TabIndex = 45;
+            this.전류.Text = " ";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(16, 123);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(31, 15);
+            this.label14.TabIndex = 46;
+            this.label14.Text = "전류";
             // 
             // UserControl6
             // 
@@ -504,5 +527,7 @@ namespace unit.screen
         private System.Windows.Forms.Button button7;
         private System.Windows.Forms.TextBox textBox4;
         private System.Windows.Forms.Label label12;
+        public System.Windows.Forms.Label 전류;
+        private System.Windows.Forms.Label label14;
     }
 }

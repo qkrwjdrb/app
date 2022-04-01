@@ -321,9 +321,8 @@ namespace unit.screen
 
             Debug.WriteLine("TimerTick");
 
-            Form1.f1.TxRtu(0, (uint)int.Parse(gatewayBox.Text.ToString(), System.Globalization.NumberStyles.HexNumber), ulong.Parse(deviceBox.Text.ToString(), System.Globalization.NumberStyles.HexNumber), new byte[] {   0x01, 0x03,
-                0x00, 203, 0x00,13,
-            });
+            Form1.f1.TxRtu(0, (uint)int.Parse(gatewayBox.Text.ToString(), System.Globalization.NumberStyles.HexNumber), ulong.Parse(deviceBox.Text.ToString(), System.Globalization.NumberStyles.HexNumber), 
+            new byte[] { 0x01, 0x03, 0x00, 203, 0x00,13, });
         }
 
         private void button7_Click_1(object sender, EventArgs e)
@@ -363,6 +362,11 @@ namespace unit.screen
         private void label2_Click(object sender, EventArgs e)
         {
             checkBox2.Checked = false;
+        }
+
+        private void groupBox4_Enter(object sender, EventArgs e)
+        {
+
         }
     }
 }
