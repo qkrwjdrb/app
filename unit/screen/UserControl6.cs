@@ -238,8 +238,8 @@ namespace unit.screen
                 {
                     Form1.f1.TxRtu(++Form1.f1.TxCnt, (uint)int.Parse(gatewayBox.Text.ToString(), System.Globalization.NumberStyles.HexNumber), ulong.Parse(deviceBox.Text.ToString(), System.Globalization.NumberStyles.HexNumber), new byte[]
                     {
-                    0x01, 0x10, 0x01, 0xF7, 0x00, 0x04, 0x08,
-                    0x00, 0x00,  (byte)Convert.ToInt32(textBox3.Text), (byte)(Convert.ToInt32(textBox1.Text)>>8),0x00,0x00,0x00,0x00
+                        0x01, 0x10, 0x01, 0xF7, 0x00, 0x04, 0x08,
+                        0x00, 0x00,  (byte)Convert.ToInt32(textBox3.Text), (byte)(Convert.ToInt32(textBox1.Text)>>8),0x00,0x00,0x00,0x00
 
                     });
                 }
@@ -251,8 +251,8 @@ namespace unit.screen
                 {
                     Form1.f1.TxRtu(++Form1.f1.TxCnt, (uint)int.Parse(gatewayBox.Text.ToString(), System.Globalization.NumberStyles.HexNumber), ulong.Parse(deviceBox.Text.ToString(), System.Globalization.NumberStyles.HexNumber), new byte[]
                     {
-                    0x01, 0x10, 0x01, 0xF7, 0x00, 0x04, 0x08,
-                    0x00, 0x00, (byte)(opid>>8),(byte)opid,0x00,0x00,0x00,0x00
+                        0x01, 0x10, 0x01, 0xF7, 0x00, 0x04, 0x08,
+                        0x00, 0x00, (byte)(opid>>8),(byte)opid,0x00,0x00,0x00,0x00
                     });
                     opid++;
                 }
