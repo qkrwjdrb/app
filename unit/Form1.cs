@@ -124,7 +124,7 @@ namespace unit
             }
             finally
             {
-                Application.Exit();
+                //Application.Exit();
             }
         }
 
@@ -146,7 +146,7 @@ namespace unit
             }
             finally
             {
-                Application.Exit();
+                //Application.Exit();
             }
         }
 
@@ -168,7 +168,7 @@ namespace unit
             }
             finally
             {
-                Application.Exit();
+                //Application.Exit();
             }
         }
         private String GetProtocolChannelName(UInt16 channel)
@@ -346,37 +346,6 @@ namespace unit
                 {
                     screen.UserControl8.uc8.InfoLowAdd();
                 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
                 // if (!screen.UserControl6.uc6.checkBox2.Checked && !isUc6)
