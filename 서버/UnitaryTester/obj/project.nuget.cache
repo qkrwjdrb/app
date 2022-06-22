@@ -1,0 +1,16 @@
+{
+  "version": 2,
+  "dgSpecHash": "0a23Koqr15bMco+w1e8vIAJwIy7DLGAs8MSqiguNboTqj3AUXhJZbyhkvaHZp0X0pQqQii4ENnbZDnOWqwQgnw==",
+  "success": true,
+  "projectFilePath": "C:\\Projects\\C#Project\\UnitaryTester\\UnitaryTester.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\mioli\\.nuget\\packages\\google.protobuf\\3.18.1\\google.protobuf.3.18.1.nupkg.sha512",
+    "C:\\Users\\mioli\\.nuget\\packages\\grpc.core.api\\2.40.0\\grpc.core.api.2.40.0.nupkg.sha512",
+    "C:\\Users\\mioli\\.nuget\\packages\\grpc.net.client\\2.40.0\\grpc.net.client.2.40.0.nupkg.sha512",
+    "C:\\Users\\mioli\\.nuget\\packages\\grpc.net.common\\2.40.0\\grpc.net.common.2.40.0.nupkg.sha512",
+    "C:\\Users\\mioli\\.nuget\\packages\\grpc.tools\\2.41.0\\grpc.tools.2.41.0.nupkg.sha512",
+    "C:\\Users\\mioli\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\3.0.3\\microsoft.extensions.logging.abstractions.3.0.3.nupkg.sha512",
+    "C:\\Users\\mioli\\.nuget\\packages\\system.memory\\4.5.3\\system.memory.4.5.3.nupkg.sha512"
+  ],
+  "logs": []
+}

@@ -1,0 +1,3 @@
+obj\Release\netstandard1.5/Network.cs \
+obj\Release\netstandard1.5/NetworkGrpc.cs: C:/Users/mioli/.nuget/packages/grpc.tools/2.46.3/build/native/include/google/protobuf/timestamp.proto\
+ ../protos/network.proto

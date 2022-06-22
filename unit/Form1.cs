@@ -68,8 +68,8 @@ namespace unit
         {
             InitializeComponent();
             Task.Run(() => RtuMessageService());
-            Task.Run(() => ExtMessageService());
-            Task.Run(() => CmdMessageService());
+           // Task.Run(() => ExtMessageService());
+           // Task.Run(() => CmdMessageService());
             this.MaximizeBox = false;
             f1 = this;
         }
@@ -89,7 +89,8 @@ namespace unit
             {
                 /*서울 "308398D9E8F5" ,"500291AEBD15"*/
                 /*양양 "24A16057F685", "500291AEBCD9", "500291AEBE4D"*/
-                string[] aa = { "24A16057F685", "500291AEBCD9", "500291AEBE4D" };
+                string[] aa = { "4C7525891309", "4C7525891709", "4C752589171D", "4C7525891719", "4C75258916ED", "4C752589170D", "500291AEBD15", "4C75258914DD", "4C752589150D", "4C7525C1CF89", "24A16057F685", "4C7525C1CF9D", "4C7525C1CF8D", "24A1605818D9", "24A16057C915", "500291A40A61", "4C7525C1CF81", "4C7525C1CF71", "500291AEBEF1", "500291A45D2D", "4C75258912F5", "4C7525C1C879", };
+
                 screen.UserControl2.uc2.deviceListBox.Items.AddRange(aa);
             }
             if (gaFile.Exists)

@@ -1,0 +1,3 @@
+is_global = true
+build_property.RootNamespace = Greeter
+build_property.ProjectDir = d:\Work\_gRPC\C#\Helloworlds\Greeter\

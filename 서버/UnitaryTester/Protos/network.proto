@@ -1,0 +1,29 @@
+syntax = "proto3";
+
+import "google/protobuf/timestamp.proto";
+
+package net_exchange; // 주의: 패키지 이름(다른 시스템에도 동일해야 함)
+
+// ExProto의 서비스 정의
+service ExProto {  
+  rpc SayHello (stream HelloRequest) returns (stream HelloReply);  //테스트용
+  rpc MessageRtu (stream RtuMessage) returns (stream RtuMessage);
+}
+
+message RtuMessage {
+  uint32 channel = 1;
+  uint32 sequence_number = 2;
+  uint32 gw_id = 3;
+  uint64 device_id = 4;
+  bytes data_unit = 5; // Transmission Data Unit
+}
+
+message HelloRequest {
+  string name = 1;
+  google.protobuf.Timestamp timestamp = 2;
+}
+
+message HelloReply {
+  string message = 1;
+  google.protobuf.Timestamp timestamp = 2;
+}

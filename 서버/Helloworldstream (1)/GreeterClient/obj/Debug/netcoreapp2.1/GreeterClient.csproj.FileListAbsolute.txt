@@ -1,0 +1,16 @@
+d:\Work\_gRPC\C#\Helloworld\GreeterClient\bin\Debug\netcoreapp2.1\GreeterClient.deps.json
+d:\Work\_gRPC\C#\Helloworld\GreeterClient\bin\Debug\netcoreapp2.1\GreeterClient.runtimeconfig.json
+d:\Work\_gRPC\C#\Helloworld\GreeterClient\bin\Debug\netcoreapp2.1\GreeterClient.runtimeconfig.dev.json
+d:\Work\_gRPC\C#\Helloworld\GreeterClient\bin\Debug\netcoreapp2.1\GreeterClient.dll
+d:\Work\_gRPC\C#\Helloworld\GreeterClient\bin\Debug\netcoreapp2.1\GreeterClient.pdb
+d:\Work\_gRPC\C#\Helloworld\GreeterClient\bin\Debug\netcoreapp2.1\Greeter.dll
+d:\Work\_gRPC\C#\Helloworld\GreeterClient\bin\Debug\netcoreapp2.1\Greeter.pdb
+d:\Work\_gRPC\C#\Helloworld\GreeterClient\obj\Debug\netcoreapp2.1\GreeterClient.csproj.AssemblyReference.cache
+d:\Work\_gRPC\C#\Helloworld\GreeterClient\obj\Debug\netcoreapp2.1\GreeterClient.GeneratedMSBuildEditorConfig.editorconfig
+d:\Work\_gRPC\C#\Helloworld\GreeterClient\obj\Debug\netcoreapp2.1\GreeterClient.AssemblyInfoInputs.cache
+d:\Work\_gRPC\C#\Helloworld\GreeterClient\obj\Debug\netcoreapp2.1\GreeterClient.AssemblyInfo.cs
+d:\Work\_gRPC\C#\Helloworld\GreeterClient\obj\Debug\netcoreapp2.1\GreeterClient.csproj.CoreCompileInputs.cache
+d:\Work\_gRPC\C#\Helloworld\GreeterClient\obj\Debug\netcoreapp2.1\GreeterClient.csproj.CopyComplete
+d:\Work\_gRPC\C#\Helloworld\GreeterClient\obj\Debug\netcoreapp2.1\GreeterClient.dll
+d:\Work\_gRPC\C#\Helloworld\GreeterClient\obj\Debug\netcoreapp2.1\GreeterClient.pdb
+d:\Work\_gRPC\C#\Helloworld\GreeterClient\obj\Debug\netcoreapp2.1\GreeterClient.genruntimeconfig.cache

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Z0DLLTR3WyXv93uG2e+rFrZHkoq+jaWYVgwKz/vvC7yUg8uMjZkWVcpi9z1aKKKB/7U4ohFirIS4QtNNvqAW1Q==",
+  "dgSpecHash": "wxYlqC589ntRSoNw1NSJvOBbgL5uI09cGJsXODNYGqTXwlDExj6VGs9HYvHK9V3lf3obObCZ7AkDW9hT2OjDSg==",
   "success": true,
-  "projectFilePath": "C:\\C#_project\\app\\unit\\unit.csproj",
+  "projectFilePath": "C:\\Projects\\C#Project\\레거시\\app\\unit\\unit.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\mioli\\.nuget\\packages\\csvhelper\\27.1.0\\csvhelper.27.1.0.nupkg.sha512",
     "C:\\Users\\mioli\\.nuget\\packages\\google.protobuf\\3.17.3\\google.protobuf.3.17.3.nupkg.sha512",

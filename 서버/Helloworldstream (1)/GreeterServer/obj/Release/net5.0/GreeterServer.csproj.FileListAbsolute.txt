@@ -1,0 +1,82 @@
+d:\Work\_gRPC\C#\Helloworlds\GreeterServer\bin\Release\net5.0\GreeterServer.exe
+d:\Work\_gRPC\C#\Helloworlds\GreeterServer\bin\Release\net5.0\GreeterServer.deps.json
+d:\Work\_gRPC\C#\Helloworlds\GreeterServer\bin\Release\net5.0\GreeterServer.runtimeconfig.json
+d:\Work\_gRPC\C#\Helloworlds\GreeterServer\bin\Release\net5.0\GreeterServer.runtimeconfig.dev.json
+d:\Work\_gRPC\C#\Helloworlds\GreeterServer\bin\Release\net5.0\GreeterServer.dll
+d:\Work\_gRPC\C#\Helloworlds\GreeterServer\bin\Release\net5.0\GreeterServer.pdb
+d:\Work\_gRPC\C#\Helloworlds\GreeterServer\bin\Release\net5.0\Google.Protobuf.dll
+d:\Work\_gRPC\C#\Helloworlds\GreeterServer\bin\Release\net5.0\Grpc.Core.dll
+d:\Work\_gRPC\C#\Helloworlds\GreeterServer\bin\Release\net5.0\Grpc.Core.Api.dll
+d:\Work\_gRPC\C#\Helloworlds\GreeterServer\bin\Release\net5.0\runtimes\linux\native\libgrpc_csharp_ext.x64.so
+d:\Work\_gRPC\C#\Helloworlds\GreeterServer\bin\Release\net5.0\runtimes\linux\native\libgrpc_csharp_ext.x86.so
+d:\Work\_gRPC\C#\Helloworlds\GreeterServer\bin\Release\net5.0\runtimes\osx\native\libgrpc_csharp_ext.x64.dylib
+d:\Work\_gRPC\C#\Helloworlds\GreeterServer\bin\Release\net5.0\runtimes\osx\native\libgrpc_csharp_ext.x86.dylib
+d:\Work\_gRPC\C#\Helloworlds\GreeterServer\bin\Release\net5.0\runtimes\win\native\grpc_csharp_ext.x64.dll
+d:\Work\_gRPC\C#\Helloworlds\GreeterServer\bin\Release\net5.0\runtimes\win\native\grpc_csharp_ext.x86.dll
+d:\Work\_gRPC\C#\Helloworlds\GreeterServer\bin\Release\net5.0\Greeter.dll
+d:\Work\_gRPC\C#\Helloworlds\GreeterServer\bin\Release\net5.0\Greeter.pdb
+d:\Work\_gRPC\C#\Helloworlds\GreeterServer\obj\Release\net5.0\GreeterServer.csproj.AssemblyReference.cache
+d:\Work\_gRPC\C#\Helloworlds\GreeterServer\obj\Release\net5.0\GreeterServer.GeneratedMSBuildEditorConfig.editorconfig
+d:\Work\_gRPC\C#\Helloworlds\GreeterServer\obj\Release\net5.0\GreeterServer.AssemblyInfoInputs.cache
+d:\Work\_gRPC\C#\Helloworlds\GreeterServer\obj\Release\net5.0\GreeterServer.AssemblyInfo.cs
+d:\Work\_gRPC\C#\Helloworlds\GreeterServer\obj\Release\net5.0\GreeterServer.csproj.CoreCompileInputs.cache
+d:\Work\_gRPC\C#\Helloworlds\GreeterServer\obj\Release\net5.0\GreeterServer.csproj.CopyComplete
+d:\Work\_gRPC\C#\Helloworlds\GreeterServer\obj\Release\net5.0\GreeterServer.dll
+d:\Work\_gRPC\C#\Helloworlds\GreeterServer\obj\Release\net5.0\refint\GreeterServer.dll
+d:\Work\_gRPC\C#\Helloworlds\GreeterServer\obj\Release\net5.0\GreeterServer.pdb
+d:\Work\_gRPC\C#\Helloworlds\GreeterServer\obj\Release\net5.0\GreeterServer.genruntimeconfig.cache
+d:\Work\_gRPC\C#\Helloworlds\GreeterServer\obj\Release\net5.0\ref\GreeterServer.dll
+d:\Work\_gRPC\C#\Helloworldstream\GreeterServer\bin\Release\net5.0\GreeterServer.exe
+d:\Work\_gRPC\C#\Helloworldstream\GreeterServer\bin\Release\net5.0\GreeterServer.deps.json
+d:\Work\_gRPC\C#\Helloworldstream\GreeterServer\bin\Release\net5.0\GreeterServer.runtimeconfig.json
+d:\Work\_gRPC\C#\Helloworldstream\GreeterServer\bin\Release\net5.0\GreeterServer.runtimeconfig.dev.json
+d:\Work\_gRPC\C#\Helloworldstream\GreeterServer\bin\Release\net5.0\GreeterServer.dll
+d:\Work\_gRPC\C#\Helloworldstream\GreeterServer\bin\Release\net5.0\GreeterServer.pdb
+d:\Work\_gRPC\C#\Helloworldstream\GreeterServer\bin\Release\net5.0\Google.Protobuf.dll
+d:\Work\_gRPC\C#\Helloworldstream\GreeterServer\bin\Release\net5.0\Grpc.Core.dll
+d:\Work\_gRPC\C#\Helloworldstream\GreeterServer\bin\Release\net5.0\Grpc.Core.Api.dll
+d:\Work\_gRPC\C#\Helloworldstream\GreeterServer\bin\Release\net5.0\runtimes\linux-arm64\native\libgrpc_csharp_ext.arm64.so
+d:\Work\_gRPC\C#\Helloworldstream\GreeterServer\bin\Release\net5.0\runtimes\linux-x64\native\libgrpc_csharp_ext.x64.so
+d:\Work\_gRPC\C#\Helloworldstream\GreeterServer\bin\Release\net5.0\runtimes\osx-x64\native\libgrpc_csharp_ext.x64.dylib
+d:\Work\_gRPC\C#\Helloworldstream\GreeterServer\bin\Release\net5.0\runtimes\win-x64\native\grpc_csharp_ext.x64.dll
+d:\Work\_gRPC\C#\Helloworldstream\GreeterServer\bin\Release\net5.0\runtimes\win-x86\native\grpc_csharp_ext.x86.dll
+d:\Work\_gRPC\C#\Helloworldstream\GreeterServer\bin\Release\net5.0\Greeter.dll
+d:\Work\_gRPC\C#\Helloworldstream\GreeterServer\bin\Release\net5.0\Greeter.pdb
+d:\Work\_gRPC\C#\Helloworldstream\GreeterServer\obj\Release\net5.0\GreeterServer.csproj.AssemblyReference.cache
+d:\Work\_gRPC\C#\Helloworldstream\GreeterServer\obj\Release\net5.0\GreeterServer.GeneratedMSBuildEditorConfig.editorconfig
+d:\Work\_gRPC\C#\Helloworldstream\GreeterServer\obj\Release\net5.0\GreeterServer.AssemblyInfoInputs.cache
+d:\Work\_gRPC\C#\Helloworldstream\GreeterServer\obj\Release\net5.0\GreeterServer.AssemblyInfo.cs
+d:\Work\_gRPC\C#\Helloworldstream\GreeterServer\obj\Release\net5.0\GreeterServer.csproj.CoreCompileInputs.cache
+d:\Work\_gRPC\C#\Helloworldstream\GreeterServer\obj\Release\net5.0\GreeterServer.csproj.CopyComplete
+d:\Work\_gRPC\C#\Helloworldstream\GreeterServer\obj\Release\net5.0\GreeterServer.dll
+d:\Work\_gRPC\C#\Helloworldstream\GreeterServer\obj\Release\net5.0\refint\GreeterServer.dll
+d:\Work\_gRPC\C#\Helloworldstream\GreeterServer\obj\Release\net5.0\GreeterServer.pdb
+d:\Work\_gRPC\C#\Helloworldstream\GreeterServer\obj\Release\net5.0\GreeterServer.genruntimeconfig.cache
+d:\Work\_gRPC\C#\Helloworldstream\GreeterServer\obj\Release\net5.0\ref\GreeterServer.dll
+C:\Projects\C#Project\Helloworldstream (1)\GreeterServer\bin\Release\net5.0\GreeterServer.exe
+C:\Projects\C#Project\Helloworldstream (1)\GreeterServer\bin\Release\net5.0\GreeterServer.deps.json
+C:\Projects\C#Project\Helloworldstream (1)\GreeterServer\bin\Release\net5.0\GreeterServer.runtimeconfig.json
+C:\Projects\C#Project\Helloworldstream (1)\GreeterServer\bin\Release\net5.0\GreeterServer.runtimeconfig.dev.json
+C:\Projects\C#Project\Helloworldstream (1)\GreeterServer\bin\Release\net5.0\GreeterServer.dll
+C:\Projects\C#Project\Helloworldstream (1)\GreeterServer\bin\Release\net5.0\GreeterServer.pdb
+C:\Projects\C#Project\Helloworldstream (1)\GreeterServer\bin\Release\net5.0\Google.Protobuf.dll
+C:\Projects\C#Project\Helloworldstream (1)\GreeterServer\bin\Release\net5.0\Grpc.Core.dll
+C:\Projects\C#Project\Helloworldstream (1)\GreeterServer\bin\Release\net5.0\Grpc.Core.Api.dll
+C:\Projects\C#Project\Helloworldstream (1)\GreeterServer\bin\Release\net5.0\runtimes\linux-arm64\native\libgrpc_csharp_ext.arm64.so
+C:\Projects\C#Project\Helloworldstream (1)\GreeterServer\bin\Release\net5.0\runtimes\linux-x64\native\libgrpc_csharp_ext.x64.so
+C:\Projects\C#Project\Helloworldstream (1)\GreeterServer\bin\Release\net5.0\runtimes\osx-x64\native\libgrpc_csharp_ext.x64.dylib
+C:\Projects\C#Project\Helloworldstream (1)\GreeterServer\bin\Release\net5.0\runtimes\win-x64\native\grpc_csharp_ext.x64.dll
+C:\Projects\C#Project\Helloworldstream (1)\GreeterServer\bin\Release\net5.0\runtimes\win-x86\native\grpc_csharp_ext.x86.dll
+C:\Projects\C#Project\Helloworldstream (1)\GreeterServer\bin\Release\net5.0\Greeter.dll
+C:\Projects\C#Project\Helloworldstream (1)\GreeterServer\bin\Release\net5.0\Greeter.pdb
+C:\Projects\C#Project\Helloworldstream (1)\GreeterServer\obj\Release\net5.0\GreeterServer.csproj.AssemblyReference.cache
+C:\Projects\C#Project\Helloworldstream (1)\GreeterServer\obj\Release\net5.0\GreeterServer.GeneratedMSBuildEditorConfig.editorconfig
+C:\Projects\C#Project\Helloworldstream (1)\GreeterServer\obj\Release\net5.0\GreeterServer.AssemblyInfoInputs.cache
+C:\Projects\C#Project\Helloworldstream (1)\GreeterServer\obj\Release\net5.0\GreeterServer.AssemblyInfo.cs
+C:\Projects\C#Project\Helloworldstream (1)\GreeterServer\obj\Release\net5.0\GreeterServer.csproj.CoreCompileInputs.cache
+C:\Projects\C#Project\Helloworldstream (1)\GreeterServer\obj\Release\net5.0\GreeterServer.csproj.CopyComplete
+C:\Projects\C#Project\Helloworldstream (1)\GreeterServer\obj\Release\net5.0\GreeterServer.dll
+C:\Projects\C#Project\Helloworldstream (1)\GreeterServer\obj\Release\net5.0\refint\GreeterServer.dll
+C:\Projects\C#Project\Helloworldstream (1)\GreeterServer\obj\Release\net5.0\GreeterServer.pdb
+C:\Projects\C#Project\Helloworldstream (1)\GreeterServer\obj\Release\net5.0\GreeterServer.genruntimeconfig.cache
+C:\Projects\C#Project\Helloworldstream (1)\GreeterServer\obj\Release\net5.0\ref\GreeterServer.dll

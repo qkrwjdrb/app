@@ -1,0 +1,71 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\Projects\\C#Project\\Helloworldstream (1)\\Greeter\\Greeter.csproj": {}
+  },
+  "projects": {
+    "C:\\Projects\\C#Project\\Helloworldstream (1)\\Greeter\\Greeter.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Projects\\C#Project\\Helloworldstream (1)\\Greeter\\Greeter.csproj",
+        "projectName": "Greeter",
+        "projectPath": "C:\\Projects\\C#Project\\Helloworldstream (1)\\Greeter\\Greeter.csproj",
+        "packagesPath": "C:\\Users\\mioli\\.nuget\\packages\\",
+        "outputPath": "C:\\Projects\\C#Project\\Helloworldstream (1)\\Greeter\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\mioli\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netstandard1.5"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netstandard1.5": {
+            "targetAlias": "netstandard1.5",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netstandard1.5": {
+          "targetAlias": "netstandard1.5",
+          "dependencies": {
+            "Google.Protobuf": {
+              "target": "Package",
+              "version": "[3.21.1, )"
+            },
+            "Grpc": {
+              "target": "Package",
+              "version": "[2.46.3, )"
+            },
+            "Grpc.Tools": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.46.3, )"
+            },
+            "NETStandard.Library": {
+              "target": "Package",
+              "version": "[1.6.1, )",
+              "autoReferenced": true
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.201\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}
